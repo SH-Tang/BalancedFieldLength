@@ -17,7 +17,7 @@ namespace Calculator.Data
         /// <param name="maximumPitchAngle">The maximum pitch angle during rotation. [deg]</param>
         /// <param name="rollingResistanceCoefficient">The rolling resistance coefficient. [-]</param>
         /// <param name="brakingResistanceCoefficient">The brake resistance coefficient. [-]</param>
-        /// <param name="aerodynamicData">The <see cref="Calculator.Data.AerodynamicData"/>
+        /// <param name="aerodynamicData">The <see cref="Data.AerodynamicData"/>
         /// holding all aerodynamic properties of the aircraft.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
         /// is <c>null</c>.</exception>
@@ -82,7 +82,7 @@ namespace Calculator.Data
         public double BrakingResistanceCoefficient { get; }
 
         /// <summary>
-        /// Gets the <see cref="Calculator.Data.AerodynamicData"/> containing all the aerodynamic
+        /// Gets the <see cref="Data.AerodynamicData"/> containing all the aerodynamic
         /// data of the aircraft.
         /// </summary>
         public AerodynamicData AerodynamicData { get; }
