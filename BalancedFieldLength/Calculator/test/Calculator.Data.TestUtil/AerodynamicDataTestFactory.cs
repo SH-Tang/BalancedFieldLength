@@ -1,14 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Calculator.Data.TestUtil
 {
     /// <summary>
     /// Creates valid instances of <see cref="AerodynamicData"/> which can be used for testing.
     /// </summary>
-    public class AerodynamicDataTestFactory
+    public static class AerodynamicDataTestFactory
     {
+        /// <summary>
+        /// Generates an instance of <see cref="AerodynamicData"/> with random values.
+        /// </summary>
+        /// <returns>An <see cref="AerodynamicData"/> with random values.</returns>
+        public static AerodynamicData CreateAerodynamicData()
+        {
+            var random = new Random(21);
+
+            return new AerodynamicData(random.NextDouble(), random.NextDouble(),
+                                       random.NextDouble(), random.NextDouble(),
+                                       random.NextDouble(), random.NextDouble(),
+                                       random.NextDouble(), random.NextDouble());
+        }
     }
 }
