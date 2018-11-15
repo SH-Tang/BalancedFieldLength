@@ -9,9 +9,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9CA47A5A-57C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{284D5C1F-A0D9-47A1-BA92-658DCC754CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Data.Test", "Calculator.Data.Test\Calculator.Data.Test.csproj", "{F6516028-72AB-4137-9400-1EA9F0312899}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Data.Test", "Calculator\test\Calculator.Data.Test\Calculator.Data.Test.csproj", "{F6516028-72AB-4137-9400-1EA9F0312899}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Data", "Calculator.Data\Calculator.Data.csproj", "{C512FD2B-E141-401C-A55C-E993D017BBB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Calculator.Data", "Calculator\src\Calculator.Data\Calculator.Data.csproj", "{C512FD2B-E141-401C-A55C-E993D017BBB0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
