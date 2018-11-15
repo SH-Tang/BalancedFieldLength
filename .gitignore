@@ -1,12 +1,56 @@
+# Visual studio
+*.suo
+*.user
+*.userosscache
+*.sln.docstates
+*.userprefs
 
-BalancedFieldLength/\.vs/BalancedFieldLength/DesignTimeBuild/\.dtbcache
+[Dd]ebug/
+[Rr]elease/
+x86/
+bld/
+[Bb]in/
+[Oo]bj/
+[Ll]og/
 
-BalancedFieldLength/\.vs/BalancedFieldLength/v15/\.suo
+.vs/
+*.VisualState.xml
+TestResult.xml
 
-BalancedFieldLength/\.vs/BalancedFieldLength/v15/Server/sqlite3/db\.lock
+# ReSharper is a .NET coding add-in
+_ReSharper*/
+*.[Rr]e[Ss]harper
+*.DotSettings.user
 
-BalancedFieldLength/\.vs/BalancedFieldLength/v15/Server/sqlite3/storage\.ide
+# TeamCity is a build add-in
+_TeamCity*
 
-BalancedFieldLength/\.vs/BalancedFieldLength/v15/Server/sqlite3/storage\.ide-shm
+# DotCover is a Code Coverage Tool
+*.dotCover
 
-BalancedFieldLength/\.vs/BalancedFieldLength/v15/Server/sqlite3/storage\.ide-wal
+# NuGet Packages
+*.nupkg
+packages/
+
+### Windows ###
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+ehthumbs_vista.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Windows Installer files
+*.cab
+*.msi
+*.msm
+*.msp
+
+# Windows shortcuts
+*.lnk
+
+*.DotSettings
