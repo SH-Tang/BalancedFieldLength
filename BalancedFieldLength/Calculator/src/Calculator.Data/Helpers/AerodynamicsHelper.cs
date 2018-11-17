@@ -3,9 +3,9 @@
 namespace Calculator.Data.Helpers
 {
     /// <summary>
-    /// Helper class which can be used to calculate the aerodynamic forces.
+    /// Helper class which can be used to calculate the aerodynamic properties.
     /// </summary>
-    public static class AerodynamicForceHelper
+    public static class AerodynamicsHelper
     {
         /// <summary>
         /// Calculates the stall speed based on the input.

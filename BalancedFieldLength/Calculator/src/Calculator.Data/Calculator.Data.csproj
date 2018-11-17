@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="AerodynamicData.cs" />
     <Compile Include="AircraftData.cs" />
-    <Compile Include="Helpers\AerodynamicForceHelper.cs" />
+    <Compile Include="Helpers\AerodynamicsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

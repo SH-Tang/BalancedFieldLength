@@ -6,7 +6,7 @@ using NUnit.Framework;
 namespace Calculator.Data.Test.Helpers
 {
     [TestFixture]
-    public class AerodynamicForceHelperTest
+    public class AerodynamicsHelperTest
     {
         private const double density = 1.225; //kg/m3
         private const double tolerance = 10e-3;
@@ -18,7 +18,7 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateDragWithoutEngineFailure(null,
+            TestDelegate call = () => AerodynamicsHelper.CalculateDragWithoutEngineFailure(null,
                                                                                                random.NextDouble(),
                                                                                                random.NextDouble(),
                                                                                                random.NextDouble());
@@ -38,7 +38,7 @@ namespace Calculator.Data.Test.Helpers
             double velocity = random.NextDouble();
 
             // Call 
-            double drag = AerodynamicForceHelper.CalculateDragWithoutEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+            double drag = AerodynamicsHelper.CalculateDragWithoutEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
 
             // Assert
             double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, false);
@@ -52,7 +52,7 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateDragWithEngineFailure(null,
+            TestDelegate call = () => AerodynamicsHelper.CalculateDragWithEngineFailure(null,
                                                                                             random.NextDouble(),
                                                                                             random.NextDouble(),
                                                                                             random.NextDouble());
@@ -72,7 +72,7 @@ namespace Calculator.Data.Test.Helpers
             double velocity = random.NextDouble();
 
             // Call 
-            double drag = AerodynamicForceHelper.CalculateDragWithEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+            double drag = AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
 
             // Assert
             double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, true);
@@ -86,7 +86,7 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateStallSpeed(null,
+            TestDelegate call = () => AerodynamicsHelper.CalculateStallSpeed(null,
                                                                                  random.NextDouble(),
                                                                                  random.NextDouble());
 
@@ -103,7 +103,7 @@ namespace Calculator.Data.Test.Helpers
             const double weight = 500e3; // N
 
             // Call 
-            double stallSpeed = AerodynamicForceHelper.CalculateStallSpeed(aerodynamicData, weight, density);
+            double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aerodynamicData, weight, density);
 
             // Assert
             double expectedStallSpeed = Math.Sqrt(2 * weight / (aerodynamicData.MaximumLiftCoefficient * density * aerodynamicData.WingArea));
@@ -117,7 +117,7 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateLift(null,
+            TestDelegate call = () => AerodynamicsHelper.CalculateLift(null,
                                                                            random.NextDouble(),
                                                                            random.NextDouble(),
                                                                            random.NextDouble());
@@ -136,7 +136,7 @@ namespace Calculator.Data.Test.Helpers
             const int velocity = 10; // m/s
 
             // Call 
-            double lift = AerodynamicForceHelper.CalculateLift(aerodynamicData,
+            double lift = AerodynamicsHelper.CalculateLift(aerodynamicData,
                                                                angleOfAttack,
                                                                density,
                                                                velocity);
