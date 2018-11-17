@@ -37,7 +37,9 @@
   <ItemGroup>
     <Compile Include="AerodynamicData.cs" />
     <Compile Include="AircraftData.cs" />
+    <Compile Include="Helpers\AerodynamicForceHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

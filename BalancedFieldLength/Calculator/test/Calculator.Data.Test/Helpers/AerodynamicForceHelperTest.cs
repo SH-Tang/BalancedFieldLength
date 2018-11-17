@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using Calculator.Data;
+using Calculator.Data.Helpers;
 using NUnit.Framework;
 
-namespace Calculator.Helpers.Test
+namespace Calculator.Data.Test.Helpers
 {
     [TestFixture]
     public class AerodynamicForceHelperTest

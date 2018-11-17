@@ -1,7 +1,6 @@
 ﻿using System;
-using Calculator.Data;
 
-namespace Calculator.Helpers
+namespace Calculator.Data.Helpers
 {
     /// <summary>
     /// Helper class which can be used to calculate the aerodynamic forces.
