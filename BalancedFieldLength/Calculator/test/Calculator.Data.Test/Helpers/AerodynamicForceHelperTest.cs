@@ -8,6 +8,39 @@ namespace Calculator.Data.Test.Helpers
     [TestFixture]
     public class AerodynamicForceHelperTest
     {
+        private const double density = 1.225; //kg/m3
+
+        [Test]
+        public static void CalculateStallSpeed_AerodynamicDataNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+
+            // Call 
+            TestDelegate call = () => AerodynamicForceHelper.CalculateStallSpeed(null,
+                                                                                 random.NextDouble(),
+                                                                                 random.NextDouble());
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("aerodynamicData", exception.ParamName);
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetTestCases))]
+        public static void CalculateStallSpeed_WithValidParametersWithinLimits_ReturnsExpectedValues(AerodynamicData aerodynamicData)
+        {
+            // Setup
+            const double weight = 500e3; // N
+
+            // Call 
+            double stallSpeed = AerodynamicForceHelper.CalculateStallSpeed(aerodynamicData, weight, density);
+
+            // Assert
+            double expectedStallSpeed = Math.Sqrt(2 * weight / (aerodynamicData.MaximumLiftCoefficient * density * aerodynamicData.WingArea));
+            Assert.AreEqual(expectedStallSpeed, stallSpeed, 10e-3);
+        }
+
         [Test]
         public static void CalculateLift_AerodynamicDataNull_ThrowsArgumentNullException()
         {
@@ -15,8 +48,10 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateLift(null, random.NextDouble(), 
-                                                                           random.NextDouble(), random.NextDouble());
+            TestDelegate call = () => AerodynamicForceHelper.CalculateLift(null, 
+                                                                           random.NextDouble(),
+                                                                           random.NextDouble(), 
+                                                                           random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -29,14 +64,13 @@ namespace Calculator.Data.Test.Helpers
         {
             // Setup
             const double angleOfAttack = 3.0; // degrees
-            const double density = 1.225; //kg/m3
             const int velocity = 10; // m/s
 
             // Call 
-            var lift = AerodynamicForceHelper.CalculateLift(aerodynamicData,
-                                                            angleOfAttack,
-                                                            density,
-                                                            velocity);
+            double lift = AerodynamicForceHelper.CalculateLift(aerodynamicData,
+                                                               angleOfAttack,
+                                                               density,
+                                                               velocity);
             // Assert
             Assert.AreEqual(CalculateExpectedLift(aerodynamicData, angleOfAttack, density, velocity), lift);
         }

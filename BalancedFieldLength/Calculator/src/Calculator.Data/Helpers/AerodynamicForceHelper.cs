@@ -8,6 +8,26 @@ namespace Calculator.Data.Helpers
     public static class AerodynamicForceHelper
     {
         /// <summary>
+        /// Calculates the stall speed based on the input.
+        /// </summary>
+        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/> containing
+        /// all the aerodynamic properties.</param>
+        /// <param name="takeOffWeight">The take off weight of the aircraft. [N]</param>
+        /// <param name="density">The density. [kg/m^3]</param>
+        /// <returns>The stall speed. [m/s]</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// is <c>null</c>.</exception>
+        public static double CalculateStallSpeed(AerodynamicData aerodynamicData, double takeOffWeight, double density)
+        {
+            if (aerodynamicData == null)
+            {
+                throw new ArgumentNullException(nameof(aerodynamicData));
+            }
+
+            return Math.Sqrt((2 * takeOffWeight) / (density * aerodynamicData.WingArea * aerodynamicData.MaximumLiftCoefficient));
+        }
+
+        /// <summary>
         /// Calculates the lift based on the input.
         /// </summary>
         /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
