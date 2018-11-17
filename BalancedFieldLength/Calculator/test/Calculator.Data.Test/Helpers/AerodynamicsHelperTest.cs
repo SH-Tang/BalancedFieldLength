@@ -19,9 +19,9 @@ namespace Calculator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateDragWithoutEngineFailure(null,
-                                                                                               random.NextDouble(),
-                                                                                               random.NextDouble(),
-                                                                                               random.NextDouble());
+                                                                                           random.NextDouble(),
+                                                                                           random.NextDouble(),
+                                                                                           random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -53,9 +53,9 @@ namespace Calculator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateDragWithEngineFailure(null,
-                                                                                            random.NextDouble(),
-                                                                                            random.NextDouble(),
-                                                                                            random.NextDouble());
+                                                                                        random.NextDouble(),
+                                                                                        random.NextDouble(),
+                                                                                        random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -87,8 +87,8 @@ namespace Calculator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateStallSpeed(null,
-                                                                                 random.NextDouble(),
-                                                                                 random.NextDouble());
+                                                                             random.NextDouble(),
+                                                                             random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -118,9 +118,9 @@ namespace Calculator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateLift(null,
-                                                                           random.NextDouble(),
-                                                                           random.NextDouble(),
-                                                                           random.NextDouble());
+                                                                       random.NextDouble(),
+                                                                       random.NextDouble(),
+                                                                       random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -137,9 +137,9 @@ namespace Calculator.Data.Test.Helpers
 
             // Call 
             double lift = AerodynamicsHelper.CalculateLift(aerodynamicData,
-                                                               angleOfAttack,
-                                                               density,
-                                                               velocity);
+                                                           angleOfAttack,
+                                                           density,
+                                                           velocity);
             // Assert
             Assert.AreEqual(CalculateExpectedLift(aerodynamicData, angleOfAttack, density, velocity), lift);
         }
