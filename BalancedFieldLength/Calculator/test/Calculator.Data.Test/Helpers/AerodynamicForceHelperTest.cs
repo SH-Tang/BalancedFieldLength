@@ -9,6 +9,75 @@ namespace Calculator.Data.Test.Helpers
     public class AerodynamicForceHelperTest
     {
         private const double density = 1.225; //kg/m3
+        private const double tolerance = 10e-3;
+
+        [Test]
+        public static void CalculateDragWithoutEngineFailure_AerodynamicDataNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+
+            // Call 
+            TestDelegate call = () => AerodynamicForceHelper.CalculateDragWithoutEngineFailure(null,
+                                                                                               random.NextDouble(),
+                                                                                               random.NextDouble(),
+                                                                                               random.NextDouble());
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("aerodynamicData", exception.ParamName);
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetTestCases))]
+        public static void CalculateDragWithoutEngineFailure_WithValidParameters_ReturnsExpectedValues(AerodynamicData aerodynamicData)
+        {
+            // Setup
+            var random = new Random(21);
+            double liftCoefficient = random.NextDouble();
+            double velocity = random.NextDouble();
+
+            // Call 
+            double drag = AerodynamicForceHelper.CalculateDragWithoutEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+
+            // Assert
+            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, false);
+            Assert.AreEqual(expectedDrag, drag, tolerance);
+        }
+
+        [Test]
+        public static void CalculateDragWithEngineFailure_AerodynamicDataNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+
+            // Call 
+            TestDelegate call = () => AerodynamicForceHelper.CalculateDragWithEngineFailure(null,
+                                                                                            random.NextDouble(),
+                                                                                            random.NextDouble(),
+                                                                                            random.NextDouble());
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("aerodynamicData", exception.ParamName);
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetTestCases))]
+        public static void CalculateDragWithEngineFailure_WithValidParameters_ReturnsExpectedValues(AerodynamicData aerodynamicData)
+        {
+            // Setup
+            var random = new Random(21);
+            double liftCoefficient = random.NextDouble();
+            double velocity = random.NextDouble();
+
+            // Call 
+            double drag = AerodynamicForceHelper.CalculateDragWithEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+
+            // Assert
+            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, true);
+            Assert.AreEqual(expectedDrag, drag, tolerance);
+        }
 
         [Test]
         public static void CalculateStallSpeed_AerodynamicDataNull_ThrowsArgumentNullException()
@@ -38,7 +107,7 @@ namespace Calculator.Data.Test.Helpers
 
             // Assert
             double expectedStallSpeed = Math.Sqrt(2 * weight / (aerodynamicData.MaximumLiftCoefficient * density * aerodynamicData.WingArea));
-            Assert.AreEqual(expectedStallSpeed, stallSpeed, 10e-3);
+            Assert.AreEqual(expectedStallSpeed, stallSpeed, tolerance);
         }
 
         [Test]
@@ -48,9 +117,9 @@ namespace Calculator.Data.Test.Helpers
             var random = new Random(21);
 
             // Call 
-            TestDelegate call = () => AerodynamicForceHelper.CalculateLift(null, 
+            TestDelegate call = () => AerodynamicForceHelper.CalculateLift(null,
                                                                            random.NextDouble(),
-                                                                           random.NextDouble(), 
+                                                                           random.NextDouble(),
                                                                            random.NextDouble());
 
             // Assert
@@ -89,7 +158,28 @@ namespace Calculator.Data.Test.Helpers
         {
             double liftCoefficient = aerodynamicData.LiftCoefficientGradient *
                                      DegreesToRadians(angleOfAttack - aerodynamicData.ZeroLiftAngleOfAttack);
-            return 0.5 * liftCoefficient * density * Math.Pow(velocity, 2) * aerodynamicData.WingArea;
+            return liftCoefficient * CalculateDynamicPressure(velocity, density, aerodynamicData.WingArea);
+        }
+
+        private static double CalculateExpectedDrag(AerodynamicData aerodynamicData,
+                                                    double liftCoefficient,
+                                                    double density,
+                                                    double velocity,
+                                                    bool hasEngineFailed)
+        {
+            double staticDragCoefficient = hasEngineFailed
+                                               ? aerodynamicData.RestDragCoefficientWithEngineFailure
+                                               : aerodynamicData.RestDragCoefficientWithoutEngineFailure;
+
+            double inducedDragCoefficient = Math.Pow(liftCoefficient, 2) / (Math.PI * aerodynamicData.AspectRatio * aerodynamicData.OswaldFactor);
+
+            double totalDragCoefficient = staticDragCoefficient + inducedDragCoefficient;
+            return totalDragCoefficient * CalculateDynamicPressure(velocity, density, aerodynamicData.WingArea);
+        }
+
+        private static double CalculateDynamicPressure(double velocity, double density, double wingArea)
+        {
+            return 0.5 * density * Math.Pow(velocity, 2) * wingArea;
         }
 
         private static double DegreesToRadians(double degrees)
