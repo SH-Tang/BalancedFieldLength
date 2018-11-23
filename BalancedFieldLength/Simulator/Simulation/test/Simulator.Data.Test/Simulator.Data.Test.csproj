@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="AerodynamicDataTest.cs" />
     <Compile Include="AircraftDataTest.cs" />
+    <Compile Include="Helpers\AerodynamicsHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
