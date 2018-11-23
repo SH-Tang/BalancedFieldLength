@@ -1,14 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
 using Calculator.Data.Helpers;
 using NUnit.Framework;
+using Simulator.Data.TestUtil;
 
 namespace Simulator.Data.Test.Helpers
 {
     [TestFixture]
     public class AerodynamicsHelperTest
     {
-        private const double density = 1.225; //kg/m3
+        private const double airDensity = 1.225; //kg/m3
         private const double tolerance = 10e-3;
 
         [Test]
@@ -19,9 +19,9 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateDragWithoutEngineFailure(null,
-                                                                                               random.NextDouble(),
-                                                                                               random.NextDouble(),
-                                                                                               random.NextDouble());
+                                                                                           random.NextDouble(),
+                                                                                           random.NextDouble(),
+                                                                                           random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -29,7 +29,7 @@ namespace Simulator.Data.Test.Helpers
         }
 
         [Test]
-        [TestCaseSource(nameof(GetTestCases))]
+        [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicDataTestCases))]
         public static void CalculateDragWithoutEngineFailure_WithValidParameters_ReturnsExpectedValues(AerodynamicData aerodynamicData)
         {
             // Setup
@@ -38,10 +38,10 @@ namespace Simulator.Data.Test.Helpers
             double velocity = random.NextDouble();
 
             // Call 
-            double drag = AerodynamicsHelper.CalculateDragWithoutEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+            double drag = AerodynamicsHelper.CalculateDragWithoutEngineFailure(aerodynamicData, liftCoefficient, airDensity, velocity);
 
             // Assert
-            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, false);
+            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, airDensity, velocity, false);
             Assert.AreEqual(expectedDrag, drag, tolerance);
         }
 
@@ -53,9 +53,9 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateDragWithEngineFailure(null,
-                                                                                            random.NextDouble(),
-                                                                                            random.NextDouble(),
-                                                                                            random.NextDouble());
+                                                                                        random.NextDouble(),
+                                                                                        random.NextDouble(),
+                                                                                        random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -63,7 +63,7 @@ namespace Simulator.Data.Test.Helpers
         }
 
         [Test]
-        [TestCaseSource(nameof(GetTestCases))]
+        [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicDataTestCases))]
         public static void CalculateDragWithEngineFailure_WithValidParameters_ReturnsExpectedValues(AerodynamicData aerodynamicData)
         {
             // Setup
@@ -72,10 +72,10 @@ namespace Simulator.Data.Test.Helpers
             double velocity = random.NextDouble();
 
             // Call 
-            double drag = AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicData, liftCoefficient, density, velocity);
+            double drag = AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicData, liftCoefficient, airDensity, velocity);
 
             // Assert
-            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, density, velocity, true);
+            double expectedDrag = CalculateExpectedDrag(aerodynamicData, liftCoefficient, airDensity, velocity, true);
             Assert.AreEqual(expectedDrag, drag, tolerance);
         }
 
@@ -87,8 +87,8 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateStallSpeed(null,
-                                                                                 random.NextDouble(),
-                                                                                 random.NextDouble());
+                                                                             random.NextDouble(),
+                                                                             random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -96,17 +96,17 @@ namespace Simulator.Data.Test.Helpers
         }
 
         [Test]
-        [TestCaseSource(nameof(GetTestCases))]
+        [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicDataTestCases))]
         public static void CalculateStallSpeed_WithValidParametersWithinLimits_ReturnsExpectedValues(AerodynamicData aerodynamicData)
         {
             // Setup
             const double weight = 500e3; // N
 
             // Call 
-            double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aerodynamicData, weight, density);
+            double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aerodynamicData, weight, airDensity);
 
             // Assert
-            double expectedStallSpeed = Math.Sqrt(2 * weight / (aerodynamicData.MaximumLiftCoefficient * density * aerodynamicData.WingArea));
+            double expectedStallSpeed = Math.Sqrt(2 * weight / (aerodynamicData.MaximumLiftCoefficient * airDensity * aerodynamicData.WingArea));
             Assert.AreEqual(expectedStallSpeed, stallSpeed, tolerance);
         }
 
@@ -118,9 +118,9 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateLift(null,
-                                                                           random.NextDouble(),
-                                                                           random.NextDouble(),
-                                                                           random.NextDouble());
+                                                                       random.NextDouble(),
+                                                                       random.NextDouble(),
+                                                                       random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -128,7 +128,7 @@ namespace Simulator.Data.Test.Helpers
         }
 
         [Test]
-        [TestCaseSource(nameof(GetTestCases))]
+        [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicDataTestCases))]
         public static void CalculateLift_WithValidParametersAndWithinLimits_ReturnsExpectedValues(AerodynamicData aerodynamicData)
         {
             // Setup
@@ -137,18 +137,11 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             double lift = AerodynamicsHelper.CalculateLift(aerodynamicData,
-                                                               angleOfAttack,
-                                                               density,
-                                                               velocity);
+                                                           angleOfAttack,
+                                                           airDensity,
+                                                           velocity);
             // Assert
-            Assert.AreEqual(CalculateExpectedLift(aerodynamicData, angleOfAttack, density, velocity), lift);
-        }
-
-        private static IEnumerable<TestCaseData> GetTestCases()
-        {
-            yield return new TestCaseData(new AerodynamicData(15, 100, -3, 4.85, 1.60, 0.021, 0.026, 0.85));
-            yield return new TestCaseData(new AerodynamicData(14, 200, -4, 4.32, 1.45, 0.024, 0.028, 0.80));
-            yield return new TestCaseData(new AerodynamicData(12, 500, -5, 3.95, 1.40, 0.026, 0.029, 0.82));
+            Assert.AreEqual(CalculateExpectedLift(aerodynamicData, angleOfAttack, airDensity, velocity), lift);
         }
 
         private static double CalculateExpectedLift(AerodynamicData aerodynamicData,
