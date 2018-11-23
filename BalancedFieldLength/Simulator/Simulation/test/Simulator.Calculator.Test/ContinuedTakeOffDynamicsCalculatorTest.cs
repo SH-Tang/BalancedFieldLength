@@ -18,7 +18,7 @@ namespace Simulator.Calculator.Test
             var random = new Random(21);
 
             // Call
-            TestDelegate call = () => new ContinuedTakeOffDynamicsCalculatorBase(null, random.Next(), random.NextDouble());
+            TestDelegate call = () => new ContinuedTakeOffDynamicsCalculator(null, random.Next(), random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -35,7 +35,7 @@ namespace Simulator.Calculator.Test
                                                 random.NextDouble(), random.NextDouble(),
                                                 random.NextDouble(), AerodynamicDataTestFactory.CreateAerodynamicData());
 
-            var calculator = new ContinuedTakeOffDynamicsCalculatorBase(aircraftData, random.Next(), random.NextDouble());
+            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble());
 
             // Call
             TestDelegate call = () => calculator.Calculate(null);
@@ -62,7 +62,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculatorBase(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -85,7 +85,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed - random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculatorBase(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -107,7 +107,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculatorBase(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -184,14 +184,14 @@ namespace Simulator.Calculator.Test
     /// Class which describes the calculation of the aircraft dynamics
     /// when the take off is continued after engine failure.
     /// </summary>
-    public class ContinuedTakeOffDynamicsCalculatorBase
+    public class ContinuedTakeOffDynamicsCalculator
     {
         private readonly AircraftData aircraftData;
         private readonly int numberOfFailedEngines;
         private readonly double density;
 
         /// <summary>
-        /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculatorBase"/>.
+        /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
         /// <param name="aircraftData">THe <see cref="AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
@@ -199,7 +199,7 @@ namespace Simulator.Calculator.Test
         /// <param name="density">The air density. [kg/m3]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        public ContinuedTakeOffDynamicsCalculatorBase(AircraftData aircraftData, int numberOfFailedEngines, double density)
+        public ContinuedTakeOffDynamicsCalculator(AircraftData aircraftData, int numberOfFailedEngines, double density)
         {
             if (aircraftData == null)
             {
