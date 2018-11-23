@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.Test", "Simu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.TestUtil.Test", "Simulator\Simulation\test\Simulator.Data.TestUtil.Test\Simulator.Data.TestUtil.Test.csproj", "{EDFC2014-DC68-4444-8827-FA7816A6F7A7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.Test", "Simulator\Simulation\test\Simulator.Calculator.Test\Simulator.Calculator.Test.csproj", "{BE673503-B1BE-4046-AA09-430ED2D0C2D0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{EDFC2014-DC68-4444-8827-FA7816A6F7A7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EDFC2014-DC68-4444-8827-FA7816A6F7A7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EDFC2014-DC68-4444-8827-FA7816A6F7A7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BE673503-B1BE-4046-AA09-430ED2D0C2D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BE673503-B1BE-4046-AA09-430ED2D0C2D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BE673503-B1BE-4046-AA09-430ED2D0C2D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BE673503-B1BE-4046-AA09-430ED2D0C2D0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,6 +56,7 @@ Global
 		{28A81F57-8057-4D63-9A1C-01D1B35A08AE} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 		{DF4D7881-9F4E-4112-83E7-C5A0C3008775} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 		{EDFC2014-DC68-4444-8827-FA7816A6F7A7} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
+		{BE673503-B1BE-4046-AA09-430ED2D0C2D0} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}
