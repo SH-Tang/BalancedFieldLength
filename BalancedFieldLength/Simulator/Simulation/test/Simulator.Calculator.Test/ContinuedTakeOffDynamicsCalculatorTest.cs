@@ -1,7 +1,7 @@
-﻿using System;
+using System;
 using Calculator.Data;
-using Calculator.Data.Helpers;
 using NUnit.Framework;
+using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
 
 namespace Simulator.Calculator.Test

@@ -1,7 +1,6 @@
 ﻿using System;
-using Simulator.Data;
 
-namespace Calculator.Data.Helpers
+namespace Simulator.Data.Helpers
 {
     /// <summary>
     /// Helper class which can be used to calculate the aerodynamic properties.
