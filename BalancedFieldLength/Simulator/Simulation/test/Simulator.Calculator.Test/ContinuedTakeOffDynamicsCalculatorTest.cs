@@ -9,9 +9,9 @@ namespace Simulator.Calculator.Test
     [TestFixture]
     public class ContinuedTakeOffDynamicsCalculatorTest
     {
-        private const double gravitationalAcceleration = 9.81; // m/s^2
-        private const double airDensity = 1.225; // kg/m3
-        private const double tolerance = 10e-6;
+        private const double gravitationalAcceleration = SimulationConstants.GravitationalAcceleration; 
+        private const double airDensity = SimulationConstants.Density; 
+        private const double tolerance = SimulationConstants.Tolerance;
 
         [Test]
         public void Constructor_AircraftDataNull_ThrowsArgumentNullException()

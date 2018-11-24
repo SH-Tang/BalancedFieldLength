@@ -8,8 +8,8 @@ namespace Simulator.Data.Test.Helpers
     [TestFixture]
     public class AerodynamicsHelperTest
     {
-        private const double airDensity = 1.225; //kg/m3
-        private const double tolerance = 10e-6;
+        private const double airDensity = SimulationConstants.Density;
+        private const double tolerance = SimulationConstants.Tolerance;
 
         [Test]
         public static void CalculateDragWithoutEngineFailure_AerodynamicsDataNull_ThrowsArgumentNullException()
