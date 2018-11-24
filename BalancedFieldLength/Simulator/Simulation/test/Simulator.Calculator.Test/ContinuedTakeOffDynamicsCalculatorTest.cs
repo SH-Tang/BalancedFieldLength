@@ -10,6 +10,7 @@ namespace Simulator.Calculator.Test
     public class ContinuedTakeOffDynamicsCalculatorTest
     {
         private const double airDensity = 1.225; // kg/m3;
+        private const double tolerance = 10e-6;
 
         [Test]
         public void Constructor_AircraftDataNull_ThrowsArgumentNullException()
@@ -43,6 +44,36 @@ namespace Simulator.Calculator.Test
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
             Assert.AreEqual("aircraftState", exception.ParamName);
+        }
+
+        [Test]
+        public static void Calculate_WithAircraftStateAlways_ReturnsExpectedClimbRate()
+        {
+            // Setup
+            var random = new Random(21);
+            var aircraftData = new AircraftData(random.Next(), random.NextDouble(),
+                                                random.NextDouble(), random.NextDouble(),
+                                                random.NextDouble(), random.NextDouble(),
+                                                random.NextDouble(), AerodynamicDataTestFactory.CreateAerodynamicData());
+
+            var aircraftState = new AircraftState(random.NextDouble(),
+                                                  random.NextDouble(),
+                                                  random.NextDouble(),
+                                                  random.NextDouble());
+
+            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble());
+
+            // Call 
+            AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
+
+            // Assert
+            double expectedClimbRate = aircraftState.TrueAirspeed * Math.Sin(DegToRadians(aircraftState.FlightPathAngle));
+            Assert.AreEqual(expectedClimbRate, accelerations.ClimbRate, tolerance);
+        }
+
+        private static double DegToRadians(double degrees)
+        {
+            return (degrees * Math.PI) / 180;
         }
 
         [TestFixture]
@@ -133,6 +164,7 @@ namespace Simulator.Calculator.Test
     public class AircraftAccelerations
     {
         public double PitchRate { get; set; }
+        public double ClimbRate { get; set; }
     }
 
     /// <summary>
@@ -233,8 +265,14 @@ namespace Simulator.Calculator.Test
 
             return new AircraftAccelerations
                    {
-                       PitchRate = ShouldRotate(rotationSpeed, aircraftState) ? aircraftData.PitchAngleGradient : 0.0
+                       PitchRate = ShouldRotate(rotationSpeed, aircraftState) ? aircraftData.PitchAngleGradient : 0.0,
+                       ClimbRate = aircraftState.TrueAirspeed * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle))
                    };
+        }
+
+        private static double DegreesToRadians(double degrees)
+        {
+            return (degrees * Math.PI) / 180;
         }
 
         private bool ShouldRotate(double rotationSpeed, AircraftState aircraftState)
