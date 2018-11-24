@@ -378,7 +378,7 @@
 							"left": 352,
 							"top": 456,
 							"width": 227.4453125,
-							"height": 45,
+							"height": 58,
 							"nameCompartment": {
 								"$ref": "AAAAAAFnMhvg16Dgca8="
 							},
@@ -705,7 +705,7 @@
 									},
 									"font": "Arial;13;0",
 									"left": 478,
-									"top": 604,
+									"top": 610,
 									"width": 52.38720703125,
 									"height": 13,
 									"alpha": 1.570796232455274,
@@ -728,7 +728,7 @@
 									"visible": null,
 									"font": "Arial;13;0",
 									"left": 494,
-									"top": 603,
+									"top": 609,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -749,7 +749,7 @@
 									"visible": false,
 									"font": "Arial;13;0",
 									"left": 449,
-									"top": 604,
+									"top": 610,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -766,7 +766,7 @@
 							"tail": {
 								"$ref": "AAAAAAFnMhvg16DfoSM="
 							},
-							"points": "464:500;464:720",
+							"points": "464:513;464:720",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFnMh01V6FIXdI="
@@ -819,7 +819,7 @@
 											"font": "Arial;13;3",
 											"left": 285,
 											"top": 231,
-											"width": 376.06689453125,
+											"width": 516.267578125,
 											"height": 13,
 											"text": "AircraftDynamicsCalculator"
 										},
@@ -854,7 +854,7 @@
 									"font": "Arial;13;0",
 									"left": 280,
 									"top": 224,
-									"width": 386.06689453125,
+									"width": 526.267578125,
 									"height": 25,
 									"stereotypeLabel": {
 										"$ref": "AAAAAAFnMiANOqFyQf8="
@@ -891,7 +891,7 @@
 											"font": "Arial;13;0",
 											"left": 285,
 											"top": 254,
-											"width": 376.06689453125,
+											"width": 516.267578125,
 											"height": 13,
 											"text": "#aircraftData: AircraftData",
 											"horizontalAlignment": 0
@@ -900,7 +900,7 @@
 									"font": "Arial;13;0",
 									"left": 280,
 									"top": 249,
-									"width": 386.06689453125,
+									"width": 526.267578125,
 									"height": 23
 								},
 								{
@@ -915,23 +915,6 @@
 									"subViews": [
 										{
 											"_type": "UMLOperationView",
-											"_id": "AAAAAAFnMigCb6VThWs=",
-											"_parent": {
-												"$ref": "AAAAAAFnMiANOqF3qZ0="
-											},
-											"model": {
-												"$ref": "AAAAAAFnMigCN6VQJjs="
-											},
-											"font": "Arial;13;0",
-											"left": 285,
-											"top": 277,
-											"width": 376.06689453125,
-											"height": 13,
-											"text": "«constructor»+DynamicsCalculator(aircraftData: AircraftData)",
-											"horizontalAlignment": 0
-										},
-										{
-											"_type": "UMLOperationView",
 											"_id": "AAAAAAFnMkDMT66fEK8=",
 											"_parent": {
 												"$ref": "AAAAAAFnMiANOqF3qZ0="
@@ -941,17 +924,34 @@
 											},
 											"font": "Arial;13;2",
 											"left": 285,
-											"top": 292,
-											"width": 376.06689453125,
+											"top": 277,
+											"width": 516.267578125,
 											"height": 13,
 											"text": "+Calculate(aircraftState: AircraftState): AircraftStateDerivatives",
+											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLOperationView",
+											"_id": "AAAAAAFnMigCb6VThWs=",
+											"_parent": {
+												"$ref": "AAAAAAFnMiANOqF3qZ0="
+											},
+											"model": {
+												"$ref": "AAAAAAFnMigCN6VQJjs="
+											},
+											"font": "Arial;13;0",
+											"left": 285,
+											"top": 292,
+											"width": 516.267578125,
+											"height": 13,
+											"text": "«constructor»+DynamicsCalculator(aircraftData: AircraftData, density: double, g0: double)",
 											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 280,
 									"top": 272,
-									"width": 386.06689453125,
+									"width": 526.267578125,
 									"height": 38
 								},
 								{
@@ -991,7 +991,7 @@
 							"containerChangeable": true,
 							"left": 280,
 							"top": 224,
-							"width": 386.06689453125,
+							"width": 526.267578125,
 							"height": 86,
 							"nameCompartment": {
 								"$ref": "AAAAAAFnMiANOqFxJKU="
@@ -1471,7 +1471,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -768,
+											"left": -576,
 											"top": -864,
 											"height": 13
 										},
@@ -1482,7 +1482,7 @@
 												"$ref": "AAAAAAFnMim7CqYFR/M="
 											},
 											"font": "Arial;13;1",
-											"left": 813,
+											"left": 909,
 											"top": 247,
 											"width": 238.4052734375,
 											"height": 13,
@@ -1496,7 +1496,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -768,
+											"left": -576,
 											"top": -864,
 											"width": 103.29541015625,
 											"height": 13,
@@ -1510,14 +1510,14 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": -768,
+											"left": -576,
 											"top": -864,
 											"height": 13,
 											"horizontalAlignment": 1
 										}
 									],
 									"font": "Arial;13;0",
-									"left": 808,
+									"left": 904,
 									"top": 240,
 									"width": 248.4052734375,
 									"height": 25,
@@ -1544,7 +1544,7 @@
 										"$ref": "AAAAAAFnMim7CaYCfKg="
 									},
 									"font": "Arial;13;0",
-									"left": 808,
+									"left": 904,
 									"top": 265,
 									"width": 248.4052734375,
 									"height": 10
@@ -1559,7 +1559,7 @@
 										"$ref": "AAAAAAFnMim7CaYCfKg="
 									},
 									"font": "Arial;13;0",
-									"left": 808,
+									"left": 904,
 									"top": 275,
 									"width": 248.4052734375,
 									"height": 10
@@ -1575,7 +1575,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -384,
+									"left": -288,
 									"top": -432,
 									"width": 10,
 									"height": 10
@@ -1591,7 +1591,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": -384,
+									"left": -288,
 									"top": -432,
 									"width": 10,
 									"height": 10
@@ -1599,7 +1599,7 @@
 							],
 							"font": "Arial;13;0",
 							"containerChangeable": true,
-							"left": 808,
+							"left": 904,
 							"top": 240,
 							"width": 248.4052734375,
 							"height": 45,
@@ -1640,8 +1640,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 736,
-									"top": 271,
+									"left": 853,
+									"top": 273,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 15,
@@ -1661,8 +1661,8 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 736,
-									"top": 286,
+									"left": 853,
+									"top": 288,
 									"height": 13,
 									"alpha": 1.5707963267948966,
 									"distance": 30,
@@ -1682,8 +1682,8 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 735,
-									"top": 242,
+									"left": 854,
+									"top": 243,
 									"height": 13,
 									"alpha": -1.5707963267948966,
 									"distance": 15,
@@ -1700,8 +1700,7 @@
 							"tail": {
 								"$ref": "AAAAAAFnMim7CqYEZbM="
 							},
-							"lineStyle": 1,
-							"points": "807:263;666:264",
+							"points": "904:264;805:264",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFnMipOW6ZnCKQ="
@@ -1932,7 +1931,7 @@
 										"$ref": "AAAAAAFnMkSrPK+VyXk="
 									},
 									"font": "Arial;13;0",
-									"left": 943,
+									"left": 986,
 									"top": 356,
 									"width": 52.38720703125,
 									"height": 13,
@@ -1955,7 +1954,7 @@
 									},
 									"visible": null,
 									"font": "Arial;13;0",
-									"left": 960,
+									"left": 1003,
 									"top": 359,
 									"height": 13,
 									"alpha": 1.5707963267948966,
@@ -1976,7 +1975,7 @@
 									},
 									"visible": false,
 									"font": "Arial;13;0",
-									"left": 916,
+									"left": 959,
 									"top": 360,
 									"height": 13,
 									"alpha": -1.5707963267948966,
@@ -1994,8 +1993,7 @@
 							"tail": {
 								"$ref": "AAAAAAFnMim7CqYEZbM="
 							},
-							"lineStyle": 1,
-							"points": "931:285;931:447",
+							"points": "974:284;974:448",
 							"showVisibility": true,
 							"nameLabel": {
 								"$ref": "AAAAAAFnMkSrPK+X0LA="
@@ -3512,13 +3510,30 @@
 											"height": 13,
 											"text": "+MaxIterations: int",
 											"horizontalAlignment": 0
+										},
+										{
+											"_type": "UMLAttributeView",
+											"_id": "AAAAAAFnQgX5V6WiAGw=",
+											"_parent": {
+												"$ref": "AAAAAAFnMpae6/WziM8="
+											},
+											"model": {
+												"$ref": "AAAAAAFnQgX486WfhCE="
+											},
+											"font": "Arial;13;0",
+											"left": 765,
+											"top": 801,
+											"width": 333.39794921875,
+											"height": 13,
+											"text": "+g0: double",
+											"horizontalAlignment": 0
 										}
 									],
 									"font": "Arial;13;0",
 									"left": 760,
 									"top": 721,
 									"width": 343.39794921875,
-									"height": 83
+									"height": 98
 								},
 								{
 									"_type": "UMLOperationCompartmentView",
@@ -3541,7 +3556,7 @@
 											},
 											"font": "Arial;13;0",
 											"left": 765,
-											"top": 809,
+											"top": 824,
 											"width": 333.39794921875,
 											"height": 13,
 											"text": "«constructor»+CalculatorSettings()",
@@ -3550,7 +3565,7 @@
 									],
 									"font": "Arial;13;0",
 									"left": 760,
-									"top": 804,
+									"top": 819,
 									"width": 343.39794921875,
 									"height": 23
 								},
@@ -12442,6 +12457,15 @@
 									},
 									"name": "MaxIterations",
 									"type": "int"
+								},
+								{
+									"_type": "UMLAttribute",
+									"_id": "AAAAAAFnQgX486WfhCE=",
+									"_parent": {
+										"$ref": "AAAAAAFnMpae6vWri1w="
+									},
+									"name": "g0",
+									"type": "double"
 								}
 							],
 							"operations": [
@@ -12646,28 +12670,6 @@
 							"operations": [
 								{
 									"_type": "UMLOperation",
-									"_id": "AAAAAAFnMigCN6VQJjs=",
-									"_parent": {
-										"$ref": "AAAAAAFnMiANOaFuy8U="
-									},
-									"name": "DynamicsCalculator",
-									"stereotype": "constructor",
-									"parameters": [
-										{
-											"_type": "UMLParameter",
-											"_id": "AAAAAAFnMiiNIqWeNnE=",
-											"_parent": {
-												"$ref": "AAAAAAFnMigCN6VQJjs="
-											},
-											"name": "aircraftData",
-											"type": {
-												"$ref": "AAAAAAFnMida9qTjqsU="
-											}
-										}
-									]
-								},
-								{
-									"_type": "UMLOperation",
 									"_id": "AAAAAAFnMkDMFq6cLI0=",
 									"_parent": {
 										"$ref": "AAAAAAFnMiANOaFuy8U="
@@ -12698,6 +12700,46 @@
 										}
 									],
 									"isAbstract": true
+								},
+								{
+									"_type": "UMLOperation",
+									"_id": "AAAAAAFnMigCN6VQJjs=",
+									"_parent": {
+										"$ref": "AAAAAAFnMiANOaFuy8U="
+									},
+									"name": "DynamicsCalculator",
+									"stereotype": "constructor",
+									"parameters": [
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAFnMiiNIqWeNnE=",
+											"_parent": {
+												"$ref": "AAAAAAFnMigCN6VQJjs="
+											},
+											"name": "aircraftData",
+											"type": {
+												"$ref": "AAAAAAFnMida9qTjqsU="
+											}
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAFnRo9wOypomYs=",
+											"_parent": {
+												"$ref": "AAAAAAFnMigCN6VQJjs="
+											},
+											"name": "density",
+											"type": "double"
+										},
+										{
+											"_type": "UMLParameter",
+											"_id": "AAAAAAFnQgZ9Aq3zksE=",
+											"_parent": {
+												"$ref": "AAAAAAFnMigCN6VQJjs="
+											},
+											"name": "g0",
+											"type": "double"
+										}
+									]
 								}
 							],
 							"isAbstract": true
@@ -13368,7 +13410,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFnMtAPsL7ij5A="
 									},
-									"name": "Instance"
+									"name": "Instance",
+									"type": ""
 								}
 							],
 							"operations": [
@@ -13502,7 +13545,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFnMsmd36uo0gI="
 									},
-									"name": "Instance"
+									"name": "Instance",
+									"type": ""
 								}
 							],
 							"operations": [
@@ -13747,7 +13791,8 @@
 									"_parent": {
 										"$ref": "AAAAAAFnN6c2P31OLQY="
 									},
-									"name": "Instance"
+									"name": "Instance",
+									"type": ""
 								}
 							],
 							"operations": [
