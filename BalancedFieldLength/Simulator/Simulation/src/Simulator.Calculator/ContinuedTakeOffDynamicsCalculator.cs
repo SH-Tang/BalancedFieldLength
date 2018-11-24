@@ -57,20 +57,10 @@ namespace Simulator.Calculator
                 throw new ArgumentNullException(nameof(aircraftState));
             }
 
-           
-
-            double trueAirSpeedRate = CalculateTrueAirSpeedRate(aircraftState);
-
-            double pitchRate = CalculatePitchRate(aircraftState);
-            double climbRate = CalculateClimbRate(aircraftState);
-            double calculateFlightPathAngleRate = CalculateFlightPathAngleRate(aircraftState);
-            return new AircraftAccelerations
-                   {
-                       PitchRate = pitchRate,
-                       ClimbRate = climbRate,
-                       TrueAirSpeedRate = trueAirSpeedRate,
-                       FlightPathRate = calculateFlightPathAngleRate
-                   };
+            return new AircraftAccelerations(CalculatePitchRate(aircraftState),
+                                             CalculateClimbRate(aircraftState),
+                                             CalculateTrueAirSpeedRate(aircraftState),
+                                             CalculateFlightPathAngleRate(aircraftState));
         }
 
         private static double DegreesToRadians(double degrees)
