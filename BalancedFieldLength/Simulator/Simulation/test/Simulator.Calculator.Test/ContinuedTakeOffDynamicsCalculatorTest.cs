@@ -52,7 +52,7 @@ namespace Simulator.Calculator.Test
         {
             // Setup
             var random = new Random(21);
-            AircraftData aircraftData = CreateRandomAircraftData();
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
             var aircraftState = new AircraftState(random.NextDouble(),
                                                   random.NextDouble(),
@@ -67,15 +67,6 @@ namespace Simulator.Calculator.Test
             // Assert
             double expectedClimbRate = aircraftState.TrueAirspeed * Math.Sin(DegToRadians(aircraftState.FlightPathAngle));
             Assert.AreEqual(expectedClimbRate, accelerations.ClimbRate, tolerance);
-        }
-
-        private static AircraftData CreateRandomAircraftData()
-        {
-            var random = new Random(21);
-            return new AircraftData(random.Next(), random.NextDouble(),
-                                    random.NextDouble(), random.NextDouble(),
-                                    random.NextDouble(), random.NextDouble(),
-                                    random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
         }
 
         [TestFixture]
@@ -298,7 +289,7 @@ namespace Simulator.Calculator.Test
             {
                 // Setup
                 var random = new Random(21);
-                AircraftData aircraftData = CreateRandomAircraftData();
+                AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
                 var aircraftState = new AircraftState(random.NextDouble(),
                                                       random.NextDouble(),

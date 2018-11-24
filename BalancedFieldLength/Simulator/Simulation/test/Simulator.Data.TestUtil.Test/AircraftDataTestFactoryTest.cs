@@ -1,18 +1,28 @@
 ﻿using System;
+using Calculator.Data;
 using NUnit.Framework;
 
 namespace Simulator.Data.TestUtil.Test
 {
     [TestFixture]
-    public class AerodynamicsDataTestFactoryTest
+    public class AircraftDataTestFactoryTest
     {
         [Test]
-        public static void CreateAerodynamicsData_Always_ReturnsAerodynamicsData()
+        public static void CreateAircraftData_Always_ReturnsAircraftData()
         {
             // Call 
-            AerodynamicsData aerodynamicsData = AerodynamicsDataTestFactory.CreateAerodynamicsData();
+            AircraftData data = AircraftDataTestFactory.CreateRandomAircraftData();
 
             // Assert
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.NrOfEngines));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumThrustPerEngine));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.TakeOffWeight));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.PitchAngleGradient));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumPitchAngle));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.RollingResistanceCoefficient));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.BrakingResistanceCoefficient));
+
+            AerodynamicsData aerodynamicsData = data.AerodynamicsData;
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.AspectRatio));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.WingArea));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.ZeroLiftAngleOfAttack));
