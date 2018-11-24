@@ -41,7 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AerodynamicDataTest.cs" />
+    <Compile Include="AerodynamicsDataTest.cs" />
     <Compile Include="AircraftDataTest.cs" />
     <Compile Include="Helpers\AerodynamicsHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

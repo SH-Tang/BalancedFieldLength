@@ -35,7 +35,7 @@ namespace Simulator.Calculator.Test
             var aircraftData = new AircraftData(random.Next(), random.NextDouble(),
                                                 random.NextDouble(), random.NextDouble(),
                                                 random.NextDouble(), random.NextDouble(),
-                                                random.NextDouble(), AerodynamicDataTestFactory.CreateAerodynamicData());
+                                                random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
 
             var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble(), random.NextDouble());
 
@@ -75,7 +75,7 @@ namespace Simulator.Calculator.Test
             return new AircraftData(random.Next(), random.NextDouble(),
                                     random.NextDouble(), random.NextDouble(),
                                     random.NextDouble(), random.NextDouble(),
-                                    random.NextDouble(), AerodynamicDataTestFactory.CreateAerodynamicData());
+                                    random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
         }
 
         [TestFixture]
@@ -100,7 +100,7 @@ namespace Simulator.Calculator.Test
                 double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
 
                 // Precondition
-                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
                                                                airDensity,
                                                                airspeed);
@@ -113,8 +113,8 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
-                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicsData, angleOfAttack);
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicsData,
                                                                                      liftCoefficient,
                                                                                      airDensity,
                                                                                      airspeed);
@@ -145,7 +145,7 @@ namespace Simulator.Calculator.Test
                 double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
 
                 // Precondition
-                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
                                                                airDensity,
                                                                airspeed);
@@ -158,8 +158,8 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
-                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicsData, angleOfAttack);
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicsData,
                                                                                      liftCoefficient,
                                                                                      airDensity,
                                                                                      airspeed);
@@ -190,7 +190,7 @@ namespace Simulator.Calculator.Test
                 double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
 
                 // Precondition
-                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
                                                                airDensity,
                                                                airspeed);
@@ -203,9 +203,9 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicsData, angleOfAttack);
                 double normalForce = takeOffWeightNewton - lift;
-                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicsData,
                                                                                      liftCoefficient,
                                                                                      airDensity,
                                                                                      airspeed) + normalForce * aircraftData.RollingResistanceCoefficient;
@@ -336,7 +336,7 @@ namespace Simulator.Calculator.Test
                 double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
 
                 // Precondition
-                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
                                                                airDensity,
                                                                aircraftState.TrueAirspeed);
@@ -370,7 +370,7 @@ namespace Simulator.Calculator.Test
                 double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
 
                 // Precondition
-                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
                                                                airDensity,
                                                                aircraftState.TrueAirspeed);
@@ -391,7 +391,7 @@ namespace Simulator.Calculator.Test
 
         private static double GetRotationSpeed(AircraftData aircraftData)
         {
-            double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aircraftData.AerodynamicData,
+            double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aircraftData.AerodynamicsData,
                                                                        aircraftData.TakeOffWeight * 1000,
                                                                        airDensity);
             double rotationSpeed = stallSpeed * 1.2;

@@ -4,7 +4,7 @@ using NUnit.Framework;
 namespace Simulator.Data.Test
 {
     [TestFixture]
-    public class AerodynamicDataTest
+    public class AerodynamicsDataTest
     {
         [Test]
         public static void Constructor_ExpectedValues()
@@ -21,21 +21,21 @@ namespace Simulator.Data.Test
             double oswaldFactor = random.NextDouble();
 
             // Call
-            var aerodynamicData = new AerodynamicData(aspectRatio, wingArea,
+            var data = new AerodynamicsData(aspectRatio, wingArea,
                                                       zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                       maximumLiftCoefficient,
                                                       restDragCoefficientWithoutEngineFailure,
                                                       restDragCoefficientWithEngineFailure, oswaldFactor);
 
             // Assert
-            Assert.AreEqual(aspectRatio, aerodynamicData.AspectRatio);
-            Assert.AreEqual(wingArea, aerodynamicData.WingArea);
-            Assert.AreEqual(zeroLiftAngleOfAttack, aerodynamicData.ZeroLiftAngleOfAttack);
-            Assert.AreEqual(liftCoefficientGradient, aerodynamicData.LiftCoefficientGradient);
-            Assert.AreEqual(maximumLiftCoefficient, aerodynamicData.MaximumLiftCoefficient);
-            Assert.AreEqual(restDragCoefficientWithoutEngineFailure, aerodynamicData.RestDragCoefficientWithoutEngineFailure);
-            Assert.AreEqual(restDragCoefficientWithEngineFailure, aerodynamicData.RestDragCoefficientWithEngineFailure);
-            Assert.AreEqual(oswaldFactor, aerodynamicData.OswaldFactor);
+            Assert.AreEqual(aspectRatio, data.AspectRatio);
+            Assert.AreEqual(wingArea, data.WingArea);
+            Assert.AreEqual(zeroLiftAngleOfAttack, data.ZeroLiftAngleOfAttack);
+            Assert.AreEqual(liftCoefficientGradient, data.LiftCoefficientGradient);
+            Assert.AreEqual(maximumLiftCoefficient, data.MaximumLiftCoefficient);
+            Assert.AreEqual(restDragCoefficientWithoutEngineFailure, data.RestDragCoefficientWithoutEngineFailure);
+            Assert.AreEqual(restDragCoefficientWithEngineFailure, data.RestDragCoefficientWithEngineFailure);
+            Assert.AreEqual(oswaldFactor, data.OswaldFactor);
         }
     }
 }

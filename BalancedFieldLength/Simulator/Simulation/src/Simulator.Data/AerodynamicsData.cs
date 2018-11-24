@@ -3,10 +3,10 @@
     /// <summary>
     /// Class to hold all relevant aerodynamic data of the aircraft.
     /// </summary>
-    public class AerodynamicData
+    public class AerodynamicsData
     {
         /// <summary>
-        /// Creates a new instance of <see cref="AerodynamicData"/>.
+        /// Creates a new instance of <see cref="AerodynamicsData"/>.
         /// </summary>
         /// <param name="aspectRatio">The aspect ratio of the aircraft. [-]</param>
         /// <param name="wingArea">The surface area of the lift generating elements of the aircraft. [m2]</param>
@@ -16,9 +16,9 @@
         /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
         /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
         /// <param name="oswaldFactor">The Oswald factor. [-]</param>
-        public AerodynamicData(double aspectRatio, double wingArea,
-                               double zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
-                               double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
+        public AerodynamicsData(double aspectRatio, double wingArea,
+                                double zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
+                                double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
             AspectRatio = aspectRatio;
             WingArea = wingArea;
@@ -71,7 +71,6 @@
         /// </summary>
         /// <remarks>Also denoted as Cd_0.</remarks>
         public double RestDragCoefficientWithEngineFailure { get; }
-
 
         /// <summary>
         /// Gets the Oswald factor. [-]

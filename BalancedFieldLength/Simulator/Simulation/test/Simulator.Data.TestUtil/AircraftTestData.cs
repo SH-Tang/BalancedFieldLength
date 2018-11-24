@@ -26,13 +26,13 @@ namespace Simulator.Data.TestUtil
         /// </remarks>
         public static IEnumerable<TestCaseData> GetAircraftData()
         {
-            TestAerodynamicData[] aerodynamicTestData = GetAerodynamicData();
-            yield return new TestCaseData(new AircraftData(2, 75, 500, 6, 16, 0.02, 0.2, aerodynamicTestData[0].Data))
-                .SetName(aerodynamicTestData[0].TestName);
-            yield return new TestCaseData(new AircraftData(3, 120, 1200, 5, 15, 0.02, 0.2, aerodynamicTestData[1].Data))
-                .SetName(aerodynamicTestData[1].TestName);
-            yield return new TestCaseData(new AircraftData(4, 300, 3500, 4, 14, 0.02, 0.2, aerodynamicTestData[2].Data))
-                .SetName(aerodynamicTestData[2].TestName);
+            TestAerodynamicsData[] aerodynamicsTestData = GetAerodynamicsData();
+            yield return new TestCaseData(new AircraftData(2, 75, 500, 6, 16, 0.02, 0.2, aerodynamicsTestData[0].Data))
+                .SetName(aerodynamicsTestData[0].TestName);
+            yield return new TestCaseData(new AircraftData(3, 120, 1200, 5, 15, 0.02, 0.2, aerodynamicsTestData[1].Data))
+                .SetName(aerodynamicsTestData[1].TestName);
+            yield return new TestCaseData(new AircraftData(4, 300, 3500, 4, 14, 0.02, 0.2, aerodynamicsTestData[2].Data))
+                .SetName(aerodynamicsTestData[2].TestName);
 
         }
 
@@ -43,38 +43,38 @@ namespace Simulator.Data.TestUtil
         /// <remarks>This test case data can be used as:
         /// <code>
         /// [Test]
-        /// [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicDataTestCases))]
-        /// public static void SomeTest(AerodynamicData aerodynamicData)
+        /// [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicsDataTestCases))]
+        /// public static void SomeTest(AerodynamicsData aerodynamicsData)
         /// {
         ///     // Test
         /// }
         /// </code>
         /// </remarks>
-        public static IEnumerable<TestCaseData> GetAerodynamicDataTestCases()
+        public static IEnumerable<TestCaseData> GetAerodynamicsDataTestCases()
         {
-            return GetAerodynamicData().Select(testData => new TestCaseData(testData.Data)
+            return GetAerodynamicsData().Select(testData => new TestCaseData(testData.Data)
                                                    .SetName(testData.TestName));
         }
 
-        private static TestAerodynamicData[] GetAerodynamicData()
+        private static TestAerodynamicsData[] GetAerodynamicsData()
         {
             return new[]
                    {
-                       new TestAerodynamicData(new AerodynamicData(15, 100, -3, 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
-                       new TestAerodynamicData(new AerodynamicData(14, 200, -4, 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
-                       new TestAerodynamicData(new AerodynamicData(12, 500, -5, 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
+                       new TestAerodynamicsData(new AerodynamicsData(15, 100, -3, 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
+                       new TestAerodynamicsData(new AerodynamicsData(14, 200, -4, 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
+                       new TestAerodynamicsData(new AerodynamicsData(12, 500, -5, 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
                    };
         }
 
-        private class TestAerodynamicData
+        private class TestAerodynamicsData
         {
-            public TestAerodynamicData(AerodynamicData data, string testName)
+            public TestAerodynamicsData(AerodynamicsData data, string testName)
             {
                 Data = data;
                 TestName = testName;
             }
 
-            public AerodynamicData Data { get; }
+            public AerodynamicsData Data { get; }
             public string TestName { get; }
         }
     }

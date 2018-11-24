@@ -35,7 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AerodynamicData.cs" />
+    <Compile Include="AerodynamicsData.cs" />
     <Compile Include="AircraftData.cs" />
     <Compile Include="Helpers\AerodynamicsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

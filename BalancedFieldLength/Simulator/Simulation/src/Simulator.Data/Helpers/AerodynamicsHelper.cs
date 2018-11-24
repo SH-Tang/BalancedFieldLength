@@ -10,111 +10,111 @@ namespace Simulator.Data.Helpers
         /// <summary>
         /// Calculates the stall speed based on the input.
         /// </summary>
-        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/> containing
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/> containing
         /// all the aerodynamic properties.</param>
         /// <param name="takeOffWeight">The take off weight of the aircraft. [N]</param>
         /// <param name="density">The density. [kg/m^3]</param>
         /// <returns>The stall speed. [m/s]</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
-        public static double CalculateStallSpeed(AerodynamicData aerodynamicData, double takeOffWeight, double density)
+        public static double CalculateStallSpeed(AerodynamicsData aerodynamicsData, double takeOffWeight, double density)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            return Math.Sqrt((2 * takeOffWeight) / (density * aerodynamicData.WingArea * aerodynamicData.MaximumLiftCoefficient));
+            return Math.Sqrt((2 * takeOffWeight) / (density * aerodynamicsData.WingArea * aerodynamicsData.MaximumLiftCoefficient));
         }
 
         /// <summary>
         /// Calculates the lift coefficient based on the input.
         /// </summary>
-        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// containing all the aerodynamic properties.</param>
         /// <param name="angleOfAttack">The angle of attack. [deg]</param>
         /// <returns>The lift coefficient.</returns>
         /// <exception cref="ArgumentNullException">Thrown when
-        /// <paramref name="aerodynamicData"/> is <c>null</c>.</exception>
-        public static double CalculateLiftCoefficient(AerodynamicData aerodynamicData, double angleOfAttack)
+        /// <paramref name="aerodynamicsData"/> is <c>null</c>.</exception>
+        public static double CalculateLiftCoefficient(AerodynamicsData aerodynamicsData, double angleOfAttack)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            return aerodynamicData.LiftCoefficientGradient *
-                   DegreesToRadians(angleOfAttack - aerodynamicData.ZeroLiftAngleOfAttack);
+            return aerodynamicsData.LiftCoefficientGradient *
+                   DegreesToRadians(angleOfAttack - aerodynamicsData.ZeroLiftAngleOfAttack);
         }
 
         /// <summary>
         /// Calculates the lift based on the input.
         /// </summary>
-        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// containing all the aerodynamic properties.</param>
         /// <param name="angleOfAttack">The angle of attack. [deg]</param>
         /// <param name="density">The density. [kg/m^3]</param>
         /// <param name="velocity">The true airspeed (Vtas). [m/s]</param>
         /// <returns>The generated lift. [N]</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
-        public static double CalculateLift(AerodynamicData aerodynamicData,
+        public static double CalculateLift(AerodynamicsData aerodynamicsData,
                                            double angleOfAttack,
                                            double density,
                                            double velocity)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            double liftCoefficient = CalculateLiftCoefficient(aerodynamicData, angleOfAttack);
-            return liftCoefficient * CalculateDynamicPressure(velocity, aerodynamicData.WingArea, density);
+            double liftCoefficient = CalculateLiftCoefficient(aerodynamicsData, angleOfAttack);
+            return liftCoefficient * CalculateDynamicPressure(velocity, aerodynamicsData.WingArea, density);
         }
 
         /// <summary>
         /// Calculates the drag based on the input (with engine failure).
         /// </summary>
-        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// containing all the aerodynamic properties.</param>
         /// <param name="liftCoefficient">The lift current coefficient. [-]</param>
         /// <param name="density">The density. [kg/m^3]</param>
         /// <param name="velocity">The true airspeed (Vtas). [m/s]</param>
         /// <returns>The generated lift. [N]</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
-        public static double CalculateDragWithEngineFailure(AerodynamicData aerodynamicData,
+        public static double CalculateDragWithEngineFailure(AerodynamicsData aerodynamicsData,
                                                             double liftCoefficient,
                                                             double density,
                                                             double velocity)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            return CalculateDrag(aerodynamicData, liftCoefficient, density, velocity, true);
+            return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, true);
         }
 
         /// <summary>
         /// Calculates the drag based on the input (without engine failure).
         /// </summary>
-        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// containing all the aerodynamic properties.</param>
         /// <param name="liftCoefficient">The lift current coefficient. [-]</param>
         /// <param name="density">The density. [kg/m^3]</param>
         /// <param name="velocity">The true airspeed (Vtas). [m/s]</param>
         /// <returns>The generated lift. [N]</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
-        public static double CalculateDragWithoutEngineFailure(AerodynamicData aerodynamicData, double liftCoefficient, double density, double velocity)
+        public static double CalculateDragWithoutEngineFailure(AerodynamicsData aerodynamicsData, double liftCoefficient, double density, double velocity)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            return CalculateDrag(aerodynamicData, liftCoefficient, density, velocity, false);
+            return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, false);
         }
 
         private static double DegreesToRadians(double degrees)
@@ -127,14 +127,14 @@ namespace Simulator.Data.Helpers
             return 0.5 * density * Math.Pow(velocity, 2) * wingArea;
         }
 
-        private static double CalculateDrag(AerodynamicData aerodynamicData, double liftCoefficient, double density, double velocity, bool hasEngineFailed)
+        private static double CalculateDrag(AerodynamicsData aerodynamicsData, double liftCoefficient, double density, double velocity, bool hasEngineFailed)
         {
             double staticDragCoefficient = hasEngineFailed
-                                               ? aerodynamicData.RestDragCoefficientWithEngineFailure
-                                               : aerodynamicData.RestDragCoefficientWithoutEngineFailure;
-            double inducedDragCoefficient = Math.Pow(liftCoefficient, 2) / (aerodynamicData.AspectRatio * aerodynamicData.OswaldFactor * Math.PI);
+                                               ? aerodynamicsData.RestDragCoefficientWithEngineFailure
+                                               : aerodynamicsData.RestDragCoefficientWithoutEngineFailure;
+            double inducedDragCoefficient = Math.Pow(liftCoefficient, 2) / (aerodynamicsData.AspectRatio * aerodynamicsData.OswaldFactor * Math.PI);
             double dragCoefficient = staticDragCoefficient + inducedDragCoefficient;
-            return dragCoefficient * CalculateDynamicPressure(velocity, aerodynamicData.WingArea, density);
+            return dragCoefficient * CalculateDynamicPressure(velocity, aerodynamicsData.WingArea, density);
         }
     }
 }

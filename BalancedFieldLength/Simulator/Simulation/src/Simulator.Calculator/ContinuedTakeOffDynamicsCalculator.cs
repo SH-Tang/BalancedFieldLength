@@ -15,7 +15,7 @@ namespace Simulator.Calculator
         private readonly int numberOfFailedEngines;
         private readonly double density;
         private readonly double gravitationalAcceleration;
-        private readonly AerodynamicData aerodynamicData;
+        private readonly AerodynamicsData aerodynamicsData;
 
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
@@ -38,7 +38,7 @@ namespace Simulator.Calculator
             this.numberOfFailedEngines = numberOfFailedEngines;
             this.density = density;
             this.gravitationalAcceleration = gravitationalAcceleration;
-            aerodynamicData = aircraftData.AerodynamicData;
+            aerodynamicsData = aircraftData.AerodynamicsData;
         }
 
         /// <summary>
@@ -87,7 +87,7 @@ namespace Simulator.Calculator
 
         private bool ShouldRotate(AircraftState aircraftState)
         {
-            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(aerodynamicData,
+            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(aerodynamicsData,
                                                                                 GetNewton(aircraftData.TakeOffWeight),
                                                                                 density);
 
@@ -120,7 +120,7 @@ namespace Simulator.Calculator
 
         private double CalculateLift(AircraftState state)
         {
-            return AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+            return AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                     CalculateAngleOfAttack(state),
                                                     density,
                                                     state.TrueAirspeed);
@@ -133,9 +133,9 @@ namespace Simulator.Calculator
 
         private double CalculateDragForce(AircraftState state)
         {
-            double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicData,
+            double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicsData,
                                                                                  CalculateAngleOfAttack(state));
-            return AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicData,
+            return AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicsData,
                                                                      liftCoefficient,
                                                                      density,
                                                                      state.TrueAirspeed);

@@ -18,19 +18,19 @@ namespace Calculator.Data
         /// <param name="maximumPitchAngle">The maximum pitch angle during rotation. [deg]</param>
         /// <param name="rollingResistanceCoefficient">The rolling resistance coefficient. [-]</param>
         /// <param name="brakingResistanceCoefficient">The brake resistance coefficient. [-]</param>
-        /// <param name="aerodynamicData">The <see cref="Simulator.Data.AerodynamicData"/>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// holding all aerodynamic properties of the aircraft.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicData"/>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
         public AircraftData(int nrOfEngines, double maximumThrustPerEngine,
                             double takeOffWeight,
                             double pitchAngleGradient, double maximumPitchAngle,
                             double rollingResistanceCoefficient, double brakingResistanceCoefficient,
-                            AerodynamicData aerodynamicData)
+                            AerodynamicsData aerodynamicsData)
         {
-            if (aerodynamicData == null)
+            if (aerodynamicsData == null)
             {
-                throw new ArgumentNullException(nameof(aerodynamicData));
+                throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
             NrOfEngines = nrOfEngines;
@@ -40,7 +40,7 @@ namespace Calculator.Data
             MaximumPitchAngle = maximumPitchAngle;
             RollingResistanceCoefficient = rollingResistanceCoefficient;
             BrakingResistanceCoefficient = brakingResistanceCoefficient;
-            AerodynamicData = aerodynamicData;
+            AerodynamicsData = aerodynamicsData;
         }
 
         /// <summary>
@@ -83,9 +83,9 @@ namespace Calculator.Data
         public double BrakingResistanceCoefficient { get; }
 
         /// <summary>
-        /// Gets the <see cref="Simulator.Data.AerodynamicData"/> containing all the aerodynamic
+        /// Gets the <see cref="AerodynamicsData"/> containing all the aerodynamic
         /// data of the aircraft.
         /// </summary>
-        public AerodynamicData AerodynamicData { get; }
+        public AerodynamicsData AerodynamicsData { get; }
     }
 }

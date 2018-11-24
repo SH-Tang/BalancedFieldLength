@@ -41,7 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AerodynamicDataTestFactory.cs" />
+    <Compile Include="AerodynamicsDataTestFactory.cs" />
     <Compile Include="AircraftTestData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

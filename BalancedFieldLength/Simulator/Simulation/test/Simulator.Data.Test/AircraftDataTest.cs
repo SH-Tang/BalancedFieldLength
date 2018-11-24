@@ -9,7 +9,7 @@ namespace Simulator.Data.Test
     public class AircraftDataTest
     {
         [Test]
-        public static void Constructor_AerodynamicDataNull_ThrowsArgumentNullException()
+        public static void Constructor_AerodynamicsDataNull_ThrowsArgumentNullException()
         {
             // Setup
             var random = new Random(21);
@@ -22,7 +22,7 @@ namespace Simulator.Data.Test
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
-            Assert.AreEqual("aerodynamicData", exception.ParamName);
+            Assert.AreEqual("aerodynamicsData", exception.ParamName);
         }
 
         [Test]
@@ -38,14 +38,14 @@ namespace Simulator.Data.Test
             double rollingResistanceCoefficient = random.NextDouble();
             double brakingResistanceCoefficient = random.NextDouble();
 
-            AerodynamicData aerodynamicData = AerodynamicDataTestFactory.CreateAerodynamicData();
+            AerodynamicsData aerodynamicsData = AerodynamicsDataTestFactory.CreateAerodynamicsData();
 
             // Call
             var aircraftData = new AircraftData(nrOfEngines, maximumThrustPerEngine,
                                                 takeOffWeight,
                                                 pitchAngleGradient, maximumPitchAngle,
                                                 rollingResistanceCoefficient, brakingResistanceCoefficient,
-                                                aerodynamicData);
+                                                aerodynamicsData);
 
             // Assert
             Assert.AreEqual(nrOfEngines, aircraftData.NrOfEngines);
@@ -55,7 +55,7 @@ namespace Simulator.Data.Test
             Assert.AreEqual(maximumPitchAngle, aircraftData.MaximumPitchAngle);
             Assert.AreEqual(rollingResistanceCoefficient, aircraftData.RollingResistanceCoefficient);
             Assert.AreEqual(brakingResistanceCoefficient, aircraftData.BrakingResistanceCoefficient);
-            Assert.AreSame(aerodynamicData, aircraftData.AerodynamicData);
+            Assert.AreSame(aerodynamicsData, aircraftData.AerodynamicsData);
         }
     }
 }
