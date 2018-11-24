@@ -1,6 +1,7 @@
-using System;
+﻿using System;
 using Calculator.Data;
 using NUnit.Framework;
+using Simulator.Data;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
 
@@ -9,7 +10,8 @@ namespace Simulator.Calculator.Test
     [TestFixture]
     public class ContinuedTakeOffDynamicsCalculatorTest
     {
-        private const double airDensity = 1.225; // kg/m3;
+        private const double gravitationalAcceleration = 9.81; // m/s^2
+        private const double airDensity = 1.225; // kg/m3
         private const double tolerance = 10e-6;
 
         [Test]
@@ -19,7 +21,7 @@ namespace Simulator.Calculator.Test
             var random = new Random(21);
 
             // Call
-            TestDelegate call = () => new ContinuedTakeOffDynamicsCalculator(null, random.Next(), random.NextDouble());
+            TestDelegate call = () => new ContinuedTakeOffDynamicsCalculator(null, random.Next(), random.NextDouble(), random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -36,7 +38,7 @@ namespace Simulator.Calculator.Test
                                                 random.NextDouble(), random.NextDouble(),
                                                 random.NextDouble(), AerodynamicDataTestFactory.CreateAerodynamicData());
 
-            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble());
+            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble(), random.NextDouble());
 
             // Call
             TestDelegate call = () => calculator.Calculate(null);
@@ -61,7 +63,7 @@ namespace Simulator.Calculator.Test
                                                   random.NextDouble(),
                                                   random.NextDouble());
 
-            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble());
+            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble(), random.NextDouble());
 
             // Call 
             AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -71,9 +73,144 @@ namespace Simulator.Calculator.Test
             Assert.AreEqual(expectedClimbRate, accelerations.ClimbRate, tolerance);
         }
 
-        private static double DegToRadians(double degrees)
+        [TestFixture]
+        public class CalculateTrueAirspeedRate
         {
-            return (degrees * Math.PI) / 180;
+            [Test]
+            [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAircraftData))]
+            public static void Calculate_WithAircraftStateHeightEqualToThresholdAndLiftLowerThanTakeOffWeight_ReturnsExpectedTrueAirspeedRate(AircraftData aircraftData)
+            {
+                // Setup
+                const int nrOfFailedEngines = 1;
+                const double airspeed = 10.0;
+                const double threshold = 0.01;
+                double pitchAngle = aircraftData.MaximumPitchAngle;
+
+                var random = new Random(21);
+                var aircraftState = new AircraftState(pitchAngle,
+                                                      random.NextDouble(),
+                                                      airspeed,
+                                                      threshold);
+
+                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+
+                // Precondition
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                                                               angleOfAttack,
+                                                               airDensity,
+                                                               airspeed);
+                double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
+                Assert.IsTrue(lift < takeOffWeightNewton);
+
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, nrOfFailedEngines, airDensity, gravitationalAcceleration);
+
+                // Call 
+                AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
+
+                // Assert
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                                                                                     liftCoefficient,
+                                                                                     airDensity,
+                                                                                     airspeed);
+
+                double thrustForce = (aircraftData.NrOfEngines - nrOfFailedEngines) * aircraftData.MaximumThrustPerEngine * 1000;
+                double horizontalWeightComponent = takeOffWeightNewton * Math.Sin(DegToRadians(aircraftState.FlightPathAngle));
+                double expectedAcceleration = (gravitationalAcceleration * (thrustForce - dragForce - horizontalWeightComponent))
+                                              / takeOffWeightNewton;
+                Assert.AreEqual(expectedAcceleration, accelerations.TrueAirSpeedRate, tolerance);
+            }
+
+            [Test]
+            [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAircraftData))]
+            public static void Calculate_WithAircraftStateHeightLowerThanThresholdAndLiftHigherThanTakeOffWeight_ReturnsExpectedTrueAirspeedRate(AircraftData aircraftData)
+            {
+                // Setup
+                const int nrOfFailedEngines = 1;
+                const double airspeed = 100.0;
+                const double threshold = 0.01;
+                double pitchAngle = aircraftData.MaximumPitchAngle;
+
+                var random = new Random(21);
+                var aircraftState = new AircraftState(pitchAngle,
+                                                      random.NextDouble(),
+                                                      airspeed,
+                                                      threshold - random.NextDouble());
+
+                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+
+                // Precondition
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                                                               angleOfAttack,
+                                                               airDensity,
+                                                               airspeed);
+                double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
+                Assert.IsTrue(lift > takeOffWeightNewton);
+
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, nrOfFailedEngines, airDensity, gravitationalAcceleration);
+
+                // Call 
+                AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
+
+                // Assert
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                                                                                     liftCoefficient,
+                                                                                     airDensity,
+                                                                                     airspeed);
+
+                double thrustForce = (aircraftData.NrOfEngines - nrOfFailedEngines) * aircraftData.MaximumThrustPerEngine * 1000;
+                double horizontalWeightComponent = takeOffWeightNewton * Math.Sin(DegToRadians(aircraftState.FlightPathAngle));
+                double expectedAcceleration = (gravitationalAcceleration * (thrustForce - dragForce - horizontalWeightComponent))
+                                              / takeOffWeightNewton;
+                Assert.AreEqual(expectedAcceleration, accelerations.TrueAirSpeedRate, tolerance);
+            }
+
+            [Test]
+            [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAircraftData))]
+            public static void Calculate_WithAircraftStateHeightSmallerThanThresholdAndLiftSmallerThanTakeOffWeight_ReturnsExpectedTrueAirspeedRate(AircraftData aircraftData)
+            {
+                // Setup
+                const int nrOfFailedEngines = 1;
+                const double airspeed = 10.0;
+                const double threshold = 0.01;
+                double pitchAngle = aircraftData.MaximumPitchAngle;
+
+                var random = new Random(21);
+                var aircraftState = new AircraftState(pitchAngle,
+                                                      random.NextDouble(),
+                                                      airspeed,
+                                                      threshold - random.NextDouble());
+
+                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+
+                // Precondition
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                                                               angleOfAttack,
+                                                               airDensity,
+                                                               airspeed);
+                double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
+                Assert.IsTrue(lift < takeOffWeightNewton);
+
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, nrOfFailedEngines, airDensity, gravitationalAcceleration);
+
+                // Call 
+                AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
+
+                // Assert
+                double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aircraftData.AerodynamicData, angleOfAttack);
+                double normalForce = takeOffWeightNewton - lift;
+                double dragForce = AerodynamicsHelper.CalculateDragWithEngineFailure(aircraftData.AerodynamicData,
+                                                                                     liftCoefficient,
+                                                                                     airDensity,
+                                                                                     airspeed) + normalForce * aircraftData.RollingResistanceCoefficient;
+
+                double thrustForce = (aircraftData.NrOfEngines - nrOfFailedEngines) * aircraftData.MaximumThrustPerEngine * 1000;
+                double horizontalWeightComponent = takeOffWeightNewton * Math.Sin(DegToRadians(aircraftState.FlightPathAngle));
+                double expectedAcceleration = (gravitationalAcceleration * (thrustForce - dragForce - horizontalWeightComponent))
+                                              / takeOffWeightNewton;
+                Assert.AreEqual(expectedAcceleration, accelerations.TrueAirSpeedRate, tolerance);
+            }
         }
 
         [TestFixture]
@@ -81,7 +218,7 @@ namespace Simulator.Calculator.Test
         {
             [Test]
             [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAircraftData))]
-            public void Calculate_WithAircraftStateAndSpeedLargerThanRotationSpeedAndPitch_ReturnsExpectedPitchRate(AircraftData aircraftData)
+            public void Calculate_WithAircraftStateAndSpeedHigherThanRotationSpeedAndPitch_ReturnsExpectedPitchRate(AircraftData aircraftData)
             {
                 // Setup
                 var random = new Random(21);
@@ -93,7 +230,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -116,7 +253,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed - random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -138,7 +275,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity);
+                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -156,6 +293,11 @@ namespace Simulator.Calculator.Test
             double rotationSpeed = stallSpeed * 1.2;
             return rotationSpeed;
         }
+
+        private static double DegToRadians(double degrees)
+        {
+            return (degrees * Math.PI) / 180;
+        }
     }
 
     /// <summary>
@@ -163,8 +305,23 @@ namespace Simulator.Calculator.Test
     /// </summary>
     public class AircraftAccelerations
     {
+        /// <summary>
+        /// Gets the pitch rate. [deg/s]
+        /// </summary>
+        /// <remarks>Also denoted as dTheta/dt.</remarks>
         public double PitchRate { get; set; }
+
+        /// <summary>
+        /// Gets the climb rate. [m/s]
+        /// </summary>
+        /// <remarks>Also denoted as dh/dt.</remarks>
         public double ClimbRate { get; set; }
+
+        /// <summary>
+        /// Gets the true airspeed rate. [m/s^2]
+        /// </summary>
+        /// <remarks>Also denoted as dVtas/dt.</remarks>
+        public double TrueAirSpeedRate { get; set; }
     }
 
     /// <summary>
@@ -221,17 +378,20 @@ namespace Simulator.Calculator.Test
         private readonly AircraftData aircraftData;
         private readonly int numberOfFailedEngines;
         private readonly double density;
+        private readonly double gravitationalAcceleration;
+        private readonly AerodynamicData aerodynamicData;
 
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
-        /// <param name="aircraftData">THe <see cref="AircraftData"/> which holds
+        /// <param name="aircraftData">Tee <see cref="AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
         /// <param name="numberOfFailedEngines">The number of engines which failed during takeoff.</param>
         /// <param name="density">The air density. [kg/m3]</param>
+        /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        public ContinuedTakeOffDynamicsCalculator(AircraftData aircraftData, int numberOfFailedEngines, double density)
+        public ContinuedTakeOffDynamicsCalculator(AircraftData aircraftData, int numberOfFailedEngines, double density, double gravitationalAcceleration)
         {
             if (aircraftData == null)
             {
@@ -241,6 +401,8 @@ namespace Simulator.Calculator.Test
             this.aircraftData = aircraftData;
             this.numberOfFailedEngines = numberOfFailedEngines;
             this.density = density;
+            this.gravitationalAcceleration = gravitationalAcceleration;
+            aerodynamicData = aircraftData.AerodynamicData;
         }
 
         /// <summary>
@@ -259,14 +421,19 @@ namespace Simulator.Calculator.Test
                 throw new ArgumentNullException(nameof(aircraftState));
             }
 
-            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(aircraftData.AerodynamicData,
-                                                                                aircraftData.TakeOffWeight * 1000,
+            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(aerodynamicData,
+                                                                                GetNewton(aircraftData.TakeOffWeight),
                                                                                 density);
 
+            double trueAirSpeedRate = (gravitationalAcceleration * (CalculateThrust()
+                                                                    - CalculateDragForce(aircraftState) - CalculateRollDrag(aircraftState)
+                                                                    - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle))))
+                                      / GetNewton(aircraftData.TakeOffWeight);
             return new AircraftAccelerations
                    {
                        PitchRate = ShouldRotate(rotationSpeed, aircraftState) ? aircraftData.PitchAngleGradient : 0.0,
-                       ClimbRate = aircraftState.TrueAirspeed * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle))
+                       ClimbRate = aircraftState.TrueAirspeed * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle)),
+                       TrueAirSpeedRate = trueAirSpeedRate
                    };
         }
 
@@ -279,6 +446,47 @@ namespace Simulator.Calculator.Test
         {
             return aircraftState.TrueAirspeed >= rotationSpeed
                    && aircraftState.PitchAngle < aircraftData.MaximumPitchAngle;
+        }
+
+        private double CalculateDragForce(AircraftState state)
+        {
+            double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicData,
+                                                                                 CalculateAngleOfAttack(state));
+            return AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicData,
+                                                                     liftCoefficient,
+                                                                     density,
+                                                                     state.TrueAirspeed);
+        }
+
+        private double CalculateRollDrag(AircraftState state)
+        {
+            double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicData,
+                                                           CalculateAngleOfAttack(state),
+                                                           density,
+                                                           state.TrueAirspeed);
+
+            double normalForce = GetNewton(aircraftData.TakeOffWeight) - lift;
+            if (state.Height >= 0.01 || normalForce < 0)
+            {
+                return 0;
+            }
+
+            return aircraftData.RollingResistanceCoefficient * normalForce;
+        }
+
+        private static double CalculateAngleOfAttack(AircraftState state)
+        {
+            return state.PitchAngle - state.FlightPathAngle;
+        }
+
+        private double CalculateThrust()
+        {
+            return (aircraftData.NrOfEngines - numberOfFailedEngines) * GetNewton(aircraftData.MaximumThrustPerEngine);
+        }
+
+        private static double GetNewton(double kiloNewton)
+        {
+            return kiloNewton * 1000;
         }
     }
 }
