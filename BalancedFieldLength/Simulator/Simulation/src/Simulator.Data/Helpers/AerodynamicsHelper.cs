@@ -28,6 +28,26 @@ namespace Simulator.Data.Helpers
         }
 
         /// <summary>
+        /// Calculates the lift coefficient based on the input.
+        /// </summary>
+        /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
+        /// containing all the aerodynamic properties.</param>
+        /// <param name="angleOfAttack">The angle of attack. [deg]</param>
+        /// <returns>The lift coefficient.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when
+        /// <paramref name="aerodynamicData"/> is <c>null</c>.</exception>
+        public static double CalculateLiftCoefficient(AerodynamicData aerodynamicData, double angleOfAttack)
+        {
+            if (aerodynamicData == null)
+            {
+                throw new ArgumentNullException(nameof(aerodynamicData));
+            }
+
+            return aerodynamicData.LiftCoefficientGradient *
+                   DegreesToRadians(angleOfAttack - aerodynamicData.ZeroLiftAngleOfAttack);
+        }
+
+        /// <summary>
         /// Calculates the lift based on the input.
         /// </summary>
         /// <param name="aerodynamicData">The <see cref="AerodynamicData"/>
@@ -48,9 +68,7 @@ namespace Simulator.Data.Helpers
                 throw new ArgumentNullException(nameof(aerodynamicData));
             }
 
-            double liftCoefficient = aerodynamicData.LiftCoefficientGradient *
-                                     DegreesToRadians(angleOfAttack - aerodynamicData.ZeroLiftAngleOfAttack);
-
+            double liftCoefficient = CalculateLiftCoefficient(aerodynamicData, angleOfAttack);
             return liftCoefficient * CalculateDynamicPressure(velocity, aerodynamicData.WingArea, density);
         }
 
@@ -109,9 +127,9 @@ namespace Simulator.Data.Helpers
             return 0.5 * density * Math.Pow(velocity, 2) * wingArea;
         }
 
-        private static double CalculateDrag(AerodynamicData aerodynamicData, double liftCoefficient, double density, double velocity, bool HasEngineFailed)
+        private static double CalculateDrag(AerodynamicData aerodynamicData, double liftCoefficient, double density, double velocity, bool hasEngineFailed)
         {
-            double staticDragCoefficient = HasEngineFailed
+            double staticDragCoefficient = hasEngineFailed
                                                ? aerodynamicData.RestDragCoefficientWithEngineFailure
                                                : aerodynamicData.RestDragCoefficientWithoutEngineFailure;
             double inducedDragCoefficient = Math.Pow(liftCoefficient, 2) / (aerodynamicData.AspectRatio * aerodynamicData.OswaldFactor * Math.PI);
