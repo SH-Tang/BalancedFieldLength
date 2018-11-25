@@ -118,7 +118,7 @@ namespace Simulator.Data.Test.Helpers
         {
             // Setup
             var random = new Random(21);
-            Angle angleOfAttack = random.NextAngle(); 
+            Angle angleOfAttack = random.NextAngle();
 
             // Call 
             double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicsData,

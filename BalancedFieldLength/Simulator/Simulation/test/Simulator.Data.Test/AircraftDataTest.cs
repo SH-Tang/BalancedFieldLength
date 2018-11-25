@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;

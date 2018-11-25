@@ -1,6 +1,7 @@
 ﻿using Core.Common.Data;
 
-namespace Simulator.Calculator {
+namespace Simulator.Calculator
+{
     /// <summary>
     /// Class which contains the aircraft states.
     /// </summary>

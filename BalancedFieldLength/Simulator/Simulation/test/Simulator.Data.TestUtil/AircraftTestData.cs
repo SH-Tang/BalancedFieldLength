@@ -33,7 +33,6 @@ namespace Simulator.Data.TestUtil
                 .SetName(aerodynamicsTestData[1].TestName);
             yield return new TestCaseData(new AircraftData(4, 300, 3500, Angle.FromDegrees(4), Angle.FromDegrees(14), 0.02, 0.2, aerodynamicsTestData[2].Data))
                 .SetName(aerodynamicsTestData[2].TestName);
-
         }
 
         /// <summary>
@@ -53,7 +52,7 @@ namespace Simulator.Data.TestUtil
         public static IEnumerable<TestCaseData> GetAerodynamicsDataTestCases()
         {
             return GetAerodynamicsData().Select(testData => new TestCaseData(testData.Data)
-                                                   .SetName(testData.TestName));
+                                                    .SetName(testData.TestName));
         }
 
         private static TestAerodynamicsData[] GetAerodynamicsData()
