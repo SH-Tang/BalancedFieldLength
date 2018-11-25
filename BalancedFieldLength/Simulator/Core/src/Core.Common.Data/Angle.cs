@@ -60,6 +60,51 @@ namespace Core.Common.Data
             return new Angle(leftAngle.Radians - rightAngle.Radians);
         }
 
+        public static bool operator ==(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Equals(rightAngle);
+        }
+
+        public static bool operator !=(Angle leftAngle, Angle rightAngle)
+        {
+            return !leftAngle.Equals(rightAngle);
+        }
+
+        public static bool operator >(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians > rightAngle.Radians;
+        }
+
+        public static bool operator >=(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians >= rightAngle.Radians;
+        }
+
+        public static bool operator <(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians < rightAngle.Radians;
+        }
+
+        public static bool operator <=(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians <= rightAngle.Radians;
+        }
+
+        public bool Equals(Angle other)
+        {
+            return Radians.Equals(other.Radians);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Radians.GetHashCode();
+        }
+
         private static double RadiansToDegrees(double radians)
         {
             return (radians * 180) / Math.PI;

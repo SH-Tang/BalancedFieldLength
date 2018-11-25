@@ -50,7 +50,7 @@ namespace Core.Common.Data.Test
         }
 
         [Test]
-        public static void AdditionOperator_WhenAddingAnglesInDegrees_ReturnExpectedAngle()
+        public static void AdditionOperator_WhenAddingAngles_ReturnExpectedAngle()
         {
             // Setup
             var random = new Random(21);
@@ -62,11 +62,11 @@ namespace Core.Common.Data.Test
 
             // Assert
             Assert.AreEqual(angle1.Degrees + angle2.Degrees, result.Degrees, tolerance);
-            Assert.AreEqual(angle1.Radians+ angle2.Radians, result.Radians);
+            Assert.AreEqual(angle1.Radians + angle2.Radians, result.Radians);
         }
 
         [Test]
-        public static void SubtractionOperator_WhenSubtractingAnglesInDegrees_ReturnExpectedAngle()
+        public static void SubtractionOperator_WhenSubtractingAngles_ReturnExpectedAngle()
         {
             // Setup
             var random = new Random(21);
@@ -79,6 +79,172 @@ namespace Core.Common.Data.Test
             // Assert
             Assert.AreEqual(angle1.Degrees - angle2.Degrees, result.Degrees, tolerance);
             Assert.AreEqual(angle1.Radians - angle2.Radians, result.Radians);
+        }
+
+        [Test]
+        [TestCase(10, 20, false)]
+        [TestCase(20, 20, false)]
+        [TestCase(20, 10, true)]
+        public static void GreaterThanOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                         double rightAngle,
+                                                                                         bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 > angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        [TestCase(10, 20, false)]
+        [TestCase(20, 20, true)]
+        [TestCase(20, 10, true)]
+        public static void GreaterThanOrEqualToOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                                  double rightAngle,
+                                                                                                  bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 >= angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        [TestCase(10, 20, true)]
+        [TestCase(20, 20, false)]
+        [TestCase(20, 10, false)]
+        public static void SmallerThanOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                         double rightAngle,
+                                                                                         bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 < angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        [TestCase(10, 20, true)]
+        [TestCase(20, 20, true)]
+        [TestCase(20, 10, false)]
+        public static void SmallerThanOrEqualToOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                                  double rightAngle,
+                                                                                                  bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 <= angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        [TestCase(10, 20, false)]
+        [TestCase(20, 20, true)]
+        [TestCase(20, 10, false)]
+        public static void EqualsOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                    double rightAngle,
+                                                                                    bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 == angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        [TestCase(10, 20, true)]
+        [TestCase(20, 20, false)]
+        [TestCase(20, 10, true)]
+        public static void UnequalOperator_WhenComparingAngles_ReturnsExpectedResult(double leftAngle,
+                                                                                     double rightAngle,
+                                                                                     bool expectedResult)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(leftAngle);
+            Angle angle2 = Angle.FromDegrees(rightAngle);
+
+            // Call 
+            bool result = angle1 != angle2;
+
+            // Assert
+            Assert.AreEqual(expectedResult, result);
+        }
+
+        [Test]
+        public static void Equals_HavingSameReference_ReturnsTrue()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle1 = Angle.FromDegrees(random.NextDouble());
+            Angle angle2 = angle1;
+
+            // Call 
+            bool result12 = angle1.Equals(angle2);
+            bool result21 = angle2.Equals(angle1);
+
+            // Assert
+            Assert.IsTrue(result12);
+            Assert.IsTrue(result21);
+        }
+
+        [Test]
+        public static void Equals_HavingSameValues_ReturnsTrue()
+        {
+            // Setup
+            var random = new Random(21);
+            double angle = random.NextDouble();
+            Angle angle1 = Angle.FromDegrees(angle);
+            Angle angle2 = Angle.FromDegrees(angle);
+
+            // Call 
+            bool result12 = angle1.Equals(angle2);
+            bool result21 = angle2.Equals(angle1);
+
+            // Assert
+            Assert.IsTrue(result12);
+            Assert.IsTrue(result21);
+        }
+
+        [Test]
+        public static void Equals_HavingDifferentValues_ReturnsFalse()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle1 = Angle.FromDegrees(random.NextDouble());
+            Angle angle2 = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            bool result12 = angle1.Equals(angle2);
+            bool result21 = angle2.Equals(angle1);
+
+            // Assert
+            Assert.IsFalse(result12);
+            Assert.IsFalse(result21);
         }
 
         private static double DegreesToRadians(double degrees)
