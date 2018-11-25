@@ -64,11 +64,6 @@ namespace Simulator.Calculator
                                              CalculateFlightPathAngleRate(aircraftState));
         }
 
-        private static double DegreesToRadians(double degrees)
-        {
-            return (degrees * Math.PI) / 180;
-        }
-
         private static double GetNewton(double kiloNewton)
         {
             return kiloNewton * 1000;
@@ -78,7 +73,7 @@ namespace Simulator.Calculator
 
         private static double CalculateClimbRate(AircraftState aircraftState)
         {
-            return aircraftState.TrueAirspeed * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle));
+            return aircraftState.TrueAirspeed * Math.Sin(aircraftState.FlightPathAngle.Radians);
         }
 
         private double CalculatePitchRate(AircraftState aircraftState)
@@ -93,14 +88,14 @@ namespace Simulator.Calculator
                                                                                 density);
 
             return aircraftState.TrueAirspeed >= rotationSpeed
-                   && aircraftState.PitchAngle < aircraftData.MaximumPitchAngle;
+                   && aircraftState.PitchAngle.Degrees < aircraftData.MaximumPitchAngle;
         }
 
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
         {
             return (gravitationalAcceleration * (CalculateThrust()
                                                  - CalculateDragForce(aircraftState) - CalculateRollDrag(aircraftState)
-                                                 - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle))))
+                                                 - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
                    / GetNewton(aircraftData.TakeOffWeight);
         }
 
@@ -129,7 +124,7 @@ namespace Simulator.Calculator
 
         private static Angle CalculateAngleOfAttack(AircraftState state)
         {
-            return Angle.FromDegrees(state.PitchAngle - state.FlightPathAngle);
+            return state.PitchAngle - state.FlightPathAngle;
         }
 
         private double CalculateDragForce(AircraftState state)
