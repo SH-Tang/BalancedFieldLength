@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Calculator.Data;
 using Core.Common.Data;
 using NUnit.Framework;
@@ -231,7 +231,7 @@ namespace Simulator.Calculator.Test
 
                 // Assert
                 double expectedPitchRate = aircraftData.PitchAngleGradient;
-                Assert.AreEqual(expectedPitchRate, accelerations.PitchRate);
+                Assert.AreEqual(expectedPitchRate, accelerations.PitchRate.Degrees);
             }
 
             [Test]
@@ -253,7 +253,7 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                Assert.Zero(accelerations.PitchRate);
+                Assert.Zero(accelerations.PitchRate.Degrees);
             }
 
             [Test]
@@ -275,7 +275,7 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                Assert.Zero(accelerations.PitchRate);
+                Assert.Zero(accelerations.PitchRate.Degrees);
             }
         }
 
@@ -303,7 +303,7 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                Assert.Zero(accelerations.FlightPathRate);
+                Assert.Zero(accelerations.FlightPathRate.Degrees);
             }
 
             [Test]
@@ -336,7 +336,7 @@ namespace Simulator.Calculator.Test
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
 
                 // Assert
-                Assert.Zero(accelerations.FlightPathRate);
+                Assert.Zero(accelerations.FlightPathRate.Degrees);
             }
 
             [Test]
@@ -370,7 +370,7 @@ namespace Simulator.Calculator.Test
                 // Assert
                 double expectedRate = (gravitationalAcceleration * (lift - takeOffWeightNewton))
                                       / (takeOffWeightNewton * aircraftState.TrueAirspeed);
-                Assert.AreEqual(expectedRate, accelerations.FlightPathRate, tolerance);
+                Assert.AreEqual(expectedRate, accelerations.FlightPathRate.Radians, tolerance);
             }
         }
 
