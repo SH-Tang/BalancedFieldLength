@@ -198,10 +198,5 @@ namespace Simulator.Data.Test.Helpers
         {
             return 0.5 * density * Math.Pow(velocity, 2) * wingArea;
         }
-
-        private static double DegreesToRadians(double degrees)
-        {
-            return (degrees * Math.PI) / 180;
-        }
     }
 }
