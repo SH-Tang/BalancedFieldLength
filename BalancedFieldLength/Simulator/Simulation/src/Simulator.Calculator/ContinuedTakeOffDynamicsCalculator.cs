@@ -1,5 +1,5 @@
 ﻿using System;
-using Calculator.Data;
+using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -63,11 +63,6 @@ namespace Simulator.Calculator
                                              CalculateFlightPathAngleRate(aircraftState));
         }
 
-        private static double DegreesToRadians(double degrees)
-        {
-            return (degrees * Math.PI) / 180;
-        }
-
         private static double GetNewton(double kiloNewton)
         {
             return kiloNewton * 1000;
@@ -77,12 +72,12 @@ namespace Simulator.Calculator
 
         private static double CalculateClimbRate(AircraftState aircraftState)
         {
-            return aircraftState.TrueAirspeed * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle));
+            return aircraftState.TrueAirspeed * Math.Sin(aircraftState.FlightPathAngle.Radians);
         }
 
-        private double CalculatePitchRate(AircraftState aircraftState)
+        private Angle CalculatePitchRate(AircraftState aircraftState)
         {
-            return ShouldRotate(aircraftState) ? aircraftData.PitchAngleGradient : 0.0;
+            return ShouldRotate(aircraftState) ? aircraftData.PitchAngleGradient : new Angle();
         }
 
         private bool ShouldRotate(AircraftState aircraftState)
@@ -99,19 +94,20 @@ namespace Simulator.Calculator
         {
             return (gravitationalAcceleration * (CalculateThrust()
                                                  - CalculateDragForce(aircraftState) - CalculateRollDrag(aircraftState)
-                                                 - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(DegreesToRadians(aircraftState.FlightPathAngle))))
+                                                 - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
                    / GetNewton(aircraftData.TakeOffWeight);
         }
 
-        private double CalculateFlightPathAngleRate(AircraftState state)
+        private Angle CalculateFlightPathAngleRate(AircraftState state)
         {
             if (state.TrueAirspeed < 1)
             {
-                return 0;
+                return new Angle();
             }
 
-            return (gravitationalAcceleration * (CalculateLift(state) - GetNewton(aircraftData.TakeOffWeight) + CalculateNormalForce(state)))
-                   / (GetNewton(aircraftData.TakeOffWeight) * state.TrueAirspeed);
+            double acceleration = (gravitationalAcceleration * (CalculateLift(state) - GetNewton(aircraftData.TakeOffWeight) + CalculateNormalForce(state)))
+                                  / (GetNewton(aircraftData.TakeOffWeight) * state.TrueAirspeed);
+            return Angle.FromRadians(acceleration);
         }
 
         #endregion
@@ -126,7 +122,7 @@ namespace Simulator.Calculator
                                                     state.TrueAirspeed);
         }
 
-        private static double CalculateAngleOfAttack(AircraftState state)
+        private static Angle CalculateAngleOfAttack(AircraftState state)
         {
             return state.PitchAngle - state.FlightPathAngle;
         }

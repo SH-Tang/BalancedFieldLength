@@ -1,4 +1,7 @@
-﻿namespace Simulator.Calculator {
+﻿using Core.Common.Data;
+
+namespace Simulator.Calculator
+{
     /// <summary>
     /// Class which contains the aircraft states.
     /// </summary>
@@ -7,11 +10,11 @@
         /// <summary>
         /// Creates a new instance of <see cref="AircraftState"/>.
         /// </summary>
-        /// <param name="pitchAngle">The pitch angle. [deg]</param>
-        /// <param name="flightPathAngle">The flight path angle. [deg]</param>
+        /// <param name="pitchAngle">The pitch angle.</param>
+        /// <param name="flightPathAngle">The flight path angle.</param>
         /// <param name="trueAirspeed">The true airspeed. [m/s]</param>
         /// <param name="height">The height. [m]</param>
-        public AircraftState(double pitchAngle, double flightPathAngle, double trueAirspeed, double height)
+        public AircraftState(Angle pitchAngle, Angle flightPathAngle, double trueAirspeed, double height)
         {
             PitchAngle = pitchAngle;
             FlightPathAngle = flightPathAngle;
@@ -20,16 +23,16 @@
         }
 
         /// <summary>
-        /// Gets the pitch angle. [deg]
+        /// Gets the pitch angle.
         /// </summary>
         /// <remarks>Also denoted as theta.</remarks>
-        public double PitchAngle { get; }
+        public Angle PitchAngle { get; }
 
         /// <summary>
-        /// Gets the flight path angle. [deg]
+        /// Gets the flight path angle.
         /// </summary>
         /// <remarks>Also denoted as gamma.</remarks>
-        public double FlightPathAngle { get; }
+        public Angle FlightPathAngle { get; }
 
         /// <summary>
         /// Gets the true airspeed. [m/s]

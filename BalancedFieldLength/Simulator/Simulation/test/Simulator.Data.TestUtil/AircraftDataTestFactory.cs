@@ -1,5 +1,5 @@
 ﻿using System;
-using Calculator.Data;
+using Core.Common.TestUtil;
 
 namespace Simulator.Data.TestUtil
 {
@@ -16,8 +16,8 @@ namespace Simulator.Data.TestUtil
         {
             var random = new Random(21);
             return new AircraftData(random.Next(), random.NextDouble(),
-                                    random.NextDouble(), random.NextDouble(),
-                                    random.NextDouble(), random.NextDouble(),
+                                    random.NextDouble(), random.NextAngle(),
+                                    random.NextAngle(), random.NextDouble(),
                                     random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
         }
     }

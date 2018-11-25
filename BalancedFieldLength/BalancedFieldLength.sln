@@ -31,6 +31,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Data.Test", "Si
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Data", "Simulator\Core\src\Core.Common.Data\Core.Common.Data.csproj", "{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.TestUtil", "Simulator\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj", "{F751B0AC-12E0-461B-93BD-3546B39E994B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F751B0AC-12E0-461B-93BD-3546B39E994B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F751B0AC-12E0-461B-93BD-3546B39E994B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F751B0AC-12E0-461B-93BD-3546B39E994B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F751B0AC-12E0-461B-93BD-3546B39E994B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -86,6 +92,7 @@ Global
 		{6447B32A-4471-4D2A-9C8B-6BF37E0975B1} = {D5746E90-89D6-4B18-976E-D71AEE379166}
 		{BC6876FA-CBDC-45D8-A5D8-E91E977CE2B6} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
 		{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13} = {21CEF108-F80F-46FC-A7F6-35E8C24B7B45}
+		{F751B0AC-12E0-461B-93BD-3546B39E994B} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}

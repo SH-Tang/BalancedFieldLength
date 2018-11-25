@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common.TestUtil;
 
 namespace Simulator.Data.TestUtil
 {
@@ -16,7 +17,7 @@ namespace Simulator.Data.TestUtil
             var random = new Random(21);
 
             return new AerodynamicsData(random.NextDouble(), random.NextDouble(),
-                                        random.NextDouble(), random.NextDouble(),
+                                        random.NextAngle(), random.NextDouble(),
                                         random.NextDouble(), random.NextDouble(),
                                         random.NextDouble(), random.NextDouble());
         }

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Calculator.Data;
+using Core.Common.Data;
 using NUnit.Framework;
 
 namespace Simulator.Data.TestUtil
@@ -27,13 +27,12 @@ namespace Simulator.Data.TestUtil
         public static IEnumerable<TestCaseData> GetAircraftData()
         {
             TestAerodynamicsData[] aerodynamicsTestData = GetAerodynamicsData();
-            yield return new TestCaseData(new AircraftData(2, 75, 500, 6, 16, 0.02, 0.2, aerodynamicsTestData[0].Data))
+            yield return new TestCaseData(new AircraftData(2, 75, 500, Angle.FromDegrees(6), Angle.FromDegrees(16), 0.02, 0.2, aerodynamicsTestData[0].Data))
                 .SetName(aerodynamicsTestData[0].TestName);
-            yield return new TestCaseData(new AircraftData(3, 120, 1200, 5, 15, 0.02, 0.2, aerodynamicsTestData[1].Data))
+            yield return new TestCaseData(new AircraftData(3, 120, 1200, Angle.FromDegrees(5), Angle.FromDegrees(15), 0.02, 0.2, aerodynamicsTestData[1].Data))
                 .SetName(aerodynamicsTestData[1].TestName);
-            yield return new TestCaseData(new AircraftData(4, 300, 3500, 4, 14, 0.02, 0.2, aerodynamicsTestData[2].Data))
+            yield return new TestCaseData(new AircraftData(4, 300, 3500, Angle.FromDegrees(4), Angle.FromDegrees(14), 0.02, 0.2, aerodynamicsTestData[2].Data))
                 .SetName(aerodynamicsTestData[2].TestName);
-
         }
 
         /// <summary>
@@ -53,16 +52,16 @@ namespace Simulator.Data.TestUtil
         public static IEnumerable<TestCaseData> GetAerodynamicsDataTestCases()
         {
             return GetAerodynamicsData().Select(testData => new TestCaseData(testData.Data)
-                                                   .SetName(testData.TestName));
+                                                    .SetName(testData.TestName));
         }
 
         private static TestAerodynamicsData[] GetAerodynamicsData()
         {
             return new[]
                    {
-                       new TestAerodynamicsData(new AerodynamicsData(15, 100, -3, 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
-                       new TestAerodynamicsData(new AerodynamicsData(14, 200, -4, 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
-                       new TestAerodynamicsData(new AerodynamicsData(12, 500, -5, 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
+                       new TestAerodynamicsData(new AerodynamicsData(15, 100, Angle.FromDegrees(-3), 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
+                       new TestAerodynamicsData(new AerodynamicsData(14, 200, Angle.FromDegrees(-4), 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
+                       new TestAerodynamicsData(new AerodynamicsData(12, 500, Angle.FromDegrees(-5), 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
                    };
         }
 

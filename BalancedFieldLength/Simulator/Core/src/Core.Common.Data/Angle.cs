@@ -34,16 +34,8 @@ namespace Core.Common.Data
         /// </summary>
         /// <param name="degrees">The angle in degrees.</param>
         /// <returns>A <see cref="Angle"/>.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when
-        /// <paramref name="degrees"/> is not between [0, 360] degrees.</exception>
         public static Angle FromDegrees(double degrees)
         {
-            if (degrees < 0 || degrees > 360)
-            {
-                throw new ArgumentOutOfRangeException(nameof(degrees),
-                                                      "Invalid angle, angle must be in the range of [0, 360] degrees");
-            }
-
             return new Angle(DegreesToRadians(degrees));
         }
 
@@ -53,17 +45,64 @@ namespace Core.Common.Data
         /// </summary>
         /// <param name="radians">The angle in radians.</param>
         /// <returns>A <see cref="Angle"/>.</returns>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when
-        /// <paramref name="radians"/> is not between [0, 2 PI] radians.</exception>
         public static Angle FromRadians(double radians)
         {
-            if (radians < 0 || radians > 2 * Math.PI)
-            {
-                throw new ArgumentOutOfRangeException(nameof(radians),
-                                                      "Invalid angle, angle must be in the range of [0, 2 PI] radians");
-            }
-
             return new Angle(radians);
+        }
+
+        public static Angle operator +(Angle leftAngle, Angle rightAngle)
+        {
+            return new Angle(leftAngle.Radians + rightAngle.Radians);
+        }
+
+        public static Angle operator -(Angle leftAngle, Angle rightAngle)
+        {
+            return new Angle(leftAngle.Radians - rightAngle.Radians);
+        }
+
+        public static bool operator ==(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Equals(rightAngle);
+        }
+
+        public static bool operator !=(Angle leftAngle, Angle rightAngle)
+        {
+            return !leftAngle.Equals(rightAngle);
+        }
+
+        public static bool operator >(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians > rightAngle.Radians;
+        }
+
+        public static bool operator >=(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians >= rightAngle.Radians;
+        }
+
+        public static bool operator <(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians < rightAngle.Radians;
+        }
+
+        public static bool operator <=(Angle leftAngle, Angle rightAngle)
+        {
+            return leftAngle.Radians <= rightAngle.Radians;
+        }
+
+        public bool Equals(Angle other)
+        {
+            return Radians.Equals(other.Radians);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj);
+        }
+
+        public override int GetHashCode()
+        {
+            return Radians.GetHashCode();
         }
 
         private static double RadiansToDegrees(double radians)

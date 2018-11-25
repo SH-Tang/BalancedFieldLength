@@ -1,7 +1,7 @@
 ﻿using System;
-using Simulator.Data;
+using Core.Common.Data;
 
-namespace Calculator.Data
+namespace Simulator.Data
 {
     /// <summary>
     /// Class to hold all the relevant properties of an  aircraft.
@@ -14,8 +14,8 @@ namespace Calculator.Data
         /// <param name="nrOfEngines">The number of engines.</param>
         /// <param name="maximumThrustPerEngine">The maximum thrust per engine. [kN]</param>
         /// <param name="takeOffWeight">The takeoff weight. [kN]</param>
-        /// <param name="pitchAngleGradient">The rate of pitch angle during rotation. [deg/s]</param>
-        /// <param name="maximumPitchAngle">The maximum pitch angle during rotation. [deg]</param>
+        /// <param name="pitchAngleGradient">The rate of pitch angle during rotation. [1/s]</param>
+        /// <param name="maximumPitchAngle">The maximum pitch angle during rotation.</param>
         /// <param name="rollingResistanceCoefficient">The rolling resistance coefficient. [-]</param>
         /// <param name="brakingResistanceCoefficient">The brake resistance coefficient. [-]</param>
         /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
@@ -24,7 +24,7 @@ namespace Calculator.Data
         /// is <c>null</c>.</exception>
         public AircraftData(int nrOfEngines, double maximumThrustPerEngine,
                             double takeOffWeight,
-                            double pitchAngleGradient, double maximumPitchAngle,
+                            Angle pitchAngleGradient, Angle maximumPitchAngle,
                             double rollingResistanceCoefficient, double brakingResistanceCoefficient,
                             AerodynamicsData aerodynamicsData)
         {
@@ -59,16 +59,16 @@ namespace Calculator.Data
         public double TakeOffWeight { get; }
 
         /// <summary>
-        /// Gets the pitch angle gradient during rotation. [deg/s]
+        /// Gets the pitch angle gradient during rotation. [1/s]
         /// </summary>
         /// <remarks>Also denoted as dTheta/ds.</remarks>
-        public double PitchAngleGradient { get; }
+        public Angle PitchAngleGradient { get; }
 
         /// <summary>
-        /// Gets the maximum pitch angle during rotation. [deg]
+        /// Gets the maximum pitch angle during rotation.
         /// </summary>
         /// <remarks>Also denoted as theta.</remarks>
-        public double MaximumPitchAngle { get; }
+        public Angle MaximumPitchAngle { get; }
 
         /// <summary>
         /// Gets the rolling resistance coefficient. [-]

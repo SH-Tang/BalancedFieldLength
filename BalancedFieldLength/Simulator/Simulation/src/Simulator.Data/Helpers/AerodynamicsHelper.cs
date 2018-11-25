@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common.Data;
 
 namespace Simulator.Data.Helpers
 {
@@ -32,11 +33,11 @@ namespace Simulator.Data.Helpers
         /// </summary>
         /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/>
         /// containing all the aerodynamic properties.</param>
-        /// <param name="angleOfAttack">The angle of attack. [deg]</param>
+        /// <param name="angleOfAttack">The angle of attack.</param>
         /// <returns>The lift coefficient.</returns>
         /// <exception cref="ArgumentNullException">Thrown when
         /// <paramref name="aerodynamicsData"/> is <c>null</c>.</exception>
-        public static double CalculateLiftCoefficient(AerodynamicsData aerodynamicsData, double angleOfAttack)
+        public static double CalculateLiftCoefficient(AerodynamicsData aerodynamicsData, Angle angleOfAttack)
         {
             if (aerodynamicsData == null)
             {
@@ -44,7 +45,7 @@ namespace Simulator.Data.Helpers
             }
 
             return aerodynamicsData.LiftCoefficientGradient *
-                   DegreesToRadians(angleOfAttack - aerodynamicsData.ZeroLiftAngleOfAttack);
+                   (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
         }
 
         /// <summary>
@@ -59,7 +60,7 @@ namespace Simulator.Data.Helpers
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
         public static double CalculateLift(AerodynamicsData aerodynamicsData,
-                                           double angleOfAttack,
+                                           Angle angleOfAttack,
                                            double density,
                                            double velocity)
         {
@@ -115,11 +116,6 @@ namespace Simulator.Data.Helpers
             }
 
             return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, false);
-        }
-
-        private static double DegreesToRadians(double degrees)
-        {
-            return (degrees * Math.PI) / 180;
         }
 
         private static double CalculateDynamicPressure(double velocity, double wingArea, double density)

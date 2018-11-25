@@ -1,4 +1,6 @@
-﻿namespace Simulator.Data
+﻿using Core.Common.Data;
+
+namespace Simulator.Data
 {
     /// <summary>
     /// Class to hold all relevant aerodynamic data of the aircraft.
@@ -10,14 +12,14 @@
         /// </summary>
         /// <param name="aspectRatio">The aspect ratio of the aircraft. [-]</param>
         /// <param name="wingArea">The surface area of the lift generating elements of the aircraft. [m2]</param>
-        /// <param name="zeroLiftAngleOfAttack">The angle of attack of which the lift coefficient is 0. [deg]</param>
+        /// <param name="zeroLiftAngleOfAttack">The angle of attack of which the lift coefficient is 0.</param>
         /// <param name="liftCoefficientGradient">The gradient of the lift coefficient as a function of the angle of attack. [1/rad]</param>
         /// <param name="maximumLiftCoefficient">The maximum lift coefficient. [-]</param>
         /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
         /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
         /// <param name="oswaldFactor">The Oswald factor. [-]</param>
         public AerodynamicsData(double aspectRatio, double wingArea,
-                                double zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
+                                Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
                                 double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
             AspectRatio = aspectRatio;
@@ -43,10 +45,10 @@
         public double WingArea { get; }
 
         /// <summary>
-        /// Gets the angle of attack for which the lift is 0. [deg]
+        /// Gets the angle of attack for which the lift is 0.
         /// </summary>
         /// <remarks>Also denoted as alpha_0.</remarks>
-        public double ZeroLiftAngleOfAttack { get; }
+        public Angle ZeroLiftAngleOfAttack { get; }
 
         /// <summary>
         /// Gets the lift coefficient gradient as a function of the angle of attack. [1/rad]
