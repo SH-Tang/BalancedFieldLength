@@ -25,7 +25,7 @@ namespace Simulator.Data.TestUtil.Test
             AerodynamicsData aerodynamicsData = data.AerodynamicsData;
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.AspectRatio));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.WingArea));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.ZeroLiftAngleOfAttack));
+            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.ZeroLiftAngleOfAttack.Degrees));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.LiftCoefficientGradient));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.MaximumLiftCoefficient));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.RestDragCoefficientWithoutEngineFailure));

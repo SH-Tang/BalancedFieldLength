@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common.Data;
 using NUnit.Framework;
 
 namespace Simulator.Data.Test
@@ -13,7 +14,7 @@ namespace Simulator.Data.Test
             var random = new Random(21);
             double aspectRatio = random.NextDouble();
             double wingArea = random.NextDouble();
-            double zeroLiftAngleOfAttack = random.NextDouble();
+            Angle zeroLiftAngleOfAttack = Angle.FromDegrees(random.NextDouble());
             double liftCoefficientGradient = random.NextDouble();
             double maximumLiftCoefficient = random.NextDouble();
             double restDragCoefficientWithoutEngineFailure = random.NextDouble();
@@ -30,7 +31,7 @@ namespace Simulator.Data.Test
             // Assert
             Assert.AreEqual(aspectRatio, data.AspectRatio);
             Assert.AreEqual(wingArea, data.WingArea);
-            Assert.AreEqual(zeroLiftAngleOfAttack, data.ZeroLiftAngleOfAttack);
+            Assert.AreSame(zeroLiftAngleOfAttack, data.ZeroLiftAngleOfAttack);
             Assert.AreEqual(liftCoefficientGradient, data.LiftCoefficientGradient);
             Assert.AreEqual(maximumLiftCoefficient, data.MaximumLiftCoefficient);
             Assert.AreEqual(restDragCoefficientWithoutEngineFailure, data.RestDragCoefficientWithoutEngineFailure);

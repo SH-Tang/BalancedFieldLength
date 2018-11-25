@@ -174,7 +174,7 @@ namespace Simulator.Data.Test.Helpers
         private static double CalculateExpectedLiftCoefficient(AerodynamicsData aerodynamicsData, Angle angleOfAttack)
         {
             return aerodynamicsData.LiftCoefficientGradient *
-                   DegreesToRadians(angleOfAttack.Degrees - aerodynamicsData.ZeroLiftAngleOfAttack);
+                   (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
         }
 
         private static double CalculateExpectedDrag(AerodynamicsData aerodynamicsData,

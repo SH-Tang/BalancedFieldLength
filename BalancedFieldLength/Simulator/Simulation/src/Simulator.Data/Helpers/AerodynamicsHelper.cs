@@ -45,7 +45,7 @@ namespace Simulator.Data.Helpers
             }
 
             return aerodynamicsData.LiftCoefficientGradient *
-                   DegreesToRadians(angleOfAttack.Degrees - aerodynamicsData.ZeroLiftAngleOfAttack);
+                   (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
         }
 
         /// <summary>
@@ -116,11 +116,6 @@ namespace Simulator.Data.Helpers
             }
 
             return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, false);
-        }
-
-        private static double DegreesToRadians(double degrees)
-        {
-            return (degrees * Math.PI) / 180;
         }
 
         private static double CalculateDynamicPressure(double velocity, double wingArea, double density)
