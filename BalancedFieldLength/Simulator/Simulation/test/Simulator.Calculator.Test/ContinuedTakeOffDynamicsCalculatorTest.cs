@@ -232,7 +232,7 @@ namespace Simulator.Calculator.Test
 
                 // Assert
                 Angle expectedPitchRate = aircraftData.PitchAngleGradient;
-                Assert.AreEqual(expectedPitchRate.Degrees, accelerations.PitchRate.Degrees);
+                Assert.AreEqual(expectedPitchRate, accelerations.PitchRate);
             }
 
             [Test]

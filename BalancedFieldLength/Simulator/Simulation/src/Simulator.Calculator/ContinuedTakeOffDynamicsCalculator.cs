@@ -87,7 +87,7 @@ namespace Simulator.Calculator
                                                                                 density);
 
             return aircraftState.TrueAirspeed >= rotationSpeed
-                   && aircraftState.PitchAngle.Degrees < aircraftData.MaximumPitchAngle.Degrees;
+                   && aircraftState.PitchAngle < aircraftData.MaximumPitchAngle;
         }
 
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
