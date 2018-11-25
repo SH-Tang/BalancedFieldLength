@@ -27,11 +27,11 @@ namespace Simulator.Data.TestUtil
         public static IEnumerable<TestCaseData> GetAircraftData()
         {
             TestAerodynamicsData[] aerodynamicsTestData = GetAerodynamicsData();
-            yield return new TestCaseData(new AircraftData(2, 75, 500, 6, 16, 0.02, 0.2, aerodynamicsTestData[0].Data))
+            yield return new TestCaseData(new AircraftData(2, 75, 500, Angle.FromDegrees(6), Angle.FromDegrees(16), 0.02, 0.2, aerodynamicsTestData[0].Data))
                 .SetName(aerodynamicsTestData[0].TestName);
-            yield return new TestCaseData(new AircraftData(3, 120, 1200, 5, 15, 0.02, 0.2, aerodynamicsTestData[1].Data))
+            yield return new TestCaseData(new AircraftData(3, 120, 1200, Angle.FromDegrees(5), Angle.FromDegrees(15), 0.02, 0.2, aerodynamicsTestData[1].Data))
                 .SetName(aerodynamicsTestData[1].TestName);
-            yield return new TestCaseData(new AircraftData(4, 300, 3500, 4, 14, 0.02, 0.2, aerodynamicsTestData[2].Data))
+            yield return new TestCaseData(new AircraftData(4, 300, 3500, Angle.FromDegrees(4), Angle.FromDegrees(14), 0.02, 0.2, aerodynamicsTestData[2].Data))
                 .SetName(aerodynamicsTestData[2].TestName);
 
         }

@@ -16,8 +16,8 @@ namespace Simulator.Data.TestUtil.Test
             Assert.IsTrue(IsConcreteNonZeroNumber(data.NrOfEngines));
             Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumThrustPerEngine));
             Assert.IsTrue(IsConcreteNonZeroNumber(data.TakeOffWeight));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.PitchAngleGradient));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumPitchAngle));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.PitchAngleGradient.Degrees));
+            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumPitchAngle.Degrees));
             Assert.IsTrue(IsConcreteNonZeroNumber(data.RollingResistanceCoefficient));
             Assert.IsTrue(IsConcreteNonZeroNumber(data.BrakingResistanceCoefficient));
 
