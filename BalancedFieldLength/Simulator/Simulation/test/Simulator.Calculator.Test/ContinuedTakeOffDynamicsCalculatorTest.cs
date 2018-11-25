@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Data;
 using Simulator.Data.Helpers;
@@ -34,8 +35,8 @@ namespace Simulator.Calculator.Test
             // Setup
             var random = new Random(21);
             var aircraftData = new AircraftData(random.Next(), random.NextDouble(),
-                                                random.NextDouble(), Angle.FromDegrees(random.NextDouble()),
-                                                Angle.FromDegrees(random.NextDouble()), random.NextDouble(),
+                                                random.NextDouble(), random.NextAngle(),
+                                                random.NextAngle(), random.NextDouble(),
                                                 random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
 
             var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble(), random.NextDouble());
@@ -55,8 +56,8 @@ namespace Simulator.Calculator.Test
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var aircraftState = new AircraftState(Angle.FromDegrees(random.NextDouble()),
-                                                  Angle.FromDegrees(random.NextDouble()),
+            var aircraftState = new AircraftState(random.NextAngle(),
+                                                  random.NextAngle(),
                                                   random.NextDouble(),
                                                   random.NextDouble());
 
@@ -84,7 +85,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       airspeed,
                                                       threshold);
 
@@ -128,7 +129,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       airspeed,
                                                       threshold - random.NextDouble());
 
@@ -172,7 +173,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       airspeed,
                                                       threshold - random.NextDouble());
 
@@ -220,7 +221,7 @@ namespace Simulator.Calculator.Test
                 double pitchAngle = aircraftData.MaximumPitchAngle.Degrees - random.NextDouble();
 
                 var aircraftState = new AircraftState(Angle.FromDegrees(pitchAngle),
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
@@ -242,8 +243,8 @@ namespace Simulator.Calculator.Test
                 double rotationSpeed = GetRotationSpeed(aircraftData);
 
                 var random = new Random(21);
-                var aircraftState = new AircraftState(Angle.FromDegrees(random.NextDouble()),
-                                                      Angle.FromDegrees(random.NextDouble()),
+                var aircraftState = new AircraftState(random.NextAngle(),
+                                                      random.NextAngle(),
                                                       rotationSpeed - random.NextDouble(),
                                                       random.NextDouble());
 
@@ -265,7 +266,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
@@ -289,8 +290,8 @@ namespace Simulator.Calculator.Test
                 var random = new Random(21);
                 AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-                var aircraftState = new AircraftState(Angle.FromDegrees(random.NextDouble()),
-                                                      Angle.FromDegrees(random.NextDouble()),
+                var aircraftState = new AircraftState(random.NextAngle(),
+                                                      random.NextAngle(),
                                                       random.NextDouble(),
                                                       random.NextDouble());
 
@@ -316,7 +317,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       velocityThreshold,
                                                       heightThreshold - random.NextDouble());
 
@@ -348,7 +349,7 @@ namespace Simulator.Calculator.Test
 
                 var random = new Random(21);
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
-                                                      Angle.FromDegrees(random.NextDouble()),
+                                                      random.NextAngle(),
                                                       100,
                                                       heightThreshold - random.NextDouble());
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 
 namespace Simulator.Data.Test
@@ -14,7 +15,7 @@ namespace Simulator.Data.Test
             var random = new Random(21);
             double aspectRatio = random.NextDouble();
             double wingArea = random.NextDouble();
-            Angle zeroLiftAngleOfAttack = Angle.FromDegrees(random.NextDouble());
+            Angle zeroLiftAngleOfAttack = random.NextAngle();
             double liftCoefficientGradient = random.NextDouble();
             double maximumLiftCoefficient = random.NextDouble();
             double restDragCoefficientWithoutEngineFailure = random.NextDouble();

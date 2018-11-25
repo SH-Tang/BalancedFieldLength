@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Data.TestUtil;
 
@@ -33,8 +34,8 @@ namespace Simulator.Data.Test
             int nrOfEngines = random.Next();
             double maximumThrustPerEngine = random.NextDouble();
             double takeOffWeight = random.NextDouble();
-            Angle pitchAngleGradient = Angle.FromDegrees(random.NextDouble());
-            Angle maximumPitchAngle = Angle.FromDegrees(random.NextDouble());
+            Angle pitchAngleGradient = random.NextAngle();
+            Angle maximumPitchAngle = random.NextAngle();
             double rollingResistanceCoefficient = random.NextDouble();
             double brakingResistanceCoefficient = random.NextDouble();
 

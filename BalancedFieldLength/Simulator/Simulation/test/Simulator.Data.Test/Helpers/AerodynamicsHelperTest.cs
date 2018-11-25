@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
@@ -117,7 +118,7 @@ namespace Simulator.Data.Test.Helpers
         {
             // Setup
             var random = new Random(21);
-            Angle angleOfAttack = Angle.FromDegrees(random.NextDouble()); 
+            Angle angleOfAttack = random.NextAngle(); 
 
             // Call 
             double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicsData,

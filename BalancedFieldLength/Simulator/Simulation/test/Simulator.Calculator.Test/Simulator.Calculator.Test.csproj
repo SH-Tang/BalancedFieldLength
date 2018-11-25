@@ -52,6 +52,10 @@
       <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
       <Name>Core.Common.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
+      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
+      <Name>Core.Common.TestUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Simulator.Calculator\Simulator.Calculator.csproj">
       <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
       <Name>Simulator.Calculator</Name>
