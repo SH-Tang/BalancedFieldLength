@@ -1,5 +1,6 @@
 ﻿using System;
 using Calculator.Data;
+using Core.Common.Data;
 using NUnit.Framework;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
@@ -88,7 +89,7 @@ namespace Simulator.Calculator.Test
                                                       airspeed,
                                                       threshold);
 
-                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+                Angle angleOfAttack = Angle.FromDegrees(aircraftState.PitchAngle - aircraftState.FlightPathAngle);
 
                 // Precondition
                 double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
@@ -133,8 +134,7 @@ namespace Simulator.Calculator.Test
                                                       airspeed,
                                                       threshold - random.NextDouble());
 
-                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
-
+                Angle angleOfAttack = Angle.FromDegrees(aircraftState.PitchAngle - aircraftState.FlightPathAngle);
                 // Precondition
                 double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
                                                                angleOfAttack,
@@ -178,7 +178,7 @@ namespace Simulator.Calculator.Test
                                                       airspeed,
                                                       threshold - random.NextDouble());
 
-                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+                Angle angleOfAttack = Angle.FromDegrees(aircraftState.PitchAngle - aircraftState.FlightPathAngle); 
 
                 // Precondition
                 double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
@@ -324,7 +324,7 @@ namespace Simulator.Calculator.Test
                                                       velocityThreshold,
                                                       heightThreshold - random.NextDouble());
 
-                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+                Angle angleOfAttack = Angle.FromDegrees(aircraftState.PitchAngle - aircraftState.FlightPathAngle); 
 
                 // Precondition
                 double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
@@ -358,7 +358,7 @@ namespace Simulator.Calculator.Test
                                                       100,
                                                       heightThreshold - random.NextDouble());
 
-                double angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle; // degrees
+                Angle angleOfAttack = Angle.FromDegrees(aircraftState.PitchAngle - aircraftState.FlightPathAngle);
 
                 // Precondition
                 double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,

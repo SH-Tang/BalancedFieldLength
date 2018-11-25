@@ -1,5 +1,6 @@
 ﻿using System;
 using Calculator.Data;
+using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -126,9 +127,9 @@ namespace Simulator.Calculator
                                                     state.TrueAirspeed);
         }
 
-        private static double CalculateAngleOfAttack(AircraftState state)
+        private static Angle CalculateAngleOfAttack(AircraftState state)
         {
-            return state.PitchAngle - state.FlightPathAngle;
+            return Angle.FromDegrees(state.PitchAngle - state.FlightPathAngle);
         }
 
         private double CalculateDragForce(AircraftState state)
