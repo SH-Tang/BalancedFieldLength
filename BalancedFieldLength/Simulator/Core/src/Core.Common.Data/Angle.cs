@@ -50,6 +50,16 @@ namespace Core.Common.Data
             return new Angle(radians);
         }
 
+        public static Angle operator +(Angle leftAngle, Angle rightAngle)
+        {
+            return new Angle(leftAngle.Radians + rightAngle.Radians);
+        }
+
+        public static Angle operator -(Angle leftAngle, Angle rightAngle)
+        {
+            return new Angle(leftAngle.Radians - rightAngle.Radians);
+        }
+
         private static double RadiansToDegrees(double radians)
         {
             return (radians * 180) / Math.PI;

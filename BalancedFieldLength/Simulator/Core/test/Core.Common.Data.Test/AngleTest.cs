@@ -49,6 +49,38 @@ namespace Core.Common.Data.Test
             Assert.AreEqual(radians, angle.Radians);
         }
 
+        [Test]
+        public static void AdditionOperator_WhenAddingAnglesInDegrees_ReturnExpectedAngle()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle1 = Angle.FromDegrees(random.NextDouble());
+            Angle angle2 = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            Angle result = angle1 + angle2;
+
+            // Assert
+            Assert.AreEqual(angle1.Degrees + angle2.Degrees, result.Degrees, tolerance);
+            Assert.AreEqual(angle1.Radians+ angle2.Radians, result.Radians);
+        }
+
+        [Test]
+        public static void SubtractionOperator_WhenSubtractingAnglesInDegrees_ReturnExpectedAngle()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle1 = Angle.FromDegrees(random.NextDouble());
+            Angle angle2 = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            Angle result = angle1 - angle2;
+
+            // Assert
+            Assert.AreEqual(angle1.Degrees - angle2.Degrees, result.Degrees, tolerance);
+            Assert.AreEqual(angle1.Radians - angle2.Radians, result.Radians);
+        }
+
         private static double DegreesToRadians(double degrees)
         {
             return (degrees * Math.PI) / 180;
