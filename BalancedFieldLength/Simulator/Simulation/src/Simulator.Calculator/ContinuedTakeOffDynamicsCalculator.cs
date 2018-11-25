@@ -77,7 +77,7 @@ namespace Simulator.Calculator
 
         private Angle CalculatePitchRate(AircraftState aircraftState)
         {
-            return ShouldRotate(aircraftState) ? Angle.FromDegrees(aircraftData.PitchAngleGradient) : new Angle();
+            return ShouldRotate(aircraftState) ? aircraftData.PitchAngleGradient : new Angle();
         }
 
         private bool ShouldRotate(AircraftState aircraftState)
@@ -87,7 +87,7 @@ namespace Simulator.Calculator
                                                                                 density);
 
             return aircraftState.TrueAirspeed >= rotationSpeed
-                   && aircraftState.PitchAngle.Degrees < aircraftData.MaximumPitchAngle;
+                   && aircraftState.PitchAngle.Degrees < aircraftData.MaximumPitchAngle.Degrees;
         }
 
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
