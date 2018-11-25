@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using NUnit.Framework;
 
 namespace Core.Common.Data.Test
@@ -21,24 +20,6 @@ namespace Core.Common.Data.Test
         }
 
         [Test]
-        [TestCase(0 - tolerance)]
-        [TestCase(360 + tolerance)]
-        public static void FromDegrees_InvalidAngle_ThrowsArgumentOutOfRangeException(double degrees)
-        {
-            // Call 
-            TestDelegate call = () => Angle.FromDegrees(degrees);
-
-            // Assert
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(call);
-            const string expectedMessage = "Invalid angle, angle must be in the range of [0, 360] degrees";
-            string message = exception.Message.Split(new[]
-                                                     {
-                                                         Environment.NewLine
-                                                     }, StringSplitOptions.None).First();
-            Assert.AreEqual(expectedMessage, message);
-        }
-
-        [Test]
         [TestCase(0)]
         [TestCase(180)]
         [TestCase(360)]
@@ -51,24 +32,6 @@ namespace Core.Common.Data.Test
             // Then
             Assert.AreEqual(degrees, angle.Degrees);
             Assert.AreEqual(DegreesToRadians(degrees), angle.Radians);
-        }
-
-        [Test]
-        [TestCase(0 - tolerance)]
-        [TestCase(2 * Math.PI + tolerance)]
-        public static void FromRadians_InvalidAngle_ThrowsArgumentOutOfRangeException(double radians)
-        {
-            // Call 
-            TestDelegate call = () => Angle.FromRadians(radians);
-
-            // Assert
-            var exception = Assert.Throws<ArgumentOutOfRangeException>(call);
-            const string expectedMessage = "Invalid angle, angle must be in the range of [0, 2 PI] radians";
-            string message = exception.Message.Split(new[]
-                                                     {
-                                                         Environment.NewLine
-                                                     }, StringSplitOptions.None).First();
-            Assert.AreEqual(expectedMessage, message);
         }
 
         [Test]
