@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common.Data;
 using NUnit.Framework;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
@@ -116,7 +117,7 @@ namespace Simulator.Data.Test.Helpers
         {
             // Setup
             var random = new Random(21);
-            double angleOfAttack = random.NextDouble(); // degrees
+            Angle angleOfAttack = Angle.FromDegrees(random.NextDouble()); 
 
             // Call 
             double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicsData,
@@ -135,7 +136,7 @@ namespace Simulator.Data.Test.Helpers
 
             // Call 
             TestDelegate call = () => AerodynamicsHelper.CalculateLift(null,
-                                                                       random.NextDouble(),
+                                                                       new Angle(),
                                                                        random.NextDouble(),
                                                                        random.NextDouble());
 
@@ -149,7 +150,7 @@ namespace Simulator.Data.Test.Helpers
         public static void CalculateLift_WithValidParametersAndWithinLimits_ReturnsExpectedValues(AerodynamicsData aerodynamicsData)
         {
             // Setup
-            const double angleOfAttack = 3.0; // degrees
+            Angle angleOfAttack = Angle.FromDegrees(3.0);
             const int velocity = 10; // m/s
 
             // Call 
@@ -162,7 +163,7 @@ namespace Simulator.Data.Test.Helpers
         }
 
         private static double CalculateExpectedLift(AerodynamicsData aerodynamicsData,
-                                                    double angleOfAttack,
+                                                    Angle angleOfAttack,
                                                     double density,
                                                     double velocity)
         {
@@ -170,10 +171,10 @@ namespace Simulator.Data.Test.Helpers
             return liftCoefficient * CalculateDynamicPressure(velocity, density, aerodynamicsData.WingArea);
         }
 
-        private static double CalculateExpectedLiftCoefficient(AerodynamicsData aerodynamicsData, double angleOfAttack)
+        private static double CalculateExpectedLiftCoefficient(AerodynamicsData aerodynamicsData, Angle angleOfAttack)
         {
             return aerodynamicsData.LiftCoefficientGradient *
-                   DegreesToRadians(angleOfAttack - aerodynamicsData.ZeroLiftAngleOfAttack);
+                   DegreesToRadians(angleOfAttack.Degrees - aerodynamicsData.ZeroLiftAngleOfAttack);
         }
 
         private static double CalculateExpectedDrag(AerodynamicsData aerodynamicsData,

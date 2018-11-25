@@ -50,6 +50,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
+      <Name>Core.Common.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Simulator.Data\Simulator.Data.csproj">
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
       <Name>Simulator.Data</Name>
