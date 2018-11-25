@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
@@ -17,8 +17,8 @@ namespace Simulator.Data.Test
 
             // Call 
             TestDelegate call = () => new AircraftData(random.Next(), random.NextDouble(),
-                                                       random.NextDouble(), new Angle(), 
-                                                       new Angle(), random.NextDouble(),
+                                                       random.NextDouble(), random.NextAngle(),
+                                                       random.NextAngle(), random.NextDouble(),
                                                        random.NextDouble(), null);
 
             // Assert
