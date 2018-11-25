@@ -23,15 +23,15 @@ namespace Simulator.Data.Test
 
             // Call
             var data = new AerodynamicsData(aspectRatio, wingArea,
-                                                      zeroLiftAngleOfAttack, liftCoefficientGradient,
-                                                      maximumLiftCoefficient,
-                                                      restDragCoefficientWithoutEngineFailure,
-                                                      restDragCoefficientWithEngineFailure, oswaldFactor);
+                                            zeroLiftAngleOfAttack, liftCoefficientGradient,
+                                            maximumLiftCoefficient,
+                                            restDragCoefficientWithoutEngineFailure,
+                                            restDragCoefficientWithEngineFailure, oswaldFactor);
 
             // Assert
             Assert.AreEqual(aspectRatio, data.AspectRatio);
             Assert.AreEqual(wingArea, data.WingArea);
-            Assert.AreSame(zeroLiftAngleOfAttack, data.ZeroLiftAngleOfAttack);
+            Assert.AreEqual(zeroLiftAngleOfAttack.Degrees, data.ZeroLiftAngleOfAttack.Degrees);
             Assert.AreEqual(liftCoefficientGradient, data.LiftCoefficientGradient);
             Assert.AreEqual(maximumLiftCoefficient, data.MaximumLiftCoefficient);
             Assert.AreEqual(restDragCoefficientWithoutEngineFailure, data.RestDragCoefficientWithoutEngineFailure);
