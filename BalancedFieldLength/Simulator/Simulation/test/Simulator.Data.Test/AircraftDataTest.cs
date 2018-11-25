@@ -1,5 +1,5 @@
 ﻿using System;
-using Calculator.Data;
+using Core.Common.Data;
 using NUnit.Framework;
 using Simulator.Data.TestUtil;
 
@@ -16,8 +16,8 @@ namespace Simulator.Data.Test
 
             // Call 
             TestDelegate call = () => new AircraftData(random.Next(), random.NextDouble(),
-                                                       random.NextDouble(), random.NextDouble(), 
-                                                       random.NextDouble(), random.NextDouble(), 
+                                                       random.NextDouble(), new Angle(), 
+                                                       new Angle(), random.NextDouble(),
                                                        random.NextDouble(), null);
 
             // Assert
@@ -33,8 +33,8 @@ namespace Simulator.Data.Test
             int nrOfEngines = random.Next();
             double maximumThrustPerEngine = random.NextDouble();
             double takeOffWeight = random.NextDouble();
-            double pitchAngleGradient = random.NextDouble();
-            double maximumPitchAngle = random.NextDouble();
+            Angle pitchAngleGradient = Angle.FromDegrees(random.NextDouble());
+            Angle maximumPitchAngle = Angle.FromDegrees(random.NextDouble());
             double rollingResistanceCoefficient = random.NextDouble();
             double brakingResistanceCoefficient = random.NextDouble();
 
@@ -51,8 +51,8 @@ namespace Simulator.Data.Test
             Assert.AreEqual(nrOfEngines, aircraftData.NrOfEngines);
             Assert.AreEqual(maximumThrustPerEngine, aircraftData.MaximumThrustPerEngine);
             Assert.AreEqual(takeOffWeight, aircraftData.TakeOffWeight);
-            Assert.AreEqual(pitchAngleGradient, aircraftData.PitchAngleGradient);
-            Assert.AreEqual(maximumPitchAngle, aircraftData.MaximumPitchAngle);
+            Assert.AreEqual(pitchAngleGradient.Degrees, aircraftData.PitchAngleGradient.Degrees);
+            Assert.AreEqual(maximumPitchAngle.Degrees, aircraftData.MaximumPitchAngle.Degrees);
             Assert.AreEqual(rollingResistanceCoefficient, aircraftData.RollingResistanceCoefficient);
             Assert.AreEqual(brakingResistanceCoefficient, aircraftData.BrakingResistanceCoefficient);
             Assert.AreSame(aerodynamicsData, aircraftData.AerodynamicsData);

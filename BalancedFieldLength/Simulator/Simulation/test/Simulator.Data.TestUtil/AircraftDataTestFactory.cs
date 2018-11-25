@@ -1,5 +1,4 @@
 ﻿using System;
-using Calculator.Data;
 
 namespace Simulator.Data.TestUtil
 {

@@ -1,5 +1,4 @@
 ﻿using System;
-using Calculator.Data;
 using NUnit.Framework;
 
 namespace Simulator.Data.TestUtil.Test

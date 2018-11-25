@@ -1,5 +1,4 @@
 ﻿using System;
-using Calculator.Data;
 using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;

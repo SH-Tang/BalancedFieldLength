@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Calculator.Data;
 using Core.Common.Data;
 using NUnit.Framework;
 
