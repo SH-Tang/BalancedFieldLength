@@ -40,6 +40,7 @@
     <Compile Include="AircraftDynamicsCalculatorBase.cs" />
     <Compile Include="AircraftState.cs" />
     <Compile Include="ContinuedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="NormalTakeOffDynamicsCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
