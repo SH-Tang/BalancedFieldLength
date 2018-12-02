@@ -26,7 +26,7 @@ namespace Simulator.Calculator.Test
             var calculator = new NormalTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             // Assert
-            Assert.IsInstanceOf<AircraftDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
         }
 
         [TestFixture]

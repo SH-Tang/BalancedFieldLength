@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="AbortedTakeOffDynamicsCalculator.cs" />
     <Compile Include="AircraftAccelerations.cs" />
-    <Compile Include="AircraftDynamicsCalculatorBase.cs" />
+    <Compile Include="TakeoffDynamicsCalculatorBase.cs" />
     <Compile Include="AircraftState.cs" />
     <Compile Include="ContinuedTakeOffDynamicsCalculator.cs" />
     <Compile Include="NormalTakeOffDynamicsCalculator.cs" />

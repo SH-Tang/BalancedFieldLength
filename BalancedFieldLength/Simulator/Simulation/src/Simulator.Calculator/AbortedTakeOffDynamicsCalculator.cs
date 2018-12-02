@@ -9,7 +9,7 @@ namespace Simulator.Calculator
     /// Class which describes the calculation of the aircraft dynamics
     /// when the take off is aborted after engine failure.
     /// </summary>
-    public class AbortedTakeOffDynamicsCalculator : AircraftDynamicsCalculatorBase
+    public class AbortedTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase
     {
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.

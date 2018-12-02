@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbortedTakeOffDynamicsCalculatorTest.cs" />
-    <Compile Include="AircraftDynamicsCalculatorBaseTest.cs" />
+    <Compile Include="TakeOffDynamicsCalculatorBaseTest.cs" />
     <Compile Include="ContinuedTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="NormalTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

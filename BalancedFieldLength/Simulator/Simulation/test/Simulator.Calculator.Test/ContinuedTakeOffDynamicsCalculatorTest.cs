@@ -29,7 +29,7 @@ namespace Simulator.Calculator.Test
                                                                     random.NextDouble());
 
             // Assert
-            Assert.IsInstanceOf<AircraftDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
         }
 
         [TestFixture]

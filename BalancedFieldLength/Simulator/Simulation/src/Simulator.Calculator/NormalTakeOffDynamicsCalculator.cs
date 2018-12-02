@@ -8,7 +8,7 @@ namespace Simulator.Calculator
     /// Class which describes the calculation of the aircraft dynamics
     /// when there is no engine failure.
     /// </summary>
-    public class NormalTakeOffDynamicsCalculator : AircraftDynamicsCalculatorBase
+    public class NormalTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase
     {
         /// <summary>
         /// Creates a new instance of <see cref="NormalTakeOffDynamicsCalculator"/>.

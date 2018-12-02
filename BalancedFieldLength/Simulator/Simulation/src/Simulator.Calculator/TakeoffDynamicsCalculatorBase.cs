@@ -6,9 +6,10 @@ using Simulator.Data.Helpers;
 namespace Simulator.Calculator
 {
     /// <summary>
-    /// Base class which calculates the standard aircraft dynamics.
+    /// Base class which describes the standard aircraft dynamics
+    /// during takeoff.
     /// </summary>
-    public abstract class AircraftDynamicsCalculatorBase
+    public abstract class TakeoffDynamicsCalculatorBase
     {
         private readonly double gravitationalAcceleration;
 
@@ -21,7 +22,7 @@ namespace Simulator.Calculator
         /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        protected AircraftDynamicsCalculatorBase(AircraftData aircraftData,
+        protected TakeoffDynamicsCalculatorBase(AircraftData aircraftData,
                                                  double density,
                                                  double gravitationalAcceleration)
         {
