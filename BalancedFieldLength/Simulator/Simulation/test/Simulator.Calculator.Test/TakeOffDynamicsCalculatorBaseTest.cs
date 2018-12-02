@@ -405,8 +405,6 @@ namespace Simulator.Calculator.Test
 
         public double Thrust { private get; set; }
 
-        public AircraftState CalculateRollDragInput { get; private set; }
-
         public double RollDrag { private get; set; }
         public double Drag { private get; set; }
         public AircraftState CalculateDragInput { get; private set; }
