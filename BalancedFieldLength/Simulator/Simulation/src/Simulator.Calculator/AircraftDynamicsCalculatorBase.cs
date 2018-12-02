@@ -131,7 +131,12 @@ namespace Simulator.Calculator
             return state.PitchAngle - state.FlightPathAngle;
         }
 
-        private static double GetNewton(double kiloNewton)
+        /// <summary>
+        /// Converts the force in kilo Newton to Newton.
+        /// </summary>
+        /// <param name="kiloNewton">The amount of force in kilo Newton. [kN]</param>
+        /// <returns>The amount of force in Newton.</returns>
+        protected static double GetNewton(double kiloNewton)
         {
             return kiloNewton * 1000;
         }

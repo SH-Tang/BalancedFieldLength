@@ -33,11 +33,6 @@ namespace Simulator.Calculator
             this.density = density;
         }
 
-        private static double GetNewton(double kiloNewton)
-        {
-            return kiloNewton * 1000;
-        }
-
         #region Calculate Rates
 
         protected override Angle CalculatePitchRate(AircraftState state)
