@@ -34,7 +34,7 @@ namespace Simulator.Calculator
 
         #region Calculate Forces
 
-        protected override double CalculateDragForce(AircraftState state)
+        protected override double CalculateAerodynamicDragForce(AircraftState state)
         {
             double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(AerodynamicsData,
                                                                                  CalculateAngleOfAttack(state));
@@ -49,7 +49,7 @@ namespace Simulator.Calculator
             return aircraftData.RollingResistanceCoefficient;
         }
 
-        protected override double CalculateThrust()
+        protected override double CalculateThrustForce()
         {
             return (aircraftData.NrOfEngines - numberOfFailedEngines) * GetNewton(aircraftData.MaximumThrustPerEngine);
         }

@@ -416,12 +416,12 @@ namespace Simulator.Calculator.Test
             return RollDrag;
         }
 
-        protected override double CalculateThrust()
+        protected override double CalculateThrustForce()
         {
             return Thrust;
         }
 
-        protected override double CalculateDragForce(AircraftState state)
+        protected override double CalculateAerodynamicDragForce(AircraftState state)
         {
             CalculateDragInput = state;
             return Drag;

@@ -84,15 +84,15 @@ namespace Simulator.Calculator
         /// Calculates the thrust force. [N]
         /// </summary>
         /// <returns>The thrust force.</returns>
-        protected abstract double CalculateThrust();
+        protected abstract double CalculateThrustForce();
 
         /// <summary>
-        /// Calculates the drag force that is acting on the aircraft. [N]
+        /// Calculates the aerodynamic drag force that is acting on the aircraft. [N]
         /// </summary>
         /// <param name="state">The <see cref="AircraftState"/>
         /// the aircraft is currently in.</param>
         /// <returns>The drag force.</returns>
-        protected abstract double CalculateDragForce(AircraftState state);
+        protected abstract double CalculateAerodynamicDragForce(AircraftState state);
 
         /// <summary>
         /// Calculates the normal force. [N]
@@ -102,7 +102,7 @@ namespace Simulator.Calculator
         /// <returns>The normal force.</returns>
         protected double CalculateNormalForce(AircraftState state)
         {
-            double normalForce = GetNewton(AircraftData.TakeOffWeight) - CalculateLift(state);
+            double normalForce = GetNewton(AircraftData.TakeOffWeight) - CalculateLiftForce(state);
             if (state.Height >= 0.01 || normalForce < 0)
             {
                 return 0;
@@ -150,13 +150,13 @@ namespace Simulator.Calculator
 
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
         {
-            return (gravitationalAcceleration * (CalculateThrust()
-                                                 - CalculateDragForce(aircraftState) - GetRollDrag(aircraftState)
+            return (gravitationalAcceleration * (CalculateThrustForce()
+                                                 - CalculateAerodynamicDragForce(aircraftState) - GetRollDragForce(aircraftState)
                                                  - GetNewton(AircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
                    / GetNewton(AircraftData.TakeOffWeight);
         }
 
-        private double GetRollDrag(AircraftState aircraftState)
+        private double GetRollDragForce(AircraftState aircraftState)
         {
             return GetFrictionCoefficient() * CalculateNormalForce(aircraftState);
         }
@@ -168,12 +168,12 @@ namespace Simulator.Calculator
                 return new Angle();
             }
 
-            double acceleration = (gravitationalAcceleration * (CalculateLift(state) - GetNewton(AircraftData.TakeOffWeight) + CalculateNormalForce(state)))
+            double acceleration = (gravitationalAcceleration * (CalculateLiftForce(state) - GetNewton(AircraftData.TakeOffWeight) + CalculateNormalForce(state)))
                                   / (GetNewton(AircraftData.TakeOffWeight) * state.TrueAirspeed);
             return Angle.FromRadians(acceleration);
         }
 
-        private double CalculateLift(AircraftState state)
+        private double CalculateLiftForce(AircraftState state)
         {
             return AerodynamicsHelper.CalculateLift(AircraftData.AerodynamicsData,
                                                     CalculateAngleOfAttack(state),
