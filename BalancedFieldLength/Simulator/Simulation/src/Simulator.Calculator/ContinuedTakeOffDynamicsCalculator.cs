@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -32,25 +31,6 @@ namespace Simulator.Calculator
             this.numberOfFailedEngines = numberOfFailedEngines;
             this.density = density;
         }
-
-        #region Calculate Rates
-
-        protected override Angle CalculatePitchRate(AircraftState state)
-        {
-            return ShouldRotate(state) ? aircraftData.PitchAngleGradient : new Angle();
-        }
-
-        private bool ShouldRotate(AircraftState aircraftState)
-        {
-            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(AerodynamicsData,
-                                                                                GetNewton(aircraftData.TakeOffWeight),
-                                                                                density);
-
-            return aircraftState.TrueAirspeed >= rotationSpeed
-                   && aircraftState.PitchAngle < aircraftData.MaximumPitchAngle;
-        }
-
-        #endregion
 
         #region Calculate Forces
 

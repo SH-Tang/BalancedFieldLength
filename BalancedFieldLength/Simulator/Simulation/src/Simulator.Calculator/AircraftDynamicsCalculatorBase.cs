@@ -113,14 +113,6 @@ namespace Simulator.Calculator
         }
 
         /// <summary>
-        /// Calculates the pitch rate based on <paramref name="state"/>.
-        /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/> the aircraft
-        /// is currently in.</param>
-        /// <returns>The pitch rate.</returns>
-        protected abstract Angle CalculatePitchRate(AircraftState state);
-
-        /// <summary>
         /// Calculates the angle of attack based on <paramref name="state"/>.
         /// </summary>
         /// <param name="state">The <see cref="AircraftState"/> the aircraft
@@ -139,6 +131,17 @@ namespace Simulator.Calculator
         protected static double GetNewton(double kiloNewton)
         {
             return kiloNewton * 1000;
+        }
+
+        /// <summary>
+        /// Calculates the pitch rate based on <paramref name="state"/>.
+        /// </summary>
+        /// <param name="state">The <see cref="AircraftState"/> the aircraft
+        /// is currently in.</param>
+        /// <returns>The pitch rate.</returns>
+        protected virtual Angle CalculatePitchRate(AircraftState state)
+        {
+            return ShouldRotate(state) ? AircraftData.PitchAngleGradient : new Angle();
         }
 
         private static double CalculateClimbRate(AircraftState aircraftState)
@@ -172,6 +175,16 @@ namespace Simulator.Calculator
                                                     CalculateAngleOfAttack(state),
                                                     Density,
                                                     state.TrueAirspeed);
+        }
+
+        private bool ShouldRotate(AircraftState aircraftState)
+        {
+            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(AerodynamicsData,
+                                                                                GetNewton(AircraftData.TakeOffWeight),
+                                                                                Density);
+
+            return aircraftState.TrueAirspeed >= rotationSpeed
+                   && aircraftState.PitchAngle < AircraftData.MaximumPitchAngle;
         }
     }
 }

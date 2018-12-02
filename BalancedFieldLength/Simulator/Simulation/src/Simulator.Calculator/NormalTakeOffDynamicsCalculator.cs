@@ -1,5 +1,4 @@
 ﻿using System;
-using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -41,21 +40,6 @@ namespace Simulator.Calculator
                                                                         liftCoefficient,
                                                                         Density,
                                                                         state.TrueAirspeed);
-        }
-
-        protected override Angle CalculatePitchRate(AircraftState state)
-        {
-            return ShouldRotate(state) ? AircraftData.PitchAngleGradient : new Angle();
-        }
-
-        private bool ShouldRotate(AircraftState aircraftState)
-        {
-            double rotationSpeed = 1.2 * AerodynamicsHelper.CalculateStallSpeed(AerodynamicsData,
-                                                                                GetNewton(AircraftData.TakeOffWeight),
-                                                                                Density);
-
-            return aircraftState.TrueAirspeed >= rotationSpeed
-                   && aircraftState.PitchAngle < AircraftData.MaximumPitchAngle;
         }
     }
 }
