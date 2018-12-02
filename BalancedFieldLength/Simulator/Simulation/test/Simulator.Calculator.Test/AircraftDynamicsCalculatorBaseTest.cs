@@ -64,7 +64,6 @@ namespace Simulator.Calculator.Test
 
             // Assert
             Assert.AreSame(state, calculator.CalculateDragInput);
-            Assert.AreSame(state, calculator.CalculateRollDragInput);
         }
 
         [Test]
@@ -202,12 +201,12 @@ namespace Simulator.Calculator.Test
 
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
-                double rollDrag = random.NextDouble() * 100;
+                double frictionCoefficient = random.NextDouble();
                 var calculator = new TestAircraftDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
                                  {
                                      Thrust = thrust,
                                      Drag = drag,
-                                     RollDrag = rollDrag
+                                     RollDrag = frictionCoefficient
                                  };
 
                 // Call 
@@ -215,7 +214,8 @@ namespace Simulator.Calculator.Test
 
                 // Assert
                 double horizontalWeightComponent = takeOffWeightNewton * Math.Sin(aircraftState.FlightPathAngle.Radians);
-                double expectedAcceleration = (gravitationalAcceleration * (thrust - drag - rollDrag - horizontalWeightComponent))
+                double groundDrag = frictionCoefficient * (aircraftData.TakeOffWeight * 1000 - lift);
+                double expectedAcceleration = (gravitationalAcceleration * (thrust - drag - groundDrag - horizontalWeightComponent))
                                               / takeOffWeightNewton;
                 Assert.AreEqual(expectedAcceleration, accelerations.TrueAirSpeedRate, tolerance);
             }
@@ -411,9 +411,8 @@ namespace Simulator.Calculator.Test
         public double Drag { private get; set; }
         public AircraftState CalculateDragInput { get; private set; }
 
-        protected override double CalculateRollDrag(AircraftState state)
+        protected override double GetFrictionCoefficient()
         {
-            CalculateRollDragInput = state;
             return RollDrag;
         }
 

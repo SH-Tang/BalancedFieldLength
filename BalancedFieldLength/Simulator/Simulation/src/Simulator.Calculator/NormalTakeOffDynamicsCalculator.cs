@@ -22,9 +22,9 @@ namespace Simulator.Calculator
         public NormalTakeOffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
             : base(aircraftData, density, gravitationalAcceleration) {}
 
-        protected override double CalculateRollDrag(AircraftState state)
+        protected override double GetFrictionCoefficient()
         {
-            return AircraftData.RollingResistanceCoefficient * CalculateNormalForce(state);
+            return AircraftData.RollingResistanceCoefficient;
         }
 
         protected override double CalculateThrust()

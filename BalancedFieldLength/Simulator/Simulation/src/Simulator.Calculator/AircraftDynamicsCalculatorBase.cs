@@ -74,12 +74,11 @@ namespace Simulator.Calculator
         protected double Density { get; }
 
         /// <summary>
-        /// Calculates the roll drag that's acting on the aircraft. [N]
+        /// Gets the ground friction coefficient that's acting on the aircraft. [-]
         /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/>
-        /// the aircraft is currently in.</param>
-        /// <returns>The roll drag.</returns>
-        protected abstract double CalculateRollDrag(AircraftState state);
+        /// <returns>The ground friction coefficient.</returns>
+        /// <remarks>Ground friction is also denoted as mu.</remarks>
+        protected abstract double GetFrictionCoefficient();
 
         /// <summary>
         /// Calculates the thrust force. [N]
@@ -152,9 +151,14 @@ namespace Simulator.Calculator
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
         {
             return (gravitationalAcceleration * (CalculateThrust()
-                                                 - CalculateDragForce(aircraftState) - CalculateRollDrag(aircraftState)
+                                                 - CalculateDragForce(aircraftState) - GetRollDrag(aircraftState)
                                                  - GetNewton(AircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
                    / GetNewton(AircraftData.TakeOffWeight);
+        }
+
+        private double GetRollDrag(AircraftState aircraftState)
+        {
+            return GetFrictionCoefficient() * CalculateNormalForce(aircraftState);
         }
 
         private Angle CalculateFlightPathAngleRate(AircraftState state)

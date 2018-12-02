@@ -44,9 +44,9 @@ namespace Simulator.Calculator
                                                                      state.TrueAirspeed);
         }
 
-        protected override double CalculateRollDrag(AircraftState state)
+        protected override double GetFrictionCoefficient()
         {
-            return aircraftData.RollingResistanceCoefficient * CalculateNormalForce(state);
+            return aircraftData.RollingResistanceCoefficient;
         }
 
         protected override double CalculateThrust()
