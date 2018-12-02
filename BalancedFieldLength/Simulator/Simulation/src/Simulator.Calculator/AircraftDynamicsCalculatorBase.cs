@@ -151,12 +151,12 @@ namespace Simulator.Calculator
         private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
         {
             return (gravitationalAcceleration * (CalculateThrustForce()
-                                                 - CalculateAerodynamicDragForce(aircraftState) - GetRollDragForce(aircraftState)
+                                                 - CalculateAerodynamicDragForce(aircraftState) - CalculateRollDragForce(aircraftState)
                                                  - GetNewton(AircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
                    / GetNewton(AircraftData.TakeOffWeight);
         }
 
-        private double GetRollDragForce(AircraftState aircraftState)
+        private double CalculateRollDragForce(AircraftState aircraftState)
         {
             return GetFrictionCoefficient() * CalculateNormalForce(aircraftState);
         }
