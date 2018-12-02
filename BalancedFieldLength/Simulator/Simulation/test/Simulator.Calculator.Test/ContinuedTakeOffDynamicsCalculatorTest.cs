@@ -34,10 +34,7 @@ namespace Simulator.Calculator.Test
         {
             // Setup
             var random = new Random(21);
-            var aircraftData = new AircraftData(random.Next(), random.NextDouble(),
-                                                random.NextDouble(), random.NextAngle(),
-                                                random.NextAngle(), random.NextDouble(),
-                                                random.NextDouble(), AerodynamicsDataTestFactory.CreateAerodynamicsData());
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
             var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), random.NextDouble(), random.NextDouble());
 
