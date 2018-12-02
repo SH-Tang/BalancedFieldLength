@@ -9,13 +9,8 @@ namespace Simulator.Calculator
     /// Class which describes the calculation of the aircraft dynamics
     /// when the take off is aborted after engine failure.
     /// </summary>
-    public class AbortedTakeOffDynamicsCalculator
+    public class AbortedTakeOffDynamicsCalculator : AircraftDynamicsCalculatorBase
     {
-        private readonly AircraftData aircraftData;
-        private readonly AerodynamicsData aerodynamicsData;
-        private readonly double density;
-        private readonly double gravitationalAcceleration;
-
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
@@ -26,116 +21,31 @@ namespace Simulator.Calculator
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
         public AbortedTakeOffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
-        {
-            if (aircraftData == null)
-            {
-                throw new ArgumentNullException(nameof(aircraftData));
-            }
+            : base(aircraftData, density, gravitationalAcceleration) {}
 
-            this.aircraftData = aircraftData;
-            aerodynamicsData = aircraftData.AerodynamicsData;
-            this.density = density;
-            this.gravitationalAcceleration = gravitationalAcceleration;
+        protected override double CalculateRollDrag(AircraftState state)
+        {
+            return AircraftData.BrakingResistanceCoefficient * CalculateNormalForce(state);
         }
 
-        /// <summary>
-        /// Calculates the accelerations acting on the aircraft based
-        /// on <see cref="AircraftState"/>.
-        /// </summary>
-        /// <param name="aircraftState">The <see cref="AircraftState"/>
-        /// the aircraft is currently in.</param>
-        /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftState"/>
-        /// is <c>null</c>.</exception>
-        public AircraftAccelerations Calculate(AircraftState aircraftState)
-        {
-            if (aircraftState == null)
-            {
-                throw new ArgumentNullException(nameof(aircraftState));
-            }
-
-            return new AircraftAccelerations(new Angle(),
-                                             CalculateClimbRate(aircraftState),
-                                             CalculateTrueAirSpeedRate(aircraftState),
-                                             CalculateFlightPathAngleRate(aircraftState));
-        }
-
-        private static double GetNewton(double kiloNewton)
-        {
-            return kiloNewton * 1000;
-        }
-
-        private static double CalculateClimbRate(AircraftState aircraftState)
-        {
-            return aircraftState.TrueAirspeed * Math.Sin(aircraftState.FlightPathAngle.Radians);
-        }
-
-        private double CalculateTrueAirSpeedRate(AircraftState aircraftState)
-        {
-            return (gravitationalAcceleration * (CalculateThrust()
-                                                 - CalculateDragForce(aircraftState) - CalculateRollDrag(aircraftState)
-                                                 - GetNewton(aircraftData.TakeOffWeight) * Math.Sin(aircraftState.FlightPathAngle.Radians)))
-                   / GetNewton(aircraftData.TakeOffWeight);
-        }
-
-        private Angle CalculateFlightPathAngleRate(AircraftState state)
-        {
-            if (state.TrueAirspeed < 1)
-            {
-                return new Angle();
-            }
-
-            double acceleration = (gravitationalAcceleration * (CalculateLift(state) - GetNewton(aircraftData.TakeOffWeight) + CalculateNormalForce(state)))
-                                  / (GetNewton(aircraftData.TakeOffWeight) * state.TrueAirspeed);
-            return Angle.FromRadians(acceleration);
-        }
-
-        #region Calculate Forces
-
-        private double CalculateLift(AircraftState state)
-        {
-            return AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
-                                                    CalculateAngleOfAttack(state),
-                                                    density,
-                                                    state.TrueAirspeed);
-        }
-
-        private static Angle CalculateAngleOfAttack(AircraftState state)
-        {
-            return state.PitchAngle - state.FlightPathAngle;
-        }
-
-        private double CalculateDragForce(AircraftState state)
-        {
-            double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(aerodynamicsData,
-                                                                                 CalculateAngleOfAttack(state));
-            return AerodynamicsHelper.CalculateDragWithEngineFailure(aerodynamicsData,
-                                                                     liftCoefficient,
-                                                                     density,
-                                                                     state.TrueAirspeed);
-        }
-
-        private double CalculateRollDrag(AircraftState state)
-        {
-            return aircraftData.BrakingResistanceCoefficient * CalculateNormalForce(state);
-        }
-
-        private double CalculateNormalForce(AircraftState state)
-        {
-            double normalForce = GetNewton(aircraftData.TakeOffWeight) - CalculateLift(state);
-            if (state.Height >= 0.01 || normalForce < 0)
-            {
-                return 0;
-            }
-
-            return normalForce;
-        }
-
-        private static double CalculateThrust()
+        protected override double CalculateThrust()
         {
             return 0;
         }
 
-        #endregion
+        protected override double CalculateDragForce(AircraftState state)
+        {
+            double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(AerodynamicsData,
+                                                                                 CalculateAngleOfAttack(state));
+            return AerodynamicsHelper.CalculateDragWithEngineFailure(AerodynamicsData,
+                                                                     liftCoefficient,
+                                                                     Density,
+                                                                     state.TrueAirspeed);
+        }
+
+        protected override Angle CalculatePitchRate(AircraftState state)
+        {
+            return new Angle();
+        }
     }
 }
