@@ -259,7 +259,7 @@ namespace Simulator.Calculator.Test
                 const double heightThreshold = 0.01;
 
                 var random = new Random(21);
-                var aircraftState = new AircraftState(new Angle(), 
+                var aircraftState = new AircraftState(new Angle(),
                                                       random.NextAngle(),
                                                       velocityThreshold,
                                                       heightThreshold - random.NextDouble());
@@ -281,6 +281,40 @@ namespace Simulator.Calculator.Test
 
                 // Assert
                 Assert.Zero(accelerations.FlightPathRate.Degrees);
+            }
+
+            [Test]
+            [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAircraftData))]
+            public static void Calculate_WithAirspeedEqualToThresholdAndNoNormalForcePresent_ReturnsExpectedFlightPathAngleRate(AircraftData aircraftData)
+            {
+                // Setup
+                const double heightThreshold = 0.01;
+
+                var random = new Random(21);
+                var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
+                                                      random.NextAngle(),
+                                                      100,
+                                                      heightThreshold - random.NextDouble());
+
+                Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
+
+                // Precondition
+                double lift = AerodynamicsHelper.CalculateLift(aircraftData.AerodynamicsData,
+                                                               angleOfAttack,
+                                                               airDensity,
+                                                               aircraftState.TrueAirspeed);
+                double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
+                Assert.IsTrue(lift > takeOffWeightNewton);
+
+                var calculator = new AbortedTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration);
+
+                // Call 
+                AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
+
+                // Assert
+                double expectedRate = (gravitationalAcceleration * (lift - takeOffWeightNewton))
+                                      / (takeOffWeightNewton * aircraftState.TrueAirspeed);
+                Assert.AreEqual(expectedRate, accelerations.FlightPathRate.Radians, tolerance);
             }
         }
     }

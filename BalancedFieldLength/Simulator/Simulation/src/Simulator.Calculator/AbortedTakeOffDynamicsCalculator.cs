@@ -57,7 +57,7 @@ namespace Simulator.Calculator
             return new AircraftAccelerations(new Angle(),
                                              CalculateClimbRate(aircraftState),
                                              CalculateTrueAirSpeedRate(aircraftState),
-                                             new Angle());
+                                             CalculateFlightPathAngleRate(aircraftState));
         }
 
         private static double GetNewton(double kiloNewton)
