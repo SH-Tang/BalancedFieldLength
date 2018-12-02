@@ -52,7 +52,7 @@ namespace Simulator.Calculator
                 throw new ArgumentNullException(nameof(aircraftState));
             }
 
-            return new AircraftAccelerations(new Angle(),
+            return new AircraftAccelerations(CalculatePitchRate(aircraftState),
                                              CalculateClimbRate(aircraftState),
                                              CalculateTrueAirSpeedRate(aircraftState),
                                              CalculateFlightPathAngleRate(aircraftState));
@@ -111,6 +111,14 @@ namespace Simulator.Calculator
 
             return normalForce;
         }
+
+        /// <summary>
+        /// Calculates the pitch rate based on <paramref name="state"/>.
+        /// </summary>
+        /// <param name="state">The <see cref="AircraftState"/> the aircraft
+        /// is currently in.</param>
+        /// <returns>The pitch rate.</returns>
+        protected abstract Angle CalculatePitchRate(AircraftState state);
 
         /// <summary>
         /// Calculates the angle of attack based on <paramref name="state"/>.

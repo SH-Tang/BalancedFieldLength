@@ -1,4 +1,5 @@
 ﻿using System;
+using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -40,6 +41,11 @@ namespace Simulator.Calculator
                                                                      liftCoefficient,
                                                                      Density,
                                                                      state.TrueAirspeed);
+        }
+
+        protected override Angle CalculatePitchRate(AircraftState state)
+        {
+            return new Angle();
         }
     }
 }

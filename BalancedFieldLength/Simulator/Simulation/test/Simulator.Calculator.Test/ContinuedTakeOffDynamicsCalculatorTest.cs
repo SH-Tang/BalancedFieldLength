@@ -30,6 +30,23 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var random = new Random(21);
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+
+            // Call
+            var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData,
+                                                                    random.Next(),
+                                                                    random.NextDouble(),
+                                                                    random.NextDouble());
+
+            // Assert
+            Assert.IsInstanceOf<AircraftDynamicsCalculatorBase>(calculator);
+        }
+
+        [Test]
         public void Calculate_AircraftStateNull_ThrowsArgumentNullException()
         {
             // Setup
