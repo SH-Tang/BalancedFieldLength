@@ -113,6 +113,20 @@ namespace Simulator.Data.Test.Helpers
         }
 
         [Test]
+        public void CalculateLiftCoefficient_AerodynamicsDataNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+
+            // Call
+            TestDelegate call = () => AerodynamicsHelper.CalculateLiftCoefficient(null, random.NextAngle());
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("aerodynamicsData", exception.ParamName);
+        }
+
+        [Test]
         [TestCaseSource(typeof(AircraftTestData), nameof(AircraftTestData.GetAerodynamicsDataTestCases))]
         public static void CalculateLiftCoefficient_WithAerodynamicsData_ReturnsExpectedLiftCoefficient(AerodynamicsData aerodynamicsData)
         {

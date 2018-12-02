@@ -231,6 +231,26 @@ namespace Core.Common.Data.Test
         }
 
         [Test]
+        public static void GetHashCode_EqualAngles_ReturnsSameHashCode()
+        {
+            // Setup
+            var random = new Random(21);
+            double angle = random.NextDouble();
+            Angle angle1 = Angle.FromDegrees(angle);
+            Angle angle2 = Angle.FromDegrees(angle);
+
+            // Precondition
+            Assert.IsTrue(angle1.Equals(angle2));
+
+            // Call 
+            int hashCodeAngle1 = angle1.GetHashCode();
+            int hashCodeAngle2 = angle2.GetHashCode();
+
+            // Assert
+            Assert.AreEqual(hashCodeAngle1, hashCodeAngle2);
+        }
+
+        [Test]
         public static void Equals_HavingDifferentValues_ReturnsFalse()
         {
             // Setup
