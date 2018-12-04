@@ -39,6 +39,7 @@
     <Compile Include="AircraftAccelerations.cs" />
     <Compile Include="AircraftData.cs" />
     <Compile Include="AircraftState.cs" />
+    <Compile Include="Exceptions\InvalidCalculationException.cs" />
     <Compile Include="Helpers\AerodynamicsHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
