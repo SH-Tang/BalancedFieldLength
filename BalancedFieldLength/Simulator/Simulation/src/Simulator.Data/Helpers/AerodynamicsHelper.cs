@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Simulator.Data.Exceptions;
 
 namespace Simulator.Data.Helpers
 {
@@ -18,12 +19,16 @@ namespace Simulator.Data.Helpers
         /// <returns>The stall speed. [m/s]</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the combination
+        /// of input parameters leads to an invalid calculation result.</exception>
         public static double CalculateStallSpeed(AerodynamicsData aerodynamicsData, double takeOffWeight, double density)
         {
             if (aerodynamicsData == null)
             {
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
+
+            ValidateDensity(density);
 
             return Math.Sqrt((2 * takeOffWeight) / (density * aerodynamicsData.WingArea * aerodynamicsData.MaximumLiftCoefficient));
         }
@@ -44,8 +49,19 @@ namespace Simulator.Data.Helpers
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-            return aerodynamicsData.LiftCoefficientGradient *
-                   (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
+            if (angleOfAttack < aerodynamicsData.ZeroLiftAngleOfAttack)
+            {
+                throw new InvalidCalculationException("Angle of attack must be larger than zero lift angle of attack.");
+            }
+
+            double liftCoefficient = aerodynamicsData.LiftCoefficientGradient *
+                                     (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
+            if (liftCoefficient > aerodynamicsData.MaximumLiftCoefficient)
+            {
+                throw new InvalidCalculationException("Angle of attack results in a lift coefficient larger than the maximum lift coefficient CLMax.");
+            }
+
+            return liftCoefficient;
         }
 
         /// <summary>
@@ -59,6 +75,8 @@ namespace Simulator.Data.Helpers
         /// <returns>The generated lift. [N]</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the combination
+        /// of input parameters leads to an invalid calculation result.</exception>
         public static double CalculateLift(AerodynamicsData aerodynamicsData,
                                            Angle angleOfAttack,
                                            double density,
@@ -68,6 +86,9 @@ namespace Simulator.Data.Helpers
             {
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
+
+            ValidateDensity(density);
+            ValidateVelocity(velocity);
 
             double liftCoefficient = CalculateLiftCoefficient(aerodynamicsData, angleOfAttack);
             return liftCoefficient * CalculateDynamicPressure(velocity, aerodynamicsData.WingArea, density);
@@ -84,6 +105,8 @@ namespace Simulator.Data.Helpers
         /// <returns>The generated lift. [N]</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the combination
+        /// of input parameters leads to an invalid calculation result.</exception>
         public static double CalculateDragWithEngineFailure(AerodynamicsData aerodynamicsData,
                                                             double liftCoefficient,
                                                             double density,
@@ -93,6 +116,10 @@ namespace Simulator.Data.Helpers
             {
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
+
+            ValidateDensity(density);
+            ValidateVelocity(velocity);
+            ValidateLiftCoefficient(aerodynamicsData, liftCoefficient);
 
             return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, true);
         }
@@ -108,6 +135,8 @@ namespace Simulator.Data.Helpers
         /// <returns>The generated lift. [N]</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the combination
+        /// of input parameters leads to an invalid calculation result.</exception>
         public static double CalculateDragWithoutEngineFailure(AerodynamicsData aerodynamicsData, double liftCoefficient, double density, double velocity)
         {
             if (aerodynamicsData == null)
@@ -115,11 +144,17 @@ namespace Simulator.Data.Helpers
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
+            ValidateDensity(density);
+            ValidateVelocity(velocity);
+            ValidateLiftCoefficient(aerodynamicsData, liftCoefficient);
+
             return CalculateDrag(aerodynamicsData, liftCoefficient, density, velocity, false);
         }
 
         private static double CalculateDynamicPressure(double velocity, double wingArea, double density)
         {
+            ValidateVelocity(velocity);
+
             return 0.5 * density * Math.Pow(velocity, 2) * wingArea;
         }
 
@@ -132,5 +167,49 @@ namespace Simulator.Data.Helpers
             double dragCoefficient = staticDragCoefficient + inducedDragCoefficient;
             return dragCoefficient * CalculateDynamicPressure(velocity, aerodynamicsData.WingArea, density);
         }
+
+        #region Validation Helpers
+
+        /// <summary>
+        /// Validates whether the velocity is valid.
+        /// </summary>
+        /// <param name="velocity">The velocity. [m/s]</param>
+        /// <exception cref="InvalidCalculationException">Thrown when the velocity is invalid.</exception>
+        private static void ValidateVelocity(double velocity)
+        {
+            if (velocity < 0)
+            {
+                throw new InvalidCalculationException("Velocity must be larger or equal to 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether the density is valid.
+        /// </summary>
+        /// <param name="density">The density. [kg/m^3]</param>
+        /// <exception cref="InvalidCalculationException">Thrown when the density is invalid.</exception>
+        private static void ValidateDensity(double density)
+        {
+            if (density <= 0)
+            {
+                throw new InvalidCalculationException("Density must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether the lift coefficient is valid.
+        /// </summary>
+        /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/> to validate against.</param>
+        /// <param name="liftCoefficient">The lift coefficient to validate.</param>
+        /// <exception cref="InvalidCalculationException">Thrown when the lift coefficient is invalid.</exception>
+        private static void ValidateLiftCoefficient(AerodynamicsData aerodynamicsData, double liftCoefficient)
+        {
+            if (liftCoefficient < 0 || liftCoefficient > aerodynamicsData.MaximumLiftCoefficient)
+            {
+                throw new InvalidCalculationException("Lift coefficient must be in the range of [0, CLMax].");
+            }
+        }
+
+        #endregion
     }
 }
