@@ -172,6 +172,7 @@ namespace Simulator.Calculator.Test
             var failureState = new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 failureSpeed + 0.1,
+                random.NextDouble(), 
                 random.NextDouble());
 
             var states = new[]
@@ -244,6 +245,7 @@ namespace Simulator.Calculator.Test
             return new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 velocity,
+                random.NextDouble(), 
                 random.NextDouble());
         }
 
@@ -253,7 +255,8 @@ namespace Simulator.Calculator.Test
             return new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 random.NextDouble(),
-                height);
+                height, 
+                random.NextDouble());
         }
 
         private static AircraftAccelerations CreateAircraftAccelerations()

@@ -20,12 +20,14 @@ namespace Simulator.Data
         /// <param name="flightPathAngle">The flight path angle.</param>
         /// <param name="trueAirspeed">The true airspeed. [m/s]</param>
         /// <param name="height">The height. [m]</param>
-        public AircraftState(Angle pitchAngle, Angle flightPathAngle, double trueAirspeed, double height)
+        /// <param name="distance">The horizontal distance from the starting point. [m]</param>
+        public AircraftState(Angle pitchAngle, Angle flightPathAngle, double trueAirspeed, double height, double distance)
         {
             PitchAngle = pitchAngle;
             FlightPathAngle = flightPathAngle;
             TrueAirspeed = trueAirspeed;
             Height = height;
+            Distance = distance;
         }
 
         /// <summary>
@@ -51,5 +53,11 @@ namespace Simulator.Data
         /// </summary>
         /// <remarks>Also denoted as h.</remarks>
         public double Height { get; }
+
+        /// <summary>
+        /// Gets the horizontal distance. [m]
+        /// </summary>
+        /// <remarks>Also denoted as x or d.</remarks>
+        public double Distance { get; }
     }
 }

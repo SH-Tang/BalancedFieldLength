@@ -50,7 +50,8 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold);
+                                                      threshold,
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 
@@ -94,7 +95,8 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold - random.NextDouble());
+                                                      threshold - random.NextDouble(),
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 
@@ -138,7 +140,8 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold - random.NextDouble());
+                                                      threshold - random.NextDouble(), 
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 
@@ -186,6 +189,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(Angle.FromDegrees(pitchAngle),
                                                       random.NextAngle(),
                                                       rotationSpeed + random.NextDouble(),
+                                                      random.NextDouble(),
                                                       random.NextDouble());
 
                 var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
@@ -209,6 +213,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(random.NextAngle(),
                                                       random.NextAngle(),
                                                       rotationSpeed - random.NextDouble(),
+                                                      random.NextDouble(), 
                                                       random.NextDouble());
 
                 var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
@@ -231,6 +236,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       rotationSpeed + random.NextDouble(),
+                                                      random.NextDouble(), 
                                                       random.NextDouble());
 
                 var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
