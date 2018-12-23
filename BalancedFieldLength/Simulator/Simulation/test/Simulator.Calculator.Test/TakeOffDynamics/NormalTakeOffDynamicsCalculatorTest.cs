@@ -28,6 +28,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
 
             // Assert
             Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<INormalTakeOffDynamicsCalculator>(calculator);
         }
 
         [TestFixture]

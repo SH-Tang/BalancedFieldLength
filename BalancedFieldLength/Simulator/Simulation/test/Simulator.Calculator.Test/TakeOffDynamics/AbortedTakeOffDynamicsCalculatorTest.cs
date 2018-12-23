@@ -29,6 +29,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
 
             // Assert
             Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<IFailureTakeOffDynamicsCalculator>(calculator);
         }
 
         [Test]
