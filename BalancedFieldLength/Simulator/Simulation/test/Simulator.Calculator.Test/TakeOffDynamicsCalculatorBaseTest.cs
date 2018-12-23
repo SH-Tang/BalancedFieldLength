@@ -52,18 +52,19 @@ namespace Simulator.Calculator.Test
             var random = new Random(21);
 
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            var angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
+            var aircraftState = new AircraftState(angleOfAttack,
+                new Angle(),
+                random.NextDouble(),
+                random.NextDouble());
+
             var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
-            var state = new AircraftState(random.NextAngle(),
-                                          random.NextAngle(),
-                                          random.NextDouble(),
-                                          random.NextDouble());
-
             // Call 
-            calculator.Calculate(state);
+            calculator.Calculate(aircraftState);
 
             // Assert
-            Assert.AreSame(state, calculator.CalculateDragInput);
+            Assert.AreSame(aircraftState, calculator.CalculateDragInput);
         }
 
         [Test]
@@ -72,11 +73,11 @@ namespace Simulator.Calculator.Test
             // Setup
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-            var aircraftState = new AircraftState(random.NextAngle(),
-                                                  random.NextAngle(),
-                                                  random.NextDouble(),
-                                                  random.NextDouble());
+            var angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
+            var aircraftState = new AircraftState(angleOfAttack,
+                new Angle(),
+                random.NextDouble(),
+                random.NextDouble());
 
             var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
@@ -230,11 +231,11 @@ namespace Simulator.Calculator.Test
                 // Setup
                 var random = new Random(21);
                 AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-                var aircraftState = new AircraftState(random.NextAngle(),
-                                                      random.NextAngle(),
-                                                      random.NextDouble(),
-                                                      random.NextDouble());
+                var angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
+                var aircraftState = new AircraftState(angleOfAttack,
+                    new Angle(),
+                    random.NextDouble(),
+                    random.NextDouble());
 
                 // Precondition
                 Assert.IsTrue(aircraftState.TrueAirspeed < 1);

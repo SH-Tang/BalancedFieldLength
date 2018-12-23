@@ -35,9 +35,9 @@ namespace Simulator.Calculator.Test
             // Setup
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-            var aircraftState = new AircraftState(random.NextAngle(),
-                                                  random.NextAngle(),
+            var angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
+            var aircraftState = new AircraftState(angleOfAttack,
+                                                  new Angle(), 
                                                   random.NextDouble(),
                                                   random.NextDouble());
 
