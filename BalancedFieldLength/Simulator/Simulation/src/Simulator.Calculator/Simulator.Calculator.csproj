@@ -36,6 +36,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AbortedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="DistanceCalculator.cs" />
+    <Compile Include="IFailureTakeOffDynamicsCalculator.cs" />
+    <Compile Include="IIntegrator.cs" />
+    <Compile Include="INormalTakeOffDynamicsCalculator.cs" />
     <Compile Include="TakeoffDynamicsCalculatorBase.cs" />
     <Compile Include="ContinuedTakeOffDynamicsCalculator.cs" />
     <Compile Include="NormalTakeOffDynamicsCalculator.cs" />

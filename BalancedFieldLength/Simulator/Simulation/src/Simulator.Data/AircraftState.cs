@@ -8,6 +8,12 @@ namespace Simulator.Data
     public class AircraftState
     {
         /// <summary>
+        /// Creates a new instance of <see cref="AircraftState"/>
+        /// with zero values for the states.
+        /// </summary>
+        public AircraftState() {}
+
+        /// <summary>
         /// Creates a new instance of <see cref="AircraftState"/>.
         /// </summary>
         /// <param name="pitchAngle">The pitch angle.</param>
