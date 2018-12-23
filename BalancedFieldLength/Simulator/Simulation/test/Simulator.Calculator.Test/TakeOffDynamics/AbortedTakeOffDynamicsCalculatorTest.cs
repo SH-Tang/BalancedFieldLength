@@ -2,11 +2,13 @@
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
+using Simulator.Calculator.Dynamics;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
 
-namespace Simulator.Calculator.Test
+namespace Simulator.Calculator.Test.TakeOffDynamics
 {
     [TestFixture]
     public class AbortedTakeOffDynamicsCalculatorTest
@@ -27,6 +29,7 @@ namespace Simulator.Calculator.Test
 
             // Assert
             Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<IFailureTakeOffDynamicsCalculator>(calculator);
         }
 
         [Test]
@@ -39,6 +42,7 @@ namespace Simulator.Calculator.Test
             var aircraftState = new AircraftState(angleOfAttack,
                                                   new Angle(), 
                                                   random.NextDouble(),
+                                                  random.NextDouble(), 
                                                   random.NextDouble());
 
             var calculator = new AbortedTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
@@ -65,7 +69,8 @@ namespace Simulator.Calculator.Test
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold);
+                                                      threshold, 
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 
@@ -108,7 +113,8 @@ namespace Simulator.Calculator.Test
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold - random.NextDouble());
+                                                      threshold - random.NextDouble(), 
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 
@@ -151,7 +157,8 @@ namespace Simulator.Calculator.Test
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold - random.NextDouble());
+                                                      threshold - random.NextDouble(), 
+                                                      random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
 

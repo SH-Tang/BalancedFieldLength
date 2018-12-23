@@ -1,17 +1,19 @@
 ﻿using System;
+using Core.Common.Data;
+using Simulator.Calculator.Dynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.TakeOffDynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics
-    /// when there is no engine failure.
+    /// when the take off is aborted after engine failure.
     /// </summary>
-    public class NormalTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase
+    public class AbortedTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase, IFailureTakeOffDynamicsCalculator
     {
         /// <summary>
-        /// Creates a new instance of <see cref="NormalTakeOffDynamicsCalculator"/>.
+        /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
         /// <param name="aircraftData">Tee <see cref="AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
@@ -19,27 +21,32 @@ namespace Simulator.Calculator
         /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        public NormalTakeOffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
+        public AbortedTakeOffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
             : base(aircraftData, density, gravitationalAcceleration) {}
 
         protected override double GetFrictionCoefficient()
         {
-            return AircraftData.RollingResistanceCoefficient;
+            return AircraftData.BrakingResistanceCoefficient;
         }
 
         protected override double CalculateThrustForce()
         {
-            return AircraftData.NrOfEngines * GetNewton(AircraftData.MaximumThrustPerEngine);
+            return 0;
         }
 
         protected override double CalculateAerodynamicDragForce(AircraftState state)
         {
             double liftCoefficient = AerodynamicsHelper.CalculateLiftCoefficient(AerodynamicsData,
                                                                                  CalculateAngleOfAttack(state));
-            return AerodynamicsHelper.CalculateDragWithoutEngineFailure(AerodynamicsData,
-                                                                        liftCoefficient,
-                                                                        Density,
-                                                                        state.TrueAirspeed);
+            return AerodynamicsHelper.CalculateDragWithEngineFailure(AerodynamicsData,
+                                                                     liftCoefficient,
+                                                                     Density,
+                                                                     state.TrueAirspeed);
+        }
+
+        protected override Angle CalculatePitchRate(AircraftState state)
+        {
+            return new Angle();
         }
     }
 }
