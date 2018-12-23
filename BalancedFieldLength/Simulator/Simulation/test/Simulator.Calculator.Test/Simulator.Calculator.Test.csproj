@@ -47,11 +47,11 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbortedTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />
-    <Compile Include="TakeOffDynamicsCalculatorBaseTest.cs" />
-    <Compile Include="ContinuedTakeOffDynamicsCalculatorTest.cs" />
-    <Compile Include="NormalTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBaseTest.cs" />
+    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

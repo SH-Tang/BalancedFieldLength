@@ -1,12 +1,12 @@
 ﻿using System;
 using Simulator.Data;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.Dynamics
 {
     /// <summary>
-    /// Interface for describing the calculations for the aborted takeoff dynamics.
+    /// Interface for describing the calculation for the normal take off dynamics
     /// </summary>
-    public interface IFailureTakeOffDynamicsCalculator
+    public interface INormalTakeOffDynamicsCalculator
     {
         /// <summary>
         /// Calculates the <see cref="AircraftAccelerations"/> based on the <paramref name="state"/>.

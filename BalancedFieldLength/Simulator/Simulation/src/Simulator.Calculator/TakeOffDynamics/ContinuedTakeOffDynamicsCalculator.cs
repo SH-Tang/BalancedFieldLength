@@ -2,7 +2,7 @@
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.Dynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics

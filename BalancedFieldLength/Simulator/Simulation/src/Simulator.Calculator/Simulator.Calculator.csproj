@@ -35,14 +35,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AbortedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
     <Compile Include="DistanceCalculator.cs" />
-    <Compile Include="IFailureTakeOffDynamicsCalculator.cs" />
-    <Compile Include="IIntegrator.cs" />
-    <Compile Include="INormalTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeoffDynamicsCalculatorBase.cs" />
-    <Compile Include="ContinuedTakeOffDynamicsCalculator.cs" />
-    <Compile Include="NormalTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />
+    <Compile Include="Integrators\IIntegrator.cs" />
+    <Compile Include="TakeOffDynamics\INormalTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\TakeoffDynamicsCalculatorBase.cs" />
+    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -55,5 +55,6 @@
       <Name>Simulator.Data</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

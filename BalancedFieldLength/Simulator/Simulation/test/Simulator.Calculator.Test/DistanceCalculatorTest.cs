@@ -3,6 +3,8 @@ using Core.Common.Data;
 using Core.Common.TestUtil;
 using NSubstitute;
 using NUnit.Framework;
+using Simulator.Calculator.Dynamics;
+using Simulator.Calculator.Integrators;
 using Simulator.Data;
 
 namespace Simulator.Calculator.Test

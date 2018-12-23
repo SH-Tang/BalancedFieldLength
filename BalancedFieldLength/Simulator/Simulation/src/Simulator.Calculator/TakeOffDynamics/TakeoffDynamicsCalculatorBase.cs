@@ -3,7 +3,7 @@ using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.Dynamics
 {
     /// <summary>
     /// Base class which describes the standard aircraft dynamics

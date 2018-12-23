@@ -1,7 +1,7 @@
 ﻿using System;
 using Simulator.Data;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.Integrators
 {
     /// <summary>
     /// Interface describing the integration of the following first order dynamic system:

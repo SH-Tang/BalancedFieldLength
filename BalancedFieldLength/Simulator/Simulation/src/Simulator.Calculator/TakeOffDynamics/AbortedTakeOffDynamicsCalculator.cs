@@ -1,9 +1,10 @@
 ﻿using System;
 using Core.Common.Data;
+using Simulator.Calculator.Dynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.TakeOffDynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics
