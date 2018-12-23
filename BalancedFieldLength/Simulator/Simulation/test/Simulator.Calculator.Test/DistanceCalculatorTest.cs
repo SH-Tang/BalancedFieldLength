@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NSubstitute;
@@ -13,7 +14,28 @@ namespace Simulator.Calculator.Test
     public class DistanceCalculatorTest
     {
         [Test]
-        public void Constructor_WithArguments_ExpectedValues()
+        public void Constructor_NormalTakeOffDynamicsCalculatorNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next();
+            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+            var integrator = Substitute.For<IIntegrator>();
+
+            // Call
+            TestDelegate call = () => new DistanceCalculator(null, failureTakeOffDynamicsCalculator,
+                integrator, failureSpeed, nrOfTimeSteps, timeStep);
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("normalTakeOffDynamicsCalculator", exception.ParamName);
+        }
+
+        [Test]
+        public void Constructor_FailureTakeOffDynamicsCalculatorNull_ThrowsArgumentNullException()
         {
             // Setup
             var random = new Random(21);
@@ -22,14 +44,36 @@ namespace Simulator.Calculator.Test
             int failureSpeed = random.Next();
 
             var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
-            var abortedTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
             var integrator = Substitute.For<IIntegrator>();
 
             // Call
-            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, abortedTakeOffDynamicsCalculator,
+            TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator, null,
                 integrator, failureSpeed, nrOfTimeSteps, timeStep);
 
             // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("failureTakeOffDynamicsCalculator", exception.ParamName);
+        }
+
+        [Test]
+        public void Constructor_IntegratorNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next();
+            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+
+            // Call
+            TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
+                null, failureSpeed, nrOfTimeSteps, timeStep);
+
+            // Assert
+            var exception = Assert.Throws<ArgumentNullException>(call);
+            Assert.AreEqual("integrator", exception.ParamName);
         }
 
         [Test]
@@ -89,7 +133,7 @@ namespace Simulator.Calculator.Test
                 // Do not expect additional calls after the second state was returned
             });
 
-            Assert.AreEqual(0, output.Distance);
+            Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsTrue(output.ConvergenceBeforeFailure);
         }
@@ -154,7 +198,7 @@ namespace Simulator.Calculator.Test
                 integrator.Integrate(states[1], accelerations[2], timeStep);
             });
 
-            Assert.AreEqual(0, output.Distance);
+            Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsFalse(output.ConvergenceBeforeFailure);
         }
@@ -226,7 +270,7 @@ namespace Simulator.Calculator.Test
                 integrator.Integrate(states[1], accelerations[2], timeStep);
             });
 
-            Assert.AreEqual(0, output.Distance);
+            Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsFalse(output.ConvergenceBeforeFailure);
         }
