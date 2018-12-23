@@ -1,6 +1,4 @@
 ﻿using System;
-using Core.Common.Data;
-using Core.Common.TestUtil;
 using NUnit.Framework;
 
 namespace Simulator.Data.TestUtil.Test
@@ -27,36 +25,6 @@ namespace Simulator.Data.TestUtil.Test
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.AspectRatio));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.WingArea));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.ZeroLiftAngleOfAttack.Degrees));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.LiftCoefficientGradient));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.MaximumLiftCoefficient));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.RestDragCoefficientWithoutEngineFailure));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.RestDragCoefficientWithEngineFailure));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.OswaldFactor));
-        }
-
-        [Test]
-        public static void CreateAircraftData_WithZeroLiftAngleOfAttack_ReturnsExpectedAircraftData()
-        {
-            // Setup
-            var random = new Random(21);
-            Angle zeroLiftAngleOfAttack = random.NextAngle();
-
-            // Call 
-            AircraftData data = AircraftDataTestFactory.CreateRandomAircraftData(zeroLiftAngleOfAttack);
-
-            // Assert
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.NrOfEngines));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumThrustPerEngine));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.TakeOffWeight));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.PitchAngleGradient.Degrees));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.MaximumPitchAngle.Degrees));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.RollingResistanceCoefficient));
-            Assert.IsTrue(IsConcreteNonZeroNumber(data.BrakingResistanceCoefficient));
-
-            AerodynamicsData aerodynamicsData = data.AerodynamicsData;
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.AspectRatio));
-            Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.WingArea));
-            Assert.AreEqual(zeroLiftAngleOfAttack, aerodynamicsData.ZeroLiftAngleOfAttack);
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.LiftCoefficientGradient));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.MaximumLiftCoefficient));
             Assert.IsTrue(IsConcreteNonZeroNumber(aerodynamicsData.RestDragCoefficientWithoutEngineFailure));
