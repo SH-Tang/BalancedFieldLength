@@ -47,6 +47,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Integrators\EulerIntegratorTest.cs" />
     <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />
     <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBaseTest.cs" />
