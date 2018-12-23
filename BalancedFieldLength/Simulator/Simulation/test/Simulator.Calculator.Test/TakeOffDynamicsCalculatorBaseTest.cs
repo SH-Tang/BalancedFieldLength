@@ -333,7 +333,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
+                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -356,7 +356,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed - random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
+                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -378,7 +378,7 @@ namespace Simulator.Calculator.Test
                                                       rotationSpeed + random.NextDouble(),
                                                       random.NextDouble());
 
-                var calculator = new ContinuedTakeOffDynamicsCalculator(aircraftData, random.Next(), airDensity, random.NextDouble());
+                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
