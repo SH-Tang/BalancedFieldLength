@@ -22,6 +22,17 @@ namespace Simulator.Data
         /// holding all aerodynamic properties of the aircraft.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="nrOfEngines"/> &lt;= 0</item>
+        /// <item><paramref name="maximumThrustPerEngine"/> &lt;= 0</item>
+        /// <item><paramref name="takeOffWeight"/> &lt;= 0</item>
+        /// <item><paramref name="pitchAngleGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumPitchAngle"/> &lt;= 0</item>
+        /// <item><paramref name="rollingResistanceCoefficient"/> &lt; 0</item>
+        /// <item><paramref name="brakingResistanceCoefficient"/> &lt; 0</item>
+        /// </list>
+        /// </exception>
         public AircraftData(int nrOfEngines, double maximumThrustPerEngine,
                             double takeOffWeight,
                             Angle pitchAngleGradient, Angle maximumPitchAngle,
@@ -32,6 +43,14 @@ namespace Simulator.Data
             {
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
+
+            ValidateParameterLargerThanZero(nrOfEngines, nameof(nrOfEngines));
+            ValidateParameterLargerThanZero(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
+            ValidateParameterLargerThanZero(takeOffWeight, nameof(takeOffWeight));
+            ValidateParameterLargerThanZero(pitchAngleGradient, nameof(pitchAngleGradient));
+            ValidateParameterLargerThanZero(maximumPitchAngle, nameof(maximumPitchAngle));
+            ValidateParameterLargerOrEqualToZero(rollingResistanceCoefficient, nameof(rollingResistanceCoefficient));
+            ValidateParameterLargerOrEqualToZero(brakingResistanceCoefficient, nameof(brakingResistanceCoefficient));
 
             NrOfEngines = nrOfEngines;
             MaximumThrustPerEngine = maximumThrustPerEngine;
@@ -87,5 +106,65 @@ namespace Simulator.Data
         /// data of the aircraft.
         /// </summary>
         public AerodynamicsData AerodynamicsData { get; }
+
+        /// <summary>
+        /// Validates whether a value is larger than 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less or equal to 0.</exception>
+        private static void ValidateParameterLargerThanZero(double value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger than 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less or equal to 0.</exception>
+        private static void ValidateParameterLargerThanZero(int value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger than 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less or equal to 0.</exception>
+        private static void ValidateParameterLargerThanZero(Angle value, string propertyName)
+        {
+            if (value <= Angle.FromRadians(0))
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger or equal to 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less than 0.</exception>
+        private static void ValidateParameterLargerOrEqualToZero(double value, string propertyName)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+            }
+        }
     }
 }
