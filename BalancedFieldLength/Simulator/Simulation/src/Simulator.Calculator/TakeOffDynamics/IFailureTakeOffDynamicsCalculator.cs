@@ -1,7 +1,8 @@
-using System;
+﻿using System;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 
-namespace Simulator.Calculator.Dynamics
+namespace Simulator.Calculator.TakeOffDynamics
 {
     /// <summary>
     /// Interface for describing the calculations for the aborted takeoff dynamics.

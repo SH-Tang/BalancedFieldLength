@@ -1,6 +1,6 @@
 ﻿using System;
-using Simulator.Calculator.Dynamics;
 using Simulator.Calculator.Integrators;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 
 namespace Simulator.Calculator

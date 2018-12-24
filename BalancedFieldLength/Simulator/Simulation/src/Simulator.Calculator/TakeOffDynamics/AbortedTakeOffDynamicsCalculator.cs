@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.Common.Data;
-using Simulator.Calculator.Dynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 

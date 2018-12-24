@@ -2,7 +2,7 @@
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
-using Simulator.Calculator.Dynamics;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
