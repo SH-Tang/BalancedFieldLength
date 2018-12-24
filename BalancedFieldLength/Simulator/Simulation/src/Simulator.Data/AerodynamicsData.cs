@@ -33,16 +33,13 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         public AerodynamicsData(double aspectRatio, double wingArea,
-                                Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
-                                double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
+            Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
+            double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure,
+            double oswaldFactor)
         {
-            ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
-            ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
-            ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
-            ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
-            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure, nameof(restDragCoefficientWithoutEngineFailure));
-            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure, nameof(restDragCoefficientWithEngineFailure));
-            ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+            ValidateInput(aspectRatio, wingArea,
+                zeroLiftAngleOfAttack, liftCoefficientGradient, maximumLiftCoefficient,
+                restDragCoefficientWithoutEngineFailure, restDragCoefficientWithEngineFailure, oswaldFactor);
 
             AspectRatio = aspectRatio;
             WingArea = wingArea;
@@ -52,36 +49,6 @@ namespace Simulator.Data
             RestDragCoefficientWithoutEngineFailure = restDragCoefficientWithoutEngineFailure;
             RestDragCoefficientWithEngineFailure = restDragCoefficientWithEngineFailure;
             OswaldFactor = oswaldFactor;
-        }
-
-        /// <summary>
-        /// Validates whether a value is larger than 0.
-        /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="propertyName">The name of the property which is validated.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
-        /// is less or equal to 0.</exception>
-        private static void ValidateParameterLargerThanZero(double value, string propertyName)
-        {
-            if (value <= 0)
-            {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
-            }
-        }
-
-        /// <summary>
-        /// Validates whether a value is larger or equal to 0.
-        /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="propertyName">The name of the property which is validated.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
-        /// is less than 0.</exception>
-        private static void ValidateParameterLargerOrEqualToZero(double value, string propertyName)
-        {
-            if (value < 0)
-            {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
-            }
         }
 
         /// <summary>
@@ -131,5 +98,107 @@ namespace Simulator.Data
         /// </summary>
         /// <remarks>Also denoted as e.</remarks>
         public double OswaldFactor { get; }
+
+        /// <summary>
+        /// Validates the input values.
+        /// </summary>
+        /// <param name="aspectRatio">The aspect ratio of the aircraft. [-]</param>
+        /// <param name="wingArea">The surface area of the lift generating elements of the aircraft. [m2]</param>
+        /// <param name="zeroLiftAngleOfAttack">The angle of attack of which the lift coefficient is 0.</param>
+        /// <param name="liftCoefficientGradient">The gradient of the lift coefficient as a function of the angle of attack. [1/rad]</param>
+        /// <param name="maximumLiftCoefficient">The maximum lift coefficient. [-]</param>
+        /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
+        /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
+        /// <param name="oswaldFactor">The Oswald factor. [-]</param>
+        /// <exception cref="ArgumentException">Thrown when any parameter equals to <see cref="double.NaN"/>
+        /// or <see cref="double.PositiveInfinity"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="aspectRatio"/> &lt;= 0</item>
+        /// <item><paramref name="wingArea"/> &lt;= 0</item>
+        /// <item><paramref name="liftCoefficientGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumLiftCoefficient"/> &lt;= 0</item>
+        /// <item><paramref name="restDragCoefficientWithoutEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="restDragCoefficientWithEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="oswaldFactor"/> &lt;= 0</item>
+        /// </list>
+        /// </exception>
+        private static void ValidateInput(double aspectRatio, double wingArea, Angle zeroLiftAngleOfAttack,
+            double liftCoefficientGradient, double maximumLiftCoefficient,
+            double restDragCoefficientWithoutEngineFailure,
+            double restDragCoefficientWithEngineFailure, double oswaldFactor)
+        {
+            ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
+            ValidateParameterIsConcreteValue(aspectRatio, nameof(aspectRatio));
+
+            ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
+            ValidateParameterIsConcreteValue(wingArea, nameof(wingArea));
+
+            ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            ValidateParameterIsConcreteValue(liftCoefficientGradient, nameof(liftCoefficientGradient));
+
+            ValidateParameterIsConcreteValue(zeroLiftAngleOfAttack.Radians, nameof(zeroLiftAngleOfAttack));
+
+            ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            ValidateParameterIsConcreteValue(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+
+            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
+                nameof(restDragCoefficientWithoutEngineFailure));
+            ValidateParameterIsConcreteValue(restDragCoefficientWithoutEngineFailure,
+                nameof(restDragCoefficientWithoutEngineFailure));
+
+            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
+                nameof(restDragCoefficientWithEngineFailure));
+            ValidateParameterIsConcreteValue(restDragCoefficientWithEngineFailure,
+                nameof(restDragCoefficientWithEngineFailure));
+
+            ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+            ValidateParameterIsConcreteValue(oswaldFactor, nameof(oswaldFactor));
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger than 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less or equal to 0.</exception>
+        private static void ValidateParameterLargerThanZero(double value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger or equal to 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less than 0.</exception>
+        private static void ValidateParameterLargerOrEqualToZero(double value, string propertyName)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is not <see cref="double.NaN"/> or Infinity.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/> or <see cref="double.NegativeInfinity"/>.</exception>
+        private static void ValidateParameterIsConcreteValue(double value, string propertyName)
+        {
+            if (double.IsNaN(value) || double.IsInfinity(value))
+            {
+                throw new ArgumentException($"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
+            }
+        }
     }
 }
