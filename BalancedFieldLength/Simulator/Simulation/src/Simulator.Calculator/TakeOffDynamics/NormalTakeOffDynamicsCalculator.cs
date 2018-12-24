@@ -2,13 +2,13 @@
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator.Dynamics
+namespace Simulator.Calculator.TakeOffDynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics
     /// when there is no engine failure.
     /// </summary>
-    public class NormalTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase, INormalTakeOffDynamicsCalculator
+    public class NormalTakeOffDynamicsCalculator : TakeOffDynamicsCalculatorBase, INormalTakeOffDynamicsCalculator
     {
         /// <summary>
         /// Creates a new instance of <see cref="NormalTakeOffDynamicsCalculator"/>.

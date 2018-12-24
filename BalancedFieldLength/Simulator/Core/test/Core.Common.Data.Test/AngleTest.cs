@@ -24,6 +24,8 @@ namespace Core.Common.Data.Test
         [TestCase(180)]
         [TestCase(360)]
         [TestCase(double.NaN)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity)]
         public static void FromDegrees_WithValidValues_ReturnsExpectedAngle(double degrees)
         {
             // Call
@@ -39,6 +41,8 @@ namespace Core.Common.Data.Test
         [TestCase(Math.PI)]
         [TestCase(2 * Math.PI)]
         [TestCase(double.NaN)]
+        [TestCase(double.PositiveInfinity)]
+        [TestCase(double.NegativeInfinity)]
         public static void FromRadians_WithValidValues_ThenReturnsExpectedAngle(double radians)
         {
             // Call

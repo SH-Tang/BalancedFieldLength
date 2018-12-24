@@ -2,7 +2,7 @@
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
-using Simulator.Calculator.Dynamics;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
@@ -27,7 +27,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             var calculator = new NormalTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             // Assert
-            Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<TakeOffDynamicsCalculatorBase>(calculator);
             Assert.IsInstanceOf<INormalTakeOffDynamicsCalculator>(calculator);
         }
 

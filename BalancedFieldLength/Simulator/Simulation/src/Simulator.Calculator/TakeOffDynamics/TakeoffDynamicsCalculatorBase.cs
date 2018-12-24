@@ -1,15 +1,16 @@
 ﻿using System;
 using Core.Common.Data;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator.Dynamics
+namespace Simulator.Calculator.TakeOffDynamics
 {
     /// <summary>
     /// Base class which describes the standard aircraft dynamics
     /// during takeoff.
     /// </summary>
-    public abstract class TakeoffDynamicsCalculatorBase
+    public abstract class TakeOffDynamicsCalculatorBase
     {
         private readonly double gravitationalAcceleration;
 
@@ -22,7 +23,7 @@ namespace Simulator.Calculator.Dynamics
         /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        protected TakeoffDynamicsCalculatorBase(AircraftData aircraftData,
+        protected TakeOffDynamicsCalculatorBase(AircraftData aircraftData,
                                                  double density,
                                                  double gravitationalAcceleration)
         {
@@ -46,6 +47,8 @@ namespace Simulator.Calculator.Dynamics
         /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftState"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="CalculatorException">Thrown when the <paramref name="aircraftState"/>
+        /// results in a state where the calculator cannot continue the calculation.</exception>
         public AircraftAccelerations Calculate(AircraftState aircraftState)
         {
             if (aircraftState == null)
@@ -53,10 +56,17 @@ namespace Simulator.Calculator.Dynamics
                 throw new ArgumentNullException(nameof(aircraftState));
             }
 
-            return new AircraftAccelerations(CalculatePitchRate(aircraftState),
-                                             CalculateClimbRate(aircraftState),
-                                             CalculateTrueAirSpeedRate(aircraftState),
-                                             CalculateFlightPathAngleRate(aircraftState));
+            try
+            {
+                return new AircraftAccelerations(CalculatePitchRate(aircraftState),
+                    CalculateClimbRate(aircraftState),
+                    CalculateTrueAirSpeedRate(aircraftState),
+                    CalculateFlightPathAngleRate(aircraftState));
+            }
+            catch (InvalidCalculationException e)
+            {
+                throw new CalculatorException(e.Message, e);
+            }
         }
 
         /// <summary>

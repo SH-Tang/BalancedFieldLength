@@ -1,6 +1,5 @@
 ﻿using System;
 using Core.Common.Data;
-using Simulator.Calculator.Dynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
@@ -10,7 +9,7 @@ namespace Simulator.Calculator.TakeOffDynamics
     /// Class which describes the calculation of the aircraft dynamics
     /// when the take off is aborted after engine failure.
     /// </summary>
-    public class AbortedTakeOffDynamicsCalculator : TakeoffDynamicsCalculatorBase, IFailureTakeOffDynamicsCalculator
+    public class AbortedTakeOffDynamicsCalculator : TakeOffDynamicsCalculatorBase, IFailureTakeOffDynamicsCalculator
     {
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.

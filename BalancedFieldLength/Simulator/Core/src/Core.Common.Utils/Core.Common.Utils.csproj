@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</ProjectGuid>
+    <ProjectGuid>{FBE1BAA4-10DC-4885-BD13-F84B09DDF897}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simulator.Calculator</RootNamespace>
-    <AssemblyName>Simulator.Calculator</AssemblyName>
+    <RootNamespace>Core.Common.Utils</RootNamespace>
+    <AssemblyName>Core.Common.Utils</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -35,27 +35,14 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Integrators\EulerIntegrator.cs" />
-    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
-    <Compile Include="DistanceCalculator.cs" />
-    <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />
-    <Compile Include="Integrators\IIntegrator.cs" />
-    <Compile Include="TakeOffDynamics\INormalTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBase.cs" />
-    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculator.cs" />
+    <Compile Include="NumberValidator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+    <ProjectReference Include="..\Core.Common.Data\Core.Common.Data.csproj">
       <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
       <Name>Core.Common.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Simulator.Data\Simulator.Data.csproj">
-      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
-      <Name>Simulator.Data</Name>
-    </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

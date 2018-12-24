@@ -1,4 +1,6 @@
-﻿using Core.Common.Data;
+﻿using System;
+using Core.Common.Data;
+using Core.Common.Utils;
 
 namespace Simulator.Data
 {
@@ -18,10 +20,28 @@ namespace Simulator.Data
         /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
         /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
         /// <param name="oswaldFactor">The Oswald factor. [-]</param>
+        /// <exception cref="ArgumentException">Thrown when any parameter equals to <see cref="double.NaN"/>
+        /// or <see cref="double.PositiveInfinity"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="aspectRatio"/> &lt;= 0</item>
+        /// <item><paramref name="wingArea"/> &lt;= 0</item>
+        /// <item><paramref name="liftCoefficientGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumLiftCoefficient"/> &lt;= 0</item>
+        /// <item><paramref name="restDragCoefficientWithoutEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="restDragCoefficientWithEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="oswaldFactor"/> &lt;= 0</item>
+        /// </list>
+        /// </exception>
         public AerodynamicsData(double aspectRatio, double wingArea,
-                                Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
-                                double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
+            Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
+            double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure,
+            double oswaldFactor)
         {
+            ValidateInput(aspectRatio, wingArea,
+                zeroLiftAngleOfAttack, liftCoefficientGradient, maximumLiftCoefficient,
+                restDragCoefficientWithoutEngineFailure, restDragCoefficientWithEngineFailure, oswaldFactor);
+
             AspectRatio = aspectRatio;
             WingArea = wingArea;
             ZeroLiftAngleOfAttack = zeroLiftAngleOfAttack;
@@ -79,5 +99,62 @@ namespace Simulator.Data
         /// </summary>
         /// <remarks>Also denoted as e.</remarks>
         public double OswaldFactor { get; }
+
+        /// <summary>
+        /// Validates the input values.
+        /// </summary>
+        /// <param name="aspectRatio">The aspect ratio of the aircraft. [-]</param>
+        /// <param name="wingArea">The surface area of the lift generating elements of the aircraft. [m2]</param>
+        /// <param name="zeroLiftAngleOfAttack">The angle of attack of which the lift coefficient is 0.</param>
+        /// <param name="liftCoefficientGradient">The gradient of the lift coefficient as a function of the angle of attack. [1/rad]</param>
+        /// <param name="maximumLiftCoefficient">The maximum lift coefficient. [-]</param>
+        /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
+        /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
+        /// <param name="oswaldFactor">The Oswald factor. [-]</param>
+        /// <exception cref="ArgumentException">Thrown when any parameter equals to <see cref="double.NaN"/>
+        /// or <see cref="double.PositiveInfinity"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="aspectRatio"/> &lt;= 0</item>
+        /// <item><paramref name="wingArea"/> &lt;= 0</item>
+        /// <item><paramref name="liftCoefficientGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumLiftCoefficient"/> &lt;= 0</item>
+        /// <item><paramref name="restDragCoefficientWithoutEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="restDragCoefficientWithEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="oswaldFactor"/> &lt;= 0</item>
+        /// </list>
+        /// </exception>
+        private static void ValidateInput(double aspectRatio, double wingArea, Angle zeroLiftAngleOfAttack,
+            double liftCoefficientGradient, double maximumLiftCoefficient,
+            double restDragCoefficientWithoutEngineFailure,
+            double restDragCoefficientWithEngineFailure, double oswaldFactor)
+        {
+            NumberValidator.ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
+            NumberValidator.ValidateValueIsConcreteNumber(aspectRatio, nameof(aspectRatio));
+
+            NumberValidator.ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
+            NumberValidator.ValidateValueIsConcreteNumber(wingArea, nameof(wingArea));
+
+            NumberValidator.ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            NumberValidator.ValidateValueIsConcreteNumber(liftCoefficientGradient, nameof(liftCoefficientGradient));
+
+            NumberValidator.ValidateValueIsConcreteNumber(zeroLiftAngleOfAttack, nameof(zeroLiftAngleOfAttack));
+
+            NumberValidator.ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            NumberValidator.ValidateValueIsConcreteNumber(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+
+            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
+                nameof(restDragCoefficientWithoutEngineFailure));
+            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithoutEngineFailure,
+                nameof(restDragCoefficientWithoutEngineFailure));
+
+            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
+                nameof(restDragCoefficientWithEngineFailure));
+            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithEngineFailure,
+                nameof(restDragCoefficientWithEngineFailure));
+
+            NumberValidator.ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+            NumberValidator.ValidateValueIsConcreteNumber(oswaldFactor, nameof(oswaldFactor));
+        }
     }
 }

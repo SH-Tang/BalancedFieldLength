@@ -1,7 +1,8 @@
 ﻿using System;
-using Simulator.Calculator.Dynamics;
 using Simulator.Calculator.Integrators;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 
 namespace Simulator.Calculator
 {
@@ -73,6 +74,7 @@ namespace Simulator.Calculator
         /// or comes to a standstill.
         /// </summary>
         /// <returns>The <see cref="DistanceCalculatorOutput"/> with the calculated result.</returns>
+        /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the output.</exception>
         public DistanceCalculatorOutput Calculate()
         {
             AircraftState state = new AircraftState();
@@ -92,11 +94,11 @@ namespace Simulator.Calculator
 
                 if (state.Height >= screenHeight || state.TrueAirspeed <= 0)
                 {
-                    return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred);
+                    return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred, true);
                 }
             }
 
-            throw new NotImplementedException("Custom exception after failing to converge not implemented yet.");
+            return new DistanceCalculatorOutput(failureSpeed, double.NaN, hasFailureOccurred, false);
         }
     }
 }

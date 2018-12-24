@@ -2,7 +2,6 @@
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
-using Simulator.Calculator.Dynamics;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
@@ -28,7 +27,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             var calculator = new AbortedTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             // Assert
-            Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<TakeOffDynamicsCalculatorBase>(calculator);
             Assert.IsInstanceOf<IFailureTakeOffDynamicsCalculator>(calculator);
         }
 
@@ -38,9 +37,9 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             // Setup
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-            var aircraftState = new AircraftState(random.NextAngle(),
-                                                  random.NextAngle(),
+            var angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
+            var aircraftState = new AircraftState(angleOfAttack,
+                                                  new Angle(), 
                                                   random.NextDouble(),
                                                   random.NextDouble(), 
                                                   random.NextDouble());
