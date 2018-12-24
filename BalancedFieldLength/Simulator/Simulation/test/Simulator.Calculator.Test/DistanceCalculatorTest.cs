@@ -139,6 +139,66 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
+        public void GivenCalculator_WhenCalculatingAndSolutionConvergesWithVelocityZeroDuringNormalTakeOff_ThenCallsInExpectedOrderAndOutputReturned()
+        {
+            // Given
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next(2, int.MaxValue);
+            double timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+
+            var states = new[]
+            {
+                CreateAircraftStateWithVelocity(failureSpeed - 0.2),
+                CreateAircraftStateWithVelocity(0),
+                CreateAircraftStateWithVelocity(failureSpeed - 0.1)
+            };
+
+            var accelerations = new[]
+            {
+                CreateAircraftAccelerations(),
+                CreateAircraftAccelerations()
+            };
+
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+            normalTakeOffDynamicsCalculator.Calculate(Arg.Any<AircraftState>())
+                .Returns(accelerations[0], accelerations[1]);
+
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+
+            var integrator = Substitute.For<IIntegrator>();
+            integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
+                .Returns(states[0], states[1], states[2]);
+
+            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator,
+                failureTakeOffDynamicsCalculator, integrator, failureSpeed,
+                nrOfTimeSteps, timeStep);
+
+            // When
+            DistanceCalculatorOutput output = calculator.Calculate();
+
+            // Then
+            failureTakeOffDynamicsCalculator.DidNotReceiveWithAnyArgs().Calculate(Arg.Any<AircraftState>());
+            normalTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
+            integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
+            Received.InOrder(() =>
+            {
+                normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state =>
+                    IsZeroAircraftState(state)));
+                integrator.Integrate(Arg.Is<AircraftState>(state =>
+                    IsZeroAircraftState(state)), accelerations[0], timeStep);
+                normalTakeOffDynamicsCalculator.Calculate(states[0]);
+                integrator.Integrate(states[0], accelerations[1], timeStep);
+
+                // Do not expect additional calls after the second state was returned
+            });
+
+            Assert.AreEqual(states.Last().Distance, output.Distance);
+            Assert.AreEqual(failureSpeed, output.FailureSpeed);
+            Assert.IsTrue(output.ConvergenceBeforeFailure);
+        }
+
+        [Test]
         public void GivenCalculator_WhenCalculatingAndSolutionConvergesWithVelocityZeroAfterFailureDynamics_ThenCallsInExpectedOrderAndOutputReturned()
         {
             // Given
