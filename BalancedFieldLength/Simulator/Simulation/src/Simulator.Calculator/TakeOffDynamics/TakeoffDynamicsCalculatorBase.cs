@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Core.Common.Data;
 using Simulator.Data;
 using Simulator.Data.Helpers;
@@ -46,6 +46,8 @@ namespace Simulator.Calculator.Dynamics
         /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftState"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the <paramref name="aircraftState"/>
+        /// results in an invalid calculation.</exception>
         public AircraftAccelerations Calculate(AircraftState aircraftState)
         {
             if (aircraftState == null)

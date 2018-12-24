@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using Simulator.Data;
 
 namespace Simulator.Calculator.Dynamics
@@ -15,6 +15,8 @@ namespace Simulator.Calculator.Dynamics
         /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="state"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the <paramref name="state"/>
+        /// results in an invalid calculation.</exception>
         AircraftAccelerations Calculate(AircraftState state);
     }
 }
