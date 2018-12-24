@@ -2,6 +2,7 @@
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 
 namespace Simulator.Calculator
 {
@@ -73,6 +74,7 @@ namespace Simulator.Calculator
         /// or comes to a standstill.
         /// </summary>
         /// <returns>The <see cref="DistanceCalculatorOutput"/> with the calculated result.</returns>
+        /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the output.</exception>
         public DistanceCalculatorOutput Calculate()
         {
             AircraftState state = new AircraftState();

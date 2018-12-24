@@ -3,10 +3,12 @@ using System.Linq;
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NSubstitute;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 
 namespace Simulator.Calculator.Test
 {
@@ -68,12 +70,105 @@ namespace Simulator.Calculator.Test
             var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
 
             // Call
-            TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
+            TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator,
+                failureTakeOffDynamicsCalculator,
                 null, failureSpeed, nrOfTimeSteps, timeStep);
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
             Assert.AreEqual("integrator", exception.ParamName);
+        }
+
+        [Test]
+        public void Calculate_NormalDynamicsCalculatorThrowsException_ThenExceptionRethrown()
+        {
+            // Setup
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next();
+            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+
+            var calculatorException = new CalculatorException();
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+            normalTakeOffDynamicsCalculator.Calculate(Arg.Any<AircraftState>())
+                .Throws(calculatorException);
+
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+            var integrator = Substitute.For<IIntegrator>();
+
+            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
+                integrator, failureSpeed, nrOfTimeSteps, timeStep);
+
+            // Call
+            TestDelegate call = () => calculator.Calculate();
+
+            // Assert
+            var exception = Assert.Throws<CalculatorException>(call);
+            Assert.AreSame(calculatorException, exception);
+        }
+
+        [Test]
+        public void Calculate_FailureDynamicsCalculatorThrowsException_ThenExceptionRethrown()
+        {
+            // Setup
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next();
+            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+            
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+
+            var calculatorException = new CalculatorException();
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+            failureTakeOffDynamicsCalculator.Calculate(Arg.Any<AircraftState>())
+                .Throws(calculatorException);
+
+            var integrator = Substitute.For<IIntegrator>();
+            integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
+                .Returns(CreateAircraftStateWithVelocity(failureSpeed + 0.1));
+
+            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
+                integrator, failureSpeed, nrOfTimeSteps, timeStep);
+
+            // Call
+            TestDelegate call = () => calculator.Calculate();
+
+            // Assert
+            var exception = Assert.Throws<CalculatorException>(call);
+            Assert.AreSame(calculatorException, exception);
+        }
+
+        [Test]
+        public void Calculate_MaximumIterationsHit_ThrowsNotImplementedException()
+        {
+            // Setup
+            var random = new Random(21);
+            var nrOfTimeSteps = random.Next(1, 10);
+            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+
+            var calculatorException = new CalculatorException();
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+            failureTakeOffDynamicsCalculator.Calculate(Arg.Any<AircraftState>())
+                .Throws(calculatorException);
+
+            var integrator = Substitute.For<IIntegrator>();
+            integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
+                .Returns(CreateAircraftStateWithVelocity(failureSpeed));
+
+            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
+                integrator, failureSpeed, nrOfTimeSteps, timeStep);
+
+            // Call
+            TestDelegate call = () => calculator.Calculate();
+
+            // Assert
+            Assert.Throws<NotImplementedException>(call);
+            integrator.ReceivedWithAnyArgs(nrOfTimeSteps)
+                .Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
+
         }
 
         [Test]
@@ -276,7 +371,7 @@ namespace Simulator.Calculator.Test
             var failureState = new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 failureSpeed + 0.1,
-                random.NextDouble(), 
+                random.NextDouble(),
                 random.NextDouble());
 
             var states = new[]
@@ -349,7 +444,7 @@ namespace Simulator.Calculator.Test
             return new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 velocity,
-                random.NextDouble(), 
+                random.NextDouble(),
                 random.NextDouble());
         }
 
@@ -359,7 +454,7 @@ namespace Simulator.Calculator.Test
             return new AircraftState(random.NextAngle(),
                 random.NextAngle(),
                 random.NextDouble(),
-                height, 
+                height,
                 random.NextDouble());
         }
 
