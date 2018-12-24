@@ -30,7 +30,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                                                                     random.NextDouble());
 
             // Assert
-            Assert.IsInstanceOf<TakeoffDynamicsCalculatorBase>(calculator);
+            Assert.IsInstanceOf<TakeOffDynamicsCalculatorBase>(calculator);
             Assert.IsInstanceOf<IFailureTakeOffDynamicsCalculator>(calculator);
         }
 

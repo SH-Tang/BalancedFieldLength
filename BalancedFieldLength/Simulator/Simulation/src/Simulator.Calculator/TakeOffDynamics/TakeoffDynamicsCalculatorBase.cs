@@ -10,7 +10,7 @@ namespace Simulator.Calculator.TakeOffDynamics
     /// Base class which describes the standard aircraft dynamics
     /// during takeoff.
     /// </summary>
-    public abstract class TakeoffDynamicsCalculatorBase
+    public abstract class TakeOffDynamicsCalculatorBase
     {
         private readonly double gravitationalAcceleration;
 
@@ -23,7 +23,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        protected TakeoffDynamicsCalculatorBase(AircraftData aircraftData,
+        protected TakeOffDynamicsCalculatorBase(AircraftData aircraftData,
                                                  double density,
                                                  double gravitationalAcceleration)
         {

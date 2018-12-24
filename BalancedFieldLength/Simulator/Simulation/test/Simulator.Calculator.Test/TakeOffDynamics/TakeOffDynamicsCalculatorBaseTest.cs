@@ -24,7 +24,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             var random = new Random(21);
 
             // Call
-            TestDelegate call = () => new TestTakeoffDynamicsCalculator(null, random.NextDouble(), random.NextDouble());
+            TestDelegate call = () => new TestTakeOffDynamicsCalculator(null, random.NextDouble(), random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -37,7 +37,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             // Setup
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-            var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             // Call
             TestDelegate call = () => calculator.Calculate(null);
@@ -54,7 +54,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             var random = new Random(21);
 
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-            var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
             Angle angleOfAttack = AerodynamicsDataTestHelper.GetValidAngleOfAttack(aircraftData.AerodynamicsData);
 
             var state = new AircraftState(angleOfAttack,
@@ -77,7 +77,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             var random = new Random(21);
 
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-            var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             var state = new AircraftState(aircraftData.AerodynamicsData.ZeroLiftAngleOfAttack - Angle.FromRadians(1),
                 new Angle(),
@@ -106,7 +106,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                                                   random.NextDouble(), 
                                                   random.NextDouble());
 
-            var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
             // Call 
             AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -146,7 +146,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
 
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
                                  {
                                      Thrust = thrust,
                                      Drag = drag
@@ -189,7 +189,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
 
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
                                  {
                                      Thrust = thrust,
                                      Drag = drag
@@ -233,7 +233,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
                 double frictionCoefficient = random.NextDouble();
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
                                  {
                                      Thrust = thrust,
                                      Drag = drag,
@@ -272,7 +272,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 // Precondition
                 Assert.IsTrue(aircraftState.TrueAirspeed < 1);
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -306,7 +306,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
                 Assert.IsTrue(lift < takeOffWeightNewton);
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration);
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration);
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -339,7 +339,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 double takeOffWeightNewton = aircraftData.TakeOffWeight * 1000; // N
                 Assert.IsTrue(lift > takeOffWeightNewton);
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration);
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration);
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -369,7 +369,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                                                       random.NextDouble(), 
                                                       random.NextDouble());
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -393,7 +393,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                                                       random.NextDouble(), 
                                                       random.NextDouble());
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -416,7 +416,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                                                       random.NextDouble(), 
                                                       random.NextDouble());
 
-                var calculator = new TestTakeoffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
+                var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, random.NextDouble());
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -436,9 +436,9 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
         }
     }
 
-    public class TestTakeoffDynamicsCalculator : TakeoffDynamicsCalculatorBase
+    public class TestTakeOffDynamicsCalculator : TakeOffDynamicsCalculatorBase
     {
-        public TestTakeoffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
+        public TestTakeOffDynamicsCalculator(AircraftData aircraftData, double density, double gravitationalAcceleration)
             : base(aircraftData, density, gravitationalAcceleration) {}
 
         public double Thrust { private get; set; }

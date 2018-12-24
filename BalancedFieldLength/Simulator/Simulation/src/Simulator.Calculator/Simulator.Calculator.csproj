@@ -41,7 +41,7 @@
     <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />
     <Compile Include="Integrators\IIntegrator.cs" />
     <Compile Include="TakeOffDynamics\INormalTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeOffDynamics\TakeoffDynamicsCalculatorBase.cs" />
+    <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBase.cs" />
     <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
     <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
