@@ -1,5 +1,6 @@
 ﻿using System;
 using Core.Common.Data;
+using Core.Common.Utils;
 
 namespace Simulator.Data
 {
@@ -128,77 +129,32 @@ namespace Simulator.Data
             double restDragCoefficientWithoutEngineFailure,
             double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
-            ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
-            ValidateParameterIsConcreteValue(aspectRatio, nameof(aspectRatio));
+            NumberValidator.ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
+            NumberValidator.ValidateValueIsConcreteNumber(aspectRatio, nameof(aspectRatio));
 
-            ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
-            ValidateParameterIsConcreteValue(wingArea, nameof(wingArea));
+            NumberValidator.ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
+            NumberValidator.ValidateValueIsConcreteNumber(wingArea, nameof(wingArea));
 
-            ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
-            ValidateParameterIsConcreteValue(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            NumberValidator.ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            NumberValidator.ValidateValueIsConcreteNumber(liftCoefficientGradient, nameof(liftCoefficientGradient));
 
-            ValidateParameterIsConcreteValue(zeroLiftAngleOfAttack.Radians, nameof(zeroLiftAngleOfAttack));
+            NumberValidator.ValidateValueIsConcreteNumber(zeroLiftAngleOfAttack, nameof(zeroLiftAngleOfAttack));
 
-            ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
-            ValidateParameterIsConcreteValue(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            NumberValidator.ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            NumberValidator.ValidateValueIsConcreteNumber(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
 
-            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
+            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
                 nameof(restDragCoefficientWithoutEngineFailure));
-            ValidateParameterIsConcreteValue(restDragCoefficientWithoutEngineFailure,
+            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithoutEngineFailure,
                 nameof(restDragCoefficientWithoutEngineFailure));
 
-            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
+            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
                 nameof(restDragCoefficientWithEngineFailure));
-            ValidateParameterIsConcreteValue(restDragCoefficientWithEngineFailure,
+            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithEngineFailure,
                 nameof(restDragCoefficientWithEngineFailure));
 
-            ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
-            ValidateParameterIsConcreteValue(oswaldFactor, nameof(oswaldFactor));
-        }
-
-        /// <summary>
-        /// Validates whether a value is larger than 0.
-        /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="propertyName">The name of the property which is validated.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
-        /// is less or equal to 0.</exception>
-        private static void ValidateParameterLargerThanZero(double value, string propertyName)
-        {
-            if (value <= 0)
-            {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
-            }
-        }
-
-        /// <summary>
-        /// Validates whether a value is larger or equal to 0.
-        /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="propertyName">The name of the property which is validated.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
-        /// is less than 0.</exception>
-        private static void ValidateParameterLargerOrEqualToZero(double value, string propertyName)
-        {
-            if (value < 0)
-            {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
-            }
-        }
-
-        /// <summary>
-        /// Validates whether a value is not <see cref="double.NaN"/> or Infinity.
-        /// </summary>
-        /// <param name="value">The value to validate.</param>
-        /// <param name="propertyName">The name of the property which is validated.</param>
-        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
-        /// is <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/> or <see cref="double.NegativeInfinity"/>.</exception>
-        private static void ValidateParameterIsConcreteValue(double value, string propertyName)
-        {
-            if (double.IsNaN(value) || double.IsInfinity(value))
-            {
-                throw new ArgumentException($"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
-            }
+            NumberValidator.ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+            NumberValidator.ValidateValueIsConcreteNumber(oswaldFactor, nameof(oswaldFactor));
         }
     }
 }
