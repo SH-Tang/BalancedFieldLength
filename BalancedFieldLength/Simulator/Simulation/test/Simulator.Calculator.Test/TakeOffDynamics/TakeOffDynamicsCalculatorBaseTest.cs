@@ -71,28 +71,6 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
         }
 
         [Test]
-        public void GivenAircraftStateResultsIntoInvalidCalculation_WhenCalculateCalled_ThenInvalidCalculationExceptionThrown()
-        {
-            // Given
-            var random = new Random(21);
-
-            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
-
-            var state = new AircraftState(aircraftData.AerodynamicsData.ZeroLiftAngleOfAttack - Angle.FromRadians(1),
-                new Angle(),
-                random.NextDouble(),
-                random.NextDouble(),
-                random.NextDouble());
-
-            // When
-            TestDelegate call = () => calculator.Calculate(state);
-
-            // Then
-            Assert.Throws<InvalidCalculationException>(call);
-        }
-
-        [Test]
         public static void Calculate_WithAircraftStateAlways_ReturnsExpectedClimbRate()
         {
             // Setup
@@ -114,6 +92,32 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
             // Assert
             double expectedClimbRate = aircraftState.TrueAirspeed * Math.Sin(aircraftState.FlightPathAngle.Radians);
             Assert.AreEqual(expectedClimbRate, accelerations.ClimbRate, tolerance);
+        }
+
+        [Test]
+        public void GivenAircraftStateResultsIntoInvalidCalculationException_WhenCalculateCalled_ThenCalculatorExceptionThrown()
+        {
+            // Given
+            var random = new Random(21);
+
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            var calculator = new TestTakeOffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+
+            var state = new AircraftState(aircraftData.AerodynamicsData.ZeroLiftAngleOfAttack - Angle.FromRadians(1),
+                new Angle(),
+                random.NextDouble(),
+                random.NextDouble(),
+                random.NextDouble());
+
+            // When
+            TestDelegate call = () => calculator.Calculate(state);
+
+            // Then
+            var exception = Assert.Throws<CalculatorException>(call);
+
+            var innerException = exception.InnerException;
+            Assert.IsInstanceOf<InvalidCalculationException>(innerException);
+            Assert.AreEqual(innerException.Message, exception.Message);
         }
 
         [TestFixture]

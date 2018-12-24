@@ -16,8 +16,8 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="state"/>
         /// is <c>null</c>.</exception>
-        /// <exception cref="InvalidCalculationException">Thrown when the <paramref name="state"/>
-        /// results in an invalid calculation.</exception>
+        /// <exception cref="CalculatorException">Thrown when the <paramref name="state"/>
+        /// results in a state where the calculator cannot continue the calculation.</exception>
         AircraftAccelerations Calculate(AircraftState state);
     }
 }

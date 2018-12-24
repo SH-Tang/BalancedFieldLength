@@ -47,8 +47,8 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftState"/>
         /// is <c>null</c>.</exception>
-        /// <exception cref="InvalidCalculationException">Thrown when the <paramref name="aircraftState"/>
-        /// results in an invalid calculation.</exception>
+        /// <exception cref="CalculatorException">Thrown when the <paramref name="aircraftState"/>
+        /// results in a state where the calculator cannot continue the calculation.</exception>
         public AircraftAccelerations Calculate(AircraftState aircraftState)
         {
             if (aircraftState == null)
@@ -56,10 +56,17 @@ namespace Simulator.Calculator.TakeOffDynamics
                 throw new ArgumentNullException(nameof(aircraftState));
             }
 
-            return new AircraftAccelerations(CalculatePitchRate(aircraftState),
-                                             CalculateClimbRate(aircraftState),
-                                             CalculateTrueAirSpeedRate(aircraftState),
-                                             CalculateFlightPathAngleRate(aircraftState));
+            try
+            {
+                return new AircraftAccelerations(CalculatePitchRate(aircraftState),
+                    CalculateClimbRate(aircraftState),
+                    CalculateTrueAirSpeedRate(aircraftState),
+                    CalculateFlightPathAngleRate(aircraftState));
+            }
+            catch (InvalidCalculationException e)
+            {
+                throw new CalculatorException(e.Message, e);
+            }
         }
 
         /// <summary>
