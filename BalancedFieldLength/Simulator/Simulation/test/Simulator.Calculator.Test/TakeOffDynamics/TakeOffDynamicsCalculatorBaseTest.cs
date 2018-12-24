@@ -4,6 +4,7 @@ using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
+using Simulator.Data.Exceptions;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
 
@@ -67,6 +68,28 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
 
             // Assert
             Assert.AreSame(state, calculator.CalculateDragInput);
+        }
+
+        [Test]
+        public void GivenAircraftStateResultsIntoInvalidCalculation_WhenCalculateCalled_ThenInvalidCalculationExceptionThrown()
+        {
+            // Given
+            var random = new Random(21);
+
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            var calculator = new TestTakeoffDynamicsCalculator(aircraftData, random.NextDouble(), random.NextDouble());
+
+            var state = new AircraftState(aircraftData.AerodynamicsData.ZeroLiftAngleOfAttack - Angle.FromRadians(1),
+                new Angle(),
+                random.NextDouble(),
+                random.NextDouble(),
+                random.NextDouble());
+
+            // When
+            TestDelegate call = () => calculator.Calculate(state);
+
+            // Then
+            Assert.Throws<InvalidCalculationException>(call);
         }
 
         [Test]
