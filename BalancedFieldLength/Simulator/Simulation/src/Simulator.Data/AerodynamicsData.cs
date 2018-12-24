@@ -1,4 +1,5 @@
-﻿using Core.Common.Data;
+﻿using System;
+using Core.Common.Data;
 
 namespace Simulator.Data
 {
@@ -18,10 +19,31 @@ namespace Simulator.Data
         /// <param name="restDragCoefficientWithoutEngineFailure">The rest drag coefficient of the aircraft without engine failure. [-]</param>
         /// <param name="restDragCoefficientWithEngineFailure">The rest drag coefficient of the aircraft with engine failure. [-]</param>
         /// <param name="oswaldFactor">The Oswald factor. [-]</param>
+        /// <exception cref="ArgumentException">Thrown when any parameter equals to <see cref="double.NaN"/>
+        /// or <see cref="double.PositiveInfinity"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="aspectRatio"/> &lt;= 0</item>
+        /// <item><paramref name="wingArea"/> &lt;= 0</item>
+        /// <item><paramref name="liftCoefficientGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumLiftCoefficient"/> &lt;= 0</item>
+        /// <item><paramref name="restDragCoefficientWithoutEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="restDragCoefficientWithEngineFailure"/> &lt; 0</item>
+        /// <item><paramref name="oswaldFactor"/> &lt;= 0</item>
+        /// </list>
+        /// </exception>
         public AerodynamicsData(double aspectRatio, double wingArea,
                                 Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
                                 double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
+            ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
+            ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
+            ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure, nameof(restDragCoefficientWithoutEngineFailure));
+            ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure, nameof(restDragCoefficientWithEngineFailure));
+            ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+
             AspectRatio = aspectRatio;
             WingArea = wingArea;
             ZeroLiftAngleOfAttack = zeroLiftAngleOfAttack;
@@ -30,6 +52,36 @@ namespace Simulator.Data
             RestDragCoefficientWithoutEngineFailure = restDragCoefficientWithoutEngineFailure;
             RestDragCoefficientWithEngineFailure = restDragCoefficientWithEngineFailure;
             OswaldFactor = oswaldFactor;
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger than 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less or equal to 0.</exception>
+        private static void ValidateParameterLargerThanZero(double value, string propertyName)
+        {
+            if (value <= 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+            }
+        }
+
+        /// <summary>
+        /// Validates whether a value is larger or equal to 0.
+        /// </summary>
+        /// <param name="value">The value to validate.</param>
+        /// <param name="propertyName">The name of the property which is validated.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="value"/>
+        /// is less than 0.</exception>
+        private static void ValidateParameterLargerOrEqualToZero(double value, string propertyName)
+        {
+            if (value < 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+            }
         }
 
         /// <summary>
