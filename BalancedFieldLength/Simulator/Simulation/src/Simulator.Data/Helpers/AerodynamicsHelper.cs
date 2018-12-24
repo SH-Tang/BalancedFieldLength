@@ -42,6 +42,8 @@ namespace Simulator.Data.Helpers
         /// <returns>The lift coefficient.</returns>
         /// <exception cref="ArgumentNullException">Thrown when
         /// <paramref name="aerodynamicsData"/> is <c>null</c>.</exception>
+        /// <exception cref="InvalidCalculationException">Thrown when the combination
+        /// of input parameters leads to an invalid calculation result.</exception>
         public static double CalculateLiftCoefficient(AerodynamicsData aerodynamicsData, Angle angleOfAttack)
         {
             if (aerodynamicsData == null)
