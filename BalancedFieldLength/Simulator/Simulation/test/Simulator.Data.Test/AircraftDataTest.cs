@@ -51,6 +51,18 @@ namespace Simulator.Data.Test
         }
 
         [Test]
+        [TestCaseSource(nameof(GetInvalidConcreteValuesForProperties))]
+        public void Constructor_ValuesNaNOrInfinity_ThrowsArgumentException(Action constructorAction, string propertyName)
+        {
+            // Call
+            TestDelegate call = () => constructorAction();
+
+            // Assert
+            TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
+
+        }
+
+        [Test]
         public static void Constructor_ExpectedValues()
         {
             // Setup
@@ -82,6 +94,8 @@ namespace Simulator.Data.Test
             Assert.AreEqual(brakingResistanceCoefficient, aircraftData.BrakingResistanceCoefficient);
             Assert.AreSame(aerodynamicsData, aircraftData.AerodynamicsData);
         }
+
+        #region Test Data
 
         private static IEnumerable<TestCaseData> GetInvalidValuesForPropertiesLessThanZero()
         {
@@ -212,5 +226,92 @@ namespace Simulator.Data.Test
                     aerodynamicsData)), brakingResistanceCoefficientPropertyName)
                 .SetName($"{brakingResistanceCoefficientPropertyName} NegativeInfinity");
         }
+
+        private static IEnumerable<TestCaseData> GetInvalidConcreteValuesForProperties()
+        {
+            var random = new Random(21);
+            int nrOfEngines = random.Next();
+            double maximumThrustPerEngine = random.NextDouble();
+            double takeOffWeight = random.NextDouble();
+            Angle pitchAngleGradient = random.NextAngle();
+            Angle maximumPitchAngle = random.NextAngle();
+            double rollingResistanceCoefficient = random.NextDouble();
+            double brakingResistanceCoefficient = random.NextDouble();
+            var aerodynamicsData = AerodynamicsDataTestFactory.CreateAerodynamicsData();
+
+            const string maximumThrustPerEnginePropertyName = "maximumThrustPerEngine";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, double.NaN, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), maximumThrustPerEnginePropertyName)
+                .SetName($"{maximumThrustPerEnginePropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, double.PositiveInfinity, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), maximumThrustPerEnginePropertyName)
+                .SetName($"{maximumThrustPerEnginePropertyName} PositiveInfinity");
+
+            const string takeOffWeightPropertyName = "takeOffWeight";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, double.NaN,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), takeOffWeightPropertyName)
+                .SetName($"{takeOffWeightPropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, double.PositiveInfinity,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), takeOffWeightPropertyName)
+                .SetName($"{takeOffWeightPropertyName} PositiveInfinity");
+
+            const string pitchAngleGradientPropertyName = "pitchAngleGradient";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    Angle.FromRadians(double.NaN), maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), pitchAngleGradientPropertyName)
+                .SetName($"{pitchAngleGradientPropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    Angle.FromRadians(double.PositiveInfinity), maximumPitchAngle,
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), pitchAngleGradientPropertyName)
+                .SetName($"{pitchAngleGradientPropertyName} PositiveInfinity");
+
+            const string maximumPitchAnglePropertyName = "maximumPitchAngle";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, Angle.FromRadians(double.NaN),
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), maximumPitchAnglePropertyName)
+                .SetName($"{maximumPitchAnglePropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, Angle.FromRadians(double.PositiveInfinity),
+                    rollingResistanceCoefficient, brakingResistanceCoefficient,
+                    aerodynamicsData)), maximumPitchAnglePropertyName)
+                .SetName($"{maximumPitchAnglePropertyName} PositiveInfinity");
+
+            const string rollingResistanceCoefficientPropertyName = "rollingResistanceCoefficient";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    double.NaN, brakingResistanceCoefficient,
+                    aerodynamicsData)), rollingResistanceCoefficientPropertyName)
+                .SetName($"{rollingResistanceCoefficientPropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    double.PositiveInfinity, brakingResistanceCoefficient,
+                    aerodynamicsData)), rollingResistanceCoefficientPropertyName)
+                .SetName($"{rollingResistanceCoefficientPropertyName} PositiveInfinity");
+
+            const string brakingResistanceCoefficientPropertyName = "brakingResistanceCoefficient";
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, double.NaN,
+                    aerodynamicsData)), brakingResistanceCoefficientPropertyName)
+                .SetName($"{brakingResistanceCoefficientPropertyName} NaN");
+            yield return new TestCaseData(new Action(() => new AircraftData(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                    pitchAngleGradient, maximumPitchAngle,
+                    rollingResistanceCoefficient, double.PositiveInfinity,
+                    aerodynamicsData)), brakingResistanceCoefficientPropertyName)
+                .SetName($"{brakingResistanceCoefficientPropertyName} PositiveInfinity");
+        }
+
+        #endregion
     }
 }

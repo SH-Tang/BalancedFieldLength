@@ -23,6 +23,8 @@ namespace Simulator.Data
         /// holding all aerodynamic properties of the aircraft.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aerodynamicsData"/>
         /// is <c>null</c>.</exception>
+        /// <exception cref="ArgumentException">Thrown when any parameter, except <paramref name="nrOfEngines"/>, is
+        /// <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when:
         /// <list type="bullet">
         /// <item><paramref name="nrOfEngines"/> &lt;= 0</item>
@@ -35,23 +37,19 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         public AircraftData(int nrOfEngines, double maximumThrustPerEngine,
-                            double takeOffWeight,
-                            Angle pitchAngleGradient, Angle maximumPitchAngle,
-                            double rollingResistanceCoefficient, double brakingResistanceCoefficient,
-                            AerodynamicsData aerodynamicsData)
+            double takeOffWeight,
+            Angle pitchAngleGradient, Angle maximumPitchAngle,
+            double rollingResistanceCoefficient, double brakingResistanceCoefficient,
+            AerodynamicsData aerodynamicsData)
         {
             if (aerodynamicsData == null)
             {
                 throw new ArgumentNullException(nameof(aerodynamicsData));
             }
 
-           NumberValidator.ValidateParameterLargerThanZero(nrOfEngines, nameof(nrOfEngines));
-           NumberValidator.ValidateParameterLargerThanZero(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
-           NumberValidator.ValidateParameterLargerThanZero(takeOffWeight, nameof(takeOffWeight));
-           NumberValidator.ValidateParameterLargerThanZero(pitchAngleGradient, nameof(pitchAngleGradient));
-           NumberValidator.ValidateParameterLargerThanZero(maximumPitchAngle, nameof(maximumPitchAngle));
-           NumberValidator.ValidateParameterLargerOrEqualToZero(rollingResistanceCoefficient, nameof(rollingResistanceCoefficient));
-           NumberValidator.ValidateParameterLargerOrEqualToZero(brakingResistanceCoefficient, nameof(brakingResistanceCoefficient));
+            ValidateInput(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
+                pitchAngleGradient, maximumPitchAngle,
+                rollingResistanceCoefficient, brakingResistanceCoefficient);
 
             NrOfEngines = nrOfEngines;
             MaximumThrustPerEngine = maximumThrustPerEngine;
@@ -107,5 +105,57 @@ namespace Simulator.Data
         /// data of the aircraft.
         /// </summary>
         public AerodynamicsData AerodynamicsData { get; }
+
+        /// <summary>
+        /// Validates the numeric input data.
+        /// </summary>
+        /// <param name="nrOfEngines">The number of engines.</param>
+        /// <param name="maximumThrustPerEngine">The maximum thrust per engine. [kN]</param>
+        /// <param name="takeOffWeight">The takeoff weight. [kN]</param>
+        /// <param name="pitchAngleGradient">The rate of pitch angle during rotation. [1/s]</param>
+        /// <param name="maximumPitchAngle">The maximum pitch angle during rotation.</param>
+        /// <param name="rollingResistanceCoefficient">The rolling resistance coefficient. [-]</param>
+        /// <param name="brakingResistanceCoefficient">The brake resistance coefficient. [-]</param>
+        /// <exception cref="ArgumentException">Thrown when any parameter, except <paramref name="nrOfEngines"/>, is
+        /// <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</exception>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when:
+        /// <list type="bullet">
+        /// <item><paramref name="nrOfEngines"/> &lt;= 0</item>
+        /// <item><paramref name="maximumThrustPerEngine"/> &lt;= 0</item>
+        /// <item><paramref name="takeOffWeight"/> &lt;= 0</item>
+        /// <item><paramref name="pitchAngleGradient"/> &lt;= 0</item>
+        /// <item><paramref name="maximumPitchAngle"/> &lt;= 0</item>
+        /// <item><paramref name="rollingResistanceCoefficient"/> &lt; 0</item>
+        /// <item><paramref name="brakingResistanceCoefficient"/> &lt; 0</item>
+        /// </list>
+        /// </exception>
+        private static void ValidateInput(int nrOfEngines, double maximumThrustPerEngine, double takeOffWeight,
+            Angle pitchAngleGradient, Angle maximumPitchAngle, double rollingResistanceCoefficient,
+            double brakingResistanceCoefficient)
+        {
+            NumberValidator.ValidateParameterLargerThanZero(nrOfEngines, nameof(nrOfEngines));
+
+            NumberValidator.ValidateParameterLargerThanZero(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
+            NumberValidator.ValidateValueIsConcreteNumber(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
+
+            NumberValidator.ValidateParameterLargerThanZero(takeOffWeight, nameof(takeOffWeight));
+            NumberValidator.ValidateValueIsConcreteNumber(takeOffWeight, nameof(takeOffWeight));
+
+            NumberValidator.ValidateParameterLargerThanZero(pitchAngleGradient, nameof(pitchAngleGradient));
+            NumberValidator.ValidateValueIsConcreteNumber(pitchAngleGradient, nameof(pitchAngleGradient));
+
+            NumberValidator.ValidateParameterLargerThanZero(maximumPitchAngle, nameof(maximumPitchAngle));
+            NumberValidator.ValidateValueIsConcreteNumber(maximumPitchAngle, nameof(maximumPitchAngle));
+
+            NumberValidator.ValidateParameterLargerOrEqualToZero(rollingResistanceCoefficient,
+                nameof(rollingResistanceCoefficient));
+            NumberValidator.ValidateValueIsConcreteNumber(rollingResistanceCoefficient,
+                nameof(rollingResistanceCoefficient));
+
+            NumberValidator.ValidateParameterLargerOrEqualToZero(brakingResistanceCoefficient,
+                nameof(brakingResistanceCoefficient));
+            NumberValidator.ValidateValueIsConcreteNumber(brakingResistanceCoefficient,
+                nameof(brakingResistanceCoefficient));
+        }
     }
 }
