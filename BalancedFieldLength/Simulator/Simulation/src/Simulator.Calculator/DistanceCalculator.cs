@@ -94,11 +94,11 @@ namespace Simulator.Calculator
 
                 if (state.Height >= screenHeight || state.TrueAirspeed <= 0)
                 {
-                    return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred);
+                    return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred, true);
                 }
             }
 
-            throw new NotImplementedException("Custom exception after failing to converge not implemented yet.");
+            return new DistanceCalculatorOutput(failureSpeed, double.NaN, hasFailureOccurred, false);
         }
     }
 }

@@ -139,7 +139,7 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
-        public void Calculate_MaximumIterationsHit_ThrowsNotImplementedException()
+        public void Calculate_MaximumIterationsHit_ReturnsExpectedOutput()
         {
             // Setup
             var random = new Random(21);
@@ -162,13 +162,15 @@ namespace Simulator.Calculator.Test
                 integrator, failureSpeed, nrOfTimeSteps, timeStep);
 
             // Call
-            TestDelegate call = () => calculator.Calculate();
+            var output = calculator.Calculate();
 
             // Assert
-            Assert.Throws<NotImplementedException>(call);
             integrator.ReceivedWithAnyArgs(nrOfTimeSteps)
                 .Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
 
+            Assert.AreEqual(failureSpeed, output.FailureSpeed);
+            Assert.IsNaN(output.Distance);
+            Assert.IsFalse(output.CalculationConverged);
         }
 
         [Test]
@@ -231,6 +233,7 @@ namespace Simulator.Calculator.Test
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsTrue(output.ConvergenceBeforeFailure);
+            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
@@ -291,6 +294,7 @@ namespace Simulator.Calculator.Test
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsTrue(output.ConvergenceBeforeFailure);
+            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
@@ -356,6 +360,7 @@ namespace Simulator.Calculator.Test
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsFalse(output.ConvergenceBeforeFailure);
+            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
@@ -428,6 +433,7 @@ namespace Simulator.Calculator.Test
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
             Assert.IsFalse(output.ConvergenceBeforeFailure);
+            Assert.IsTrue(output.CalculationConverged);
         }
 
         private static bool IsZeroAircraftState(AircraftState state)
