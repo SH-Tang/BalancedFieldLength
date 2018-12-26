@@ -51,10 +51,6 @@
       <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
       <Name>Simulator.Calculator</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Simulator.Calculator.TestUtil\Simulator.Calculator.TestUtil.csproj">
-      <Project>{9C59D99C-389B-4B68-8158-8E5E55E260BD}</Project>
-      <Name>Simulator.Calculator.TestUtil</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

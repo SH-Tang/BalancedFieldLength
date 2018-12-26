@@ -77,10 +77,6 @@
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
       <Name>Simulator.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Simulator.Calculator.TestUtil\Simulator.Calculator.TestUtil.csproj">
-      <Project>{9C59D99C-389B-4B68-8158-8E5E55E260BD}</Project>
-      <Name>Simulator.Calculator.TestUtil</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Simulator.Data.TestUtil\Simulator.Data.TestUtil.csproj">
       <Project>{28A81F57-8057-4D63-9A1C-01D1B35A08AE}</Project>
       <Name>Simulator.Data.TestUtil</Name>
