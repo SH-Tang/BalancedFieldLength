@@ -19,7 +19,7 @@ namespace Simulator.Data.TestUtil.Test
             // Assert
             Assert.IsNotNull(settings);
             Assert.Greater(settings.FailureSpeed, 0);
-            Assert.Greater(settings.NrOfTimeSteps, 0);
+            Assert.Greater(settings.MaximumNrOfTimeSteps, 0);
             Assert.IsTrue(IsConcreteNumber(settings.TimeStep));
         }
     }

@@ -79,7 +79,7 @@ namespace Simulator.Calculator
             bool hasFailureOccurred = false;
             int failureSpeed = calculatorSettings.FailureSpeed;
 
-            for (int i = 0; i < calculatorSettings.NrOfTimeSteps; i++)
+            for (int i = 0; i < calculatorSettings.MaximumNrOfTimeSteps; i++)
             {
                 AircraftAccelerations accelerations = hasFailureOccurred
                     ? failureTakeOffDynamicsCalculator.Calculate(state)
