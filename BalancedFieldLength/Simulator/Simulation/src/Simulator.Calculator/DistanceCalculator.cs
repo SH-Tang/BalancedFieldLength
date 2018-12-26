@@ -6,6 +6,20 @@ using Simulator.Data.Exceptions;
 
 namespace Simulator.Calculator
 {
+    public class DistanceCalculatorSettings
+    {
+        public DistanceCalculatorSettings(int failureSpeed, int nrOfTimeSteps, double timeStep)
+        {
+            FailureSpeed = failureSpeed;
+            NrOfTimeSteps = nrOfTimeSteps;
+            TimeStep = timeStep;
+        }
+
+        public int FailureSpeed { get; }
+        public int NrOfTimeSteps { get; }
+        public double TimeStep { get; }
+    }
+
     /// <summary>
     /// Class for calculating the traversed distance until the simulation reached the stopping criteria.
     /// </summary>
@@ -14,9 +28,7 @@ namespace Simulator.Calculator
         private readonly INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator;
         private readonly IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator;
         private readonly IIntegrator integrator;
-        private readonly int failureSpeed;
-        private readonly int nrOfTimeSteps;
-        private readonly double timeStep;
+        private readonly DistanceCalculatorSettings calculatorSettings;
 
         private const double screenHeight = 10.7;
 
@@ -29,22 +41,19 @@ namespace Simulator.Calculator
         /// to calculate the aircraft dynamics after failure.</param>
         /// <param name="integrator">The <see cref="IIntegrator"/> to integrate the first order
         /// dynamic system.</param>
-        /// <param name="failureSpeed">The velocity (true airspeed) at which the failure
-        /// should occur.</param>
-        /// <param name="nrOfTimeSteps">The number of time steps that is allowed for the integration
-        /// before timing out.</param>
-        /// <param name="timeStep">The time step to take during integration.</param>
+        /// <param name="calculatorSettings">The <see cref="DistanceCalculatorSettings"/>
+        /// to configure the calculator.</param>
         /// <exception cref="ArgumentNullException">Thrown when:
         /// <list type="bullet">
         /// <item><paramref name="normalTakeOffDynamicsCalculator"/></item>
         /// <item><paramref name="failureTakeOffDynamicsCalculator"/></item>
         /// <item><paramref name="integrator"/></item>
+        /// <item><paramref name="calculatorSettings"/></item>
         /// </list>
         /// is <c>null</c>.</exception>
         public DistanceCalculator(INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator,
             IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator,
-            IIntegrator integrator,
-            int failureSpeed, int nrOfTimeSteps, double timeStep)
+            IIntegrator integrator, DistanceCalculatorSettings calculatorSettings)
         {
             if (normalTakeOffDynamicsCalculator == null)
             {
@@ -61,12 +70,15 @@ namespace Simulator.Calculator
                 throw new ArgumentNullException(nameof(integrator));
             }
 
+            if (calculatorSettings == null)
+            {
+                throw new ArgumentNullException(nameof(calculatorSettings));
+            }
+
             this.normalTakeOffDynamicsCalculator = normalTakeOffDynamicsCalculator;
             this.failureTakeOffDynamicsCalculator = failureTakeOffDynamicsCalculator;
             this.integrator = integrator;
-            this.failureSpeed = failureSpeed;
-            this.nrOfTimeSteps = nrOfTimeSteps;
-            this.timeStep = timeStep;
+            this.calculatorSettings = calculatorSettings;
         }
 
         /// <summary>
@@ -79,13 +91,15 @@ namespace Simulator.Calculator
         {
             AircraftState state = new AircraftState();
             bool hasFailureOccurred = false;
-            for (int i = 0; i < nrOfTimeSteps; i++)
+            int failureSpeed = calculatorSettings.FailureSpeed;
+
+            for (int i = 0; i < calculatorSettings.NrOfTimeSteps; i++)
             {
                 AircraftAccelerations accelerations = hasFailureOccurred
                     ? failureTakeOffDynamicsCalculator.Calculate(state)
                     : normalTakeOffDynamicsCalculator.Calculate(state);
 
-                state = integrator.Integrate(state, accelerations, timeStep);
+                state = integrator.Integrate(state, accelerations, calculatorSettings.TimeStep);
 
                 if (state.TrueAirspeed > failureSpeed)
                 {
