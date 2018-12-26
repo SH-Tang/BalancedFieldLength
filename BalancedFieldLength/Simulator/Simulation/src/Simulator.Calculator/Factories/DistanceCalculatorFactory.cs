@@ -22,8 +22,8 @@ namespace Simulator.Calculator.Factories
         public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(
             ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
             IIntegrator integrator,
-            int nrOfFailedEngines, double density, double gravitationalAcceleration, int failureSpeed, int maximumSteps,
-            double timeStep)
+            int nrOfFailedEngines, double density, double gravitationalAcceleration,
+            DistanceCalculatorSettings calculatorSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
@@ -36,13 +36,13 @@ namespace Simulator.Calculator.Factories
                 takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data, nrOfFailedEngines,
                     density, gravitationalAcceleration);
 
-            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, new DistanceCalculatorSettings(failureSpeed, maximumSteps, timeStep));
+            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculatorSettings);
         }
 
         public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(
             ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
             IIntegrator integrator,
-            double density, double gravitationalAcceleration, int failureSpeed, int maximumSteps, double timeStep)
+            double density, double gravitationalAcceleration, DistanceCalculatorSettings calculatorSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
@@ -54,7 +54,7 @@ namespace Simulator.Calculator.Factories
             var failureTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateAbortedTakeOffDynamics(data, density, gravitationalAcceleration);
 
-            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, new DistanceCalculatorSettings(failureSpeed, maximumSteps, timeStep));
+            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculatorSettings);
         }
     }
 }

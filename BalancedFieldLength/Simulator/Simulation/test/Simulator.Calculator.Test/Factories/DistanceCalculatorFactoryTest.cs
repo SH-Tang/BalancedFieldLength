@@ -4,6 +4,7 @@ using NUnit.Framework;
 using Simulator.Calculator.Factories;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
+using Simulator.Calculator.TestUtil;
 using Simulator.Data;
 using Simulator.Data.TestUtil;
 
@@ -40,9 +41,7 @@ namespace Simulator.Calculator.Test.Factories
                 random.Next(),
                 random.NextDouble(),
                 random.NextDouble(),
-                random.Next(),
-                random.Next(),
-                random.NextDouble());
+                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -83,9 +82,7 @@ namespace Simulator.Calculator.Test.Factories
                 nrOfFailedEngines,
                 density,
                 gravitationalAcceleration,
-                random.Next(),
-                random.Next(),
-                random.NextDouble());
+                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateAbortedTakeOffDynamics(
@@ -122,9 +119,7 @@ namespace Simulator.Calculator.Test.Factories
                 integrator,
                 random.NextDouble(),
                 random.NextDouble(),
-                random.Next(),
-                random.Next(),
-                random.NextDouble());
+                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -163,9 +158,7 @@ namespace Simulator.Calculator.Test.Factories
                 integrator,
                 density,
                 gravitationalAcceleration,
-                random.Next(),
-                random.Next(),
-                random.NextDouble());
+                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateContinuedTakeOffDynamicsCalculator(
