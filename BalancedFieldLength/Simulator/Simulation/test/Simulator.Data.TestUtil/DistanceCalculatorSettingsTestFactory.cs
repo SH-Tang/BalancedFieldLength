@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Simulator.Calculator.TestUtil
+namespace Simulator.Data.TestUtil
 {
     /// <summary>
     /// Factory to create valid instance of <see cref="DistanceCalculatorSettings"/>

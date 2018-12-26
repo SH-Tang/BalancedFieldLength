@@ -4,7 +4,6 @@ using NUnit.Framework;
 using Simulator.Calculator.Factories;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
-using Simulator.Calculator.TestUtil;
 using Simulator.Data;
 using Simulator.Data.TestUtil;
 

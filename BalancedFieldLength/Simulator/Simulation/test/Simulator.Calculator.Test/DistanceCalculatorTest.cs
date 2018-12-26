@@ -7,9 +7,9 @@ using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
-using Simulator.Calculator.TestUtil;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
+using Simulator.Data.TestUtil;
 
 namespace Simulator.Calculator.Test
 {

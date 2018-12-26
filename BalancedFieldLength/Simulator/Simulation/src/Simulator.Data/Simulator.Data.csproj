@@ -40,6 +40,7 @@
     <Compile Include="AircraftData.cs" />
     <Compile Include="AircraftState.cs" />
     <Compile Include="DistanceCalculatorOutput.cs" />
+    <Compile Include="DistanceCalculatorSettings.cs" />
     <Compile Include="Exceptions\CalculatorException.cs" />
     <Compile Include="Exceptions\InvalidCalculationException.cs" />
     <Compile Include="Helpers\AerodynamicsHelper.cs" />

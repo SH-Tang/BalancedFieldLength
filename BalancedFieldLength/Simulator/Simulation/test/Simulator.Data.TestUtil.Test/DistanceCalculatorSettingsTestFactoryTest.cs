@@ -1,6 +1,6 @@
 ﻿using NUnit.Framework;
 
-namespace Simulator.Calculator.TestUtil.Test
+namespace Simulator.Data.TestUtil.Test
 {
     [TestFixture]
     public class DistanceCalculatorSettingsTestFactoryTest

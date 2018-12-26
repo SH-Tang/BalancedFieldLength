@@ -37,6 +37,7 @@
     <Compile Include="AerodynamicsDataTestFactoryTest.cs" />
     <Compile Include="AerodynamicsDataTestHelperTest.cs" />
     <Compile Include="AircraftDataTestFactoryTest.cs" />
+    <Compile Include="DistanceCalculatorSettingsTestFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SimulationConstantsTest.cs" />
   </ItemGroup>
