@@ -35,6 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\DistanceCalculatorFactory.cs" />
+    <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
     <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
     <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
     <Compile Include="Integrators\EulerIntegrator.cs" />
