@@ -4,13 +4,12 @@ using Core.Common.Utils;
 namespace Simulator.Data
 {
     /// <summary>
-    /// Class that holds all the numeric information to configure a
-    /// calculator for the distance.
+    /// Class that holds all the numeric information to configure a calculation.
     /// </summary>
-    public class DistanceCalculatorSettings
+    public class CalculationSettings
     {
         /// <summary>
-        /// Creates a new instance of <see cref="DistanceCalculatorSettings"/>.
+        /// Creates a new instance of <see cref="CalculationSettings"/>.
         /// </summary>
         /// <param name="failureSpeed">The speed at which a failure occurs. [m/s]</param>
         /// <param name="maximumNrOfTimeSteps">The maximum number of time steps before the
@@ -20,11 +19,11 @@ namespace Simulator.Data
         /// is <see cref="double.NaN"/> or <see cref="double.PositiveInfinity"/>.</exception>
         /// <exception cref="ArgumentOutOfRangeException">Thrown when:
         /// <list type="bullet">
-        /// <paramref name="failureSpeed"/> &lt; 0
-        /// <paramref name="maximumNrOfTimeSteps"/> &lt;= 0
-        /// <paramref name="timeStep"/> &lt;= 0
+        /// <item><paramref name="failureSpeed"/> &lt; 0</item>item>
+        /// <item><paramref name="maximumNrOfTimeSteps"/> &lt;= 0</item>
+        /// <item><paramref name="timeStep"/> &lt;= 0</item>
         /// </list></exception>
-        public DistanceCalculatorSettings(int failureSpeed, int maximumNrOfTimeSteps, double timeStep)
+        public CalculationSettings(int failureSpeed, int maximumNrOfTimeSteps, double timeStep)
         {
             ValidateInput(failureSpeed, maximumNrOfTimeSteps, timeStep);
 

@@ -23,7 +23,7 @@ namespace Simulator.Calculator.Factories
             ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
             IIntegrator integrator,
             int nrOfFailedEngines, double density, double gravitationalAcceleration,
-            DistanceCalculatorSettings calculatorSettings)
+            CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
@@ -36,13 +36,13 @@ namespace Simulator.Calculator.Factories
                 takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data, nrOfFailedEngines,
                     density, gravitationalAcceleration);
 
-            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculatorSettings);
+            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);
         }
 
         public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(
             ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
             IIntegrator integrator,
-            double density, double gravitationalAcceleration, DistanceCalculatorSettings calculatorSettings)
+            double density, double gravitationalAcceleration, CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
@@ -54,7 +54,7 @@ namespace Simulator.Calculator.Factories
             var failureTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateAbortedTakeOffDynamics(data, density, gravitationalAcceleration);
 
-            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculatorSettings);
+            return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);
         }
     }
 }

@@ -3,7 +3,7 @@
 namespace Simulator.Data.TestUtil.Test
 {
     [TestFixture]
-    public class DistanceCalculatorSettingsTestFactoryTest
+    public class CalculationSettingsTestFactoryTest
     {
         private static bool IsConcreteNumber(double value)
         {
@@ -14,7 +14,7 @@ namespace Simulator.Data.TestUtil.Test
         public void CreateDistanceCalculatorSettings_Always_ReturnsExpectedValues()
         {
             // Call
-            var settings = DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings();
+            var settings = CalculationSettingsTestFactory.CreateDistanceCalculatorSettings();
 
             // Assert
             Assert.IsNotNull(settings);

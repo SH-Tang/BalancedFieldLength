@@ -25,7 +25,7 @@ namespace Simulator.Calculator.Test
 
             // Call
             TestDelegate call = () => new DistanceCalculator(null, failureTakeOffDynamicsCalculator, integrator,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -41,7 +41,7 @@ namespace Simulator.Calculator.Test
 
             // Call
             TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator, null, integrator,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -58,7 +58,7 @@ namespace Simulator.Calculator.Test
             // Call
             TestDelegate call = () => new DistanceCalculator(normalTakeOffDynamicsCalculator,
                 failureTakeOffDynamicsCalculator, null,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -98,7 +98,7 @@ namespace Simulator.Calculator.Test
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, 
                 failureTakeOffDynamicsCalculator,
                 integrator,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Call
             TestDelegate call = () => calculator.Calculate();
@@ -127,7 +127,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(CreateAircraftStateWithVelocity(failureSpeed + 0.1));
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed,
+            var calculatorSettings = new CalculationSettings(failureSpeed,
                 random.Next(),
                 timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator,
@@ -163,7 +163,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(CreateAircraftStateWithVelocity(failureSpeed));
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            var calculatorSettings = new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
                 integrator, calculatorSettings);
 
@@ -214,7 +214,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(states[0], states[1], states[2]);
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            var calculatorSettings = new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
                 integrator, calculatorSettings);
 
@@ -275,7 +275,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(states[0], states[1], states[2]);
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            var calculatorSettings = new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
                 integrator, calculatorSettings);
 
@@ -339,7 +339,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(states[0], states[1], states[2]);
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            var calculatorSettings = new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
                 integrator, calculatorSettings);
 
@@ -412,7 +412,7 @@ namespace Simulator.Calculator.Test
             integrator.Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep)
                 .Returns(states[0], states[1], states[2]);
 
-            var calculatorSettings = new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            var calculatorSettings = new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
             var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator,
                 integrator, calculatorSettings);
 

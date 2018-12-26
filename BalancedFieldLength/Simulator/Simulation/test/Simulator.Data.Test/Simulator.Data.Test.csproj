@@ -44,7 +44,7 @@
     <Compile Include="AerodynamicsDataTest.cs" />
     <Compile Include="AircraftDataTest.cs" />
     <Compile Include="AircraftStateTest.cs" />
-    <Compile Include="DistanceCalculatorSettingsTest.cs" />
+    <Compile Include="CalculationSettingsTest.cs" />
     <Compile Include="Helpers\AerodynamicsHelperTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

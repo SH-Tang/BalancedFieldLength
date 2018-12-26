@@ -5,7 +5,7 @@ using NUnit.Framework;
 namespace Simulator.Data.Test
 {
     [TestFixture]
-    public class DistanceCalculatorSettingsTest
+    public class CalculationSettingsTest
     {
         [Test]
         [TestCase(-1)]
@@ -17,7 +17,7 @@ namespace Simulator.Data.Test
             var timeStep = random.NextDouble();
 
             // Call
-            TestDelegate call = () => new DistanceCalculatorSettings(failureSpeed, nrOfTimeSteps, timeStep);
+            TestDelegate call = () => new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, "failureSpeed must be larger or equal to 0.");
@@ -34,7 +34,7 @@ namespace Simulator.Data.Test
             var timeStep = random.NextDouble();
 
             // Call
-            TestDelegate call = () => new DistanceCalculatorSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
+            TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, "maximumNrOfTimeSteps must be larger than 0.");
@@ -52,7 +52,7 @@ namespace Simulator.Data.Test
             var maximumNrOfTimeSteps = random.Next();
 
             // Call
-            TestDelegate call = () => new DistanceCalculatorSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
+            TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, "timeStep must be larger than 0.");
@@ -69,7 +69,7 @@ namespace Simulator.Data.Test
             var maximumNrOfTimeSteps = random.Next();
 
             // Call
-            TestDelegate call = () => new DistanceCalculatorSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
+            TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, "timeStep must be a concrete number and cannot be NaN or Infinity.");
@@ -85,7 +85,7 @@ namespace Simulator.Data.Test
             var timeStep = random.NextDouble();
 
             // Call
-            var settings = new DistanceCalculatorSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
+            var settings = new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
             
             // Assert
             Assert.AreEqual(failureSpeed, settings.FailureSpeed);

@@ -40,7 +40,7 @@ namespace Simulator.Calculator.Test.Factories
                 random.Next(),
                 random.NextDouble(),
                 random.NextDouble(),
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -81,7 +81,7 @@ namespace Simulator.Calculator.Test.Factories
                 nrOfFailedEngines,
                 density,
                 gravitationalAcceleration,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateAbortedTakeOffDynamics(
@@ -118,7 +118,7 @@ namespace Simulator.Calculator.Test.Factories
                 integrator,
                 random.NextDouble(),
                 random.NextDouble(),
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -157,7 +157,7 @@ namespace Simulator.Calculator.Test.Factories
                 integrator,
                 density,
                 gravitationalAcceleration,
-                DistanceCalculatorSettingsTestFactory.CreateDistanceCalculatorSettings());
+                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateContinuedTakeOffDynamicsCalculator(
