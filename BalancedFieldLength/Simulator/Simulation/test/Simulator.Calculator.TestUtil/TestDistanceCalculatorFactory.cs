@@ -7,7 +7,7 @@ namespace Simulator.Calculator.TestUtil
 {
     public class TestDistanceCalculatorFactory : IDistanceCalculatorFactory
     {
-        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+        public IDistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
                                                                            AircraftData data,
                                                                            IIntegrator integrator,
                                                                            int nrOfFailedEngines,
@@ -18,7 +18,7 @@ namespace Simulator.Calculator.TestUtil
             throw new NotImplementedException();
         }
 
-        public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+        public IDistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
                                                                          AircraftData data,
                                                                          IIntegrator integrator,
                                                                          double density,

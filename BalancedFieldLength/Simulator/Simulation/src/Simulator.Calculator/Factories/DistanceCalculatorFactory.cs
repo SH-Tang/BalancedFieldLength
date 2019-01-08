@@ -28,13 +28,13 @@ namespace Simulator.Calculator.Factories
             }
         }
 
-        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-                                                                           AircraftData data,
-                                                                           IIntegrator integrator,
-                                                                           int nrOfFailedEngines,
-                                                                           double density,
-                                                                           double gravitationalAcceleration,
-                                                                           CalculationSettings calculationSettings)
+        public IDistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+                                                                            AircraftData data,
+                                                                            IIntegrator integrator,
+                                                                            int nrOfFailedEngines,
+                                                                            double density,
+                                                                            double gravitationalAcceleration,
+                                                                            CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
@@ -54,12 +54,12 @@ namespace Simulator.Calculator.Factories
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);
         }
 
-        public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-                                                                         AircraftData data,
-                                                                         IIntegrator integrator,
-                                                                         double density,
-                                                                         double gravitationalAcceleration,
-                                                                         CalculationSettings calculationSettings)
+        public IDistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+                                                                          AircraftData data,
+                                                                          IIntegrator integrator,
+                                                                          double density,
+                                                                          double gravitationalAcceleration,
+                                                                          CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {

@@ -72,14 +72,13 @@ namespace Simulator.Calculator.Test.Factories
             IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
 
             // Call
-            DistanceCalculator calculator = factory.CreateContinuedTakeOffDistanceCalculator(
-                takeOffDynamicsCalculatorFactory,
-                aircraftData,
-                integrator,
-                nrOfFailedEngines,
-                density,
-                gravitationalAcceleration,
-                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
+            IDistanceCalculator calculator = factory.CreateContinuedTakeOffDistanceCalculator(takeOffDynamicsCalculatorFactory,
+                                                                                              aircraftData,
+                                                                                              integrator,
+                                                                                              nrOfFailedEngines,
+                                                                                              density,
+                                                                                              gravitationalAcceleration,
+                                                                                              CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
             takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateAbortedTakeOffDynamics(Arg.Any<AircraftData>(),
@@ -93,7 +92,7 @@ namespace Simulator.Calculator.Test.Factories
                                                                                                   Arg.Any<double>(),
                                                                                                   Arg.Any<double>());
 
-            Assert.IsNotNull(calculator);
+            Assert.IsInstanceOf<DistanceCalculator>(calculator);
         }
 
         [Test]
@@ -145,20 +144,18 @@ namespace Simulator.Calculator.Test.Factories
             IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
 
             // Call
-            DistanceCalculator calculator = factory.CreateAbortedTakeOffDistanceCalculator(
-                takeOffDynamicsCalculatorFactory,
-                aircraftData,
-                integrator,
-                density,
-                gravitationalAcceleration,
-                CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
+            IDistanceCalculator calculator = factory.CreateAbortedTakeOffDistanceCalculator(takeOffDynamicsCalculatorFactory,
+                                                                                            aircraftData,
+                                                                                            integrator,
+                                                                                            density,
+                                                                                            gravitationalAcceleration,
+                                                                                            CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
 
             // Assert
-            takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateContinuedTakeOffDynamicsCalculator(
-                Arg.Any<AircraftData>(),
-                Arg.Any<int>(),
-                Arg.Any<double>(),
-                Arg.Any<double>());
+            takeOffDynamicsCalculatorFactory.DidNotReceiveWithAnyArgs().CreateContinuedTakeOffDynamicsCalculator(Arg.Any<AircraftData>(),
+                                                                                                                 Arg.Any<int>(),
+                                                                                                                 Arg.Any<double>(),
+                                                                                                                 Arg.Any<double>());
             takeOffDynamicsCalculatorFactory.Received(1).CreateNormalTakeOffDynamics(Arg.Any<AircraftData>(),
                                                                                      Arg.Any<double>(),
                                                                                      Arg.Any<double>());
@@ -166,7 +163,7 @@ namespace Simulator.Calculator.Test.Factories
                                                                                       Arg.Any<double>(),
                                                                                       Arg.Any<double>());
 
-            Assert.IsNotNull(calculator);
+            Assert.IsInstanceOf<DistanceCalculator>(calculator);
         }
     }
 }
