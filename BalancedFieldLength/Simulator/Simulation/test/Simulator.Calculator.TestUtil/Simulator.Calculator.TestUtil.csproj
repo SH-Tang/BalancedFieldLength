@@ -35,6 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CreateAbortedTakeOffDistanceCalculatorInput.cs" />
+    <Compile Include="CreateContinuedTakeOffDistanceCalculatorInput.cs" />
     <Compile Include="DistanceCalculatorFactoryConfig.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDistanceCalculatorFactory.cs" />
