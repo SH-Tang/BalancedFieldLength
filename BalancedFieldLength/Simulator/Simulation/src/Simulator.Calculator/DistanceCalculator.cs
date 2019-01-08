@@ -72,7 +72,7 @@ namespace Simulator.Calculator
         /// or comes to a standstill.
         /// </summary>
         /// <returns>The <see cref="DistanceCalculatorOutput"/> with the calculated result.</returns>
-        /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the output.</exception>
+        /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the covered distance.</exception>
         public DistanceCalculatorOutput Calculate()
         {
             var state = new AircraftState();
@@ -94,11 +94,16 @@ namespace Simulator.Calculator
 
                 if (state.Height >= screenHeight || state.TrueAirspeed <= 0)
                 {
+                    if (!hasFailureOccurred)
+                    {
+                        throw new CalculatorException("Calculation converged before failure occurred.");
+                    }
+
                     return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred, true);
                 }
             }
 
-            return new DistanceCalculatorOutput(failureSpeed, double.NaN, hasFailureOccurred, false);
+            throw new CalculatorException("Calculation did not converge.");
         }
     }
 }

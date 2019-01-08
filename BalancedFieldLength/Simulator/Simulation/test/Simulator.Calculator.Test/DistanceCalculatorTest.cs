@@ -150,7 +150,7 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
-        public void Calculate_MaximumIterationsHit_ReturnsExpectedOutput()
+        public void Calculate_MaximumIterationsHit_ThrowsCalculatorException()
         {
             // Setup
             var random = new Random(21);
@@ -174,20 +174,18 @@ namespace Simulator.Calculator.Test
                                                     integrator, calculatorSettings);
 
             // Call
-            DistanceCalculatorOutput output = calculator.Calculate();
+            TestDelegate call = () => calculator.Calculate();
 
             // Assert
+            var exception = Assert.Throws<CalculatorException>(call);
+            Assert.AreEqual("Calculation did not converge.", exception.Message);
+
             integrator.ReceivedWithAnyArgs(nrOfTimeSteps)
                       .Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
-
-            Assert.AreEqual(failureSpeed, output.FailureSpeed);
-            Assert.IsNaN(output.Distance);
-            Assert.IsFalse(output.CalculationConverged);
         }
 
         [Test]
-        public void
-            GivenCalculator_WhenCalculatingAndSolutionConvergesWithHeightAboveScreenHeightDuringNormalTakeOff_ThenCallsInExpectedOrderAndOutputReturned()
+        public void GivenCalculator_WhenCalculatingAndSolutionConvergesWithHeightAboveScreenHeightDuringNormalTakeOff_ThenCallsInExpectedOrderAndThrowsCalculatorException()
         {
             // Given
             var random = new Random(21);
@@ -225,9 +223,12 @@ namespace Simulator.Calculator.Test
                                                     integrator, calculatorSettings);
 
             // When
-            DistanceCalculatorOutput output = calculator.Calculate();
+            TestDelegate call = () => calculator.Calculate();
 
             // Then
+            var exception = Assert.Throws<CalculatorException>(call);
+            Assert.AreEqual("Calculation converged before failure occurred.", exception.Message);
+
             failureTakeOffDynamicsCalculator.DidNotReceiveWithAnyArgs().Calculate(Arg.Any<AircraftState>());
             normalTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
@@ -240,15 +241,10 @@ namespace Simulator.Calculator.Test
 
                                  // Do not expect additional calls after the second state was returned
                              });
-
-            Assert.AreEqual(states.Last().Distance, output.Distance);
-            Assert.AreEqual(failureSpeed, output.FailureSpeed);
-            Assert.IsTrue(output.ConvergenceBeforeFailure);
-            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
-        public void GivenCalculator_WhenCalculatingAndSolutionConvergesWithVelocityZeroDuringNormalTakeOff_ThenCallsInExpectedOrderAndOutputReturned()
+        public void GivenCalculator_WhenCalculatingAndSolutionConvergesWithVelocityZeroDuringNormalTakeOff_ThenCallsInExpectedOrderAnThrowsCalculatorException()
         {
             // Given
             var random = new Random(21);
@@ -284,9 +280,12 @@ namespace Simulator.Calculator.Test
                                                     integrator, calculatorSettings);
 
             // When
-            DistanceCalculatorOutput output = calculator.Calculate();
+            TestDelegate call = () => calculator.Calculate();
 
             // Then
+            var exception = Assert.Throws<CalculatorException>(call);
+            Assert.AreEqual("Calculation converged before failure occurred.", exception.Message);
+
             failureTakeOffDynamicsCalculator.DidNotReceiveWithAnyArgs().Calculate(Arg.Any<AircraftState>());
             normalTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
@@ -301,11 +300,6 @@ namespace Simulator.Calculator.Test
 
                                  // Do not expect additional calls after the second state was returned
                              });
-
-            Assert.AreEqual(states.Last().Distance, output.Distance);
-            Assert.AreEqual(failureSpeed, output.FailureSpeed);
-            Assert.IsTrue(output.ConvergenceBeforeFailure);
-            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
