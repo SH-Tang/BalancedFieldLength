@@ -33,6 +33,21 @@ namespace Simulator.Data
         }
 
         /// <summary>
+        /// Gets the failure speed. [m/s]
+        /// </summary>
+        public int FailureSpeed { get; }
+
+        /// <summary>
+        /// Gets the maximum number of time steps before the calculator times out.
+        /// </summary>
+        public int MaximumNrOfTimeSteps { get; }
+
+        /// <summary>
+        /// Gets the amount of seconds a time step represents. [s]
+        /// </summary>
+        public double TimeStep { get; }
+
+        /// <summary>
         /// Validates the numeric input.
         /// </summary>
         /// <param name="failureSpeed">The speed at which a failure occurs. [m/s]</param>
@@ -55,20 +70,5 @@ namespace Simulator.Data
             NumberValidator.ValidateParameterLargerThanZero(timeStep, nameof(timeStep));
             NumberValidator.ValidateValueIsConcreteNumber(timeStep, nameof(timeStep));
         }
-
-        /// <summary>
-        /// Gets the failure speed. [m/s]
-        /// </summary>
-        public int FailureSpeed { get; }
-
-        /// <summary>
-        /// Gets the maximum number of time steps before the calculator times out.
-        /// </summary>
-        public int MaximumNrOfTimeSteps { get; }
-
-        /// <summary>
-        /// Gets the amount of seconds a time step represents. [s]
-        /// </summary>
-        public double TimeStep { get; }
     }
 }

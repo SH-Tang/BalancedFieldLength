@@ -34,13 +34,13 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         public AerodynamicsData(double aspectRatio, double wingArea,
-            Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
-            double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure,
-            double oswaldFactor)
+                                Angle zeroLiftAngleOfAttack, double liftCoefficientGradient, double maximumLiftCoefficient,
+                                double restDragCoefficientWithoutEngineFailure, double restDragCoefficientWithEngineFailure,
+                                double oswaldFactor)
         {
             ValidateInput(aspectRatio, wingArea,
-                zeroLiftAngleOfAttack, liftCoefficientGradient, maximumLiftCoefficient,
-                restDragCoefficientWithoutEngineFailure, restDragCoefficientWithEngineFailure, oswaldFactor);
+                          zeroLiftAngleOfAttack, liftCoefficientGradient, maximumLiftCoefficient,
+                          restDragCoefficientWithoutEngineFailure, restDragCoefficientWithEngineFailure, oswaldFactor);
 
             AspectRatio = aspectRatio;
             WingArea = wingArea;
@@ -125,9 +125,9 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         private static void ValidateInput(double aspectRatio, double wingArea, Angle zeroLiftAngleOfAttack,
-            double liftCoefficientGradient, double maximumLiftCoefficient,
-            double restDragCoefficientWithoutEngineFailure,
-            double restDragCoefficientWithEngineFailure, double oswaldFactor)
+                                          double liftCoefficientGradient, double maximumLiftCoefficient,
+                                          double restDragCoefficientWithoutEngineFailure,
+                                          double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
             NumberValidator.ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
             NumberValidator.ValidateValueIsConcreteNumber(aspectRatio, nameof(aspectRatio));
@@ -144,14 +144,14 @@ namespace Simulator.Data
             NumberValidator.ValidateValueIsConcreteNumber(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
 
             NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
-                nameof(restDragCoefficientWithoutEngineFailure));
+                                                                 nameof(restDragCoefficientWithoutEngineFailure));
             NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithoutEngineFailure,
-                nameof(restDragCoefficientWithoutEngineFailure));
+                                                          nameof(restDragCoefficientWithoutEngineFailure));
 
             NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
-                nameof(restDragCoefficientWithEngineFailure));
+                                                                 nameof(restDragCoefficientWithEngineFailure));
             NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithEngineFailure,
-                nameof(restDragCoefficientWithEngineFailure));
+                                                          nameof(restDragCoefficientWithEngineFailure));
 
             NumberValidator.ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
             NumberValidator.ValidateValueIsConcreteNumber(oswaldFactor, nameof(oswaldFactor));

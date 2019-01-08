@@ -27,9 +27,9 @@ namespace Core.Common.TestUtil
             if (exception.ParamName != null)
             {
                 List<string> customMessageParts = message.Split(new[]
-                {
-                    Environment.NewLine
-                }, StringSplitOptions.None).ToList();
+                                                                {
+                                                                    Environment.NewLine
+                                                                }, StringSplitOptions.None).ToList();
                 customMessageParts.RemoveAt(customMessageParts.Count - 1);
 
                 message = string.Join(Environment.NewLine, customMessageParts.ToArray());

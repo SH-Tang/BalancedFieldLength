@@ -37,10 +37,10 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         public AircraftData(int nrOfEngines, double maximumThrustPerEngine,
-            double takeOffWeight,
-            Angle pitchAngleGradient, Angle maximumPitchAngle,
-            double rollingResistanceCoefficient, double brakingResistanceCoefficient,
-            AerodynamicsData aerodynamicsData)
+                            double takeOffWeight,
+                            Angle pitchAngleGradient, Angle maximumPitchAngle,
+                            double rollingResistanceCoefficient, double brakingResistanceCoefficient,
+                            AerodynamicsData aerodynamicsData)
         {
             if (aerodynamicsData == null)
             {
@@ -48,8 +48,8 @@ namespace Simulator.Data
             }
 
             ValidateInput(nrOfEngines, maximumThrustPerEngine, takeOffWeight,
-                pitchAngleGradient, maximumPitchAngle,
-                rollingResistanceCoefficient, brakingResistanceCoefficient);
+                          pitchAngleGradient, maximumPitchAngle,
+                          rollingResistanceCoefficient, brakingResistanceCoefficient);
 
             NrOfEngines = nrOfEngines;
             MaximumThrustPerEngine = maximumThrustPerEngine;
@@ -130,8 +130,8 @@ namespace Simulator.Data
         /// </list>
         /// </exception>
         private static void ValidateInput(int nrOfEngines, double maximumThrustPerEngine, double takeOffWeight,
-            Angle pitchAngleGradient, Angle maximumPitchAngle, double rollingResistanceCoefficient,
-            double brakingResistanceCoefficient)
+                                          Angle pitchAngleGradient, Angle maximumPitchAngle, double rollingResistanceCoefficient,
+                                          double brakingResistanceCoefficient)
         {
             NumberValidator.ValidateParameterLargerThanZero(nrOfEngines, nameof(nrOfEngines));
 
@@ -148,14 +148,14 @@ namespace Simulator.Data
             NumberValidator.ValidateValueIsConcreteNumber(maximumPitchAngle, nameof(maximumPitchAngle));
 
             NumberValidator.ValidateParameterLargerOrEqualToZero(rollingResistanceCoefficient,
-                nameof(rollingResistanceCoefficient));
+                                                                 nameof(rollingResistanceCoefficient));
             NumberValidator.ValidateValueIsConcreteNumber(rollingResistanceCoefficient,
-                nameof(rollingResistanceCoefficient));
+                                                          nameof(rollingResistanceCoefficient));
 
             NumberValidator.ValidateParameterLargerOrEqualToZero(brakingResistanceCoefficient,
-                nameof(brakingResistanceCoefficient));
+                                                                 nameof(brakingResistanceCoefficient));
             NumberValidator.ValidateValueIsConcreteNumber(brakingResistanceCoefficient,
-                nameof(brakingResistanceCoefficient));
+                                                          nameof(brakingResistanceCoefficient));
         }
     }
 }

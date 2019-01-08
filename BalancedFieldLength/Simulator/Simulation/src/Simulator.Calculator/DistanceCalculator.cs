@@ -11,12 +11,11 @@ namespace Simulator.Calculator
     /// </summary>
     public class DistanceCalculator
     {
+        private const double screenHeight = 10.7;
         private readonly INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator;
         private readonly IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator;
         private readonly IIntegrator integrator;
         private readonly CalculationSettings calculationSettings;
-
-        private const double screenHeight = 10.7;
 
         /// <summary>
         /// Creates a new instance of <see cref="DistanceCalculator"/>.
@@ -38,8 +37,9 @@ namespace Simulator.Calculator
         /// </list>
         /// is <c>null</c>.</exception>
         public DistanceCalculator(INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator,
-            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator,
-            IIntegrator integrator, CalculationSettings calculationSettings)
+                                  IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator,
+                                  IIntegrator integrator,
+                                  CalculationSettings calculationSettings)
         {
             if (normalTakeOffDynamicsCalculator == null)
             {
@@ -75,15 +75,15 @@ namespace Simulator.Calculator
         /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the output.</exception>
         public DistanceCalculatorOutput Calculate()
         {
-            AircraftState state = new AircraftState();
+            var state = new AircraftState();
             bool hasFailureOccurred = false;
             int failureSpeed = calculationSettings.FailureSpeed;
 
             for (int i = 0; i < calculationSettings.MaximumNrOfTimeSteps; i++)
             {
                 AircraftAccelerations accelerations = hasFailureOccurred
-                    ? failureTakeOffDynamicsCalculator.Calculate(state)
-                    : normalTakeOffDynamicsCalculator.Calculate(state);
+                                                          ? failureTakeOffDynamicsCalculator.Calculate(state)
+                                                          : normalTakeOffDynamicsCalculator.Calculate(state);
 
                 state = integrator.Integrate(state, accelerations, calculationSettings.TimeStep);
 

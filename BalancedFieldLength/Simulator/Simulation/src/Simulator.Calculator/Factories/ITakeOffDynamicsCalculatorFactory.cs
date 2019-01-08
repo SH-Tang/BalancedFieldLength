@@ -18,9 +18,9 @@ namespace Simulator.Calculator.Factories
         /// <returns>An instance of <see cref="INormalTakeOffDynamicsCalculator"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
         /// is <c>null</c>.</exception>
-        INormalTakeOffDynamicsCalculator CreateNormalTakeOffDynamics(AircraftData data, 
-            double density, 
-            double gravitationalAcceleration);
+        INormalTakeOffDynamicsCalculator CreateNormalTakeOffDynamics(AircraftData data,
+                                                                     double density,
+                                                                     double gravitationalAcceleration);
 
         /// <summary>
         /// Creates an instance of <see cref="IFailureTakeOffDynamicsCalculator"/> representing
@@ -33,8 +33,8 @@ namespace Simulator.Calculator.Factories
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
         /// is <c>null</c>.</exception>
         IFailureTakeOffDynamicsCalculator CreateAbortedTakeOffDynamics(AircraftData data,
-            double density,
-            double gravitationalAcceleration);
+                                                                       double density,
+                                                                       double gravitationalAcceleration);
 
         /// <summary>
         /// Creates an instance of <see cref="IFailureTakeOffDynamicsCalculator"/> representing
@@ -47,9 +47,9 @@ namespace Simulator.Calculator.Factories
         /// <returns>An instance of <see cref="INormalTakeOffDynamicsCalculator"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
         /// is <c>null</c>.</exception>
-        IFailureTakeOffDynamicsCalculator CreateContinuedTakeOffDynamicsCalculator(AircraftData data, 
-            int nrOfFailedEngines, 
-            double density,
-            double gravitationalAcceleration);
+        IFailureTakeOffDynamicsCalculator CreateContinuedTakeOffDynamicsCalculator(AircraftData data,
+                                                                                   int nrOfFailedEngines,
+                                                                                   double density,
+                                                                                   double gravitationalAcceleration);
     }
 }

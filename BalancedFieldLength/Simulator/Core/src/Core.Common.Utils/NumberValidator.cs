@@ -92,7 +92,7 @@ namespace Core.Common.Utils
         /// is <see cref="double.NaN"/>, <see cref="double.PositiveInfinity"/> or <see cref="double.NegativeInfinity"/>.</exception>
         public static void ValidateValueIsConcreteNumber(Angle value, string propertyName)
         {
-            var radians = value.Radians;
+            double radians = value.Radians;
             if (double.IsNaN(radians) || double.IsInfinity(radians))
             {
                 throw new ArgumentException($"{propertyName} must be a concrete number and cannot be NaN or Infinity.");

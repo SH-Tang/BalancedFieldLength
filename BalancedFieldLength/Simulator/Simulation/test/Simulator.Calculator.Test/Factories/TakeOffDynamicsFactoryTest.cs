@@ -2,6 +2,7 @@
 using NUnit.Framework;
 using Simulator.Calculator.Factories;
 using Simulator.Calculator.TakeOffDynamics;
+using Simulator.Data;
 using Simulator.Data.TestUtil;
 
 namespace Simulator.Calculator.Test.Factories
@@ -13,7 +14,7 @@ namespace Simulator.Calculator.Test.Factories
         public void Instance__Always_ReturnsAFactoryInstance()
         {
             // Call
-            var factory = TakeOffDynamicsFactory.Instance;
+            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
 
             // Assert
             Assert.IsInstanceOf<ITakeOffDynamicsCalculatorFactory>(factory);
@@ -24,14 +25,14 @@ namespace Simulator.Calculator.Test.Factories
         {
             // Setup
             var random = new Random(21);
-            var aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = TakeOffDynamicsFactory.Instance;
+            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
 
             // Call
             INormalTakeOffDynamicsCalculator calculator = factory.CreateNormalTakeOffDynamics(aircraftData,
-                random.NextDouble(), 
-                random.NextDouble());
+                                                                                              random.NextDouble(),
+                                                                                              random.NextDouble());
 
             // Assert
             Assert.IsInstanceOf<NormalTakeOffDynamicsCalculator>(calculator);
@@ -42,14 +43,14 @@ namespace Simulator.Calculator.Test.Factories
         {
             // Setup
             var random = new Random(21);
-            var aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = TakeOffDynamicsFactory.Instance;
+            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateAbortedTakeOffDynamics(aircraftData,
-                random.NextDouble(),
-                random.NextDouble());
+                                                                                                random.NextDouble(),
+                                                                                                random.NextDouble());
 
             // Assert
             Assert.IsInstanceOf<AbortedTakeOffDynamicsCalculator>(calculator);
@@ -60,15 +61,15 @@ namespace Simulator.Calculator.Test.Factories
         {
             // Setup
             var random = new Random(21);
-            var aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
+            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = TakeOffDynamicsFactory.Instance;
+            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateContinuedTakeOffDynamicsCalculator(aircraftData,
-                random.Next(),
-                random.NextDouble(), 
-                random.NextDouble());
+                                                                                                            random.Next(),
+                                                                                                            random.NextDouble(),
+                                                                                                            random.NextDouble());
 
             // Assert
             Assert.IsInstanceOf<ContinuedTakeOffDynamicsCalculator>(calculator);

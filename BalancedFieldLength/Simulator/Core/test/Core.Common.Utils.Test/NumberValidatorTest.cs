@@ -77,7 +77,7 @@ namespace Core.Common.Utils.Test
         {
             // Setup
             const string propertyName = "name";
-            var angle = Angle.FromRadians(invalidValue);
+            Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
             TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(angle, propertyName);
@@ -94,7 +94,7 @@ namespace Core.Common.Utils.Test
         {
             // Setup
             const string propertyName = "name";
-            var angle = Angle.FromDegrees(validValue);
+            Angle angle = Angle.FromDegrees(validValue);
 
             // Call
             TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(angle, propertyName);
@@ -158,7 +158,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             var random = new Random(21);
-            var validValue = random.NextDouble();
+            double validValue = random.NextDouble();
 
             // Call
             TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(validValue, propertyName);
@@ -175,7 +175,7 @@ namespace Core.Common.Utils.Test
         {
             // Setup
             const string propertyName = "name";
-            var angle = Angle.FromRadians(invalidValue);
+            Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
             TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(angle, propertyName);
@@ -191,7 +191,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             var random = new Random(21);
-            var validValue = random.NextAngle();
+            Angle validValue = random.NextAngle();
 
             // Call
             TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(validValue, propertyName);
@@ -199,6 +199,5 @@ namespace Core.Common.Utils.Test
             // Assert
             Assert.DoesNotThrow(call);
         }
-
     }
 }

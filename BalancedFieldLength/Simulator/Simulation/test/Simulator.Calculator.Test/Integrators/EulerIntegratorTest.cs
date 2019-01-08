@@ -27,8 +27,7 @@ namespace Simulator.Calculator.Test.Integrators
             var random = new Random(21);
 
             // Call
-            TestDelegate call = () =>
-                new EulerIntegrator().Integrate(null, CreateAircraftAccelerations(), random.NextDouble());
+            TestDelegate call = () => new EulerIntegrator().Integrate(null, CreateAircraftAccelerations(), random.NextDouble());
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -54,24 +53,24 @@ namespace Simulator.Calculator.Test.Integrators
         {
             // Setup
             var random = new Random(21);
-            var state = CreateAircraftState();
-            var accelerations = CreateAircraftAccelerations();
-            var timeStep = random.NextDouble();
+            AircraftState state = CreateAircraftState();
+            AircraftAccelerations accelerations = CreateAircraftAccelerations();
+            double timeStep = random.NextDouble();
 
             // Call
-            var resultingState = new EulerIntegrator().Integrate(state, accelerations, timeStep);
+            AircraftState resultingState = new EulerIntegrator().Integrate(state, accelerations, timeStep);
 
             // Assert
             Assert.AreEqual(ExpectedIntegratedValue(state.Height, accelerations.ClimbRate, timeStep),
-                resultingState.Height);
+                            resultingState.Height);
             Assert.AreEqual(ExpectedIntegratedValue(state.TrueAirspeed, accelerations.TrueAirSpeedRate, timeStep),
-                resultingState.TrueAirspeed);
+                            resultingState.TrueAirspeed);
             Assert.AreEqual(ExpectedIntegratedValue(state.Distance, state.TrueAirspeed, timeStep),
-                resultingState.Distance);
+                            resultingState.Distance);
             Assert.AreEqual(ExpectedIntegratedValue(state.FlightPathAngle, accelerations.FlightPathRate, timeStep),
-                resultingState.FlightPathAngle);
+                            resultingState.FlightPathAngle);
             Assert.AreEqual(ExpectedIntegratedValue(state.PitchAngle, accelerations.PitchRate, timeStep),
-                resultingState.PitchAngle);
+                            resultingState.PitchAngle);
         }
 
         private static double ExpectedIntegratedValue(double state, double timeDerivative, double timeStep)
@@ -81,28 +80,27 @@ namespace Simulator.Calculator.Test.Integrators
 
         private static Angle ExpectedIntegratedValue(Angle state, Angle timeDerivative, double timeStep)
         {
-            var integratedAngleInRadians = ExpectedIntegratedValue(state.Radians, timeDerivative.Radians, timeStep);
+            double integratedAngleInRadians = ExpectedIntegratedValue(state.Radians, timeDerivative.Radians, timeStep);
             return Angle.FromRadians(integratedAngleInRadians);
         }
-
 
         private static AircraftState CreateAircraftState()
         {
             var random = new Random(21);
             return new AircraftState(random.NextAngle(),
-                random.NextAngle(),
-                random.NextDouble(),
-                random.NextDouble(),
-                random.NextDouble());
+                                     random.NextAngle(),
+                                     random.NextDouble(),
+                                     random.NextDouble(),
+                                     random.NextDouble());
         }
 
         private static AircraftAccelerations CreateAircraftAccelerations()
         {
             var random = new Random(21);
             return new AircraftAccelerations(random.NextAngle(),
-                random.NextDouble(),
-                random.NextDouble(),
-                random.NextAngle());
+                                             random.NextDouble(),
+                                             random.NextDouble(),
+                                             random.NextAngle());
         }
     }
 }

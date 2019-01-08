@@ -24,8 +24,8 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
         protected TakeOffDynamicsCalculatorBase(AircraftData aircraftData,
-                                                 double density,
-                                                 double gravitationalAcceleration)
+                                                double density,
+                                                double gravitationalAcceleration)
         {
             if (aircraftData == null)
             {
@@ -59,9 +59,9 @@ namespace Simulator.Calculator.TakeOffDynamics
             try
             {
                 return new AircraftAccelerations(CalculatePitchRate(aircraftState),
-                    CalculateClimbRate(aircraftState),
-                    CalculateTrueAirSpeedRate(aircraftState),
-                    CalculateFlightPathAngleRate(aircraftState));
+                                                 CalculateClimbRate(aircraftState),
+                                                 CalculateTrueAirSpeedRate(aircraftState),
+                                                 CalculateFlightPathAngleRate(aircraftState));
             }
             catch (InvalidCalculationException e)
             {

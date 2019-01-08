@@ -5,22 +5,22 @@ namespace Simulator.Data.TestUtil.Test
     [TestFixture]
     public class CalculationSettingsTestFactoryTest
     {
-        private static bool IsConcreteNumber(double value)
-        {
-            return !double.IsInfinity(value) && !double.IsNaN(value);
-        }
-
         [Test]
         public void CreateDistanceCalculatorSettings_Always_ReturnsExpectedValues()
         {
             // Call
-            var settings = CalculationSettingsTestFactory.CreateDistanceCalculatorSettings();
+            CalculationSettings settings = CalculationSettingsTestFactory.CreateDistanceCalculatorSettings();
 
             // Assert
             Assert.IsNotNull(settings);
             Assert.Greater(settings.FailureSpeed, 0);
             Assert.Greater(settings.MaximumNrOfTimeSteps, 0);
             Assert.IsTrue(IsConcreteNumber(settings.TimeStep));
+        }
+
+        private static bool IsConcreteNumber(double value)
+        {
+            return !double.IsInfinity(value) && !double.IsNaN(value);
         }
     }
 }

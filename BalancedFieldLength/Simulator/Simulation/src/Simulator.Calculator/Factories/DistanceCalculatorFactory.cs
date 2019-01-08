@@ -1,5 +1,6 @@
 ﻿using System;
 using Simulator.Calculator.Integrators;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 
 namespace Simulator.Calculator.Factories
@@ -16,42 +17,53 @@ namespace Simulator.Calculator.Factories
         /// </summary>
         public static IDistanceCalculatorFactory Instance
         {
-            get { return instance ?? (instance = new DistanceCalculatorFactory()); }
+            get
+            {
+                return instance ?? (instance = new DistanceCalculatorFactory());
+            }
         }
 
-        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(
-            ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
-            IIntegrator integrator,
-            int nrOfFailedEngines, double density, double gravitationalAcceleration,
-            CalculationSettings calculationSettings)
+        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, 
+                                                                           AircraftData data,
+                                                                           IIntegrator integrator,
+                                                                           int nrOfFailedEngines,
+                                                                           double density,
+                                                                           double gravitationalAcceleration,
+                                                                           CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
                 throw new ArgumentNullException(nameof(takeOffDynamicsCalculatorFactory));
             }
 
-            var normalTakeOffDynamicsCalculator =
-                takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
-            var failureTakeOffDynamicsCalculator =
-                takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data, nrOfFailedEngines,
-                    density, gravitationalAcceleration);
+            INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
+                takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data,
+                                                                             density,
+                                                                             gravitationalAcceleration);
+            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =
+                takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data,
+                                                                                          nrOfFailedEngines,
+                                                                                          density,
+                                                                                          gravitationalAcceleration);
 
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);
         }
 
-        public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(
-            ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, AircraftData data,
-            IIntegrator integrator,
-            double density, double gravitationalAcceleration, CalculationSettings calculationSettings)
+        public DistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+                                                                         AircraftData data,
+                                                                         IIntegrator integrator,
+                                                                         double density,
+                                                                         double gravitationalAcceleration,
+                                                                         CalculationSettings calculationSettings)
         {
             if (takeOffDynamicsCalculatorFactory == null)
             {
                 throw new ArgumentNullException(nameof(takeOffDynamicsCalculatorFactory));
             }
 
-            var normalTakeOffDynamicsCalculator =
+            INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
-            var failureTakeOffDynamicsCalculator =
+            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateAbortedTakeOffDynamics(data, density, gravitationalAcceleration);
 
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);

@@ -20,12 +20,12 @@ namespace Simulator.Calculator.Integrators
             {
                 throw new ArgumentNullException(nameof(accelerations));
             }
-            
+
             return new AircraftState(IntegrateState(state.PitchAngle, accelerations.PitchRate, timeStep),
-                IntegrateState(state.FlightPathAngle, accelerations.FlightPathRate, timeStep),
-                IntegrateState(state.TrueAirspeed, accelerations.TrueAirSpeedRate, timeStep),
-                IntegrateState(state.Height, accelerations.ClimbRate, timeStep),
-                IntegrateState(state.Distance, state.TrueAirspeed, timeStep));
+                                     IntegrateState(state.FlightPathAngle, accelerations.FlightPathRate, timeStep),
+                                     IntegrateState(state.TrueAirspeed, accelerations.TrueAirSpeedRate, timeStep),
+                                     IntegrateState(state.Height, accelerations.ClimbRate, timeStep),
+                                     IntegrateState(state.Distance, state.TrueAirspeed, timeStep));
         }
 
         private static double IntegrateState(double state, double timeDerivative, double timeStep)
@@ -35,7 +35,7 @@ namespace Simulator.Calculator.Integrators
 
         private static Angle IntegrateState(Angle state, Angle timeDerivative, double timeStep)
         {
-            var integratedAngleInRadians = IntegrateState(state.Radians, timeDerivative.Radians, timeStep);
+            double integratedAngleInRadians = IntegrateState(state.Radians, timeDerivative.Radians, timeStep);
             return Angle.FromRadians(integratedAngleInRadians);
         }
     }

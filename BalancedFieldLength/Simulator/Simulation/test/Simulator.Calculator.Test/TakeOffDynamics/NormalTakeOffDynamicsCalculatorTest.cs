@@ -46,7 +46,7 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 var aircraftState = new AircraftState(aircraftData.MaximumPitchAngle,
                                                       random.NextAngle(),
                                                       airspeed,
-                                                      threshold, 
+                                                      threshold,
                                                       random.NextDouble());
 
                 Angle angleOfAttack = aircraftState.PitchAngle - aircraftState.FlightPathAngle;
@@ -243,7 +243,6 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 Assert.Zero(accelerations.PitchRate.Degrees);
             }
 
-
             private static double GetRotationSpeed(AircraftData aircraftData)
             {
                 double stallSpeed = AerodynamicsHelper.CalculateStallSpeed(aircraftData.AerodynamicsData,
@@ -253,6 +252,5 @@ namespace Simulator.Calculator.Test.TakeOffDynamics
                 return rotationSpeed;
             }
         }
-
     }
 }

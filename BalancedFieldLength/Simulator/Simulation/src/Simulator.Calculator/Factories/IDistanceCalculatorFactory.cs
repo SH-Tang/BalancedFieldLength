@@ -26,13 +26,13 @@ namespace Simulator.Calculator.Factories
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="takeOffDynamicsCalculatorFactory"/>,
         /// <paramref name="data"/> or <paramref name="integrator"/> is <c>null</c>.</exception>
-        DistanceCalculator CreateContinuedTakeOffDistanceCalculator(
-            ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-            AircraftData data,
-            IIntegrator integrator,
-            int nrOfFailedEngines,
-            double density,
-            double gravitationalAcceleration, CalculationSettings calculationSettings);
+        DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+                                                                    AircraftData data,
+                                                                    IIntegrator integrator,
+                                                                    int nrOfFailedEngines,
+                                                                    double density,
+                                                                    double gravitationalAcceleration, 
+                                                                    CalculationSettings calculationSettings);
 
         /// <summary>
         /// Creates a configured instance of <see cref="DistanceCalculator"/> that calculates the
@@ -50,12 +50,11 @@ namespace Simulator.Calculator.Factories
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="takeOffDynamicsCalculatorFactory"/>,
         /// <paramref name="data"/> or <paramref name="integrator"/> is <c>null</c>.</exception>
-        DistanceCalculator CreateAbortedTakeOffDistanceCalculator(
-            ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-            AircraftData data,
-            IIntegrator integrator,
-            double density,
-            double gravitationalAcceleration,
-            CalculationSettings calculationSettings);
+        DistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+                                                                  AircraftData data,
+                                                                  IIntegrator integrator,
+                                                                  double density,
+                                                                  double gravitationalAcceleration,
+                                                                  CalculationSettings calculationSettings);
     }
 }

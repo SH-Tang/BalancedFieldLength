@@ -12,19 +12,14 @@ namespace Simulator.Data.Exceptions
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorException"/> class.
         /// </summary>
-        public CalculatorException()
-        {
-        }
+        public CalculatorException() {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorException"/> class 
         /// with a specified error message.
         /// </summary>
         /// <param name="message">The message that describes the error.</param>
-        public CalculatorException(string message)
-            : base(message)
-        {
-        }
+        public CalculatorException(string message) : base(message) {}
 
         /// <summary>
         /// Initializes a new instance of the <see cref="CalculatorException"/> class with a specified error message 
@@ -33,9 +28,7 @@ namespace Simulator.Data.Exceptions
         /// <param name="message">The error message that explains the reason for the exception.</param>
         /// <param name="innerException">The exception that is the cause of the current exception,
         /// or <c>null</c> if no inner exception is specified.</param>
-        public CalculatorException(string message, Exception innerException) : base(message, innerException)
-        {
-        }
+        public CalculatorException(string message, Exception innerException) : base(message, innerException) {}
 
         /// <summary>
         /// Initializes a new instance of <see cref="CalculatorException"/> with
@@ -48,8 +41,6 @@ namespace Simulator.Data.Exceptions
         /// <c>null</c>.</exception>
         /// <exception cref="SerializationException">The class name is <c>null</c> or
         /// <see cref="Exception.HResult" /> is zero (0).</exception>
-        protected CalculatorException(SerializationInfo info, StreamingContext context) : base(info, context)
-        {
-        }
+        protected CalculatorException(SerializationInfo info, StreamingContext context) : base(info, context) {}
     }
 }

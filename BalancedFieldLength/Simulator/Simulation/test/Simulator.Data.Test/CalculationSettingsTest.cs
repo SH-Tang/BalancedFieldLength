@@ -13,8 +13,8 @@ namespace Simulator.Data.Test
         {
             // Setup
             var random = new Random(21);
-            var nrOfTimeSteps = random.Next();
-            var timeStep = random.NextDouble();
+            int nrOfTimeSteps = random.Next();
+            double timeStep = random.NextDouble();
 
             // Call
             TestDelegate call = () => new CalculationSettings(failureSpeed, nrOfTimeSteps, timeStep);
@@ -30,8 +30,8 @@ namespace Simulator.Data.Test
         {
             // Setup
             var random = new Random(21);
-            var failureSpeed = random.Next();
-            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+            double timeStep = random.NextDouble();
 
             // Call
             TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
@@ -48,8 +48,8 @@ namespace Simulator.Data.Test
         {
             // Setup
             var random = new Random(21);
-            var failureSpeed = random.Next();
-            var maximumNrOfTimeSteps = random.Next();
+            int failureSpeed = random.Next();
+            int maximumNrOfTimeSteps = random.Next();
 
             // Call
             TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
@@ -65,8 +65,8 @@ namespace Simulator.Data.Test
         {
             // Setup
             var random = new Random(21);
-            var failureSpeed = random.Next();
-            var maximumNrOfTimeSteps = random.Next();
+            int failureSpeed = random.Next();
+            int maximumNrOfTimeSteps = random.Next();
 
             // Call
             TestDelegate call = () => new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
@@ -80,13 +80,13 @@ namespace Simulator.Data.Test
         {
             // Setup
             var random = new Random(21);
-            var failureSpeed = random.Next();
-            var maximumNrOfTimeSteps = random.Next();
-            var timeStep = random.NextDouble();
+            int failureSpeed = random.Next();
+            int maximumNrOfTimeSteps = random.Next();
+            double timeStep = random.NextDouble();
 
             // Call
             var settings = new CalculationSettings(failureSpeed, maximumNrOfTimeSteps, timeStep);
-            
+
             // Assert
             Assert.AreEqual(failureSpeed, settings.FailureSpeed);
             Assert.AreEqual(maximumNrOfTimeSteps, settings.MaximumNrOfTimeSteps);

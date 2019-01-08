@@ -35,7 +35,7 @@ namespace Simulator.Data.TestUtil
 
         private static Angle GetMidPoint(double maximumLiftCoefficient, double liftGradient)
         {
-            var midPointAngle = maximumLiftCoefficient / (2 * liftGradient);
+            double midPointAngle = maximumLiftCoefficient / (2 * liftGradient);
             return Angle.FromRadians(midPointAngle);
         }
     }

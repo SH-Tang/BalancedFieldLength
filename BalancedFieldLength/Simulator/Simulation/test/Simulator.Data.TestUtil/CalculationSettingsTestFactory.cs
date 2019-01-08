@@ -16,8 +16,8 @@ namespace Simulator.Data.TestUtil
         {
             var random = new Random(21);
             return new CalculationSettings(random.Next(),
-                random.Next(),
-                random.NextDouble());
+                                           random.Next(),
+                                           random.NextDouble());
         }
     }
 }
