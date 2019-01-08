@@ -39,6 +39,7 @@
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
     <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
     <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
+    <Compile Include="IDistanceCalculator.cs" />
     <Compile Include="Integrators\EulerIntegrator.cs" />
     <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
     <Compile Include="DistanceCalculator.cs" />
