@@ -10,16 +10,10 @@
         /// </summary>
         /// <param name="failureSpeed">The speed at which the failure occurred. [m/s]</param>
         /// <param name="distance">The distance covered before the stopping criteria was satisfied. [m]</param>
-        /// <param name="convergenceBeforeFailure">Indicates whether the result was obtained
-        /// before the aircraft reached a failed state.</param>
-        /// <param name="calculationConverged">Indicates whether the result was converged.</param>
-        public DistanceCalculatorOutput(int failureSpeed, double distance, bool convergenceBeforeFailure,
-                                        bool calculationConverged)
+        public DistanceCalculatorOutput(int failureSpeed, double distance)
         {
             FailureSpeed = failureSpeed;
             Distance = distance;
-            ConvergenceBeforeFailure = convergenceBeforeFailure;
-            CalculationConverged = calculationConverged;
         }
 
         /// <summary>
@@ -31,15 +25,5 @@
         /// Gets the distance that was covered. [m]
         /// </summary>
         public double Distance { get; }
-
-        /// <summary>
-        /// Indicates whether the result was obtained before failure.
-        /// </summary>
-        public bool ConvergenceBeforeFailure { get; }
-
-        /// <summary>
-        /// Indicates whether the result was converged.
-        /// </summary>
-        public bool CalculationConverged { get; }
     }
 }

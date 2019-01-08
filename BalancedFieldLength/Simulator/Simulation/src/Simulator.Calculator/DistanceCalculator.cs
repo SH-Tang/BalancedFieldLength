@@ -99,7 +99,7 @@ namespace Simulator.Calculator
                         throw new CalculatorException("Calculation converged before failure occurred.");
                     }
 
-                    return new DistanceCalculatorOutput(failureSpeed, state.Distance, !hasFailureOccurred, true);
+                    return new DistanceCalculatorOutput(failureSpeed, state.Distance);
                 }
             }
 

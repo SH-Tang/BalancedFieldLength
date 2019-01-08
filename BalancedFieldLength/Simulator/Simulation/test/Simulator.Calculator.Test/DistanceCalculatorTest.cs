@@ -291,10 +291,8 @@ namespace Simulator.Calculator.Test
             integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
                              {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state =>
-                                                                                                     IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state =>
-                                                                                IsZeroAircraftState(state)), accelerations[0], timeStep);
+                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
                                  normalTakeOffDynamicsCalculator.Calculate(states[0]);
                                  integrator.Integrate(states[0], accelerations[1], timeStep);
 
@@ -350,10 +348,8 @@ namespace Simulator.Calculator.Test
             integrator.Received(3).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
                              {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state =>
-                                                                                                     IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state =>
-                                                                                IsZeroAircraftState(state)), accelerations[0], timeStep);
+                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
 
                                  failureTakeOffDynamicsCalculator.Calculate(states[0]);
                                  integrator.Integrate(states[0], accelerations[1], timeStep);
@@ -364,8 +360,6 @@ namespace Simulator.Calculator.Test
 
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
-            Assert.IsFalse(output.ConvergenceBeforeFailure);
-            Assert.IsTrue(output.CalculationConverged);
         }
 
         [Test]
@@ -423,10 +417,8 @@ namespace Simulator.Calculator.Test
             integrator.Received(3).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
                              {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state =>
-                                                                                                     IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state =>
-                                                                                IsZeroAircraftState(state)), accelerations[0], timeStep);
+                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
 
                                  failureTakeOffDynamicsCalculator.Calculate(states[0]);
                                  integrator.Integrate(states[0], accelerations[1], timeStep);
@@ -437,8 +429,6 @@ namespace Simulator.Calculator.Test
 
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
-            Assert.IsFalse(output.ConvergenceBeforeFailure);
-            Assert.IsTrue(output.CalculationConverged);
         }
 
         private static bool IsZeroAircraftState(AircraftState state)
