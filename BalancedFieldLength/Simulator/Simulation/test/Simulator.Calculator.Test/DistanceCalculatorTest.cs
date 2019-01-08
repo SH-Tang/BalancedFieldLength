@@ -66,7 +66,7 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
-        public void Constructor_CalculatorSettingsNull_ThrowsArgumentNullException()
+        public void Constructor_CalculationSettingsNull_ThrowsArgumentNullException()
         {
             // Setup
             var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
@@ -80,7 +80,7 @@ namespace Simulator.Calculator.Test
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
-            Assert.AreEqual("calculatorSettings", exception.ParamName);
+            Assert.AreEqual("calculationSettings", exception.ParamName);
         }
 
         [Test]
