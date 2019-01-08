@@ -13,7 +13,7 @@ namespace Simulator.Calculator.Factories
         private static IDistanceCalculatorFactory instance;
 
         /// <summary>
-        /// Gets an instance of <see cref="IDistanceCalculatorFactory"/>.
+        /// Gets or sets an instance of <see cref="IDistanceCalculatorFactory"/>.
         /// </summary>
         public static IDistanceCalculatorFactory Instance
         {
@@ -21,9 +21,14 @@ namespace Simulator.Calculator.Factories
             {
                 return instance ?? (instance = new DistanceCalculatorFactory());
             }
+
+            internal set
+            {
+                instance = value;
+            }
         }
 
-        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory, 
+        public DistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
                                                                            AircraftData data,
                                                                            IIntegrator integrator,
                                                                            int nrOfFailedEngines,
