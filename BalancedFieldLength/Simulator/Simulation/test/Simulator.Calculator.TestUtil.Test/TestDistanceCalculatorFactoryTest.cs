@@ -21,8 +21,8 @@ namespace Simulator.Calculator.TestUtil.Test
 
             // Assert
             Assert.IsInstanceOf<IDistanceCalculatorFactory>(factory);
-            CollectionAssert.IsEmpty(factory.CreateContinuedTakeOffDistanceCalculatorInputs);
-            CollectionAssert.IsEmpty(factory.CreateAbortedTakeOffDistanceCalculatorInputs);
+            CollectionAssert.IsEmpty(factory.CreatedContinuedTakeOffDistanceCalculatorInputs);
+            CollectionAssert.IsEmpty(factory.CreatedAbortedTakeOffDistanceCalculatorInputs);
         }
 
         [Test]
@@ -85,10 +85,10 @@ namespace Simulator.Calculator.TestUtil.Test
                                                              calculationSettings);
 
             // Then
-            IEnumerable<CreateContinuedTakeOffDistanceCalculatorInput> createContinuedTakeOffDistanceCalculatorInputs = factory.CreateContinuedTakeOffDistanceCalculatorInputs;
+            IEnumerable<CreatedContinuedTakeOffDistanceCalculatorInput> createContinuedTakeOffDistanceCalculatorInputs = factory.CreatedContinuedTakeOffDistanceCalculatorInputs;
             Assert.AreEqual(1, createContinuedTakeOffDistanceCalculatorInputs.Count());
 
-            CreateContinuedTakeOffDistanceCalculatorInput input = createContinuedTakeOffDistanceCalculatorInputs.Single();
+            CreatedContinuedTakeOffDistanceCalculatorInput input = createContinuedTakeOffDistanceCalculatorInputs.Single();
             Assert.AreSame(takeOffDynamicsCalculatorFactory, input.TakeOffDynamicsCalculatorFactory);
             Assert.AreSame(aircraftData, input.AircraftData);
             Assert.AreSame(integrator, input.Integrator);
@@ -154,10 +154,10 @@ namespace Simulator.Calculator.TestUtil.Test
                                                            calculationSettings);
 
             // Then
-            IEnumerable<CreateAbortedTakeOffDistanceCalculatorInput> createAbortedTakeOffDistanceCalculatorInputs = factory.CreateAbortedTakeOffDistanceCalculatorInputs;
+            IEnumerable<CreatedAbortedTakeOffDistanceCalculatorInput> createAbortedTakeOffDistanceCalculatorInputs = factory.CreatedAbortedTakeOffDistanceCalculatorInputs;
             Assert.AreEqual(1, createAbortedTakeOffDistanceCalculatorInputs.Count());
 
-            CreateAbortedTakeOffDistanceCalculatorInput input = createAbortedTakeOffDistanceCalculatorInputs.Single();
+            CreatedAbortedTakeOffDistanceCalculatorInput input = createAbortedTakeOffDistanceCalculatorInputs.Single();
             Assert.AreSame(takeOffDynamicsCalculatorFactory, input.TakeOffDynamicsCalculatorFactory);
             Assert.AreSame(aircraftData, input.AircraftData);
             Assert.AreSame(integrator, input.Integrator);

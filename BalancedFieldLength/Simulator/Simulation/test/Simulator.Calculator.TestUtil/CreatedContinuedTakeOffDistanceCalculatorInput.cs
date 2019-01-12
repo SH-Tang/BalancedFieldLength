@@ -2,16 +2,17 @@
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
 
-namespace Simulator.Calculator.TestUtil {
+namespace Simulator.Calculator.TestUtil
+{
     /// <summary>
     /// Class to hold all the input arguments when creating a continued take off distance calculator.
     /// </summary>
-    public class CreateContinuedTakeOffDistanceCalculatorInput
+    public class CreatedContinuedTakeOffDistanceCalculatorInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="CreateContinuedTakeOffDistanceCalculatorInput"/>.
+        /// Creates a new instance of <see cref="CreatedContinuedTakeOffDistanceCalculatorInput"/>.
         /// </summary>
-        internal CreateContinuedTakeOffDistanceCalculatorInput(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+        internal CreatedContinuedTakeOffDistanceCalculatorInput(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
                                                                AircraftData aircraftData,
                                                                IIntegrator integrator,
                                                                int nrOfFailedEngines,

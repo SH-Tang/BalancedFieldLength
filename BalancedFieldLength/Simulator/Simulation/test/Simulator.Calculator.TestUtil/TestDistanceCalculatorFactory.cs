@@ -10,16 +10,16 @@ namespace Simulator.Calculator.TestUtil
     /// </summary>
     public class TestDistanceCalculatorFactory : IDistanceCalculatorFactory
     {
-        private readonly List<CreateContinuedTakeOffDistanceCalculatorInput> createContinuedTakeOffDistanceCalculatorInputs;
-        private readonly List<CreateAbortedTakeOffDistanceCalculatorInput> createAbortedTakeOffDistanceCalculatorInputs;
+        private readonly List<CreatedContinuedTakeOffDistanceCalculatorInput> createdContinuedTakeOffDistanceCalculatorInputs;
+        private readonly List<CreatedAbortedTakeOffDistanceCalculatorInput> createdAbortedTakeOffDistanceCalculatorInputs;
 
         /// <summary>
         /// Creates a new instance of <see cref="TestDistanceCalculatorFactory"/>.
         /// </summary>
         public TestDistanceCalculatorFactory()
         {
-            createContinuedTakeOffDistanceCalculatorInputs = new List<CreateContinuedTakeOffDistanceCalculatorInput>();
-            createAbortedTakeOffDistanceCalculatorInputs = new List<CreateAbortedTakeOffDistanceCalculatorInput>();
+            createdContinuedTakeOffDistanceCalculatorInputs = new List<CreatedContinuedTakeOffDistanceCalculatorInput>();
+            createdAbortedTakeOffDistanceCalculatorInputs = new List<CreatedAbortedTakeOffDistanceCalculatorInput>();
         }
 
         /// <summary>
@@ -35,22 +35,22 @@ namespace Simulator.Calculator.TestUtil
         /// <summary>
         /// Gets the inputs that were used when calling <see cref="CreateContinuedTakeOffDistanceCalculator"/>.
         /// </summary>
-        public IEnumerable<CreateContinuedTakeOffDistanceCalculatorInput> CreateContinuedTakeOffDistanceCalculatorInputs
+        public IEnumerable<CreatedContinuedTakeOffDistanceCalculatorInput> CreatedContinuedTakeOffDistanceCalculatorInputs
         {
             get
             {
-                return createContinuedTakeOffDistanceCalculatorInputs;
+                return createdContinuedTakeOffDistanceCalculatorInputs;
             }
         }
 
         /// <summary>
-        /// Gets the inputs that were used when calling <see cref="CreateAbortedTakeOffDistanceCalculatorInputs"/>.
+        /// Gets the inputs that were used when calling <see cref="CreatedAbortedTakeOffDistanceCalculatorInputs"/>.
         /// </summary>
-        public IEnumerable<CreateAbortedTakeOffDistanceCalculatorInput> CreateAbortedTakeOffDistanceCalculatorInputs
+        public IEnumerable<CreatedAbortedTakeOffDistanceCalculatorInput> CreatedAbortedTakeOffDistanceCalculatorInputs
         {
             get
             {
-                return createAbortedTakeOffDistanceCalculatorInputs;
+                return createdAbortedTakeOffDistanceCalculatorInputs;
             }
         }
 
@@ -62,13 +62,13 @@ namespace Simulator.Calculator.TestUtil
                                                                             double gravitationalAcceleration,
                                                                             CalculationSettings calculationSettings)
         {
-            createContinuedTakeOffDistanceCalculatorInputs.Add(new CreateContinuedTakeOffDistanceCalculatorInput(takeOffDynamicsCalculatorFactory,
-                                                                                                                 data,
-                                                                                                                 integrator,
-                                                                                                                 nrOfFailedEngines,
-                                                                                                                 density,
-                                                                                                                 gravitationalAcceleration,
-                                                                                                                 calculationSettings));
+            createdContinuedTakeOffDistanceCalculatorInputs.Add(new CreatedContinuedTakeOffDistanceCalculatorInput(takeOffDynamicsCalculatorFactory,
+                                                                                                                   data,
+                                                                                                                   integrator,
+                                                                                                                   nrOfFailedEngines,
+                                                                                                                   density,
+                                                                                                                   gravitationalAcceleration,
+                                                                                                                   calculationSettings));
             return ContinuedTakeOffDistanceCalculator;
         }
 
@@ -79,12 +79,12 @@ namespace Simulator.Calculator.TestUtil
                                                                           double gravitationalAcceleration,
                                                                           CalculationSettings calculationSettings)
         {
-            createAbortedTakeOffDistanceCalculatorInputs.Add(new CreateAbortedTakeOffDistanceCalculatorInput(takeOffDynamicsCalculatorFactory,
-                                                                                                             data,
-                                                                                                             integrator,
-                                                                                                             density,
-                                                                                                             gravitationalAcceleration,
-                                                                                                             calculationSettings));
+            createdAbortedTakeOffDistanceCalculatorInputs.Add(new CreatedAbortedTakeOffDistanceCalculatorInput(takeOffDynamicsCalculatorFactory,
+                                                                                                               data,
+                                                                                                               integrator,
+                                                                                                               density,
+                                                                                                               gravitationalAcceleration,
+                                                                                                               calculationSettings));
             return AbortedTakeOffDistanceCalculator;
         }
     }

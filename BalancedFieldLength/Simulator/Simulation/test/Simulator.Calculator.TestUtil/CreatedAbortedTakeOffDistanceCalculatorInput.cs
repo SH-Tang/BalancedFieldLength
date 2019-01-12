@@ -7,12 +7,12 @@ namespace Simulator.Calculator.TestUtil
     /// <summary>
     /// Class to hold all the input arguments when creating a continued take off distance calculator.
     /// </summary>
-    public class CreateAbortedTakeOffDistanceCalculatorInput
+    public class CreatedAbortedTakeOffDistanceCalculatorInput
     {
         /// <summary>
-        /// Creates a new instance of <see cref="CreateContinuedTakeOffDistanceCalculatorInput"/>.
+        /// Creates a new instance of <see cref="CreatedContinuedTakeOffDistanceCalculatorInput"/>.
         /// </summary>
-        internal CreateAbortedTakeOffDistanceCalculatorInput(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
+        internal CreatedAbortedTakeOffDistanceCalculatorInput(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
                                                              AircraftData aircraftData,
                                                              IIntegrator integrator,
                                                              double density,
