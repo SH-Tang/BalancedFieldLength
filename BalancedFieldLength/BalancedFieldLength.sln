@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.TestUt
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.TestUtil.Test", "Simulator\Simulation\test\Simulator.Calculator.TestUtil.Test\Simulator.Calculator.TestUtil.Test.csproj", "{41EA9CA5-D721-417A-8100-A36997B99F6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Integration.Test", "Simulator\Simulation\test\Simulator.Integration.Test\Simulator.Integration.Test.csproj", "{FDABA27F-2630-4E34-B842-2586AAADED5C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -99,6 +101,10 @@ Global
 		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -121,6 +127,7 @@ Global
 		{05508E02-B58E-40B9-8C16-8A2DA1609D50} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
 		{9C59D99C-389B-4B68-8158-8E5E55E260BD} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 		{41EA9CA5-D721-417A-8100-A36997B99F6D} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
+		{FDABA27F-2630-4E34-B842-2586AAADED5C} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}
