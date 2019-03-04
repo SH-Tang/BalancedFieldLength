@@ -13,21 +13,16 @@ namespace Simulator.Calculator.Factories
         /// Creates a configured instance of <see cref="DistanceCalculator"/> that calculates the
         /// distance after continuing the take-off after failure.
         /// </summary>
-        /// <param name="takeOffDynamicsCalculatorFactory">The <see cref="ITakeOffDynamicsCalculatorFactory"/>
-        /// to create the aircraft dynamics from.</param>
-        /// <param name="data">The <see cref="AircraftData"/> to create a <see cref="DistanceCalculator"/>
-        /// for.</param>
+        /// <param name="data">The <see cref="AircraftData"/> to create a <see cref="DistanceCalculator"/> for.</param>
         /// <param name="integrator">The <see cref="IIntegrator"/> to solve the dynamic system.</param>
         /// <param name="nrOfFailedEngines">The number of failed engines.</param>
         /// <param name="density">The air density. [kg/m^3]</param>
         /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
-        /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to
-        /// configure the calculator.</param>
+        /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to configure the calculator.</param>
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="takeOffDynamicsCalculatorFactory"/>,
-        /// <paramref name="data"/> or <paramref name="integrator"/> is <c>null</c>.</exception>
-        IDistanceCalculator CreateContinuedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-                                                                     AircraftData data,
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
+        /// or <paramref name="integrator"/> is <c>null</c>.</exception>
+        IDistanceCalculator CreateContinuedTakeOffDistanceCalculator(AircraftData data,
                                                                      IIntegrator integrator,
                                                                      int nrOfFailedEngines,
                                                                      double density,
@@ -38,20 +33,15 @@ namespace Simulator.Calculator.Factories
         /// Creates a configured instance of <see cref="DistanceCalculator"/> that calculates the
         /// distance after aborting the take-off after failure.
         /// </summary>
-        /// <param name="takeOffDynamicsCalculatorFactory">The <see cref="ITakeOffDynamicsCalculatorFactory"/>
-        /// to create the aircraft dynamics from.</param>
-        /// <param name="data">The <see cref="AircraftData"/> to create a <see cref="DistanceCalculator"/>
-        /// for.</param>
+        /// <param name="data">The <see cref="AircraftData"/> to create a <see cref="DistanceCalculator"/> for.</param>
         /// <param name="integrator">The <see cref="IIntegrator"/> to solve the dynamic system.</param>
         /// <param name="density">The air density. [kg/m^3]</param>
         /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
-        /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to
-        /// configure the calculator.</param>
+        /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to configure the calculator.</param>
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="takeOffDynamicsCalculatorFactory"/>,
-        /// <paramref name="data"/> or <paramref name="integrator"/> is <c>null</c>.</exception>
-        IDistanceCalculator CreateAbortedTakeOffDistanceCalculator(ITakeOffDynamicsCalculatorFactory takeOffDynamicsCalculatorFactory,
-                                                                   AircraftData data,
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
+        /// or <paramref name="integrator"/> is <c>null</c>.</exception>
+        IDistanceCalculator CreateAbortedTakeOffDistanceCalculator(AircraftData data,
                                                                    IIntegrator integrator,
                                                                    double density,
                                                                    double gravitationalAcceleration,

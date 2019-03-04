@@ -37,10 +37,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Utils", "Simula
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Utils.Test", "Simulator\Core\test\Core.Common.Utils.Test\Core.Common.Utils.Test.csproj", "{05508E02-B58E-40B9-8C16-8A2DA1609D50}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.TestUtil", "Simulator\Simulation\test\Simulator.Calculator.TestUtil\Simulator.Calculator.TestUtil.csproj", "{9C59D99C-389B-4B68-8158-8E5E55E260BD}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.TestUtil.Test", "Simulator\Simulation\test\Simulator.Calculator.TestUtil.Test\Simulator.Calculator.TestUtil.Test.csproj", "{41EA9CA5-D721-417A-8100-A36997B99F6D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Integration.Test", "Simulator\Simulation\test\Simulator.Integration.Test\Simulator.Integration.Test.csproj", "{FDABA27F-2630-4E34-B842-2586AAADED5C}"
 EndProject
 Global
@@ -93,14 +89,6 @@ Global
 		{05508E02-B58E-40B9-8C16-8A2DA1609D50}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{05508E02-B58E-40B9-8C16-8A2DA1609D50}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{05508E02-B58E-40B9-8C16-8A2DA1609D50}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9C59D99C-389B-4B68-8158-8E5E55E260BD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9C59D99C-389B-4B68-8158-8E5E55E260BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9C59D99C-389B-4B68-8158-8E5E55E260BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9C59D99C-389B-4B68-8158-8E5E55E260BD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{41EA9CA5-D721-417A-8100-A36997B99F6D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FDABA27F-2630-4E34-B842-2586AAADED5C}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -125,8 +113,6 @@ Global
 		{F751B0AC-12E0-461B-93BD-3546B39E994B} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
 		{FBE1BAA4-10DC-4885-BD13-F84B09DDF897} = {21CEF108-F80F-46FC-A7F6-35E8C24B7B45}
 		{05508E02-B58E-40B9-8C16-8A2DA1609D50} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
-		{9C59D99C-389B-4B68-8158-8E5E55E260BD} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
-		{41EA9CA5-D721-417A-8100-A36997B99F6D} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 		{FDABA27F-2630-4E34-B842-2586AAADED5C} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

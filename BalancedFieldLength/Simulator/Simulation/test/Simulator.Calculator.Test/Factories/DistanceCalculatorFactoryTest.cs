@@ -13,38 +13,27 @@ namespace Simulator.Calculator.Test.Factories
     public class DistanceCalculatorFactoryTest
     {
         [Test]
-        public void Instance__Always_ReturnsAFactoryInstance()
+        public void Constructor_TakeOffDynamicsCalculatorFactoryNull_ThrowsArgumentNullException()
         {
             // Call
-            IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
-
-            // Assert
-            Assert.IsInstanceOf<IDistanceCalculatorFactory>(factory);
-        }
-
-        [Test]
-        public void CreateContinuedTakeOffDistanceCalculator_TakeOffDynamicsCalculatorFactoryNull_ThrowsArgumentNullException()
-        {
-            // Setup
-            var random = new Random(21);
-            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-            var integrator = Substitute.For<IIntegrator>();
-
-            IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
-
-            // Call
-            TestDelegate call = () => factory.CreateContinuedTakeOffDistanceCalculator(null,
-                                                                                       aircraftData,
-                                                                                       integrator,
-                                                                                       random.Next(),
-                                                                                       random.NextDouble(),
-                                                                                       random.NextDouble(),
-                                                                                       CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
+            TestDelegate call = () => new DistanceCalculatorFactory(null);
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
             Assert.AreEqual("takeOffDynamicsCalculatorFactory", exception.ParamName);
+        }
+
+        [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var dynamicsFactory = Substitute.For<ITakeOffDynamicsCalculatorFactory>();
+
+            // Call
+            var factory = new DistanceCalculatorFactory(dynamicsFactory);
+
+            // Assert
+            Assert.IsInstanceOf<IDistanceCalculatorFactory>(factory);
         }
 
         [Test]
@@ -69,11 +58,10 @@ namespace Simulator.Calculator.Test.Factories
 
             var integrator = Substitute.For<IIntegrator>();
 
-            IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
+            IDistanceCalculatorFactory factory = new DistanceCalculatorFactory(takeOffDynamicsCalculatorFactory);
 
             // Call
-            IDistanceCalculator calculator = factory.CreateContinuedTakeOffDistanceCalculator(takeOffDynamicsCalculatorFactory,
-                                                                                              aircraftData,
+            IDistanceCalculator calculator = factory.CreateContinuedTakeOffDistanceCalculator(aircraftData,
                                                                                               integrator,
                                                                                               nrOfFailedEngines,
                                                                                               density,
@@ -93,31 +81,6 @@ namespace Simulator.Calculator.Test.Factories
                                                                                                   Arg.Any<double>());
 
             Assert.IsInstanceOf<DistanceCalculator>(calculator);
-        }
-
-        [Test]
-        public void
-            CreateAbortedTakeOffDistanceCalculator_TakeOffDynamicsCalculatorFactoryNull_ThrowsArgumentNullException()
-        {
-            // Setup
-            var random = new Random(21);
-            AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
-
-            var integrator = Substitute.For<IIntegrator>();
-
-            IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
-
-            // Call
-            TestDelegate call = () => factory.CreateAbortedTakeOffDistanceCalculator(null,
-                                                                                     aircraftData,
-                                                                                     integrator,
-                                                                                     random.NextDouble(),
-                                                                                     random.NextDouble(),
-                                                                                     CalculationSettingsTestFactory.CreateDistanceCalculatorSettings());
-
-            // Assert
-            var exception = Assert.Throws<ArgumentNullException>(call);
-            Assert.AreEqual("takeOffDynamicsCalculatorFactory", exception.ParamName);
         }
 
         [Test]
@@ -141,11 +104,10 @@ namespace Simulator.Calculator.Test.Factories
 
             var integrator = Substitute.For<IIntegrator>();
 
-            IDistanceCalculatorFactory factory = DistanceCalculatorFactory.Instance;
+            IDistanceCalculatorFactory factory = new DistanceCalculatorFactory(takeOffDynamicsCalculatorFactory);
 
             // Call
-            IDistanceCalculator calculator = factory.CreateAbortedTakeOffDistanceCalculator(takeOffDynamicsCalculatorFactory,
-                                                                                            aircraftData,
+            IDistanceCalculator calculator = factory.CreateAbortedTakeOffDistanceCalculator(aircraftData,
                                                                                             integrator,
                                                                                             density,
                                                                                             gravitationalAcceleration,
