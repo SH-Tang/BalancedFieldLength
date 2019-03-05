@@ -41,7 +41,7 @@ namespace Simulator.Calculator.Factories
 
             INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
-            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =
+            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator = 
                 takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data, nrOfFailedEngines, density, gravitationalAcceleration);
 
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);

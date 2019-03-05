@@ -35,6 +35,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedDistanceCalculator.cs" />
+    <Compile Include="AggregatedDistanceOutput.cs" />
     <Compile Include="Factories\DistanceCalculatorFactory.cs" />
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
     <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
