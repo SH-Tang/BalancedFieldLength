@@ -20,8 +20,8 @@ namespace Simulator.Calculator.Factories
         /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
         /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to configure the calculator.</param>
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
-        /// or <paramref name="integrator"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>,
+        /// <paramref name="integrator"/> or <paramref name="calculationSettings"/> is <c>null</c>.</exception>
         IDistanceCalculator CreateContinuedTakeOffDistanceCalculator(AircraftData data,
                                                                      IIntegrator integrator,
                                                                      int nrOfFailedEngines,
@@ -39,8 +39,8 @@ namespace Simulator.Calculator.Factories
         /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
         /// <param name="calculationSettings">The <see cref="CalculationSettings"/> to configure the calculator.</param>
         /// <returns>A configured <see cref="DistanceCalculator"/>.</returns>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>
-        /// or <paramref name="integrator"/> is <c>null</c>.</exception>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/>,
+        /// <paramref name="integrator"/> or <paramref name="calculationSettings"/> is <c>null</c>.</exception>
         IDistanceCalculator CreateAbortedTakeOffDistanceCalculator(AircraftData data,
                                                                    IIntegrator integrator,
                                                                    double density,
