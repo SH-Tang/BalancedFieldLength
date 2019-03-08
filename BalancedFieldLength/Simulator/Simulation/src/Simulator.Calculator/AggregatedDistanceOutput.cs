@@ -12,7 +12,7 @@
         /// <param name="failureSpeed">The failure speed for which the output was calculated. [m/s]</param>
         /// <param name="abortedTakeOffDistance">The distance belonging to an aborted take off. [m]</param>
         /// <param name="continuedTakeOffDistance">The distance belonging to a continued take off. [m]</param>
-        public AggregatedDistanceOutput(int failureSpeed, double abortedTakeOffDistance, double continuedTakeOffDistance)
+        public AggregatedDistanceOutput(double failureSpeed, double abortedTakeOffDistance, double continuedTakeOffDistance)
         {
             FailureSpeed = failureSpeed;
             AbortedTakeOffDistance = abortedTakeOffDistance;
