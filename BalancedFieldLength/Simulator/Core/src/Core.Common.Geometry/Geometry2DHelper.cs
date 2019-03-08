@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Core.Common.Geometry {
+namespace Core.Common.Geometry
+{
     /// <summary>
     /// Helper class which defines geometric methods for operations in the 2D plane.
     /// </summary>
@@ -13,37 +14,47 @@ namespace Core.Common.Geometry {
         /// <summary>
         /// Determines whether two line segments intersect.
         /// </summary>
-        /// <param name="startPoint1"></param>
-        /// <param name="endPoint1"></param>
-        /// <param name="startPoint2"></param>
-        /// <param name="endPoint2"></param>
+        /// <param name="line1">The first line.</param>
+        /// <param name="line2">The second line.</param>
         /// <returns>A <see cref="Point2D"/> with <see cref="double.NaN"/> coordinates when:
         /// <list type="bullet">
-        /// <item>The lines are parallel.</item>
-        /// <item>The lines are on top of each other.</item>
+        /// <item>the lines are parallel,</item>
+        /// <item>the lines are on top of each other,</item>
+        /// <item>no crossing was found.</item>
         /// </list></returns>
+        /// <exception cref="ArgumentNullException">Thrown when any parameter is <c>null</c>.</exception>
         /// <remarks>Algorithm is based on: https://en.wikipedia.org/wiki/Line%E2%80%93line_intersection </remarks>
-        public static Point2D DetermineLineIntersection(Point2D startPoint1, Point2D endPoint1, Point2D startPoint2, Point2D endPoint2)
+        public static Point2D DetermineLineIntersection(LineSegment line1, LineSegment line2)
         {
+            if (line1 == null)
+            {
+                throw new ArgumentNullException(nameof(line1));
+            }
+
+            if (line2 == null)
+            {
+                throw new ArgumentNullException(nameof(line2));
+            }
+
             Point2D[] points =
             {
-                startPoint1,
-                endPoint1,
-                startPoint2,
-                endPoint2
+                line1.StartPoint,
+                line1.EndPoint,
+                line2.StartPoint,
+                line2.EndPoint
             };
 
-            double determinant = (startPoint1.X - endPoint1.X) * (startPoint2.Y - endPoint2.Y)
-                                 - (startPoint1.Y - endPoint1.Y) * (startPoint2.X - endPoint2.X);
+            double determinant = (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.Y - line2.EndPoint.Y)
+                                 - (line1.StartPoint.Y - line1.EndPoint.Y) * (line2.StartPoint.X - line2.EndPoint.X);
 
             // If the determinant equal 0, the lines are either parallel or on top of each other.
             if (Math.Abs(determinant) > tolerance)
             {
-                double xCoordinate = (startPoint1.X * endPoint1.Y - startPoint1.Y * endPoint1.X) * (startPoint2.X - endPoint2.X) -
-                                     (startPoint1.X - endPoint1.X) * (startPoint2.X * endPoint2.Y - startPoint2.Y * endPoint2.X);
+                double xCoordinate = (line1.StartPoint.X * line1.EndPoint.Y - line1.StartPoint.Y * line1.EndPoint.X) * (line2.StartPoint.X - line2.EndPoint.X) -
+                                     (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.X * line2.EndPoint.Y - line2.StartPoint.Y * line2.EndPoint.X);
 
-                double yCoordinate = (startPoint1.X * endPoint1.Y - startPoint1.Y * endPoint1.X) * (startPoint2.Y - endPoint2.Y) -
-                                     (startPoint1.Y - endPoint1.Y) * (startPoint2.X * endPoint2.Y - startPoint2.Y * endPoint2.X);
+                double yCoordinate = (line1.StartPoint.X * line1.EndPoint.Y - line1.StartPoint.Y * line1.EndPoint.X) * (line2.StartPoint.Y - line2.EndPoint.Y) -
+                                     (line1.StartPoint.Y - line1.EndPoint.Y) * (line2.StartPoint.X * line2.EndPoint.Y - line2.StartPoint.Y * line2.EndPoint.X);
 
                 // Check interval. If the new coordinates are outside the defined start and end points, then it is not an intersection.
                 double xMaxInterval = GetMaximumValue(points.Select(p => p.X));

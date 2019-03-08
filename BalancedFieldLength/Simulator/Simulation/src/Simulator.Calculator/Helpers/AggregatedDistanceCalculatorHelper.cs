@@ -54,8 +54,7 @@ namespace Simulator.Calculator.Helpers
                                                             new Point2D(currentOutput.FailureSpeed, currentOutput.AbortedTakeOffDistance));
 
                 // Determine whether lines cross
-                Point2D crossingPoint = Geometry2DHelper.DetermineLineIntersection(continuedTakeOffSegment.StartPoint, continuedTakeOffSegment.EndPoint,
-                                                                                   abortedTakeOffSegment.StartPoint, abortedTakeOffSegment.EndPoint);
+                Point2D crossingPoint = Geometry2DHelper.DetermineLineIntersection(continuedTakeOffSegment, abortedTakeOffSegment);
 
                 // Determine if the result is valid
                 if (!double.IsNaN(crossingPoint.X) && !double.IsNaN(crossingPoint.Y))

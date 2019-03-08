@@ -41,6 +41,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Geometry2DHelperTest.cs" />
     <Compile Include="LineSegmentTest.cs" />
     <Compile Include="Point2DTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
