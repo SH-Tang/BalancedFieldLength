@@ -1,4 +1,5 @@
-﻿namespace Core.Common.Geometry {
+﻿namespace Core.Common.Geometry
+{
     /// <summary>
     /// Class which represents a coordinate in the 2D Euclidean plane.
     /// </summary>
@@ -24,5 +25,23 @@
         /// Gets the Y coordinate.
         /// </summary>
         public double Y { get; }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj) && Equals((Point2D) obj);
+        }
+
+        public bool Equals(Point2D other)
+        {
+            return X.Equals(other.X) && Y.Equals(other.Y);
+        }
+
+        public override int GetHashCode()
+        {
+            unchecked
+            {
+                return (X.GetHashCode() * 397) ^ Y.GetHashCode();
+            }
+        }
     }
 }
