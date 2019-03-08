@@ -6,8 +6,9 @@ using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
+using Simulator.Integration.TakeOffDynamics;
 
-namespace Simulator.Calculator.Test.TakeOffDynamics
+namespace Simulator.Integration.Test.TakeOffDynamics
 {
     [TestFixture]
     public class NormalTakeOffDynamicsCalculatorTest

@@ -1,8 +1,10 @@
 ﻿using System;
+using Data;
+using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator.TakeOffDynamics
+namespace Simulator.Integration.TakeOffDynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics
@@ -17,7 +19,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
-        /// <param name="aircraftData">Tee <see cref="AircraftData"/> which holds
+        /// <param name="aircraftData">Tee <see cref="Simulator.Data.AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
         /// <param name="numberOfFailedEngines">The number of engines which failed during takeoff.</param>
         /// <param name="density">The air density. [kg/m3]</param>

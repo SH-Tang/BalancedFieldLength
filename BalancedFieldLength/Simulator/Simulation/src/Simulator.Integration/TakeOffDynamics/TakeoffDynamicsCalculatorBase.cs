@@ -4,7 +4,7 @@ using Simulator.Data;
 using Simulator.Data.Exceptions;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Calculator.TakeOffDynamics
+namespace Simulator.Integration.TakeOffDynamics
 {
     /// <summary>
     /// Base class which describes the standard aircraft dynamics
@@ -40,14 +40,14 @@ namespace Simulator.Calculator.TakeOffDynamics
 
         /// <summary>
         /// Calculates the accelerations acting on the aircraft based
-        /// on <see cref="AircraftState"/>.
+        /// on <see cref="Simulator.Data.AircraftState"/>.
         /// </summary>
-        /// <param name="aircraftState">The <see cref="AircraftState"/>
+        /// <param name="aircraftState">The <see cref="Simulator.Data.AircraftState"/>
         /// the aircraft is currently in.</param>
-        /// <returns>The <see cref="AircraftAccelerations"/>.</returns>
+        /// <returns>The <see cref="Simulator.Data.AircraftAccelerations"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftState"/>
         /// is <c>null</c>.</exception>
-        /// <exception cref="CalculatorException">Thrown when the <paramref name="aircraftState"/>
+        /// <exception cref="Simulator.Data.Exceptions.CalculatorException">Thrown when the <paramref name="aircraftState"/>
         /// results in a state where the calculator cannot continue the calculation.</exception>
         public AircraftAccelerations Calculate(AircraftState aircraftState)
         {
@@ -70,12 +70,12 @@ namespace Simulator.Calculator.TakeOffDynamics
         }
 
         /// <summary>
-        /// Gets the <see cref="Data.AircraftData"/> from this calculator.
+        /// Gets the <see cref="Simulator.Data.AircraftData"/> from this calculator.
         /// </summary>
         protected AircraftData AircraftData { get; }
 
         /// <summary>
-        /// Gets the <see cref="Data.AerodynamicsData"/> from this calculator.
+        /// Gets the <see cref="Simulator.Data.AerodynamicsData"/> from this calculator.
         /// </summary>
         protected AerodynamicsData AerodynamicsData { get; }
 
@@ -100,7 +100,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <summary>
         /// Calculates the aerodynamic drag force that is acting on the aircraft. [N]
         /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/>
+        /// <param name="state">The <see cref="Simulator.Data.AircraftState"/>
         /// the aircraft is currently in.</param>
         /// <returns>The drag force.</returns>
         protected abstract double CalculateAerodynamicDragForce(AircraftState state);
@@ -108,7 +108,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <summary>
         /// Calculates the normal force. [N]
         /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/> the aircraft
+        /// <param name="state">The <see cref="Simulator.Data.AircraftState"/> the aircraft
         /// is currently in.</param>
         /// <returns>The normal force.</returns>
         protected double CalculateNormalForce(AircraftState state)
@@ -125,7 +125,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <summary>
         /// Calculates the angle of attack based on <paramref name="state"/>.
         /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/> the aircraft
+        /// <param name="state">The <see cref="Simulator.Data.AircraftState"/> the aircraft
         /// is currently in.</param>
         /// <returns>The angle of attack.</returns>
         protected static Angle CalculateAngleOfAttack(AircraftState state)
@@ -146,7 +146,7 @@ namespace Simulator.Calculator.TakeOffDynamics
         /// <summary>
         /// Calculates the pitch rate based on <paramref name="state"/>.
         /// </summary>
-        /// <param name="state">The <see cref="AircraftState"/> the aircraft
+        /// <param name="state">The <see cref="Simulator.Data.AircraftState"/> the aircraft
         /// is currently in.</param>
         /// <returns>The pitch rate.</returns>
         protected virtual Angle CalculatePitchRate(AircraftState state)
