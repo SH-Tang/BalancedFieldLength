@@ -200,6 +200,34 @@ namespace Core.Common.Data.Test
         }
 
         [Test]
+        public void Equals_Null_ReturnsFalse()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            bool result = angle.Equals(null);
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
+        public void Equals_DifferentObject_ReturnsFalse()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            bool result = angle.Equals(new object());
+
+            // Assert
+            Assert.IsFalse(result);
+        }
+
+        [Test]
         public static void Equals_HavingSameReference_ReturnsTrue()
         {
             // Setup
