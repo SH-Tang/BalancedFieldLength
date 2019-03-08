@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Simulator.Calculator.Factories;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.TestUtil;

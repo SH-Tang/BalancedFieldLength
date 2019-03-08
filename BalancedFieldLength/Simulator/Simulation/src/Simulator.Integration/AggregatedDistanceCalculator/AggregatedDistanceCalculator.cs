@@ -1,9 +1,10 @@
 ﻿using System;
-using Simulator.Calculator.Factories;
+using Simulator.Calculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
+using Simulator.Integration.Factories;
 
-namespace Simulator.Calculator.AggregatedDistanceCalculator
+namespace Simulator.Integration.AggregatedDistanceCalculator
 {
     /// <summary>
     /// Calculator to calculate the aggregated output for a given failure velocity.

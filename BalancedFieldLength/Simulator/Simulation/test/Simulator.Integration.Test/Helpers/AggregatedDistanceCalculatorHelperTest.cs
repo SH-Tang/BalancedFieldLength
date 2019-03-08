@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Common.TestUtil;
 using NUnit.Framework;
-using Simulator.Calculator.AggregatedDistanceCalculator;
-using Simulator.Calculator.Helpers;
+using Simulator.Integration.AggregatedDistanceCalculator;
+using Simulator.Integration.Helpers;
 
-namespace Simulator.Calculator.Test.Helpers
+namespace Simulator.Integration.Test.Helpers
 {
     [TestFixture]
     public class AggregatedDistanceCalculatorHelperTest

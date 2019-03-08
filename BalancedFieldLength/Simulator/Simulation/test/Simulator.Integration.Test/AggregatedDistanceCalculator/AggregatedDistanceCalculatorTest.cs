@@ -2,14 +2,15 @@
 using NSubstitute;
 using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
-using Simulator.Calculator.AggregatedDistanceCalculator;
-using Simulator.Calculator.Factories;
+using Simulator.Calculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
 using Simulator.Data.TestUtil;
+using Simulator.Integration.AggregatedDistanceCalculator;
+using Simulator.Integration.Factories;
 
-namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
+namespace Simulator.Integration.Test.AggregatedDistanceCalculator
 {
     [TestFixture]
     public class AggregatedDistanceCalculatorTest
@@ -18,7 +19,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
         public void Constructor_DistanceCalculatorFactoryNull_ThrowsArgumentNullException()
         {
             // Call
-            TestDelegate call = () => new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(null);
+            TestDelegate call = () => new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(null);
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -39,7 +40,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
 
             var distanceCalculatorFactory = Substitute.For<IDistanceCalculatorFactory>();
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call
             TestDelegate call = () => aggregatedCalculator.Calculate(null, integrator, nrOfFailedEngines, density, gravitationalAcceleration, calculationSettings);
@@ -63,7 +64,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
 
             var distanceCalculatorFactory = Substitute.For<IDistanceCalculatorFactory>();
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call
             TestDelegate call = () => aggregatedCalculator.Calculate(aircraftData, null, nrOfFailedEngines, density, gravitationalAcceleration, calculationSettings);
@@ -87,7 +88,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
 
             var distanceCalculatorFactory = Substitute.For<IDistanceCalculatorFactory>();
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call
             TestDelegate call = () => aggregatedCalculator.Calculate(aircraftData, integrator, nrOfFailedEngines, density, gravitationalAcceleration, null);
@@ -133,7 +134,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
                                                                                Arg.Is(calculationSettings))
                                      .Returns(continuedTakeOffDistanceCalculator);
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call 
             AggregatedDistanceOutput output = aggregatedCalculator.Calculate(aircraftData, integrator, nrOfFailedEngines, density, gravitationalAcceleration, calculationSettings);
@@ -168,7 +169,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
             var distanceCalculatorFactory = Substitute.For<IDistanceCalculatorFactory>();
             distanceCalculatorFactory.CreateAbortedTakeOffDistanceCalculator(null, null, 0, 0, null).ReturnsForAnyArgs(abortedTakeOffDistanceCalculator);
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call 
             TestDelegate call = () => aggregatedCalculator.Calculate(aircraftData, integrator, nrOfFailedEngines, density, gravitationalAcceleration, calculationSettings);
@@ -199,7 +200,7 @@ namespace Simulator.Calculator.Test.AggregatedDistanceCalculator
             var distanceCalculatorFactory = Substitute.For<IDistanceCalculatorFactory>();
             distanceCalculatorFactory.CreateAbortedTakeOffDistanceCalculator(null, null, 0, 0, null).ReturnsForAnyArgs(continuedTakeOffDistanceCalculator);
 
-            var aggregatedCalculator = new Calculator.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
+            var aggregatedCalculator = new Integration.AggregatedDistanceCalculator.AggregatedDistanceCalculator(distanceCalculatorFactory);
 
             // Call 
             TestDelegate call = () => aggregatedCalculator.Calculate(aircraftData, integrator, nrOfFailedEngines, density, gravitationalAcceleration, calculationSettings);
