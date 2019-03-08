@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Common.Geometry;
-using Simulator.Integration.AggregatedDistanceCalculator;
+using Simulator.Calculator.AggregatedDistanceCalculator;
 
-namespace Simulator.Integration.Helpers
+namespace Simulator.Calculator.Helpers
 {
     /// <summary>
     /// Helper class which contain functions determining the intersection between the
@@ -16,9 +16,9 @@ namespace Simulator.Integration.Helpers
         /// Determines the intersection between the distances covered by the rejected
         /// and the continued take off.
         /// </summary>
-        /// <param name="outputs">The collection of <see cref="Simulator.Integration.AggregatedDistanceCalculator.AggregatedDistanceOutput"/>
+        /// <param name="outputs">The collection of <see cref="AggregatedDistanceOutput"/>
         /// to determine the intersection for.</param>
-        /// <returns>An <see cref="Simulator.Integration.AggregatedDistanceCalculator.AggregatedDistanceOutput"/> containing the information at which speed the distances intersect
+        /// <returns>An <see cref="AggregatedDistanceOutput"/> containing the information at which speed the distances intersect
         /// and at which distance.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <see cref="outputs"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="outputs"/>
@@ -71,8 +71,8 @@ namespace Simulator.Integration.Helpers
         /// <summary>
         /// Creates a sorted list based on the failure speeds of the outputs.
         /// </summary>
-        /// <param name="outputs">The collection of <see cref="Simulator.Integration.AggregatedDistanceCalculator.AggregatedDistanceOutput"/> to create a sorted list for.</param>
-        /// <returns>A  sorted collection of <see cref="Simulator.Integration.AggregatedDistanceCalculator.AggregatedDistanceOutput"/> in ascending order of the failure speed.</returns>
+        /// <param name="outputs">The collection of <see cref="AggregatedDistanceOutput"/> to create a sorted list for.</param>
+        /// <returns>A  sorted collection of <see cref="AggregatedDistanceOutput"/> in ascending order of the failure speed.</returns>
         /// <exception cref="ArgumentException">Thrown when <paramref name="outputs"/> contains duplicate definitions for
         /// a certain failure speed.</exception>
         private static IEnumerable<AggregatedDistanceOutput> SortOutputs(IEnumerable<AggregatedDistanceOutput> outputs)

@@ -1,4 +1,4 @@
-﻿namespace Simulator.Integration.AggregatedDistanceCalculator
+﻿namespace Simulator.Calculator.AggregatedDistanceCalculator
 {
     /// <summary>
     /// Class to hold the aggregated output of the calculated distances of a continued

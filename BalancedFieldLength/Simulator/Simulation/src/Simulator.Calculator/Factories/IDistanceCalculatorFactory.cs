@@ -1,9 +1,8 @@
 ﻿using System;
-using Simulator.Calculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
 
-namespace Simulator.Integration.Factories
+namespace Simulator.Calculator.Factories
 {
     /// <summary>
     /// Interface describing a factory for creating configured instances of <see cref="DistanceCalculator"/>.

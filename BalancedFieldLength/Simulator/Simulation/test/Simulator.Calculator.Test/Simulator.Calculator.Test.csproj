@@ -47,6 +47,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculatorTest.cs" />
+    <Compile Include="Helpers\AggregatedDistanceCalculatorHelperTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,7 +77,6 @@
       <Name>Simulator.Data.TestUtil</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

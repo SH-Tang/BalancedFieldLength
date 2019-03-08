@@ -2,6 +2,7 @@
 using NSubstitute;
 using NUnit.Framework;
 using Simulator.Calculator;
+using Simulator.Calculator.Factories;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;

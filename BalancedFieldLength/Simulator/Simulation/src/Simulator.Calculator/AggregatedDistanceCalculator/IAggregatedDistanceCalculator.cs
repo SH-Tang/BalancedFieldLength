@@ -1,10 +1,9 @@
 ﻿using System;
-using Simulator.Calculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
 
-namespace Simulator.Integration.AggregatedDistanceCalculator
+namespace Simulator.Calculator.AggregatedDistanceCalculator
 {
     /// <summary>
     /// Interface which describes the calculation of the rejected and continued take off
