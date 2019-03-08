@@ -1,4 +1,6 @@
-﻿namespace Core.Common.Geometry
+﻿using System;
+
+namespace Core.Common.Geometry
 {
     /// <summary>
     /// Class which represents a line segment in a 2D plane.
@@ -10,8 +12,15 @@
         /// </summary>
         /// <param name="startPoint">The start point of the segment.</param>
         /// <param name="endPoint">The end point of the segment.</param>
+        /// <exception cref="ArgumentException">Thrown when <paramref name="startPoint"/>
+        /// and <paramref name="endPoint"/> are identical.</exception>
         public LineSegment(Point2D startPoint, Point2D endPoint)
         {
+            if (startPoint.Equals(endPoint))
+            {
+                throw new ArgumentException("A line must consist of two distinct points.");
+            }
+
             StartPoint = startPoint;
             EndPoint = endPoint;
         }
