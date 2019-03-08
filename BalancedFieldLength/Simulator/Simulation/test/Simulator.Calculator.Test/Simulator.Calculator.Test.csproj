@@ -47,8 +47,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedDistanceCalculatorTest.cs" />
     <Compile Include="Factories\DistanceCalculatorFactoryTest.cs" />
     <Compile Include="Factories\TakeOffDynamicsFactoryTest.cs" />
+    <Compile Include="Helpers\AggregatedDistanceCalculatorHelperTest.cs" />
     <Compile Include="Integrators\EulerIntegratorTest.cs" />
     <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculatorTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />

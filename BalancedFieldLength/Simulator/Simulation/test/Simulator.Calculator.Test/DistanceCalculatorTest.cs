@@ -90,6 +90,25 @@ namespace Simulator.Calculator.Test
         }
 
         [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var normalTakeOffDynamicsCalculator = Substitute.For<INormalTakeOffDynamicsCalculator>();
+            var failureTakeOffDynamicsCalculator = Substitute.For<IFailureTakeOffDynamicsCalculator>();
+            var integrator = Substitute.For<IIntegrator>();
+            CalculationSettings calculationSettings = CalculationSettingsTestFactory.CreateDistanceCalculatorSettings();
+
+            // Call
+            var calculator = new DistanceCalculator(normalTakeOffDynamicsCalculator,
+                                                    failureTakeOffDynamicsCalculator,
+                                                    integrator,
+                                                    calculationSettings);
+
+            // Assert
+            Assert.IsInstanceOf<IDistanceCalculator>(calculator);
+        }
+
+        [Test]
         public void Calculate_NormalDynamicsCalculatorThrowsException_ThenExceptionRethrown()
         {
             // Setup

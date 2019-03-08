@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{9C59D99C-389B-4B68-8158-8E5E55E260BD}</ProjectGuid>
+    <ProjectGuid>{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simulator.Calculator.TestUtil</RootNamespace>
-    <AssemblyName>Simulator.Calculator.TestUtil</AssemblyName>
+    <RootNamespace>Core.Common.Geometry</RootNamespace>
+    <AssemblyName>Core.Common.Geometry</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -35,13 +35,10 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Geometry2DHelper.cs" />
+    <Compile Include="LineSegment.cs" />
+    <Compile Include="Point2D.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\src\Simulator.Calculator\Simulator.Calculator.csproj">
-      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
-      <Name>Simulator.Calculator</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

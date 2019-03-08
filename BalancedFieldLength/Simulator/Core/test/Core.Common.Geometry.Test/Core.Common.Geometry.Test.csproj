@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{41EA9CA5-D721-417A-8100-A36997B99F6D}</ProjectGuid>
+    <ProjectGuid>{FFE74257-080A-4018-AB3C-232CF9E82BAF}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simulator.Calculator.TestUtil.Test</RootNamespace>
-    <AssemblyName>Simulator.Calculator.TestUtil.Test</AssemblyName>
+    <RootNamespace>Core.Common.Geometry.Test</RootNamespace>
+    <AssemblyName>Core.Common.Geometry.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,15 +41,22 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Geometry2DHelperTest.cs" />
+    <Compile Include="LineSegmentTest.cs" />
+    <Compile Include="Point2DTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Simulator.Calculator\Simulator.Calculator.csproj">
-      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
-      <Name>Simulator.Calculator</Name>
+    <ProjectReference Include="..\..\src\Core.Common.Geometry\Core.Common.Geometry.csproj">
+      <Project>{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}</Project>
+      <Name>Core.Common.Geometry</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
+      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
+      <Name>Core.Common.TestUtil</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

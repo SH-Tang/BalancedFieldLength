@@ -9,7 +9,7 @@ namespace Simulator.Calculator
     /// <summary>
     /// Class for calculating the traversed distance until the simulation reached the stopping criteria.
     /// </summary>
-    public class DistanceCalculator
+    public class DistanceCalculator : IDistanceCalculator
     {
         private const double screenHeight = 10.7;
         private readonly INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator;
@@ -67,12 +67,6 @@ namespace Simulator.Calculator
             this.calculationSettings = calculationSettings;
         }
 
-        /// <summary>
-        /// Calculates the distance which is needed before the aircraft reaches either the screen height
-        /// or comes to a standstill.
-        /// </summary>
-        /// <returns>The <see cref="DistanceCalculatorOutput"/> with the calculated result.</returns>
-        /// <exception cref="CalculatorException">Thrown when the calculator cannot calculate the covered distance.</exception>
         public DistanceCalculatorOutput Calculate()
         {
             var state = new AircraftState();
