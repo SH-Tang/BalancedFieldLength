@@ -55,13 +55,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\Core.Common.Geometry\Core.Common.Geometry.csproj">
-      <Project>{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}</Project>
-      <Name>Core.Common.Geometry</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
       <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
       <Name>Core.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Geometry\Core.Common.Geometry.csproj">
+      <Project>{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}</Project>
+      <Name>Core.Common.Geometry</Name>
     </ProjectReference>
     <ProjectReference Include="..\Simulator.Data\Simulator.Data.csproj">
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
