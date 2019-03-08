@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Common.Geometry;
+using Simulator.Calculator.AggregatedDistanceCalculator;
 
 namespace Simulator.Calculator.Helpers
 {

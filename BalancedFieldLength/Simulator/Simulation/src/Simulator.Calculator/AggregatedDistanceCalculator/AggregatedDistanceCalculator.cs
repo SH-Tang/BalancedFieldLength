@@ -4,7 +4,7 @@ using Simulator.Calculator.Integrators;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
 
-namespace Simulator.Calculator
+namespace Simulator.Calculator.AggregatedDistanceCalculator
 {
     /// <summary>
     /// Calculator to calculate the aggregated output for a given failure velocity.
