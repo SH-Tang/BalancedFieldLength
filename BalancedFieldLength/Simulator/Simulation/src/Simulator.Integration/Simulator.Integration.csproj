@@ -35,6 +35,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\DistanceCalculatorFactory.cs" />
+    <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
+    <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
     <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
@@ -42,7 +45,6 @@
     <Compile Include="TakeOffDynamics\TakeoffDynamicsCalculatorBase.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Factories\" />
     <Folder Include="Integrators\" />
   </ItemGroup>
   <ItemGroup>

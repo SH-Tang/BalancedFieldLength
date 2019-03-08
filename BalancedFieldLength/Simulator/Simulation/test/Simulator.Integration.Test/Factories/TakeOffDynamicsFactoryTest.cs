@@ -4,8 +4,9 @@ using Simulator.Calculator.Factories;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.TestUtil;
+using Simulator.Integration.Factories;
 
-namespace Simulator.Calculator.Test.Factories
+namespace Simulator.Integration.Test.Factories
 {
     [TestFixture]
     public class TakeOffDynamicsFactoryTest

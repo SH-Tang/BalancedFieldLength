@@ -1,9 +1,11 @@
 ﻿using System;
+using Simulator.Calculator;
+using Simulator.Calculator.Factories;
 using Simulator.Calculator.Integrators;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 
-namespace Simulator.Calculator.Factories
+namespace Simulator.Integration.Factories
 {
     /// <summary>
     /// Factory to create configured instance of <see cref="DistanceCalculator"/>.

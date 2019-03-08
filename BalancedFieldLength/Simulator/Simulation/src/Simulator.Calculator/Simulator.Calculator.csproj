@@ -37,10 +37,7 @@
   <ItemGroup>
     <Compile Include="AggregatedDistanceCalculator.cs" />
     <Compile Include="AggregatedDistanceOutput.cs" />
-    <Compile Include="Factories\DistanceCalculatorFactory.cs" />
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
-    <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
-    <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
     <Compile Include="Helpers\AggregatedDistanceCalculatorHelper.cs" />
     <Compile Include="IDistanceCalculator.cs" />
     <Compile Include="Integrators\EulerIntegrator.cs" />
