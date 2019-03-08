@@ -1,4 +1,5 @@
 ﻿using System;
+using NSubstitute;
 using NUnit.Framework;
 using Simulator.Calculator;
 using Simulator.Calculator.Factories;

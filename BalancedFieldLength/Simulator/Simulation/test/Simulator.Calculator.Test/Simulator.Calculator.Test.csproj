@@ -49,7 +49,6 @@
   <ItemGroup>
     <Compile Include="AggregatedDistanceCalculatorTest.cs" />
     <Compile Include="Helpers\AggregatedDistanceCalculatorHelperTest.cs" />
-    <Compile Include="Integrators\EulerIntegratorTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

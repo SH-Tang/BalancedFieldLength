@@ -5,6 +5,7 @@ using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.TestUtil;
 using Simulator.Integration.Factories;
+using Simulator.Integration.TakeOffDynamics;
 
 namespace Simulator.Integration.Test.Factories
 {

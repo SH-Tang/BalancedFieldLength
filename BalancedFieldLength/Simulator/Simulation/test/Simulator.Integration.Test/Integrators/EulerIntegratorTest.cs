@@ -4,8 +4,9 @@ using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
+using Simulator.Integration.Integrators;
 
-namespace Simulator.Calculator.Test.Integrators
+namespace Simulator.Integration.Test.Integrators
 {
     [TestFixture]
     public class EulerIntegratorTest

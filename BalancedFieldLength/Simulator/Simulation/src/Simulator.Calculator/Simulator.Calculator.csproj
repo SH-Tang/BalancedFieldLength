@@ -40,7 +40,6 @@
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
     <Compile Include="Helpers\AggregatedDistanceCalculatorHelper.cs" />
     <Compile Include="IDistanceCalculator.cs" />
-    <Compile Include="Integrators\EulerIntegrator.cs" />
     <Compile Include="DistanceCalculator.cs" />
     <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />
     <Compile Include="Integrators\IIntegrator.cs" />
