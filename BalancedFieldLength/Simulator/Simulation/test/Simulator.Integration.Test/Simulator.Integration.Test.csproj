@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{BE673503-B1BE-4046-AA09-430ED2D0C2D0}</ProjectGuid>
+    <ProjectGuid>{9604B05D-EE59-4BFD-B3C2-D11560EDF8B5}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Simulator.Calculator.Test</RootNamespace>
-    <AssemblyName>Simulator.Calculator.Test</AssemblyName>
+    <RootNamespace>Simulator.Integration.Test</RootNamespace>
+    <AssemblyName>Simulator.Integration.Test</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -37,9 +37,6 @@
     <Reference Include="NSubstitute, Version=1.8.2.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\NSubstitute.1.8.2.0\lib\net45\NSubstitute.dll</HintPath>
     </Reference>
-    <Reference Include="NSubstituteAutoMocker, Version=1.1.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\..\packages\NSubstituteAutoMocker.1.1.0.0\lib\net45\NSubstituteAutoMocker.dll</HintPath>
-    </Reference>
     <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
       <HintPath>..\..\..\..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
     </Reference>
@@ -47,11 +44,16 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculatorTest.cs" />
-    <Compile Include="Helpers\AggregatedDistanceCalculatorHelperTest.cs" />
-    <Compile Include="DistanceCalculatorTest.cs" />
+    <Compile Include="Factories\DistanceCalculatorFactoryTest.cs" />
+    <Compile Include="Factories\TakeOffDynamicsCalculatorFactoryTest.cs" />
+    <Compile Include="Integrators\EulerIntegratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculatorTest.cs" />
+    <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBaseTest.cs" />
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
@@ -71,6 +73,10 @@
     <ProjectReference Include="..\..\src\Simulator.Data\Simulator.Data.csproj">
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
       <Name>Simulator.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Simulator.Integration\Simulator.Integration.csproj">
+      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
+      <Name>Simulator.Integration</Name>
     </ProjectReference>
     <ProjectReference Include="..\Simulator.Data.TestUtil\Simulator.Data.TestUtil.csproj">
       <Project>{28A81F57-8057-4D63-9A1C-01D1B35A08AE}</Project>
