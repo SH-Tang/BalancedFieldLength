@@ -14,7 +14,7 @@ namespace Simulator.Integration.TakeOffDynamics
         /// <summary>
         /// Creates a new instance of <see cref="NormalTakeOffDynamicsCalculator"/>.
         /// </summary>
-        /// <param name="aircraftData">Tee <see cref="Simulator.Data.AircraftData"/> which holds
+        /// <param name="aircraftData">Tee <see cref="AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
         /// <param name="density">The air density. [kg/m3]</param>
         /// <param name="gravitationalAcceleration">The gravitational acceleration g0. [m/s^2]</param>

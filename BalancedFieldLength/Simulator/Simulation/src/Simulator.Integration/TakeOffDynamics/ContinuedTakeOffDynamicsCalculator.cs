@@ -18,7 +18,7 @@ namespace Simulator.Integration.TakeOffDynamics
         /// <summary>
         /// Creates a new instance of <see cref="ContinuedTakeOffDynamicsCalculator"/>.
         /// </summary>
-        /// <param name="aircraftData">Tee <see cref="Simulator.Data.AircraftData"/> which holds
+        /// <param name="aircraftData">Tee <see cref="AircraftData"/> which holds
         /// all the information of the aircraft to simulate.</param>
         /// <param name="numberOfFailedEngines">The number of engines which failed during takeoff.</param>
         /// <param name="density">The air density. [kg/m3]</param>
