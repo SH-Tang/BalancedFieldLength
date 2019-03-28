@@ -35,7 +35,25 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AggregatedDistanceCalculatorKernel.cs" />
+    <Compile Include="IAggregatedDistanceCalculatorKernel.cs" />
+    <Compile Include="KernelValidationError.cs" />
+    <Compile Include="KernelValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Simulator.Calculator\Simulator.Calculator.csproj">
+      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
+      <Name>Simulator.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Data\Simulator.Data.csproj">
+      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
+      <Name>Simulator.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Integration\Simulator.Integration.csproj">
+      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
+      <Name>Simulator.Integration</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
