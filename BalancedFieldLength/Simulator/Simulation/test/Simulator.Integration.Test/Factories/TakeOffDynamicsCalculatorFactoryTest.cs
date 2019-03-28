@@ -9,7 +9,7 @@ using Simulator.Integration.TakeOffDynamics;
 namespace Simulator.Integration.Test.Factories
 {
     [TestFixture]
-    public class TakeOffDynamicsFactoryTest
+    public class TakeOffDynamicsCalculatorFactoryTest
     {
         [Test]
         public void CreateNormalTakeOffDynamics_Always_ReturnsExpectedCalculator()
@@ -18,7 +18,7 @@ namespace Simulator.Integration.Test.Factories
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = new TakeOffDynamicsFactory();
+            var factory = new TakeOffDynamicsCalculatorFactory();
 
             // Call
             INormalTakeOffDynamicsCalculator calculator = factory.CreateNormalTakeOffDynamics(aircraftData,
@@ -36,7 +36,7 @@ namespace Simulator.Integration.Test.Factories
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = new TakeOffDynamicsFactory();
+            var factory = new TakeOffDynamicsCalculatorFactory();
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateAbortedTakeOffDynamics(aircraftData,
@@ -54,7 +54,7 @@ namespace Simulator.Integration.Test.Factories
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            var factory = new TakeOffDynamicsFactory();
+            var factory = new TakeOffDynamicsCalculatorFactory();
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateContinuedTakeOffDynamicsCalculator(aircraftData,

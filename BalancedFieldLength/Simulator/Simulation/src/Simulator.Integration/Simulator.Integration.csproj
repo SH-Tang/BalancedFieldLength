@@ -37,7 +37,7 @@
   <ItemGroup>
     <Compile Include="Factories\DistanceCalculatorFactory.cs" />
     <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
-    <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
+    <Compile Include="Factories\TakeOffDynamicsCalculatorFactory.cs" />
     <Compile Include="Integrators\EulerIntegrator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />

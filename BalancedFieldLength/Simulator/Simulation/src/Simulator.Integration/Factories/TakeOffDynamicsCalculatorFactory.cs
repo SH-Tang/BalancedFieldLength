@@ -7,7 +7,7 @@ namespace Simulator.Integration.Factories
     /// <summary>
     /// Factory to create take off dynamics calculators.
     /// </summary>
-    public class TakeOffDynamicsFactory : ITakeOffDynamicsCalculatorFactory
+    public class TakeOffDynamicsCalculatorFactory : ITakeOffDynamicsCalculatorFactory
     {
         public INormalTakeOffDynamicsCalculator CreateNormalTakeOffDynamics(AircraftData data,
                                                                             double density,

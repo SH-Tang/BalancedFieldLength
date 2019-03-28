@@ -20,7 +20,7 @@ namespace Simulator.Kernel
         /// </summary>
         public AggregatedDistanceCalculatorKernel()
         {
-            var distanceCalculatorFactory = new DistanceCalculatorFactory(new TakeOffDynamicsFactory());
+            var distanceCalculatorFactory = new DistanceCalculatorFactory(new TakeOffDynamicsCalculatorFactory());
             aggregatedDistanceCalculator = new AggregatedDistanceCalculator(distanceCalculatorFactory);
         }
 
