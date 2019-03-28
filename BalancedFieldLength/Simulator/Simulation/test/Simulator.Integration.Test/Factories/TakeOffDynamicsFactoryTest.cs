@@ -1,6 +1,5 @@
 ﻿using System;
 using NUnit.Framework;
-using Simulator.Calculator.Factories;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.TestUtil;
@@ -13,23 +12,13 @@ namespace Simulator.Integration.Test.Factories
     public class TakeOffDynamicsFactoryTest
     {
         [Test]
-        public void Instance__Always_ReturnsAFactoryInstance()
-        {
-            // Call
-            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
-
-            // Assert
-            Assert.IsInstanceOf<ITakeOffDynamicsCalculatorFactory>(factory);
-        }
-
-        [Test]
         public void CreateNormalTakeOffDynamics_Always_ReturnsExpectedCalculator()
         {
             // Setup
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
+            var factory = new TakeOffDynamicsFactory();
 
             // Call
             INormalTakeOffDynamicsCalculator calculator = factory.CreateNormalTakeOffDynamics(aircraftData,
@@ -47,7 +36,7 @@ namespace Simulator.Integration.Test.Factories
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
+            var factory = new TakeOffDynamicsFactory();
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateAbortedTakeOffDynamics(aircraftData,
@@ -65,7 +54,7 @@ namespace Simulator.Integration.Test.Factories
             var random = new Random(21);
             AircraftData aircraftData = AircraftDataTestFactory.CreateRandomAircraftData();
 
-            ITakeOffDynamicsCalculatorFactory factory = TakeOffDynamicsFactory.Instance;
+            var factory = new TakeOffDynamicsFactory();
 
             // Call
             IFailureTakeOffDynamicsCalculator calculator = factory.CreateContinuedTakeOffDynamicsCalculator(aircraftData,

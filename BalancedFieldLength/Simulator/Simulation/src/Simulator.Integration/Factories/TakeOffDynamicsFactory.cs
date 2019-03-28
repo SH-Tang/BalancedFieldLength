@@ -9,19 +9,6 @@ namespace Simulator.Integration.Factories
     /// </summary>
     public class TakeOffDynamicsFactory : ITakeOffDynamicsCalculatorFactory
     {
-        private static ITakeOffDynamicsCalculatorFactory instance;
-
-        /// <summary>
-        /// Gets an instance of <see cref="ITakeOffDynamicsCalculatorFactory"/>.
-        /// </summary>
-        public static ITakeOffDynamicsCalculatorFactory Instance
-        {
-            get
-            {
-                return instance ?? (instance = new TakeOffDynamicsFactory());
-            }
-        }
-
         public INormalTakeOffDynamicsCalculator CreateNormalTakeOffDynamics(AircraftData data,
                                                                             double density,
                                                                             double gravitationalAcceleration)
