@@ -53,8 +53,8 @@ namespace Core.Common.Geometry.Test
 
         [Test]
         [TestCaseSource(nameof(GetCrossingLinesScenarios))]
-        public void DetermineCrossing_VariousScenariosWithCrossing_ReturnsExpectedResult(LineSegment line1, 
-                                                                                         LineSegment line2, 
+        public void DetermineCrossing_VariousScenariosWithCrossing_ReturnsExpectedResult(LineSegment line1,
+                                                                                         LineSegment line2,
                                                                                          Point2D expectedResult)
         {
             // Call 

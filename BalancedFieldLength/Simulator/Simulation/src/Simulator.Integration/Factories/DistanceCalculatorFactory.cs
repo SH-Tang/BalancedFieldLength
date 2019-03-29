@@ -43,7 +43,7 @@ namespace Simulator.Integration.Factories
 
             INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
-            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator = 
+            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateContinuedTakeOffDynamicsCalculator(data, nrOfFailedEngines, density, gravitationalAcceleration);
 
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);
@@ -55,9 +55,9 @@ namespace Simulator.Integration.Factories
                                                                           double gravitationalAcceleration,
                                                                           CalculationSettings calculationSettings)
         {
-            INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator = 
+            INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
-            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator = 
+            IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateAbortedTakeOffDynamics(data, density, gravitationalAcceleration);
 
             return new DistanceCalculator(normalTakeOffDynamicsCalculator, failureTakeOffDynamicsCalculator, integrator, calculationSettings);

@@ -1,5 +1,4 @@
-﻿using Simulator.Data;
-using Simulator.Data.Exceptions;
+﻿using Simulator.Data.Exceptions;
 
 namespace Simulator.Calculator
 {
