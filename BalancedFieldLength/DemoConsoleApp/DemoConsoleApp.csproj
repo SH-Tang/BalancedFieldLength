@@ -35,12 +35,6 @@
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
@@ -48,6 +42,28 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Simulator\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
+      <Name>Core.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator\Simulation\src\Simulator.Calculator\Simulator.Calculator.csproj">
+      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
+      <Name>Simulator.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator\Simulation\src\Simulator.Components\Simulator.Components.csproj">
+      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
+      <Name>Simulator.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator\Simulation\src\Simulator.Data\Simulator.Data.csproj">
+      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
+      <Name>Simulator.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator\Simulation\src\Simulator.Kernel\Simulator.Kernel.csproj">
+      <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
+      <Name>Simulator.Kernel</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
