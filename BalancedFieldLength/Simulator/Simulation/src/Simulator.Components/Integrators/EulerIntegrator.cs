@@ -3,7 +3,7 @@ using Core.Common.Data;
 using Simulator.Calculator.Integrators;
 using Simulator.Data;
 
-namespace Simulator.Integration.Integrators
+namespace Simulator.Components.Integrators
 {
     /// <summary>
     /// Class which solves the dynamic system by means of Euler integration.

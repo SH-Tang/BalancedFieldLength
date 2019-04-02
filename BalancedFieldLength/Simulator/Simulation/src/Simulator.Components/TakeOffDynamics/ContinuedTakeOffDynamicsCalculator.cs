@@ -3,7 +3,7 @@ using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Integration.TakeOffDynamics
+namespace Simulator.Components.TakeOffDynamics
 {
     /// <summary>
     /// Class which describes the calculation of the aircraft dynamics

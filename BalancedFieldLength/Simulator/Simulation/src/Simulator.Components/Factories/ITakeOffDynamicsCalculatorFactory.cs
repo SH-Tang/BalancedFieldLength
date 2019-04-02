@@ -2,7 +2,7 @@
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 
-namespace Simulator.Integration.Factories
+namespace Simulator.Components.Factories
 {
     /// <summary>
     /// Interface for describing a factory creating calculator instances for take off dynamics.

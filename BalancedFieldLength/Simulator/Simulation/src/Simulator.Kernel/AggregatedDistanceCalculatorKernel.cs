@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using Simulator.Calculator.AggregatedDistanceCalculator;
 using Simulator.Calculator.Integrators;
+using Simulator.Components.Factories;
 using Simulator.Data;
-using Simulator.Integration.Factories;
 
 namespace Simulator.Kernel
 {

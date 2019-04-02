@@ -1,8 +1,8 @@
 ﻿using Simulator.Calculator.TakeOffDynamics;
+using Simulator.Components.TakeOffDynamics;
 using Simulator.Data;
-using Simulator.Integration.TakeOffDynamics;
 
-namespace Simulator.Integration.Factories
+namespace Simulator.Components.Factories
 {
     /// <summary>
     /// Factory to create take off dynamics calculators.

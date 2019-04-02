@@ -56,10 +56,6 @@
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
       <Name>Simulator.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\src\Simulator.Integration\Simulator.Integration.csproj">
-      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
-      <Name>Simulator.Integration</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\src\Simulator.Kernel\Simulator.Kernel.csproj">
       <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
       <Name>Simulator.Kernel</Name>

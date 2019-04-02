@@ -41,9 +41,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Geometry.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Geometry", "Simulator\Core\src\Core.Common.Geometry\Core.Common.Geometry.csproj", "{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Integration", "Simulator\Simulation\src\Simulator.Integration\Simulator.Integration.csproj", "{8F5FF824-68A1-4589-A573-52640DC985C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components", "Simulator\Simulation\src\Simulator.Components\Simulator.Components.csproj", "{8F5FF824-68A1-4589-A573-52640DC985C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Integration.Test", "Simulator\Simulation\test\Simulator.Integration.Test\Simulator.Integration.Test.csproj", "{9604B05D-EE59-4BFD-B3C2-D11560EDF8B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components.Test", "Simulator\Simulation\test\Simulator.Components.Test\Simulator.Components.Test.csproj", "{9604B05D-EE59-4BFD-B3C2-D11560EDF8B5}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel", "Simulator\Simulation\src\Simulator.Kernel\Simulator.Kernel.csproj", "{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}"
 EndProject
