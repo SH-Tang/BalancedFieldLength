@@ -1,4 +1,4 @@
-﻿namespace Simulator.Data
+﻿namespace Simulator.Calculator
 {
     /// <summary>
     /// Class to hold the calculated distance for a given failure speed.
@@ -10,7 +10,7 @@
         /// </summary>
         /// <param name="failureSpeed">The speed at which the failure occurred. [m/s]</param>
         /// <param name="distance">The distance covered before the stopping criteria was satisfied. [m]</param>
-        public DistanceCalculatorOutput(int failureSpeed, double distance)
+        internal DistanceCalculatorOutput(int failureSpeed, double distance)
         {
             FailureSpeed = failureSpeed;
             Distance = distance;

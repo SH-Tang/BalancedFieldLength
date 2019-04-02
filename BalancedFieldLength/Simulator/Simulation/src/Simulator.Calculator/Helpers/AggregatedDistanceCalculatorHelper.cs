@@ -43,7 +43,7 @@ namespace Simulator.Calculator.Helpers
             }
 
             AggregatedDistanceOutput firstOutput = sortedOutputs.First();
-            for (int i = 1; i < sortedOutputs.Count(); i++)
+            for (var i = 1; i < sortedOutputs.Count(); i++)
             {
                 AggregatedDistanceOutput currentOutput = sortedOutputs.ElementAt(i);
 
@@ -77,7 +77,7 @@ namespace Simulator.Calculator.Helpers
         /// a certain failure speed.</exception>
         private static IEnumerable<AggregatedDistanceOutput> SortOutputs(IEnumerable<AggregatedDistanceOutput> outputs)
         {
-            SortedList<double, AggregatedDistanceOutput> list = new SortedList<double, AggregatedDistanceOutput>();
+            var list = new SortedList<double, AggregatedDistanceOutput>();
             foreach (AggregatedDistanceOutput output in outputs)
             {
                 double failureSpeed = output.FailureSpeed;

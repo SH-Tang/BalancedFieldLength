@@ -140,21 +140,21 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           aspectRatioPropertyName)
                 .SetName($"{aspectRatioPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(-1e-6, wingArea,
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           aspectRatioPropertyName)
                 .SetName($"{aspectRatioPropertyName} Negative");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(double.NegativeInfinity, wingArea,
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           aspectRatioPropertyName)
                 .SetName($"{aspectRatioPropertyName} NegativeInfinity");
 
@@ -163,21 +163,21 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           wingAreaPropertyName)
                 .SetName($"{wingAreaPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, -1e-6,
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           wingAreaPropertyName)
                 .SetName($"{wingAreaPropertyName} Negative");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, double.NegativeInfinity,
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           wingAreaPropertyName)
                 .SetName($"{wingAreaPropertyName} NegativeInfinity");
 
@@ -186,14 +186,14 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, 0,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           liftCoefficientGradientPropertyName)
                 .SetName($"{liftCoefficientGradientPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
                                                                                 zeroLiftAngleOfAttack, -1e-6,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           liftCoefficientGradientPropertyName)
                 .SetName($"{liftCoefficientGradientPropertyName} Negative");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
@@ -209,7 +209,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 0,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           maximumLiftCoefficientPropertyName)
                 .SetName($"{maximumLiftCoefficientPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
@@ -223,7 +223,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 double.NegativeInfinity,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           maximumLiftCoefficientPropertyName)
                 .SetName($"{maximumLiftCoefficientPropertyName} NegativeInfinity");
 
@@ -232,7 +232,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, 0)), 
+                                                                                restDragCoefficientWithEngineFailure, 0)),
                                           oswaldFactorPropertyName)
                 .SetName($"{oswaldFactorPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
@@ -246,7 +246,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, double.NegativeInfinity)), 
+                                                                                restDragCoefficientWithEngineFailure, double.NegativeInfinity)),
                                           oswaldFactorPropertyName)
                 .SetName($"{oswaldFactorPropertyName} NegativeInfinity");
         }
@@ -275,7 +275,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           aspectRatioPropertyName)
                 .SetName($"{aspectRatioPropertyName} PositiveInfinity");
 
@@ -300,21 +300,21 @@ namespace Simulator.Data.Test
                                                                                 Angle.FromRadians(double.NaN), liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           zeroLiftAngleOfAttackPropertyName)
                 .SetName($"{zeroLiftAngleOfAttackPropertyName} NaN");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
                                                                                 Angle.FromRadians(double.PositiveInfinity), liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           zeroLiftAngleOfAttackPropertyName)
                 .SetName($"{zeroLiftAngleOfAttackPropertyName} PositiveInfinity");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
                                                                                 Angle.FromRadians(double.NegativeInfinity), liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           zeroLiftAngleOfAttackPropertyName)
                 .SetName($"{zeroLiftAngleOfAttackPropertyName} NegativeInfinity");
 
@@ -330,7 +330,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, double.PositiveInfinity,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           liftCoefficientGradientPropertyName)
                 .SetName($"{liftCoefficientGradientPropertyName} PositiveInfinity");
 
@@ -339,7 +339,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 double.NaN,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)), 
+                                                                                restDragCoefficientWithEngineFailure, oswaldFactor)),
                                           maximumLiftCoefficientPropertyName)
                 .SetName($"{maximumLiftCoefficientPropertyName} Zero");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
@@ -378,7 +378,7 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                double.PositiveInfinity, oswaldFactor)), 
+                                                                                double.PositiveInfinity, oswaldFactor)),
                                           dragCoefficientWithEngineFailurePropertyName)
                 .SetName($"{dragCoefficientWithEngineFailurePropertyName}PositiveInfinity");
 
@@ -387,14 +387,14 @@ namespace Simulator.Data.Test
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, double.NaN)), 
+                                                                                restDragCoefficientWithEngineFailure, double.NaN)),
                                           oswaldFactorPropertyName)
                 .SetName($"{oswaldFactorPropertyName} NaN");
             yield return new TestCaseData(new Action(() => new AerodynamicsData(aspectRatio, wingArea,
                                                                                 zeroLiftAngleOfAttack, liftCoefficientGradient,
                                                                                 maximumLiftCoefficient,
                                                                                 restDragCoefficientWithoutEngineFailure,
-                                                                                restDragCoefficientWithEngineFailure, double.PositiveInfinity)), 
+                                                                                restDragCoefficientWithEngineFailure, double.PositiveInfinity)),
                                           oswaldFactorPropertyName)
                 .SetName($"{oswaldFactorPropertyName} PositiveInfinity");
         }
