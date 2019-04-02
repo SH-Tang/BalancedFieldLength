@@ -76,7 +76,7 @@
     </ProjectReference>
     <ProjectReference Include="..\..\src\Simulator.Components\Simulator.Components.csproj">
       <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
-      <Name>Simulator.Integration</Name>
+      <Name>Simulator.Components</Name>
     </ProjectReference>
     <ProjectReference Include="..\Simulator.Data.TestUtil\Simulator.Data.TestUtil.csproj">
       <Project>{28A81F57-8057-4D63-9A1C-01D1B35A08AE}</Project>
