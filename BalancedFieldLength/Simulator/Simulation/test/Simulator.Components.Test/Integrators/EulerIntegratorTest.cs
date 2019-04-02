@@ -3,10 +3,10 @@ using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Calculator.Integrators;
+using Simulator.Components.Integrators;
 using Simulator.Data;
-using Simulator.Integration.Integrators;
 
-namespace Simulator.Integration.Test.Integrators
+namespace Simulator.Components.Test.Integrators
 {
     [TestFixture]
     public class EulerIntegratorTest

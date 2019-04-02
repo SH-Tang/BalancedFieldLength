@@ -65,7 +65,7 @@
 											"top": 766,
 											"width": 1255,
 											"height": 13,
-											"text": "Simulator.Integration"
+											"text": "Simulator.Components"
 										},
 										{
 											"_type": "LabelView",
@@ -421,9 +421,9 @@
 											"font": "Arial;13;0",
 											"left": 976,
 											"top": 528,
-											"width": 157.50439453125,
+											"width": 169.78076171875,
 											"height": 13,
-											"text": "(from Simulator.Integration)"
+											"text": "(from Simulator.Components)"
 										},
 										{
 											"_type": "LabelView",
@@ -597,9 +597,9 @@
 											"font": "Arial;13;0",
 											"left": -80,
 											"top": 816,
-											"width": 157.50439453125,
+											"width": 169.78076171875,
 											"height": 13,
-											"text": "(from Simulator.Integration)"
+											"text": "(from Simulator.Components)"
 										},
 										{
 											"_type": "LabelView",
@@ -980,9 +980,9 @@
 											"font": "Arial;13;0",
 											"left": 832,
 											"top": 2304,
-											"width": 157.50439453125,
+											"width": 169.78076171875,
 											"height": 13,
-											"text": "(from Simulator.Integration)"
+											"text": "(from Simulator.Components)"
 										},
 										{
 											"_type": "LabelView",
@@ -1645,9 +1645,9 @@
 											"font": "Arial;13;0",
 											"left": -656,
 											"top": 336,
-											"width": 157.50439453125,
+											"width": 169.78076171875,
 											"height": 13,
-											"text": "(from Simulator.Integration)"
+											"text": "(from Simulator.Components)"
 										},
 										{
 											"_type": "LabelView",
@@ -2654,9 +2654,9 @@
 											"font": "Arial;13;0",
 											"left": 928,
 											"top": -416,
-											"width": 157.50439453125,
+											"width": 169.78076171875,
 											"height": 13,
-											"text": "(from Simulator.Integration)"
+											"text": "(from Simulator.Components)"
 										},
 										{
 											"_type": "LabelView",
@@ -12601,7 +12601,8 @@
 											"_parent": {
 												"$ref": "AAAAAAFnMoOJ/Lq8NIo="
 											},
-											"name": "failureTakeOffDynamicsCalculator IFailureTakeOffDynamicsCalculator"
+											"name": "failureTakeOffDynamicsCalculator IFailureTakeOffDynamicsCalculator",
+											"type": ""
 										},
 										{
 											"_type": "UMLParameter",
@@ -13206,7 +13207,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Simulator.Integration",
+					"name": "Simulator.Components",
 					"ownedElements": [
 						{
 							"_type": "UMLClass",

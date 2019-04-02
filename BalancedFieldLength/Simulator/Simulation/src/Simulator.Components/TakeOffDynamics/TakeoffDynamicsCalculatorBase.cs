@@ -4,7 +4,7 @@ using Simulator.Data;
 using Simulator.Data.Exceptions;
 using Simulator.Data.Helpers;
 
-namespace Simulator.Integration.TakeOffDynamics
+namespace Simulator.Components.TakeOffDynamics
 {
     /// <summary>
     /// Base class which describes the standard aircraft dynamics

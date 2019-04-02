@@ -2,13 +2,13 @@
 using Core.Common.Data;
 using Core.Common.TestUtil;
 using NUnit.Framework;
+using Simulator.Components.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
 using Simulator.Data.Helpers;
 using Simulator.Data.TestUtil;
-using Simulator.Integration.TakeOffDynamics;
 
-namespace Simulator.Integration.Test.TakeOffDynamics
+namespace Simulator.Components.Test.TakeOffDynamics
 {
     [TestFixture]
     public class TakeOffDynamicsCalculatorBaseTest

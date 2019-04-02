@@ -46,13 +46,13 @@
       <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
       <Name>Simulator.Calculator</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Simulator.Components\Simulator.Components.csproj">
+      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
+      <Name>Simulator.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Simulator.Data\Simulator.Data.csproj">
       <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
       <Name>Simulator.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Simulator.Integration\Simulator.Integration.csproj">
-      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
-      <Name>Simulator.Integration</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
