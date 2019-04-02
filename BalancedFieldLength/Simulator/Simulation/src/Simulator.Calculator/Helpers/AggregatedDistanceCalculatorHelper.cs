@@ -42,16 +42,16 @@ namespace Simulator.Calculator.Helpers
                 throw new ArgumentException("Cannot determine crossing from a collection containing 0 or 1 item.");
             }
 
-            AggregatedDistanceOutput firstOutput = sortedOutputs.First();
+            AggregatedDistanceOutput previousOutput = sortedOutputs.First();
             for (var i = 1; i < sortedOutputs.Count(); i++)
             {
                 AggregatedDistanceOutput currentOutput = sortedOutputs.ElementAt(i);
 
                 // Create line segments
-                var continuedTakeOffSegment = new LineSegment(new Point2D(firstOutput.FailureSpeed, firstOutput.ContinuedTakeOffDistance),
+                var continuedTakeOffSegment = new LineSegment(new Point2D(previousOutput.FailureSpeed, previousOutput.ContinuedTakeOffDistance),
                                                               new Point2D(currentOutput.FailureSpeed, currentOutput.ContinuedTakeOffDistance));
 
-                var abortedTakeOffSegment = new LineSegment(new Point2D(firstOutput.FailureSpeed, firstOutput.AbortedTakeOffDistance),
+                var abortedTakeOffSegment = new LineSegment(new Point2D(previousOutput.FailureSpeed, previousOutput.AbortedTakeOffDistance),
                                                             new Point2D(currentOutput.FailureSpeed, currentOutput.AbortedTakeOffDistance));
 
                 // Determine whether lines cross
@@ -63,6 +63,8 @@ namespace Simulator.Calculator.Helpers
                     double intersectionDistance = crossingPoint.Y;
                     return new AggregatedDistanceOutput(crossingPoint.X, intersectionDistance, intersectionDistance);
                 }
+
+                previousOutput = currentOutput;
             }
 
             return new AggregatedDistanceOutput(double.NaN, double.NaN, double.NaN);
