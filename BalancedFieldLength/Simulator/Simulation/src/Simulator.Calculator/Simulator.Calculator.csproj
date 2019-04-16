@@ -35,23 +35,17 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregatedDistanceCalculator.cs" />
-    <Compile Include="AggregatedDistanceOutput.cs" />
-    <Compile Include="Factories\DistanceCalculatorFactory.cs" />
+    <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculator.cs" />
+    <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceOutput.cs" />
+    <Compile Include="AggregatedDistanceCalculator\IAggregatedDistanceCalculator.cs" />
+    <Compile Include="DistanceCalculatorOutput.cs" />
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
-    <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
-    <Compile Include="Factories\TakeOffDynamicsFactory.cs" />
     <Compile Include="Helpers\AggregatedDistanceCalculatorHelper.cs" />
     <Compile Include="IDistanceCalculator.cs" />
-    <Compile Include="Integrators\EulerIntegrator.cs" />
-    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
     <Compile Include="DistanceCalculator.cs" />
     <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />
     <Compile Include="Integrators\IIntegrator.cs" />
     <Compile Include="TakeOffDynamics\INormalTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeOffDynamics\TakeOffDynamicsCalculatorBase.cs" />
-    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
-    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

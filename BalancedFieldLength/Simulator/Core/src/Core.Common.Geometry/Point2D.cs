@@ -26,14 +26,14 @@
         /// </summary>
         public double Y { get; }
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj) && Equals((Point2D) obj);
-        }
-
         public bool Equals(Point2D other)
         {
             return X.Equals(other.X) && Y.Equals(other.Y);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return base.Equals(obj) && Equals((Point2D) obj);
         }
 
         public override int GetHashCode()

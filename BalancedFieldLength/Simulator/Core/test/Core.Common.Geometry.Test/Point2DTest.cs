@@ -70,7 +70,7 @@ namespace Core.Common.Geometry.Test
 
             // Call 
             bool result = point.Equals(new object());
-            
+
             // Assert
             Assert.IsFalse(result);
         }
@@ -151,7 +151,6 @@ namespace Core.Common.Geometry.Test
 
             // Assert
             Assert.AreEqual(hashCodePoint1, hashCodePoint2);
-
         }
     }
 }

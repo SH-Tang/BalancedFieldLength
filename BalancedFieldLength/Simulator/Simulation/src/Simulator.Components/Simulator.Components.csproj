@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8F5FF824-68A1-4589-A573-52640DC985C9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Simulator.Components</RootNamespace>
+    <AssemblyName>Simulator.Components</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Factories\DistanceCalculatorFactory.cs" />
+    <Compile Include="Factories\ITakeOffDynamicsCalculatorFactory.cs" />
+    <Compile Include="Factories\TakeOffDynamicsCalculatorFactory.cs" />
+    <Compile Include="Integrators\EulerIntegrator.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TakeOffDynamics\AbortedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\ContinuedTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\NormalTakeOffDynamicsCalculator.cs" />
+    <Compile Include="TakeOffDynamics\TakeoffDynamicsCalculatorBase.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
+      <Name>Core.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Calculator\Simulator.Calculator.csproj">
+      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
+      <Name>Simulator.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Simulator.Data\Simulator.Data.csproj">
+      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
+      <Name>Simulator.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

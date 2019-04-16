@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Common.TestUtil;
 using NUnit.Framework;
+using Simulator.Calculator.AggregatedDistanceCalculator;
 using Simulator.Calculator.Helpers;
 
 namespace Simulator.Calculator.Test.Helpers
@@ -179,7 +180,7 @@ namespace Simulator.Calculator.Test.Helpers
                                               new AggregatedDistanceOutput(10, 10, 30),
                                               new AggregatedDistanceOutput(12, 30, 10)
                                           }, 11, 20)
-                .SetName("AbortedDistance Increasing, ContinuedDistance Decreasing, UnDefine Intersection Point");
+                .SetName("AbortedDistance Increasing, ContinuedDistance Decreasing, Undefined Intersection Point");
 
             yield return new TestCaseData(new[]
                                           {

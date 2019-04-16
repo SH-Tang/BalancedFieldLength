@@ -47,9 +47,19 @@ namespace Core.Common.Geometry
             double determinant = (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.Y - line2.EndPoint.Y)
                                  - (line1.StartPoint.Y - line1.EndPoint.Y) * (line2.StartPoint.X - line2.EndPoint.X);
 
-            // If the determinant equal 0, the lines are either parallel or on top of each other.
+            // If the determinant equals 0, the lines are either parallel or on top of each other.
             if (Math.Abs(determinant) > tolerance)
             {
+                // Check if lines cross at the beginning or the end of the line segments
+                if (line1.StartPoint.Equals(line2.StartPoint) || line1.StartPoint.Equals(line2.EndPoint))
+                {
+                    return line1.StartPoint;
+                }
+                if (line1.EndPoint.Equals(line2.StartPoint) || line1.EndPoint.Equals(line2.EndPoint))
+                {
+                    return line1.EndPoint;
+                }
+
                 double xCoordinate = (line1.StartPoint.X * line1.EndPoint.Y - line1.StartPoint.Y * line1.EndPoint.X) * (line2.StartPoint.X - line2.EndPoint.X) -
                                      (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.X * line2.EndPoint.Y - line2.StartPoint.Y * line2.EndPoint.X);
 

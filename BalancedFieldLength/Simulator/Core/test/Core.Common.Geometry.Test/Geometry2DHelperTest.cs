@@ -53,8 +53,8 @@ namespace Core.Common.Geometry.Test
 
         [Test]
         [TestCaseSource(nameof(GetCrossingLinesScenarios))]
-        public void DetermineCrossing_VariousScenariosWithCrossing_ReturnsExpectedResult(LineSegment line1, 
-                                                                                         LineSegment line2, 
+        public void DetermineCrossing_VariousScenariosWithCrossing_ReturnsExpectedResult(LineSegment line1,
+                                                                                         LineSegment line2,
                                                                                          Point2D expectedResult)
         {
             // Call 
@@ -100,6 +100,34 @@ namespace Core.Common.Geometry.Test
                                                           new Point2D(15, 15)),
                                           new Point2D(10, 15))
                 .SetName("Line 1 Vertical, Line 2 Horizontal, Intermediate point intersect");
+
+            yield return new TestCaseData(new LineSegment(new Point2D(10, 10),
+                                                          new Point2D(10, 20)),
+                                          new LineSegment(new Point2D(10, 10),
+                                                          new Point2D(20, 20)),
+                                          new Point2D(10, 10))
+                .SetName("Line 1 Start Point, Line 2 Start Point intersect");
+
+            yield return new TestCaseData(new LineSegment(new Point2D(10, 10),
+                                                          new Point2D(10, 20)),
+                                          new LineSegment(new Point2D(20, 20),
+                                                          new Point2D(10, 10)),
+                                          new Point2D(10, 10))
+                .SetName("Line 1 Start Point, Line 2 End Point intersect");
+
+            yield return new TestCaseData(new LineSegment(new Point2D(10, 20),
+                                                          new Point2D(10, 10)),
+                                          new LineSegment(new Point2D(10, 10),
+                                                          new Point2D(20, 20)),
+                                          new Point2D(10, 10))
+                .SetName("Line 1 End Point, Line 2 Start Point intersect");
+
+            yield return new TestCaseData(new LineSegment(new Point2D(10, 20),
+                                                          new Point2D(10, 10)),
+                                          new LineSegment(new Point2D(20, 20),
+                                                          new Point2D(10, 10)),
+                                          new Point2D(10, 10))
+                .SetName("Line 1 End Point, Line 2 End Point intersect");
         }
 
         private static IEnumerable<TestCaseData> GetLinesOnTopScenarios()

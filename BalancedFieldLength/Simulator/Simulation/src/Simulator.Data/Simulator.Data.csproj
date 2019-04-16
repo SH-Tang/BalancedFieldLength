@@ -39,7 +39,6 @@
     <Compile Include="AircraftAccelerations.cs" />
     <Compile Include="AircraftData.cs" />
     <Compile Include="AircraftState.cs" />
-    <Compile Include="DistanceCalculatorOutput.cs" />
     <Compile Include="CalculationSettings.cs" />
     <Compile Include="Exceptions\CalculatorException.cs" />
     <Compile Include="Exceptions\InvalidCalculationException.cs" />
