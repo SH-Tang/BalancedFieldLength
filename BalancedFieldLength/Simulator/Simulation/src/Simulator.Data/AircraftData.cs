@@ -133,29 +133,25 @@ namespace Simulator.Data
                                           Angle pitchAngleGradient, Angle maximumPitchAngle, double rollingResistanceCoefficient,
                                           double brakingResistanceCoefficient)
         {
-            NumberValidator.ValidateParameterLargerThanZero(nrOfEngines, nameof(nrOfEngines));
+            nrOfEngines.ArgumentIsLargerThanZero(nameof(nrOfEngines));
 
-            NumberValidator.ValidateParameterLargerThanZero(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
-            NumberValidator.ValidateValueIsConcreteNumber(maximumThrustPerEngine, nameof(maximumThrustPerEngine));
+            maximumThrustPerEngine.ArgumentIsLargerThanZero(nameof(maximumThrustPerEngine));
+            maximumThrustPerEngine.ArgumentIsConcreteNumber(nameof(maximumThrustPerEngine));
 
-            NumberValidator.ValidateParameterLargerThanZero(takeOffWeight, nameof(takeOffWeight));
-            NumberValidator.ValidateValueIsConcreteNumber(takeOffWeight, nameof(takeOffWeight));
+            takeOffWeight.ArgumentIsLargerThanZero(nameof(takeOffWeight));
+            takeOffWeight.ArgumentIsConcreteNumber(nameof(takeOffWeight));
 
-            NumberValidator.ValidateParameterLargerThanZero(pitchAngleGradient, nameof(pitchAngleGradient));
-            NumberValidator.ValidateValueIsConcreteNumber(pitchAngleGradient, nameof(pitchAngleGradient));
+            pitchAngleGradient.ArgumentIsLargerThanZero(nameof(pitchAngleGradient));
+            pitchAngleGradient.ArgumentIsConcreteNumber(nameof(pitchAngleGradient));
 
-            NumberValidator.ValidateParameterLargerThanZero(maximumPitchAngle, nameof(maximumPitchAngle));
-            NumberValidator.ValidateValueIsConcreteNumber(maximumPitchAngle, nameof(maximumPitchAngle));
+            maximumPitchAngle.ArgumentIsLargerThanZero(nameof(maximumPitchAngle));
+            maximumPitchAngle.ArgumentIsConcreteNumber(nameof(maximumPitchAngle));
 
-            NumberValidator.ValidateParameterLargerOrEqualToZero(rollingResistanceCoefficient,
-                                                                 nameof(rollingResistanceCoefficient));
-            NumberValidator.ValidateValueIsConcreteNumber(rollingResistanceCoefficient,
-                                                          nameof(rollingResistanceCoefficient));
+            rollingResistanceCoefficient.ArgumentIsLargerOrEqualToZero(nameof(rollingResistanceCoefficient));
+            rollingResistanceCoefficient.ArgumentIsConcreteNumber(nameof(rollingResistanceCoefficient));
 
-            NumberValidator.ValidateParameterLargerOrEqualToZero(brakingResistanceCoefficient,
-                                                                 nameof(brakingResistanceCoefficient));
-            NumberValidator.ValidateValueIsConcreteNumber(brakingResistanceCoefficient,
-                                                          nameof(brakingResistanceCoefficient));
+            brakingResistanceCoefficient.ArgumentIsLargerOrEqualToZero(nameof(brakingResistanceCoefficient));
+            brakingResistanceCoefficient.ArgumentIsConcreteNumber(nameof(brakingResistanceCoefficient));
         }
     }
 }

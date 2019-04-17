@@ -6,19 +6,19 @@ using NUnit.Framework;
 namespace Core.Common.Utils.Test
 {
     [TestFixture]
-    public class NumberValidatorTest
+    public class NumberGuardTest
     {
         [Test]
         [TestCase(-1e-1)]
         [TestCase(0)]
         [TestCase(double.NegativeInfinity)]
-        public void ValidateParameterLargerThanZeroDouble_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
+        public void ArgumentIsLargerThanZeroDouble_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(invalidValue, propertyName);
+            TestDelegate call = () => invalidValue.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
@@ -28,13 +28,13 @@ namespace Core.Common.Utils.Test
         [TestCase(1e-1)]
         [TestCase(double.NaN)]
         [TestCase(double.PositiveInfinity)]
-        public void ValidateParameterLargerThanZeroDouble_ValidValues_DoesNotThrowException(double validValue)
+        public void ArgumentIsLargerThanZeroDouble_ValidValues_DoesNotThrowException(double validValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(validValue, propertyName);
+            TestDelegate call = () => validValue.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -43,27 +43,44 @@ namespace Core.Common.Utils.Test
         [Test]
         [TestCase(-1)]
         [TestCase(0)]
-        public void ValidateParameterLargerThanZeroInteger_InvalidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
+        [TestCase(int.MinValue)]
+        public void ArgumentIsLargerThanZeroInteger_InvalidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(invalidValue, propertyName);
+            TestDelegate call = () => invalidValue.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
         }
 
         [Test]
-        public void ValidateParameterLargerThanZeroDouble_ValidValues_DoesNotThrowException()
+        [TestCase(1)]
+        [TestCase(10)]
+        [TestCase(int.MaxValue)]
+        public void ArgumentIsLargerThanZeroInteger_ValidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
+        {
+            // Setup
+            const string propertyName = "name";
+
+            // Call
+            TestDelegate call = () => invalidValue.ArgumentIsLargerThanZero(propertyName);
+
+            // Assert
+            Assert.DoesNotThrow(call);
+        }
+
+        [Test]
+        public void ArgumentIsLargerThanZeroDouble_ValidValues_DoesNotThrowException()
         {
             // Setup
             const string propertyName = "name";
             const int validValue = 1;
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(validValue, propertyName);
+            TestDelegate call = () => validValue.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -73,14 +90,14 @@ namespace Core.Common.Utils.Test
         [TestCase(-1)]
         [TestCase(0)]
         [TestCase(double.NegativeInfinity)]
-        public void ValidateParameterLargerThanZeroAngle_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
+        public void ArgumentIsLargerThanZeroAngle_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
             Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(angle, propertyName);
+            TestDelegate call = () => angle.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
@@ -90,14 +107,14 @@ namespace Core.Common.Utils.Test
         [TestCase(1e-1)]
         [TestCase(double.NaN)]
         [TestCase(double.PositiveInfinity)]
-        public void ValidateParameterLargerThanZerAngle_ValidValues_DoesNotThrowException(double validValue)
+        public void ArgumentIsLargerThanZeroAngle_ValidValues_DoesNotThrowException(double validValue)
         {
             // Setup
             const string propertyName = "name";
             Angle angle = Angle.FromDegrees(validValue);
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerThanZero(angle, propertyName);
+            TestDelegate call = () => angle.ArgumentIsLargerThanZero(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -106,13 +123,13 @@ namespace Core.Common.Utils.Test
         [Test]
         [TestCase(-1e-1)]
         [TestCase(double.NegativeInfinity)]
-        public void ValidateParameterLargerOrEqualToZero_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
+        public void ArgumentIsLargerOrEqualToZeroDouble_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerOrEqualToZero(invalidValue, propertyName);
+            TestDelegate call = () => invalidValue.ArgumentIsLargerOrEqualToZero(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger or equal to 0.");
@@ -123,13 +140,44 @@ namespace Core.Common.Utils.Test
         [TestCase(0)]
         [TestCase(double.NaN)]
         [TestCase(double.PositiveInfinity)]
-        public void ValidateParameterLargerOrEqualToZero_ValidValues_DoesNotThrowException(double validValue)
+        public void ArgumentIsLargerOrEqualToZeroDouble_ValidValues_DoesNotThrowException(double validValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateParameterLargerOrEqualToZero(validValue, propertyName);
+            TestDelegate call = () => validValue.ArgumentIsLargerOrEqualToZero(propertyName);
+
+            // Assert
+            Assert.DoesNotThrow(call);
+        }
+
+        [Test]
+        [TestCase(-1)]
+        [TestCase(int.MinValue)]
+        public void ArgumentIsLargerOrEqualToZeroInteger_InvalidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
+        {
+            // Setup
+            const string propertyName = "name";
+
+            // Call
+            TestDelegate call = () => invalidValue.ArgumentIsLargerOrEqualToZero(propertyName);
+
+            // Assert
+            TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger or equal to 0.");
+        }
+
+        [Test]
+        [TestCase(0)]
+        [TestCase(10)]
+        [TestCase(int.MaxValue)]
+        public void ArgumentIsLargerOrEqualToZeroInteger_ValidValues_DoesNotThrowException(int validValue)
+        {
+            // Setup
+            const string propertyName = "name";
+
+            // Call
+            TestDelegate call = () => validValue.ArgumentIsLargerOrEqualToZero(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -139,20 +187,20 @@ namespace Core.Common.Utils.Test
         [TestCase(double.NaN)]
         [TestCase(double.NegativeInfinity)]
         [TestCase(double.PositiveInfinity)]
-        public void ValidateValueIsConcreteNumberDouble_InvalidValues_ThrowsArgumentException(double invalidValue)
+        public void ArgumentIsConcreteNumberDouble_InvalidValues_ThrowsArgumentException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(invalidValue, propertyName);
+            TestDelegate call = () => invalidValue.ArgumentIsConcreteNumber(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
         }
 
         [Test]
-        public void ValidateValueIsConcreteNumberDouble_ValidValues_DoesNotThrowException()
+        public void ArgumentIsConcreteNumberDouble_ValidValues_DoesNotThrowException()
         {
             // Setup
             const string propertyName = "name";
@@ -161,7 +209,7 @@ namespace Core.Common.Utils.Test
             double validValue = random.NextDouble();
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(validValue, propertyName);
+            TestDelegate call = () => validValue.ArgumentIsConcreteNumber(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -171,21 +219,21 @@ namespace Core.Common.Utils.Test
         [TestCase(double.NaN)]
         [TestCase(double.NegativeInfinity)]
         [TestCase(double.PositiveInfinity)]
-        public void ValidateValueIsConcreteNumberAngle_InvalidValues_ThrowsArgumentException(double invalidValue)
+        public void ArgumentIsConcreteNumberAngle_InvalidValues_ThrowsArgumentException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
             Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(angle, propertyName);
+            TestDelegate call = () => angle.ArgumentIsConcreteNumber(propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
         }
 
         [Test]
-        public void ValidateValueIsConcreteNumberAngle_ValidValues_DoesNotThrowException()
+        public void ArgumentIsConcreteNumberAngle_ValidValues_DoesNotThrowException()
         {
             // Setup
             const string propertyName = "name";
@@ -194,7 +242,7 @@ namespace Core.Common.Utils.Test
             Angle validValue = random.NextAngle();
 
             // Call
-            TestDelegate call = () => NumberValidator.ValidateValueIsConcreteNumber(validValue, propertyName);
+            TestDelegate call = () => validValue.ArgumentIsConcreteNumber(propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
