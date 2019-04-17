@@ -69,6 +69,21 @@ namespace Core.Common.Utils
         }
 
         /// <summary>
+        /// Guards whether the argument is larger or equal to 0.
+        /// </summary>
+        /// <param name="argument">The argument to guard.</param>
+        /// <param name="propertyName">The name of the property which is being guarded.</param>
+        /// <exception cref="ArgumentOutOfRangeException">Thrown when <paramref name="argument"/>
+        /// is less than 0.</exception>
+        public static void ArgumentIsLargerOrEqualToZero(this int argument, string propertyName)
+        {
+            if (argument < 0)
+            {
+                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+            }
+        }
+
+        /// <summary>
         /// Guards whether the argument is not <see cref="double.NaN"/> or Infinity.
         /// </summary>
         /// <param name="argument">The argument to guard.</param>

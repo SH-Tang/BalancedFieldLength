@@ -64,7 +64,7 @@ namespace Simulator.Data
         /// </list></exception>
         private static void ValidateInput(int failureSpeed, int maximumNrOfTimeSteps, double timeStep)
         {
-            failureSpeed.ArgumentIsLargerThanZero(nameof(failureSpeed));
+            failureSpeed.ArgumentIsLargerOrEqualToZero(nameof(failureSpeed));
             maximumNrOfTimeSteps.ArgumentIsLargerThanZero(nameof(maximumNrOfTimeSteps));
 
             timeStep.ArgumentIsLargerThanZero(nameof(timeStep));

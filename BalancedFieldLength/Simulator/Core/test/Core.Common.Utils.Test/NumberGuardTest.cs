@@ -43,6 +43,7 @@ namespace Core.Common.Utils.Test
         [Test]
         [TestCase(-1)]
         [TestCase(0)]
+        [TestCase(int.MinValue)]
         public void ArgumentIsLargerThanZeroInteger_InvalidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
         {
             // Setup
@@ -122,7 +123,7 @@ namespace Core.Common.Utils.Test
         [Test]
         [TestCase(-1e-1)]
         [TestCase(double.NegativeInfinity)]
-        public void ArgumentIsLargerOrEqualToZero_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
+        public void ArgumentIsLargerOrEqualToZeroDouble_InvalidValues_ThrowsArgumentOutOfRangeException(double invalidValue)
         {
             // Setup
             const string propertyName = "name";
@@ -139,7 +140,38 @@ namespace Core.Common.Utils.Test
         [TestCase(0)]
         [TestCase(double.NaN)]
         [TestCase(double.PositiveInfinity)]
-        public void ArgumentIsLargerOrEqualToZero_ValidValues_DoesNotThrowException(double validValue)
+        public void ArgumentIsLargerOrEqualToZeroDouble_ValidValues_DoesNotThrowException(double validValue)
+        {
+            // Setup
+            const string propertyName = "name";
+
+            // Call
+            TestDelegate call = () => validValue.ArgumentIsLargerOrEqualToZero(propertyName);
+
+            // Assert
+            Assert.DoesNotThrow(call);
+        }
+
+        [Test]
+        [TestCase(-1)]
+        [TestCase(int.MinValue)]
+        public void ArgumentIsLargerOrEqualToZeroInteger_InvalidValues_ThrowsArgumentOutOfRangeException(int invalidValue)
+        {
+            // Setup
+            const string propertyName = "name";
+
+            // Call
+            TestDelegate call = () => invalidValue.ArgumentIsLargerOrEqualToZero(propertyName);
+
+            // Assert
+            TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger or equal to 0.");
+        }
+
+        [Test]
+        [TestCase(0)]
+        [TestCase(10)]
+        [TestCase(int.MaxValue)]
+        public void ArgumentIsLargerOrEqualToZeroInteger_ValidValues_DoesNotThrowException(int validValue)
         {
             // Setup
             const string propertyName = "name";
