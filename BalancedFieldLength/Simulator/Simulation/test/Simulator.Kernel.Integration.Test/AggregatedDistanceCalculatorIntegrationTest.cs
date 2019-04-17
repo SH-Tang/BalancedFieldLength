@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using Core.Common.Data;
+using Core.Common.TestUtil;
 using Microsoft.VisualBasic.FileIO;
 using NUnit.Framework;
 using Simulator.Calculator.AggregatedDistanceCalculator;
@@ -69,8 +70,8 @@ namespace Simulator.Kernel.Integration.Test
 
         private static IEnumerable<ReferenceOutput> GetReferenceOutputs(string fileName)
         {
-            const string directoryPath = @"F:\Repos\BalancedFieldLength\BalancedFieldLength\Simulator\Simulation\test\Simulator.Kernel.Integration.Test\test-data";
-            string referenceFilePath = Path.Combine(directoryPath, fileName);
+            string solutionPath = TestHelper.GetSolutionRootPath();
+            string referenceFilePath = Path.Combine(solutionPath, @"Simulator\Simulation\test\Simulator.Kernel.Integration.Test\test-data", fileName);
 
             List<ReferenceOutput> referenceOutputs = new List<ReferenceOutput>();
             using (var parser = new TextFieldParser(referenceFilePath))
