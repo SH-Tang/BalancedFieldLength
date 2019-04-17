@@ -4,9 +4,9 @@ using Core.Common.Data;
 namespace Core.Common.Utils
 {
     /// <summary>
-    /// Class which can be used to validate numerical data.
+    /// Class which can be used to guard numerical data.
     /// </summary>
-    public static class NumberValidator
+    public static class NumberGuard
     {
         /// <summary>
         /// Validates whether a value is larger than 0.

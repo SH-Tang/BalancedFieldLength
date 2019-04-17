@@ -129,32 +129,32 @@ namespace Simulator.Data
                                           double restDragCoefficientWithoutEngineFailure,
                                           double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
-            NumberValidator.ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
-            NumberValidator.ValidateValueIsConcreteNumber(aspectRatio, nameof(aspectRatio));
+            NumberGuard.ValidateParameterLargerThanZero(aspectRatio, nameof(aspectRatio));
+            NumberGuard.ValidateValueIsConcreteNumber(aspectRatio, nameof(aspectRatio));
 
-            NumberValidator.ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
-            NumberValidator.ValidateValueIsConcreteNumber(wingArea, nameof(wingArea));
+            NumberGuard.ValidateParameterLargerThanZero(wingArea, nameof(wingArea));
+            NumberGuard.ValidateValueIsConcreteNumber(wingArea, nameof(wingArea));
 
-            NumberValidator.ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
-            NumberValidator.ValidateValueIsConcreteNumber(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            NumberGuard.ValidateParameterLargerThanZero(liftCoefficientGradient, nameof(liftCoefficientGradient));
+            NumberGuard.ValidateValueIsConcreteNumber(liftCoefficientGradient, nameof(liftCoefficientGradient));
 
-            NumberValidator.ValidateValueIsConcreteNumber(zeroLiftAngleOfAttack, nameof(zeroLiftAngleOfAttack));
+            NumberGuard.ValidateValueIsConcreteNumber(zeroLiftAngleOfAttack, nameof(zeroLiftAngleOfAttack));
 
-            NumberValidator.ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
-            NumberValidator.ValidateValueIsConcreteNumber(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            NumberGuard.ValidateParameterLargerThanZero(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
+            NumberGuard.ValidateValueIsConcreteNumber(maximumLiftCoefficient, nameof(maximumLiftCoefficient));
 
-            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
+            NumberGuard.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithoutEngineFailure,
                                                                  nameof(restDragCoefficientWithoutEngineFailure));
-            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithoutEngineFailure,
+            NumberGuard.ValidateValueIsConcreteNumber(restDragCoefficientWithoutEngineFailure,
                                                           nameof(restDragCoefficientWithoutEngineFailure));
 
-            NumberValidator.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
+            NumberGuard.ValidateParameterLargerOrEqualToZero(restDragCoefficientWithEngineFailure,
                                                                  nameof(restDragCoefficientWithEngineFailure));
-            NumberValidator.ValidateValueIsConcreteNumber(restDragCoefficientWithEngineFailure,
+            NumberGuard.ValidateValueIsConcreteNumber(restDragCoefficientWithEngineFailure,
                                                           nameof(restDragCoefficientWithEngineFailure));
 
-            NumberValidator.ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
-            NumberValidator.ValidateValueIsConcreteNumber(oswaldFactor, nameof(oswaldFactor));
+            NumberGuard.ValidateParameterLargerThanZero(oswaldFactor, nameof(oswaldFactor));
+            NumberGuard.ValidateValueIsConcreteNumber(oswaldFactor, nameof(oswaldFactor));
         }
     }
 }
