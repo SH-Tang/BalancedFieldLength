@@ -44,7 +44,7 @@ namespace DemoConsoleApp
             }
 
             // Calculate the BFL
-            AggregatedDistanceOutput balancedFieldLength = AggregatedDistanceCalculatorHelper.DetermineCrossing(results);
+            AggregatedDistanceOutput balancedFieldLength = BalancedFieldLengthCalculator.DetermineCrossing(results);
             Console.WriteLine($"Balanced Field length is: {balancedFieldLength.FailureSpeed} [m/s] at {balancedFieldLength.ContinuedTakeOffDistance} [m]");
 
             // Write result

@@ -7,10 +7,10 @@ using Simulator.Calculator.AggregatedDistanceCalculator;
 namespace Simulator.Calculator.BalancedFieldLengthCalculator
 {
     /// <summary>
-    /// Helper class which contain functions determining the intersection between the
-    /// distances covered of the rejected and the continued take off.
+    /// Calculator which calculates the balanced field length based distances on the
+    /// covered of the rejected and the continued take off.
     /// </summary>
-    public static class AggregatedDistanceCalculatorHelper
+    public static class BalancedFieldLengthCalculator
     {
         /// <summary>
         /// Determines the intersection between the distances covered by the rejected
