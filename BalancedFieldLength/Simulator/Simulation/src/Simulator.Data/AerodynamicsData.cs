@@ -129,28 +129,28 @@ namespace Simulator.Data
                                           double restDragCoefficientWithoutEngineFailure,
                                           double restDragCoefficientWithEngineFailure, double oswaldFactor)
         {
-            aspectRatio.ValidateParameterLargerThanZero(nameof(aspectRatio));
-            aspectRatio.ValidateValueIsConcreteNumber(nameof(aspectRatio));
+            aspectRatio.ArgumentIsLargerThanZero(nameof(aspectRatio));
+            aspectRatio.ArgumentIsConcreteNumber(nameof(aspectRatio));
 
-            wingArea.ValidateParameterLargerThanZero(nameof(wingArea));
-            wingArea.ValidateValueIsConcreteNumber(nameof(wingArea));
+            wingArea.ArgumentIsLargerThanZero(nameof(wingArea));
+            wingArea.ArgumentIsConcreteNumber(nameof(wingArea));
 
-            liftCoefficientGradient.ValidateParameterLargerThanZero(nameof(liftCoefficientGradient));
-            liftCoefficientGradient.ValidateValueIsConcreteNumber(nameof(liftCoefficientGradient));
+            liftCoefficientGradient.ArgumentIsLargerThanZero(nameof(liftCoefficientGradient));
+            liftCoefficientGradient.ArgumentIsConcreteNumber(nameof(liftCoefficientGradient));
 
-            zeroLiftAngleOfAttack.ValidateValueIsConcreteNumber(nameof(zeroLiftAngleOfAttack));
+            zeroLiftAngleOfAttack.ArgumentIsConcreteNumber(nameof(zeroLiftAngleOfAttack));
 
-            maximumLiftCoefficient.ValidateParameterLargerThanZero(nameof(maximumLiftCoefficient));
-            maximumLiftCoefficient.ValidateValueIsConcreteNumber(nameof(maximumLiftCoefficient));
+            maximumLiftCoefficient.ArgumentIsLargerThanZero(nameof(maximumLiftCoefficient));
+            maximumLiftCoefficient.ArgumentIsConcreteNumber(nameof(maximumLiftCoefficient));
 
-            restDragCoefficientWithoutEngineFailure.ValidateParameterLargerOrEqualToZero(nameof(restDragCoefficientWithoutEngineFailure));
-            restDragCoefficientWithoutEngineFailure.ValidateValueIsConcreteNumber(nameof(restDragCoefficientWithoutEngineFailure));
+            restDragCoefficientWithoutEngineFailure.ArgumentIsLargerOrEqualToZero(nameof(restDragCoefficientWithoutEngineFailure));
+            restDragCoefficientWithoutEngineFailure.ArgumentIsConcreteNumber(nameof(restDragCoefficientWithoutEngineFailure));
 
-            restDragCoefficientWithEngineFailure.ValidateParameterLargerOrEqualToZero(nameof(restDragCoefficientWithEngineFailure));
-            restDragCoefficientWithEngineFailure.ValidateValueIsConcreteNumber(nameof(restDragCoefficientWithEngineFailure));
+            restDragCoefficientWithEngineFailure.ArgumentIsLargerOrEqualToZero(nameof(restDragCoefficientWithEngineFailure));
+            restDragCoefficientWithEngineFailure.ArgumentIsConcreteNumber(nameof(restDragCoefficientWithEngineFailure));
 
-            oswaldFactor.ValidateParameterLargerThanZero(nameof(oswaldFactor));
-            oswaldFactor.ValidateValueIsConcreteNumber(nameof(oswaldFactor));
+            oswaldFactor.ArgumentIsLargerThanZero(nameof(oswaldFactor));
+            oswaldFactor.ArgumentIsConcreteNumber(nameof(oswaldFactor));
         }
     }
 }

@@ -18,7 +18,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(invalidValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(invalidValue, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
@@ -34,7 +34,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(validValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(validValue, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -49,7 +49,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(invalidValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(invalidValue, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
@@ -63,7 +63,7 @@ namespace Core.Common.Utils.Test
             const int validValue = 1;
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(validValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(validValue, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -80,7 +80,7 @@ namespace Core.Common.Utils.Test
             Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(angle, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(angle, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger than 0.");
@@ -97,7 +97,7 @@ namespace Core.Common.Utils.Test
             Angle angle = Angle.FromDegrees(validValue);
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerThanZero(angle, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerThanZero(angle, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -112,7 +112,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerOrEqualToZero(invalidValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerOrEqualToZero(invalidValue, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentOutOfRangeException>(call, $"{propertyName} must be larger or equal to 0.");
@@ -129,7 +129,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateParameterLargerOrEqualToZero(validValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsLargerOrEqualToZero(validValue, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -145,7 +145,7 @@ namespace Core.Common.Utils.Test
             const string propertyName = "name";
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateValueIsConcreteNumber(invalidValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsConcreteNumber(invalidValue, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
@@ -161,7 +161,7 @@ namespace Core.Common.Utils.Test
             double validValue = random.NextDouble();
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateValueIsConcreteNumber(validValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsConcreteNumber(validValue, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
@@ -178,7 +178,7 @@ namespace Core.Common.Utils.Test
             Angle angle = Angle.FromRadians(invalidValue);
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateValueIsConcreteNumber(angle, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsConcreteNumber(angle, propertyName);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
@@ -194,7 +194,7 @@ namespace Core.Common.Utils.Test
             Angle validValue = random.NextAngle();
 
             // Call
-            TestDelegate call = () => NumberGuard.ValidateValueIsConcreteNumber(validValue, propertyName);
+            TestDelegate call = () => NumberGuard.ArgumentIsConcreteNumber(validValue, propertyName);
 
             // Assert
             Assert.DoesNotThrow(call);
