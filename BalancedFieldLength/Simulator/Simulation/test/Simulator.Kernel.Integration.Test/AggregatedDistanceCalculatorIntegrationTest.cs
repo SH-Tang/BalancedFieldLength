@@ -26,7 +26,7 @@ namespace Simulator.Kernel.Integration.Test
         [Test]
         [TestCaseSource(nameof(GetAircraftData))]
         public void GivenKernel_WhenCalculationsAreMadeForVelocityRange_ThenReturnsExpectedOutputsAndBalancedFieldLength(AircraftData aircraftData,
-                                                                                                                         ReferenceData referenceData)
+                                                                                                                         IntegrationReferenceData integrationReferenceData)
         {
             // Given
             var integrator = new EulerIntegrator();
@@ -46,10 +46,10 @@ namespace Simulator.Kernel.Integration.Test
                 outputs.Add(result);
             }
 
-            var balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            BalancedFieldLength balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Then
-            IEnumerable<ReferenceOutput> referenceOutputs = GetReferenceOutputs(referenceData.FileName);
+            IEnumerable<ReferenceOutput> referenceOutputs = GetReferenceOutputs(integrationReferenceData.FileName);
             int expectedLength = referenceOutputs.Count();
             Assert.AreEqual(expectedLength, outputs.Count, "Number of reference data entries do not match with actual number of entries");
 
@@ -63,8 +63,8 @@ namespace Simulator.Kernel.Integration.Test
                 velocity++;
             }
 
-            Assert.AreEqual(referenceData.Velocity, balancedFieldLength.Velocity, tolerance);
-            Assert.AreEqual(referenceData.Distance, balancedFieldLength.Distance, tolerance);
+            Assert.AreEqual(integrationReferenceData.Velocity, balancedFieldLength.Velocity, tolerance);
+            Assert.AreEqual(integrationReferenceData.Distance, balancedFieldLength.Distance, tolerance);
         }
 
         private static IEnumerable<ReferenceOutput> GetReferenceOutputs(string fileName)
@@ -100,28 +100,37 @@ namespace Simulator.Kernel.Integration.Test
 
         private static IEnumerable<TestCaseData> GetAircraftData()
         {
-            var twoEngineReferenceData = new ReferenceData("Two Power Jet Engine.csv", 72.03, 2343.09);
+            var twoEngineReferenceData = new IntegrationReferenceData("Two Power Jet Engine.csv", 72.03, 2343.09);
             yield return new TestCaseData(new AircraftData(2, 75, 500, Angle.FromDegrees(6), Angle.FromDegrees(16), 0.02, 0.2,
                                                            new AerodynamicsData(15, 100, Angle.FromDegrees(-3), 4.85, 1.60, 0.021, 0.026, 0.85)),
                                           twoEngineReferenceData)
                 .SetName("Two Jet Power Engine");
 
-            var threeEngineReferenceData = new ReferenceData("Three Power Jet Engine.csv", 78.10, 2779.96);
+            var threeEngineReferenceData = new IntegrationReferenceData("Three Power Jet Engine.csv", 78.10, 2779.96);
             yield return new TestCaseData(new AircraftData(3, 120, 1200, Angle.FromDegrees(5), Angle.FromDegrees(15), 0.02, 0.2,
                                                            new AerodynamicsData(14, 200, Angle.FromDegrees(-4), 4.32, 1.45, 0.024, 0.028, 0.80)),
                                           threeEngineReferenceData)
                 .SetName("Three Jet Power Engine");
 
-            var fourEngineReferenceData = new ReferenceData("Four Power Jet Engine.csv", 81.40, 2865.53);
+            var fourEngineReferenceData = new IntegrationReferenceData("Four Power Jet Engine.csv", 81.40, 2865.53);
             yield return new TestCaseData(new AircraftData(4, 300, 3500, Angle.FromDegrees(4), Angle.FromDegrees(14), 0.02, 0.2,
                                                            new AerodynamicsData(12, 500, Angle.FromDegrees(-5), 3.95, 1.40, 0.026, 0.029, 0.82)),
                                           fourEngineReferenceData)
                 .SetName("Four Jet Power Engine");
         }
 
-        public class ReferenceData
+        /// <summary>
+        /// Class holding all the reference data information.
+        /// </summary>
+        public class IntegrationReferenceData
         {
-            public ReferenceData(string fileName, double velocity, double distance)
+            /// <summary>
+            /// Creates a new instance of <see cref="IntegrationReferenceData"/>.
+            /// </summary>
+            /// <param name="fileName">The file name to read the reference data from.</param>
+            /// <param name="velocity">The velocity at which the balanced field length occurs. [m/s]</param>
+            /// <param name="distance">The distance at which the balanced field length occurs. [m]</param>
+            public IntegrationReferenceData(string fileName, double velocity, double distance)
             {
                 FileName = fileName;
                 Velocity = velocity;
@@ -144,8 +153,17 @@ namespace Simulator.Kernel.Integration.Test
             public double Distance { get; }
         }
 
-        public class ReferenceOutput
+        /// <summary>
+        /// Represents the reference output generated by the calculator for each velocity.
+        /// </summary>
+        private class ReferenceOutput
         {
+            /// <summary>
+            /// Creates a new instance of <see cref="ReferenceOutput"/>.
+            /// </summary>
+            /// <param name="velocity">The velocity at which the failure occurred. [m/s]</param>
+            /// <param name="continuedTakeOffDistance">The continued take-off distance until screenheight was reached. [m]</param>
+            /// <param name="abortedTakeOffDistance">The aborted take-off distance until velocity was 0. [m]</param>
             public ReferenceOutput(int velocity, double continuedTakeOffDistance, double abortedTakeOffDistance)
             {
                 Velocity = velocity;
@@ -153,8 +171,19 @@ namespace Simulator.Kernel.Integration.Test
                 AbortedTakeOffDistance = abortedTakeOffDistance;
             }
 
+            /// <summary>
+            /// Gets the velocity at which the failure occurred. [m/s]
+            /// </summary>
             public int Velocity { get; }
+
+            /// <summary>
+            /// Gets the covered distance until reaching screenheight when the take-off was continued. [m]
+            /// </summary>
             public double ContinuedTakeOffDistance { get; }
+
+            /// <summary>
+            /// Gets the covered distance until velocity is 0 when the take-off was aborted. [m]
+            /// </summary>
             public double AbortedTakeOffDistance { get; }
         }
     }
