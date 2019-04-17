@@ -4,6 +4,7 @@ using System.Linq;
 using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Calculator.AggregatedDistanceCalculator;
+using Simulator.Calculator.BalancedFieldLengthCalculator;
 
 namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
 {
@@ -74,12 +75,11 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            BalancedFieldLength output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
-            Assert.IsNaN(output.FailureSpeed);
-            Assert.IsNaN(output.AbortedTakeOffDistance);
-            Assert.IsNaN(output.ContinuedTakeOffDistance);
+            Assert.IsNaN(output.Velocity);
+            Assert.IsNaN(output.Distance);
         }
 
         [Test]
@@ -94,12 +94,11 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            BalancedFieldLength output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
-            Assert.IsNaN(output.FailureSpeed);
-            Assert.IsNaN(output.AbortedTakeOffDistance);
-            Assert.IsNaN(output.ContinuedTakeOffDistance);
+            Assert.IsNaN(output.Velocity);
+            Assert.IsNaN(output.Distance);
         }
 
         [Test]
@@ -114,12 +113,11 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            BalancedFieldLength output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
-            Assert.IsNaN(output.FailureSpeed);
-            Assert.IsNaN(output.AbortedTakeOffDistance);
-            Assert.IsNaN(output.ContinuedTakeOffDistance);
+            Assert.IsNaN(output.Velocity);
+            Assert.IsNaN(output.Distance);
         }
 
         [Test]
@@ -129,12 +127,11 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
                                                                                                                    double expectedDistance)
         {
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            BalancedFieldLength output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
-            Assert.AreEqual(expectedFailureSpeed, output.FailureSpeed);
-            Assert.AreEqual(expectedDistance, output.AbortedTakeOffDistance);
-            Assert.AreEqual(expectedDistance, output.ContinuedTakeOffDistance);
+            Assert.AreEqual(expectedFailureSpeed, output.Velocity);
+            Assert.AreEqual(expectedDistance, output.Distance);
         }
 
         [Test]
@@ -148,12 +145,11 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             IOrderedEnumerable<AggregatedDistanceOutput> randomSortedOutputs = outputs.OrderBy(x => random.Next());
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(randomSortedOutputs);
+            BalancedFieldLength output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(randomSortedOutputs);
 
             // Assert
-            Assert.AreEqual(expectedFailureSpeed, output.FailureSpeed);
-            Assert.AreEqual(expectedDistance, output.AbortedTakeOffDistance);
-            Assert.AreEqual(expectedDistance, output.ContinuedTakeOffDistance);
+            Assert.AreEqual(expectedFailureSpeed, output.Velocity);
+            Assert.AreEqual(expectedDistance, output.Distance);
         }
 
         private static IEnumerable<TestCaseData> GetTestCases()

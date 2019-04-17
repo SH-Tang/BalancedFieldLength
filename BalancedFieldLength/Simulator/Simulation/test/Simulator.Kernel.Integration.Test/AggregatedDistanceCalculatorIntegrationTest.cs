@@ -46,7 +46,7 @@ namespace Simulator.Kernel.Integration.Test
                 outputs.Add(result);
             }
 
-            AggregatedDistanceOutput balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
+            var balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Then
             IEnumerable<ReferenceOutput> referenceOutputs = GetReferenceOutputs(referenceData.FileName);
@@ -63,9 +63,8 @@ namespace Simulator.Kernel.Integration.Test
                 velocity++;
             }
 
-            Assert.AreEqual(referenceData.Velocity, balancedFieldLength.FailureSpeed, tolerance);
-            Assert.AreEqual(referenceData.Distance, balancedFieldLength.AbortedTakeOffDistance, tolerance);
-            Assert.AreEqual(referenceData.Distance, balancedFieldLength.ContinuedTakeOffDistance, tolerance);
+            Assert.AreEqual(referenceData.Velocity, balancedFieldLength.Velocity, tolerance);
+            Assert.AreEqual(referenceData.Distance, balancedFieldLength.Distance, tolerance);
         }
 
         private static IEnumerable<ReferenceOutput> GetReferenceOutputs(string fileName)

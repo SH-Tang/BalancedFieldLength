@@ -16,10 +16,8 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
         /// Calculates the balanced field length by determining the intersection between the distances covered by the rejected
         /// and the continued take off.
         /// </summary>
-        /// <param name="outputs">The collection of <see cref="AggregatedDistanceOutput"/>
-        /// to determine the intersection for.</param>
-        /// <returns>An <see cref="AggregatedDistanceOutput"/> containing the information at which speed the distances intersect
-        /// and at which distance.</returns>
+        /// <param name="outputs">The collection of <see cref="AggregatedDistanceOutput"/> to determine the balanced field length for.</param>
+        /// <returns>An <see cref="BalancedFieldLength"/> containing the information at which balanced field length occurs.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <see cref="outputs"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="outputs"/>
         /// <list type="bullet">
@@ -29,7 +27,7 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
         /// </list></exception>
         /// <remarks>This method will sort <paramref name="outputs"/> in an ascending order based on the failure speed.
         /// The intersection is determined based on this sorted list.</remarks>
-        public static AggregatedDistanceOutput CalculateBalancedFieldLength(IEnumerable<AggregatedDistanceOutput> outputs)
+        public static BalancedFieldLength CalculateBalancedFieldLength(IEnumerable<AggregatedDistanceOutput> outputs)
         {
             if (outputs == null)
             {
@@ -61,13 +59,13 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
                 if (!double.IsNaN(crossingPoint.X) && !double.IsNaN(crossingPoint.Y))
                 {
                     double intersectionDistance = crossingPoint.Y;
-                    return new AggregatedDistanceOutput(crossingPoint.X, intersectionDistance, intersectionDistance);
+                    return new BalancedFieldLength(crossingPoint.X, intersectionDistance);
                 }
 
                 previousOutput = currentOutput;
             }
 
-            return new AggregatedDistanceOutput(double.NaN, double.NaN, double.NaN);
+            return new BalancedFieldLength(double.NaN, double.NaN);
         }
 
         /// <summary>

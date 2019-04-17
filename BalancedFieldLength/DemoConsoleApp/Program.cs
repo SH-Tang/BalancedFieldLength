@@ -29,8 +29,8 @@ namespace DemoConsoleApp
             var calculationKernel = new AggregatedDistanceCalculatorKernel();
 
             // Call the calculation
-            var results = new List<AggregatedDistanceOutput>();
-            for (var i = 0; i < 90; i++)
+            List<AggregatedDistanceOutput> results = new List<AggregatedDistanceOutput>();
+            for (int i = 0; i < 90; i++)
             {
                 Console.WriteLine($"Calculating for speed {i}");
                 var calculationSettings = new CalculationSettings(i, maximumTimeSteps, timeStep);
@@ -44,8 +44,8 @@ namespace DemoConsoleApp
             }
 
             // Calculate the BFL
-            AggregatedDistanceOutput balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(results);
-            Console.WriteLine($"Balanced Field length is: {balancedFieldLength.FailureSpeed} [m/s] at {balancedFieldLength.ContinuedTakeOffDistance} [m]");
+            BalancedFieldLength balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(results);
+            Console.WriteLine($"Balanced Field length is: {balancedFieldLength.Velocity} [m/s] at {balancedFieldLength.Distance} [m]");
 
             // Write result
             Console.WriteLine("Write Result");
