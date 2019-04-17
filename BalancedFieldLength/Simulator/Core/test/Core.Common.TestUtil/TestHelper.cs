@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using NUnit.Framework;
+using NUnit.Framework.Internal;
 
 namespace Core.Common.TestUtil
 {
@@ -36,6 +38,31 @@ namespace Core.Common.TestUtil
             }
 
             Assert.AreEqual(expectedMessage, message);
+        }
+
+        /// <summary>
+        /// Gets the path of the solution root.
+        /// </summary>
+        /// <returns>A path of the solution root.</returns>
+        /// <exception cref="InvalidOperationException">Thrown when the solution root could not be found.</exception>
+        public static string GetSolutionRootPath()
+        {
+            const string solutionName = "BalancedFieldLength.sln";
+            //get the current directory and scope up
+            //TODO find a faster safer method 
+            var testContext = new TestContext(new TestExecutionContext.AdhocContext());
+            string curDir = testContext.TestDirectory;
+            while (Directory.Exists(curDir) && !File.Exists(curDir + @"\" + solutionName))
+            {
+                curDir += "/../";
+            }
+
+            if (!File.Exists(Path.Combine(curDir, solutionName)))
+            {
+                throw new InvalidOperationException($"Solution file '{solutionName}' not found in any folder of '{Directory.GetCurrentDirectory()}'.");
+            }
+
+            return Path.GetFullPath(curDir);
         }
     }
 }
