@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using Core.Common.Data;
 using Simulator.Calculator.AggregatedDistanceCalculator;
-using Simulator.Calculator.Helpers;
+using Simulator.Calculator.BalancedFieldLengthCalculator;
 using Simulator.Components.Integrators;
 using Simulator.Data;
 using Simulator.Kernel;

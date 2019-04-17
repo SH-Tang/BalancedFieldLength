@@ -4,7 +4,7 @@ using System.Linq;
 using Core.Common.Geometry;
 using Simulator.Calculator.AggregatedDistanceCalculator;
 
-namespace Simulator.Calculator.Helpers
+namespace Simulator.Calculator.BalancedFieldLengthCalculator
 {
     /// <summary>
     /// Helper class which contain functions determining the intersection between the

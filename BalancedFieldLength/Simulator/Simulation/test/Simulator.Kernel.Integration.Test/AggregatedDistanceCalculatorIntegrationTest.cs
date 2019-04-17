@@ -6,7 +6,7 @@ using Core.Common.TestUtil;
 using Microsoft.VisualBasic.FileIO;
 using NUnit.Framework;
 using Simulator.Calculator.AggregatedDistanceCalculator;
-using Simulator.Calculator.Helpers;
+using Simulator.Calculator.BalancedFieldLengthCalculator;
 using Simulator.Components.Integrators;
 using Simulator.Data;
 

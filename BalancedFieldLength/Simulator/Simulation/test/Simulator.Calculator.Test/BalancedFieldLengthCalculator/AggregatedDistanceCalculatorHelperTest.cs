@@ -4,9 +4,9 @@ using System.Linq;
 using Core.Common.TestUtil;
 using NUnit.Framework;
 using Simulator.Calculator.AggregatedDistanceCalculator;
-using Simulator.Calculator.Helpers;
+using Simulator.Calculator.BalancedFieldLengthCalculator;
 
-namespace Simulator.Calculator.Test.Helpers
+namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
 {
     [TestFixture]
     public class AggregatedDistanceCalculatorHelperTest
