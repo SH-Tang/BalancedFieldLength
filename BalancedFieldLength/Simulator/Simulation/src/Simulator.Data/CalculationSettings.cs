@@ -64,11 +64,11 @@ namespace Simulator.Data
         /// </list></exception>
         private static void ValidateInput(int failureSpeed, int maximumNrOfTimeSteps, double timeStep)
         {
-            NumberGuard.ValidateParameterLargerOrEqualToZero(failureSpeed, nameof(failureSpeed));
-            NumberGuard.ValidateParameterLargerThanZero(maximumNrOfTimeSteps, nameof(maximumNrOfTimeSteps));
+            failureSpeed.ValidateParameterLargerThanZero(nameof(failureSpeed));
+            maximumNrOfTimeSteps.ValidateParameterLargerThanZero(nameof(maximumNrOfTimeSteps));
 
-            NumberGuard.ValidateParameterLargerThanZero(timeStep, nameof(timeStep));
-            NumberGuard.ValidateValueIsConcreteNumber(timeStep, nameof(timeStep));
+            timeStep.ValidateParameterLargerThanZero(nameof(timeStep));
+            timeStep.ValidateValueIsConcreteNumber(nameof(timeStep));
         }
     }
 }
