@@ -11,10 +11,10 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
     public class BalancedFieldLengthCalculatorTest
     {
         [Test]
-        public void DetermineCrossing_OutputsNull_ThrowsArgumentNullException()
+        public void CalculateBalancedFieldLength_OutputsNull_ThrowsArgumentNullException()
         {
             // Call
-            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(null);
+            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(null);
 
             // Assert
             var exception = Assert.Throws<ArgumentNullException>(call);
@@ -22,17 +22,17 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
         }
 
         [Test]
-        public void DetermineCrossing_OutputsEmpty_ThrowsArgumentException()
+        public void CalculateBalancedFieldLength_OutputsEmpty_ThrowsArgumentException()
         {
             // Call 
-            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(Enumerable.Empty<AggregatedDistanceOutput>());
+            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(Enumerable.Empty<AggregatedDistanceOutput>());
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, "Cannot determine crossing from a collection containing 0 or 1 item.");
         }
 
         [Test]
-        public void DetermineCrossing_OutputHasOneEntry_ThrowsArgumentException()
+        public void CalculateBalancedFieldLength_OutputHasOneEntry_ThrowsArgumentException()
         {
             // Setup
             var random = new Random(21);
@@ -42,7 +42,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call 
-            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, "Cannot determine crossing from a collection containing 0 or 1 item.");
@@ -50,20 +50,20 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
 
         [Test]
         [TestCaseSource(nameof(GetCollectionsWithDuplicateEntries))]
-        public void DetermineCrossing_DuplicateOutputs_ThrowsArgumentException(IEnumerable<AggregatedDistanceOutput> outputs,
-                                                                               double failureSpeed)
+        public void CalculateBalancedFieldLength_DuplicateOutputs_ThrowsArgumentException(IEnumerable<AggregatedDistanceOutput> outputs,
+                                                                                          double failureSpeed)
         {
             // Setup
 
             // Call 
-            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            TestDelegate call = () => Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             TestHelper.AssertThrowsArgumentException<ArgumentException>(call, $"Outputs cannot contain duplicate definitions for failure speed {failureSpeed}.");
         }
 
         [Test]
-        public void DetermineCrossing_OutputsNeverIntersect_ReturnsNaN()
+        public void CalculateBalancedFieldLength_OutputsNeverIntersect_ReturnsNaN()
         {
             // Setup
             AggregatedDistanceOutput[] outputs =
@@ -74,7 +74,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             Assert.IsNaN(output.FailureSpeed);
@@ -83,7 +83,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
         }
 
         [Test]
-        public void DetermineCrossing_OutputsOnTop_ReturnsNaN()
+        public void CalculateBalancedFieldLength_OutputsOnTop_ReturnsNaN()
         {
             // Setup
             AggregatedDistanceOutput[] outputs =
@@ -94,7 +94,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             Assert.IsNaN(output.FailureSpeed);
@@ -103,7 +103,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
         }
 
         [Test]
-        public void DetermineCrossing_OutputsParallel_ReturnsNaN()
+        public void CalculateBalancedFieldLength_OutputsParallel_ReturnsNaN()
         {
             // Setup
             AggregatedDistanceOutput[] outputs =
@@ -114,7 +114,7 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
             };
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             Assert.IsNaN(output.FailureSpeed);
@@ -124,12 +124,12 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
 
         [Test]
         [TestCaseSource(nameof(GetTestCases))]
-        public void DetermineCrossing_VariousConfigurationsWithIntersection_ReturnsExpectedIntersection(IEnumerable<AggregatedDistanceOutput> outputs,
-                                                                                                        double expectedFailureSpeed,
-                                                                                                        double expectedDistance)
+        public void CalculateBalancedFieldLength_VariousConfigurationsWithIntersection_ReturnsExpectedIntersection(IEnumerable<AggregatedDistanceOutput> outputs,
+                                                                                                                   double expectedFailureSpeed,
+                                                                                                                   double expectedDistance)
         {
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Assert
             Assert.AreEqual(expectedFailureSpeed, output.FailureSpeed);
@@ -139,16 +139,16 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
 
         [Test]
         [TestCaseSource(nameof(GetTestCases))]
-        public void DetermineCrossing_VariousConfigurationsWithIntersectionInRandomOrder_ReturnsExpectedIntersection(IEnumerable<AggregatedDistanceOutput> outputs,
-                                                                                                                     double expectedFailureSpeed,
-                                                                                                                     double expectedDistance)
+        public void CalculateBalancedFieldLength_VariousConfigurationsWithIntersectionInRandomOrder_ReturnsExpectedIntersection(IEnumerable<AggregatedDistanceOutput> outputs,
+                                                                                                                                double expectedFailureSpeed,
+                                                                                                                                double expectedDistance)
         {
             // Setup
             var random = new Random(21);
             IOrderedEnumerable<AggregatedDistanceOutput> randomSortedOutputs = outputs.OrderBy(x => random.Next());
 
             // Call
-            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.DetermineCrossing(randomSortedOutputs);
+            AggregatedDistanceOutput output = Calculator.BalancedFieldLengthCalculator.BalancedFieldLengthCalculator.CalculateBalancedFieldLength(randomSortedOutputs);
 
             // Assert
             Assert.AreEqual(expectedFailureSpeed, output.FailureSpeed);

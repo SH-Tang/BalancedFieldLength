@@ -46,7 +46,7 @@ namespace Simulator.Kernel.Integration.Test
                 outputs.Add(result);
             }
 
-            AggregatedDistanceOutput balancedFieldLength = BalancedFieldLengthCalculator.DetermineCrossing(outputs);
+            AggregatedDistanceOutput balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(outputs);
 
             // Then
             IEnumerable<ReferenceOutput> referenceOutputs = GetReferenceOutputs(referenceData.FileName);

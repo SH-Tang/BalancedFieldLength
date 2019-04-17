@@ -13,7 +13,7 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
     public static class BalancedFieldLengthCalculator
     {
         /// <summary>
-        /// Determines the intersection between the distances covered by the rejected
+        /// Calculates the balanced field length by determining the intersection between the distances covered by the rejected
         /// and the continued take off.
         /// </summary>
         /// <param name="outputs">The collection of <see cref="AggregatedDistanceOutput"/>
@@ -29,7 +29,7 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
         /// </list></exception>
         /// <remarks>This method will sort <paramref name="outputs"/> in an ascending order based on the failure speed.
         /// The intersection is determined based on this sorted list.</remarks>
-        public static AggregatedDistanceOutput DetermineCrossing(IEnumerable<AggregatedDistanceOutput> outputs)
+        public static AggregatedDistanceOutput CalculateBalancedFieldLength(IEnumerable<AggregatedDistanceOutput> outputs)
         {
             if (outputs == null)
             {
