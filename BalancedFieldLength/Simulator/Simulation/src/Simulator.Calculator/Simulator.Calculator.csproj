@@ -38,9 +38,10 @@
     <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculator.cs" />
     <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceOutput.cs" />
     <Compile Include="AggregatedDistanceCalculator\IAggregatedDistanceCalculator.cs" />
+    <Compile Include="BalancedFieldLengthCalculator\BalancedFieldLength.cs" />
     <Compile Include="DistanceCalculatorOutput.cs" />
     <Compile Include="Factories\IDistanceCalculatorFactory.cs" />
-    <Compile Include="Helpers\AggregatedDistanceCalculatorHelper.cs" />
+    <Compile Include="BalancedFieldLengthCalculator\BalancedFieldLengthCalculator.cs" />
     <Compile Include="IDistanceCalculator.cs" />
     <Compile Include="DistanceCalculator.cs" />
     <Compile Include="TakeOffDynamics\IFailureTakeOffDynamicsCalculator.cs" />

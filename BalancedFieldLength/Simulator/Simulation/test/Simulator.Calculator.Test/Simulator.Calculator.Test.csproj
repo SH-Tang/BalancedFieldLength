@@ -48,7 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculatorTest.cs" />
-    <Compile Include="Helpers\AggregatedDistanceCalculatorHelperTest.cs" />
+    <Compile Include="BalancedFieldLengthCalculator\BalancedFieldLengthCalculatorTest.cs" />
     <Compile Include="DistanceCalculatorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
