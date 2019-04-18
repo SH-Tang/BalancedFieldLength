@@ -44,6 +44,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
     <Compile Include="Factories\DistanceCalculatorFactoryTest.cs" />
     <Compile Include="Factories\TakeOffDynamicsCalculatorFactoryTest.cs" />
     <Compile Include="Integrators\EulerIntegratorTest.cs" />
