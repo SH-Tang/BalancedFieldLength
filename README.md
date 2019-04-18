@@ -6,7 +6,7 @@ The major concern in the society when it comes to aviation is safety, which is t
 When the balanced field length and the corresponding speed V1 (also known as the decision speed) are known, the pilot can make a decision to abort the flight or continue take-off according to the values found. When the failure speed is reached before decision speed, it is recommended to abort the take-off and if the failure speed occurs after the decision speed, it is recommended to continue to take off. 
 
 
-docs/documentation/Example.png?raw=true "Example of a balanced field length calculation for a 2 jet engine powered airplane. The balanced field length of 2343m occurs at V1 = 72.03m/s."
+![Alt text](docs/documentation/Example.png?raw=true "Example of a balanced field length calculation for a 2 jet engine powered airplane. The balanced field length of 2343m occurs at V1 = 72.03m/s.")
 
 # Goals
 The main goal of this application is: 
