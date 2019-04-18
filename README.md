@@ -31,6 +31,7 @@ The current implementation of the flight dynamics are based on a few assumptions
 # Code example
 The following illustrates how the simulation library can be used for calculating the balanced field length:
 
+``` C#
     // Calculation settings 
     const double gravitationalAcceleration = 9.81;
     const double density = 1.225;
@@ -66,3 +67,4 @@ The following illustrates how the simulation library can be used for calculating
 
     // Calculate the Balanced Field Length by using the obtained results
     BalancedFieldLength balancedFieldLength = BalancedFieldLengthCalculator.CalculateBalancedFieldLength(results);
+```
