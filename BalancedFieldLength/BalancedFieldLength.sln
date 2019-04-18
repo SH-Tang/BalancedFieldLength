@@ -57,6 +57,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel.Integratio
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Version", "Simulator\Core\src\Core.Common.Version\Core.Common.Version.csproj", "{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Version.Test", "Simulator\Core\test\Core.Common.Version.Test\Core.Common.Version.Test.csproj", "{77316A77-C229-4885-8D0C-C74447EEF437}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -143,6 +145,10 @@ Global
 		{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{77316A77-C229-4885-8D0C-C74447EEF437}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{77316A77-C229-4885-8D0C-C74447EEF437}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{77316A77-C229-4885-8D0C-C74447EEF437}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{77316A77-C229-4885-8D0C-C74447EEF437}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -172,6 +178,7 @@ Global
 		{4C63B55A-6CCA-4CD0-9820-8D29E895380D} = {A214DBE9-2754-4BB3-B5CB-EC9D5CBC88AA}
 		{E6D4E4A5-1602-452A-976C-E414FE793419} = {284D5C1F-A0D9-47A1-BA92-658DCC754CA8}
 		{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC} = {21CEF108-F80F-46FC-A7F6-35E8C24B7B45}
+		{77316A77-C229-4885-8D0C-C74447EEF437} = {6447B32A-4471-4D2A-9C8B-6BF37E0975B1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}
