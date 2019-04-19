@@ -48,7 +48,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\build\Copying.licenseheader">
+    <None Include="..\..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
   </ItemGroup>
