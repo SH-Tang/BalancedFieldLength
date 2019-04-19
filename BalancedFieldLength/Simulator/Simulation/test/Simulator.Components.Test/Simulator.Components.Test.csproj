@@ -58,6 +58,9 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <None Include="..\..\..\..\licenses\Copying.licenseheader">
+      <Link>Copying.licenseheader</Link>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

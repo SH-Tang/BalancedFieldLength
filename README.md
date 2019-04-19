@@ -1,11 +1,12 @@
 # Balanced Field Length
 
+# License
+This project was released under the GPLv3 license. A copy of this license can be found [here](/BalancedFieldLength/licenses).
+
 # Background
 The major concern in the society when it comes to aviation is safety, which is the main reason of setting up flight regulations. The so-called “balanced field length” is one of those regulations in operating airplanes. This application provides an interface to calculate the balanced field length, which is the length of the runway required for a jet powered airplane to operate safely with a failure of engines expected at any point during the take-off phase.
 
 When the balanced field length and the corresponding speed V1 (also known as the decision speed) are known, the pilot can make a decision to abort the flight or continue take-off according to the values found. When the failure speed is reached before decision speed, it is recommended to abort the take-off and if the failure speed occurs after the decision speed, it is recommended to continue to take off. 
-
-
 ![Alt text](docs/documentation/Example.png?raw=true "Example of a balanced field length calculation for a 2 jet engine powered airplane. The balanced field length of 2343m occurs at V1 = 72.03m/s.")
 
 # Goals
