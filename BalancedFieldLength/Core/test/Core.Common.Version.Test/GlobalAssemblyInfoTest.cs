@@ -45,7 +45,7 @@ namespace Core.Common.Version.Test
             Assert.AreEqual("Core.Common.Version.Test", assemblyProduct);
             Assert.AreEqual("Core.Common.Version.Test", assemblyTitle);
 
-            Assert.AreEqual("0.1.1", assemblyFileVersion);
+            Assert.AreEqual("0.1.2", assemblyFileVersion);
             Assert.AreEqual("Copyright Dennis Tang ©  2019", assemblyCopyright);
 
             Assert.IsEmpty(assemblyDescription);
