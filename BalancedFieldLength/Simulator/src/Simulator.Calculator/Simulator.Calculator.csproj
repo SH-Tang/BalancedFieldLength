@@ -35,7 +35,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculator.cs" />
@@ -53,11 +53,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
-      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
-      <Name>Core.Common.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\..\Core\src\Core.Common.Geometry\Core.Common.Geometry.csproj">
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Geometry\Core.Common.Geometry.csproj">
       <Project>{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}</Project>
       <Name>Core.Common.Geometry</Name>
     </ProjectReference>
@@ -67,7 +63,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\..\..\..\licenses\Copying.licenseheader">
+    <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
   </ItemGroup>
