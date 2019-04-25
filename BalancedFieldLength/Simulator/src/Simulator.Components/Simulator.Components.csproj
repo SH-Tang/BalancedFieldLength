@@ -54,7 +54,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
       <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
       <Name>Core.Common.Data</Name>
     </ProjectReference>
