@@ -44,7 +44,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
+    <Compile Include="..\..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AggregatedDistanceCalculator\AggregatedDistanceCalculatorTest.cs" />
@@ -59,11 +59,11 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+    <ProjectReference Include="..\..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
       <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
       <Name>Core.Common.Data</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
+    <ProjectReference Include="..\..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
       <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
       <Name>Core.Common.TestUtil</Name>
     </ProjectReference>
