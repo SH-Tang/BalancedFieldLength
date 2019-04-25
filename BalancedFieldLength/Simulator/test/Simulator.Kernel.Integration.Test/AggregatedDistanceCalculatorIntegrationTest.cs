@@ -87,7 +87,7 @@ namespace Simulator.Kernel.Integration.Test
         private static IEnumerable<ReferenceOutput> GetReferenceOutputs(string fileName)
         {
             string solutionPath = TestHelper.GetSolutionRootPath();
-            string referenceFilePath = Path.Combine(solutionPath, @"Simulator\Simulation\test\Simulator.Kernel.Integration.Test\test-data", fileName);
+            string referenceFilePath = Path.Combine(solutionPath, @"Simulator\test\Simulator.Kernel.Integration.Test\test-data", fileName);
 
             List<ReferenceOutput> referenceOutputs = new List<ReferenceOutput>();
             using (var parser = new TextFieldParser(referenceFilePath))
