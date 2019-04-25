@@ -3,23 +3,23 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Simulation", "Simulation", "{03CC3656-FC73-487A-9076-3FF50025C119}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Simulator", "Simulator", "{03CC3656-FC73-487A-9076-3FF50025C119}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{9CA47A5A-57C2-43BD-A374-4A2206D086FA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{284D5C1F-A0D9-47A1-BA92-658DCC754CA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data", "Simulator\Simulation\src\Simulator.Data\Simulator.Data.csproj", "{C512FD2B-E141-401C-A55C-E993D017BBB0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data", "Simulator\src\Simulator.Data\Simulator.Data.csproj", "{C512FD2B-E141-401C-A55C-E993D017BBB0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.TestUtil", "Simulator\Simulation\test\Simulator.Data.TestUtil\Simulator.Data.TestUtil.csproj", "{28A81F57-8057-4D63-9A1C-01D1B35A08AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.TestUtil", "Simulator\test\Simulator.Data.TestUtil\Simulator.Data.TestUtil.csproj", "{28A81F57-8057-4D63-9A1C-01D1B35A08AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.Test", "Simulator\Simulation\test\Simulator.Data.Test\Simulator.Data.Test.csproj", "{DF4D7881-9F4E-4112-83E7-C5A0C3008775}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.Test", "Simulator\test\Simulator.Data.Test\Simulator.Data.Test.csproj", "{DF4D7881-9F4E-4112-83E7-C5A0C3008775}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.TestUtil.Test", "Simulator\Simulation\test\Simulator.Data.TestUtil.Test\Simulator.Data.TestUtil.Test.csproj", "{EDFC2014-DC68-4444-8827-FA7816A6F7A7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Data.TestUtil.Test", "Simulator\test\Simulator.Data.TestUtil.Test\Simulator.Data.TestUtil.Test.csproj", "{EDFC2014-DC68-4444-8827-FA7816A6F7A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.Test", "Simulator\Simulation\test\Simulator.Calculator.Test\Simulator.Calculator.Test.csproj", "{BE673503-B1BE-4046-AA09-430ED2D0C2D0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator.Test", "Simulator\test\Simulator.Calculator.Test\Simulator.Calculator.Test.csproj", "{BE673503-B1BE-4046-AA09-430ED2D0C2D0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator", "Simulator\Simulation\src\Simulator.Calculator\Simulator.Calculator.csproj", "{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Calculator", "Simulator\src\Simulator.Calculator\Simulator.Calculator.csproj", "{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{D5746E90-89D6-4B18-976E-D71AEE379166}"
 EndProject
@@ -41,19 +41,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Geometry.Test",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Geometry", "Core\src\Core.Common.Geometry\Core.Common.Geometry.csproj", "{8E8752DA-B5A6-41FE-AB94-7F5CC15BB49B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components", "Simulator\Simulation\src\Simulator.Components\Simulator.Components.csproj", "{8F5FF824-68A1-4589-A573-52640DC985C9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components", "Simulator\src\Simulator.Components\Simulator.Components.csproj", "{8F5FF824-68A1-4589-A573-52640DC985C9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components.Test", "Simulator\Simulation\test\Simulator.Components.Test\Simulator.Components.Test.csproj", "{9604B05D-EE59-4BFD-B3C2-D11560EDF8B5}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Components.Test", "Simulator\test\Simulator.Components.Test\Simulator.Components.Test.csproj", "{9604B05D-EE59-4BFD-B3C2-D11560EDF8B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel", "Simulator\Simulation\src\Simulator.Kernel\Simulator.Kernel.csproj", "{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel", "Simulator\src\Simulator.Kernel\Simulator.Kernel.csproj", "{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel.Test", "Simulator\Simulation\test\Simulator.Kernel.Test\Simulator.Kernel.Test.csproj", "{57850416-DBDF-4604-BC4A-E751A7CF014A}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel.Test", "Simulator\test\Simulator.Kernel.Test\Simulator.Kernel.Test.csproj", "{57850416-DBDF-4604-BC4A-E751A7CF014A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Demo", "Demo", "{A214DBE9-2754-4BB3-B5CB-EC9D5CBC88AA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DemoConsoleApp", "DemoConsoleApp\DemoConsoleApp.csproj", "{4C63B55A-6CCA-4CD0-9820-8D29E895380D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel.Integration.Test", "Simulator\Simulation\test\Simulator.Kernel.Integration.Test\Simulator.Kernel.Integration.Test.csproj", "{E6D4E4A5-1602-452A-976C-E414FE793419}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Simulator.Kernel.Integration.Test", "Simulator\test\Simulator.Kernel.Integration.Test\Simulator.Kernel.Integration.Test.csproj", "{E6D4E4A5-1602-452A-976C-E414FE793419}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Core.Common.Version", "Core\src\Core.Common.Version\Core.Common.Version.csproj", "{D7C9EF2B-0DBE-4D94-824A-83E0E9FB5DAC}"
 EndProject
