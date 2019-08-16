@@ -6,7 +6,7 @@
 - [ADR-00002](00002-Central-versioning-for-every-assembly.md) - Versioning should be centrally administered in the application
 - [ADR-00003](00003-Licensing.md) - License should be applied to the application
 - [ADR-00004](00004-GUI.md) - Implement a Windows based GUI instead of a command line prompt
-- [ADR-00005](00005-Unit-Testing) - Devise a testing strategy for the GUI related components
+- [ADR-00005](00005-Unit-Testin.md) - Devise a testing strategy for the GUI related components
 <!-- adrlogstop -->
 
 
