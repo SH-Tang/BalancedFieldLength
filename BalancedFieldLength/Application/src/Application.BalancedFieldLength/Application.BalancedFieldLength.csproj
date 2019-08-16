@@ -50,6 +50,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="WPFCommon\ViewModelBase.cs" />
     <Page Include="Controls\TabControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -65,6 +66,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Controls\GeneralSimulationSettingsTabViewModel.cs" />
     <Compile Include="Controls\ITabViewModel.cs" />
     <Compile Include="Controls\TabControlView.xaml.cs">
       <DependentUpon>TabControlView.xaml</DependentUpon>
@@ -104,8 +106,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="WPFCommon\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

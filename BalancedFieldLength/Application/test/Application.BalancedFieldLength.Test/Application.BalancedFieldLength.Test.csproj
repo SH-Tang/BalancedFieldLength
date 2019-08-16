@@ -47,8 +47,10 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Controls\GeneralSimulationSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\TabControlViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WPFCommon\ViewModelBaseTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
