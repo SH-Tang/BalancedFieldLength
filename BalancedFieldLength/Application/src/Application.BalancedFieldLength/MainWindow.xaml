@@ -37,10 +37,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             <controls:GeneralSimulationSettingsTabView/>
         </DataTemplate>
     </Window.Resources>
-    
-        <ContentControl Content="{Binding TabControlViewModel}" 
-                        VerticalAlignment="Top" 
-                        HorizontalAlignment="Left" 
-                        Padding="10">
+    <DockPanel>
+        <ContentControl DockPanel.Dock="Top"
+                        Content="{Binding TabControlViewModel}">
         </ContentControl>
+    </DockPanel>
 </Window>

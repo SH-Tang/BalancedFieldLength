@@ -26,6 +26,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
              mc:Ignorable="d" 
              d:DesignHeight="400" d:DesignWidth="700"
+             VerticalContentAlignment="Stretch"
+             HorizontalContentAlignment="Stretch"
+             Margin="5"
              d:DataContext="{d:DesignInstance Type=controls:TabControlViewModel, IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <Style TargetType="TabItem">
@@ -38,18 +41,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             </Setter>
         </Style>
     </UserControl.Resources>
-
-    <Grid>
-        <TabControl x:Name="TabControl" 
-                    HorizontalAlignment="Left" 
-                    Height="400" 
-                    Margin="0" 
-                    VerticalAlignment="Top" 
-                    Width="700"
-                    ItemsSource="{Binding Tabs}"
-                    SelectedItem="{Binding SelectedTabItem}">
-            <TabControl.Resources></TabControl.Resources>
+    <DockPanel>
+        <TabControl ItemsSource="{Binding Tabs}"
+                    SelectedItem="{Binding SelectedTabItem}"
+                    VerticalContentAlignment="Stretch"
+                    HorizontalContentAlignment="Stretch">
         </TabControl>
-
-    </Grid>
+    </DockPanel>
 </UserControl>
