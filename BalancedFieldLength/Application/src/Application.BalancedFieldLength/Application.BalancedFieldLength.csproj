@@ -50,7 +50,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Controls\GeneralSimulationSettingsTabView.xaml.cs">
+      <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="WPFCommon\ViewModelBase.cs" />
+    <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Controls\TabControlView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
