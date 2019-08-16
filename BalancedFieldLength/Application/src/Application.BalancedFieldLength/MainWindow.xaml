@@ -23,9 +23,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Application.BalancedFieldLength"
+        xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <Window.DataContext>
+        <local:MainViewModel></local:MainViewModel>
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type controls:TabControlViewModel}">
+            <controls:TabControlView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:GeneralSimulationSettingsTabViewModel}">
+            <controls:GeneralSimulationSettingsTabView/>
+        </DataTemplate>
+    </Window.Resources>
+    
+        <ContentControl Content="{Binding TabControlViewModel}" 
+                        VerticalAlignment="Top" 
+                        HorizontalAlignment="Left" 
+                        Padding="10">
+        </ContentControl>
 </Window>

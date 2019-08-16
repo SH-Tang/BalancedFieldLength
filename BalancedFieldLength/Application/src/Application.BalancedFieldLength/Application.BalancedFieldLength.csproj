@@ -53,6 +53,7 @@
     <Compile Include="Controls\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="MainViewModel.cs" />
     <Compile Include="WPFCommon\ViewModelBase.cs" />
     <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
       <SubType>Designer</SubType>
