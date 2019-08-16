@@ -95,6 +95,46 @@ namespace Application.BalancedFieldLength.Test.Controls
             Assert.That(eventArgs, Is.Null);
         }
 
+        [Test]
+        public void SelectedTabItem_WithValidValue_RaisesPropertyChangedEvent()
+        {
+            // Setup
+            var tabControlViewModel = new TabControlViewModel();
+
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            tabControlViewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+
+            var tabViewModel = new TestTabViewModel();
+            tabControlViewModel.Tabs.Add(tabViewModel);
+
+            // Call 
+            tabControlViewModel.SelectedTabItem = tabViewModel;
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+
+            Assert.That(eventArgs, Is.Not.Null);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(TabControlViewModel.SelectedTabItem)));
+        }
+
+        [Test]
+        public void SelectedTabItem_WithItemNotInTabs_ThrowsArgumentException()
+        {
+            // Setup
+            var tabControlViewModel = new TabControlViewModel();
+
+            // Call 
+            TestDelegate call = () => tabControlViewModel.SelectedTabItem = new TestTabViewModel();
+
+            // Assert
+            Assert.That(call, Throws.ArgumentException.And.Message.EqualTo("Item could not be found."));
+        }
+
         private class TestTabViewModel : ITabViewModel
         {
             private int tabProperty;

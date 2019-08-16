@@ -15,9 +15,11 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Application.BalancedFieldLength.Controls
 {
@@ -26,6 +28,7 @@ namespace Application.BalancedFieldLength.Controls
     /// </summary>
     public class TabControlViewModel : INotifyPropertyChanged
     {
+        private ITabViewModel selectedTabItem;
         public event PropertyChangedEventHandler PropertyChanged;
 
         /// <summary>
@@ -38,9 +41,32 @@ namespace Application.BalancedFieldLength.Controls
         }
 
         /// <summary>
-        /// Gets the collection of tabs that are present within this control.
+        /// Gets the collection of tabs that are present within the control.
         /// </summary>
         public ObservableCollection<ITabViewModel> Tabs { get; }
+
+        /// <summary>
+        /// Gets or sets the selected tab item.
+        /// </summary>
+        /// <exception cref="ArgumentException">Thrown when the item to select
+        /// is not contained by <see cref="Tabs"/>.</exception>
+        public ITabViewModel SelectedTabItem
+        {
+            get
+            {
+                return selectedTabItem;
+            }
+            set
+            {
+                if (!Tabs.Contains(value))
+                {
+                    throw new ArgumentException("Item could not be found.");
+                }
+
+                selectedTabItem = value;
+                OnPropertyChanged(nameof(SelectedTabItem));
+            }
+        }
 
         private void OnTabItemsChanged(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -64,6 +90,11 @@ namespace Application.BalancedFieldLength.Controls
         private void TabPropertyChanged(object sender, PropertyChangedEventArgs e)
         {
             PropertyChanged?.Invoke(sender, e);
+        }
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
 }
