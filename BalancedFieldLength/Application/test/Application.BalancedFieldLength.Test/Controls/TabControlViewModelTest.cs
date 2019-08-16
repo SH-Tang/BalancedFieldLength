@@ -30,29 +30,29 @@ namespace Application.BalancedFieldLength.Test.Controls
         public static void Constructor_ExpectedValues()
         {
             // Call
-            var viewModel = new TabControlViewModel();
+            var tabControlViewModel = new TabControlViewModel();
 
             // Assert
-            Assert.That(viewModel, Is.InstanceOf<INotifyPropertyChanged>());
-            Assert.That(viewModel.Tabs, Is.Empty);
+            Assert.That(tabControlViewModel, Is.InstanceOf<INotifyPropertyChanged>());
+            Assert.That(tabControlViewModel.Tabs, Is.Empty);
         }
 
         [Test]
         public void GivenTabControlViewModelWithTabs_WhenTabRaisesPropertyChangedEvent_ThenTabControlViewRaisesPropertyChangedEvent()
         {
             // Given
-            var viewModel = new TabControlViewModel();
+            var tabControlViewModel = new TabControlViewModel();
 
             PropertyChangedEventArgs eventArgs = null;
             bool propertyChangedTriggered = false;
-            viewModel.PropertyChanged += (o, e) =>
-                                         {
-                                             eventArgs = e;
-                                             propertyChangedTriggered = true;
-                                         };
+            tabControlViewModel.PropertyChanged += (o, e) =>
+            {
+                eventArgs = e;
+                propertyChangedTriggered = true;
+            };
 
             var tabViewModel = new TestTabViewModel();
-            viewModel.Tabs.Add(tabViewModel);
+            tabControlViewModel.Tabs.Add(tabViewModel);
 
             var random = new Random(21);
 
@@ -69,23 +69,23 @@ namespace Application.BalancedFieldLength.Test.Controls
         public void GivenTabControlViewModelWithTabs_WhenRemovingTabAndRemovedTabRaisesPropertyChangedEvent_ThenTabControlDoesNotRaiseEvent()
         {
             // Given
-            var viewModel = new TabControlViewModel();
+            var tabControlViewModel = new TabControlViewModel();
 
             PropertyChangedEventArgs eventArgs = null;
             bool propertyChangedTriggered = false;
-            viewModel.PropertyChanged += (o, e) =>
-                                         {
-                                             eventArgs = e;
-                                             propertyChangedTriggered = true;
-                                         };
+            tabControlViewModel.PropertyChanged += (o, e) =>
+            {
+                eventArgs = e;
+                propertyChangedTriggered = true;
+            };
 
             var tabViewModel = new TestTabViewModel();
-            viewModel.Tabs.Add(tabViewModel);
+            tabControlViewModel.Tabs.Add(tabViewModel);
 
             var random = new Random(21);
 
             // When 
-            bool removeSuccessful = viewModel.Tabs.Remove(tabViewModel);
+            bool removeSuccessful = tabControlViewModel.Tabs.Remove(tabViewModel);
             Assert.That(removeSuccessful, Is.True);
 
             tabViewModel.TabProperty = random.Next();
@@ -94,7 +94,6 @@ namespace Application.BalancedFieldLength.Test.Controls
             Assert.That(propertyChangedTriggered, Is.False);
             Assert.That(eventArgs, Is.Null);
         }
-
 
         private class TestTabViewModel : ITabViewModel
         {
