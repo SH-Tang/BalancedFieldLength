@@ -15,28 +15,32 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using Application.BalancedFieldLength.Controls;
+using System;
+using System.Globalization;
+using System.Windows.Data;
 
-namespace Application.BalancedFieldLength
+namespace Application.BalancedFieldLength.Converters
 {
     /// <summary>
-    /// The view model of the application.
+    /// Value converter to convert integers.
     /// </summary>
-    public class MainViewModel
+    public class IntegerValueConverter : IValueConverter
     {
-        /// <summary>
-        /// Creates a new instance of <see cref="MainViewModel"/>.
-        /// </summary>
-        public MainViewModel()
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var tabControlViewModel = new TabControlViewModel();
-            var generalSettingsTab = new GeneralSimulationSettingsTabViewModel();
-            tabControlViewModel.Tabs.Add(generalSettingsTab);
-            tabControlViewModel.SelectedTabItem = generalSettingsTab;
-
-            TabControlViewModel = tabControlViewModel;
+            return value?.ToString();
         }
 
-        public TabControlViewModel TabControlViewModel { get; }
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            string integerValue = value as string;
+            int parsedResult = 0;
+            if (integerValue != null && int.TryParse(integerValue, out parsedResult))
+            {
+                return parsedResult;
+            }
+
+            return Binding.DoNothing;
+        }
     }
 }

@@ -23,11 +23,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Application.BalancedFieldLength.Controls"
+             xmlns:converters="clr-namespace:Application.BalancedFieldLength.Converters"
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
              d:DesignHeight="175" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance Type=local:GeneralSimulationSettingsTabViewModel, IsDesignTimeCreatable=True}">
+             d:DataContext="{d:DesignInstance Type=local:GeneralSimulationSettingsTabViewModel,
+                            IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
+    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -42,41 +47,44 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Label Grid.Row="0" Grid.Column="0" 
                Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                VerticalAlignment="Top"
-               Content="Maximum number of iterations">
-        </Label>
+               Content="Maximum number of iterations" />
         <TextBox Grid.Row="0" Grid.Column="1" 
                Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                VerticalAlignment="Center"
                Width="100"
-               Text="{Binding MaximumNrOfIterations}"/>
+               Text="{Binding Path=MaximumNrOfIterations,
+                        Converter={StaticResource IntegerValueConverter}, 
+                        Mode=TwoWay}"/>
 
         <Label Grid.Row="1" Grid.Column="0" 
                Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                VerticalAlignment="Top"
-               Content="Time step"></Label>
+               Content="Time step" />
         <TextBox Grid.Row="1" Grid.Column="1" 
                  Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                  VerticalAlignment="Center"
                  Width="100"
-                 Text="{Binding TimeStep}"/>
+                 Text="{Binding Path=TimeStep, Mode=TwoWay}"/>
 
         <Label Grid.Row="2" Grid.Column="0" 
                Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                VerticalAlignment="Top"
-               Content="End velocity"></Label>
+               Content="End velocity" />
         <TextBox Grid.Row="2" Grid.Column="1" 
                  Margin="0" HorizontalAlignment="Center" 
                  VerticalAlignment="Center"
                  Width="100"
-                 Text="{Binding EndFailureVelocity}"/>
+                 Text="{Binding Path=EndFailureVelocity, 
+                        Mode=TwoWay, 
+                        Converter={StaticResource IntegerValueConverter}}"/>
 
         <Label Grid.Row="3" Grid.Column="0" 
                Margin="0,0,10,0" HorizontalAlignment="Left" 
                VerticalAlignment="TOp"
-               Content="Integration scheme"></Label>
+               Content="Integration scheme" />
         <Label Grid.Row="3" Grid.Column="1" 
                Margin="0" HorizontalAlignment="Center" 
                VerticalAlignment="Top"
-               Content="Euler"></Label>
+               Content="Euler" />
     </Grid>
 </UserControl>
