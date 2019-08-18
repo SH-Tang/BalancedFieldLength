@@ -33,6 +33,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
     </UserControl.Resources>
+    <Expander Header="Numerical simulation settings" IsExpanded="True">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
@@ -87,4 +88,5 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                VerticalAlignment="Top"
                Content="Euler" />
     </Grid>
+    </Expander>
 </UserControl>
