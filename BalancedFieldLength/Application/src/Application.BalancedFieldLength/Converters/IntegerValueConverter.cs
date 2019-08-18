@@ -26,15 +26,39 @@ namespace Application.BalancedFieldLength.Converters
     /// </summary>
     public class IntegerValueConverter : IValueConverter
     {
+        /// <inheritdoc/>
+        /// <exception cref="NotSupportedException">Thrown when:
+        /// <list type="bullet">
+        /// <item>The <paramref name="value"/> is not of type <see cref="int"/>.</item>
+        /// <item>the <paramref name="targetType"/> is not of type <see cref="string"/>.</item>
+        /// </list></exception>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (targetType != typeof(string))
+            {
+                throw new NotSupportedException($"Conversion to {targetType.Name} is not supported.");
+            }
+
+            if (!(value is int))
+            {
+                throw new NotSupportedException($"Conversion from {value?.GetType().Name} is not supported.");
+            }
+
             return value?.ToString();
         }
 
+        /// <inheritdoc/>
+        /// <exception cref="NotSupportedException">Thrown when the <paramref name="targetType"/>
+        /// is not of type <see cref="int"/>.</exception>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            if (targetType != typeof(int))
+            {
+                throw new NotSupportedException($"Conversion to {targetType.Name} is not supported.");
+            }
+
             string integerValue = value as string;
-            int parsedResult = 0;
+            int parsedResult;
             if (integerValue != null && int.TryParse(integerValue, out parsedResult))
             {
                 return parsedResult;
