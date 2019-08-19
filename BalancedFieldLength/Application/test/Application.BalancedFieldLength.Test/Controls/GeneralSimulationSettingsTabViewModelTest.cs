@@ -36,7 +36,7 @@ namespace Application.BalancedFieldLength.Test.Controls
             // Assert
             Assert.That(viewModel, Is.InstanceOf<ITabViewModel>());
             Assert.That(viewModel, Is.InstanceOf<ViewModelBase>());
-            Assert.That(viewModel.TabName, Is.EqualTo("Simulation"));
+            Assert.That(viewModel.TabName, Is.EqualTo("Simulation Settings"));
             Assert.That(viewModel.MaximumNrOfIterations, Is.Zero);
             Assert.That(viewModel.TimeStep, Is.NaN);
             Assert.That(viewModel.EndFailureVelocity, Is.Zero);

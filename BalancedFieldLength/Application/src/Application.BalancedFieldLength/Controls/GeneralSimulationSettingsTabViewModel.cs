@@ -124,7 +124,7 @@ namespace Application.BalancedFieldLength.Controls
         {
             get
             {
-                return "Simulation";
+                return "Simulation Settings";
             }
         }
     }
