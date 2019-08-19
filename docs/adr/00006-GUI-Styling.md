@@ -2,7 +2,7 @@
 
 ## Context and Problem Statement
 
-To provide the application a modern look and feel, 
+To provide the application a modern look and feel, and to have some consistency across other applications in the market, the application should adhere to the Metro interface.
 
 ## Considered Options
 * [MahApps](https://github.com/MahApps/MahApps.Metro), and their dedicated [website](https://mahapps.com/)
@@ -16,10 +16,8 @@ MahApps was chosen as an option. The setup is relatively simple to incorporate a
 
 Other considerations are:
 * Obsolescence
-The package ModernUI doesn't seem to have updated for a while. The website for Elysium was modernised, but the latest release seems to be somewhere around 2013. Additionally, it is unknown whether both packages are compatible with the most recent .NET frameworks
-
+  The package ModernUI doesn't seem to have updated for a while. The website for Elysium was modernised, but the latest release seems to be somewhere around 2013. Additionally, it is unknown whether both packages are compatible with the most recent .NET frameworks
 * Intrusiveness and dependencies
-Elysium requires a separate installation, meaning that the styling will be dependent on the installed version without indication to auto-update. 
-
+  Elysium requires a separate installation, meaning that the styling will be dependent on the installed version without indication to auto-update. 
 * Freeware
-For a project of such a small scale, the paid option Syncfusion is not preferred. 
+  For a project of such a small scale, the paid option Syncfusion is not preferred. 
