@@ -27,66 +27,100 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
-             d:DesignHeight="175" d:DesignWidth="300"
+             d:DesignHeight="500" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance Type=local:GeneralSimulationSettingsTabViewModel,
                             IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
     </UserControl.Resources>
-    <Expander Header="Numerical simulation settings" IsExpanded="True">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="Auto" />
-            <ColumnDefinition Width="Auto" />
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-            <RowDefinition Height="Auto" />
-        </Grid.RowDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" 
-               Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Content="Maximum number of iterations" />
-        <TextBox Grid.Row="0" Grid.Column="1" 
-               Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
-               VerticalAlignment="Center"
-               Width="100"
-               Text="{Binding Path=MaximumNrOfIterations,
-                        Converter={StaticResource IntegerValueConverter}, 
-                        Mode=TwoWay}"/>
+    <StackPanel>
+        <Expander Header="Numerical simulation settings" IsExpanded="True">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" Grid.Column="0" 
+                       Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Content="Maximum number of iterations" />
+                <TextBox Grid.Row="0" Grid.Column="1" 
+                       Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                       VerticalAlignment="Center"
+                       Width="100"
+                       Text="{Binding Path=MaximumNrOfIterations,
+                                Converter={StaticResource IntegerValueConverter}, 
+                                Mode=TwoWay}"/>
 
-        <Label Grid.Row="1" Grid.Column="0" 
-               Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Content="Time step" />
-        <TextBox Grid.Row="1" Grid.Column="1" 
-                 Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 Width="100"
-                 Text="{Binding Path=TimeStep, Mode=TwoWay}"/>
+                <Label Grid.Row="1" Grid.Column="0" 
+                       Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Content="Time step [s]" />
+                <TextBox Grid.Row="1" Grid.Column="1" 
+                         Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                         VerticalAlignment="Center"
+                         Width="100"
+                         Text="{Binding Path=TimeStep, Mode=TwoWay}"/>
 
-        <Label Grid.Row="2" Grid.Column="0" 
-               Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
-               VerticalAlignment="Top"
-               Content="End velocity" />
-        <TextBox Grid.Row="2" Grid.Column="1" 
-                 Margin="0" HorizontalAlignment="Center" 
-                 VerticalAlignment="Center"
-                 Width="100"
-                 Text="{Binding Path=EndFailureVelocity, 
-                        Mode=TwoWay, 
-                        Converter={StaticResource IntegerValueConverter}}"/>
+                <Label Grid.Row="2" Grid.Column="0" 
+                       Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
+                       VerticalAlignment="Top"
+                       Content="End velocity [m/s]" />
+                <TextBox Grid.Row="2" Grid.Column="1" 
+                         Margin="0" HorizontalAlignment="Center" 
+                         VerticalAlignment="Center"
+                         Width="100"
+                         Text="{Binding Path=EndFailureVelocity, 
+                                Mode=TwoWay, 
+                                Converter={StaticResource IntegerValueConverter}}"/>
 
-        <Label Grid.Row="3" Grid.Column="0" 
-               Margin="0,0,10,0" HorizontalAlignment="Left" 
-               VerticalAlignment="TOp"
-               Content="Integration scheme" />
-        <Label Grid.Row="3" Grid.Column="1" 
-               Margin="0" HorizontalAlignment="Center" 
-               VerticalAlignment="Top"
-               Content="Euler" />
-    </Grid>
+                <Label Grid.Row="3" Grid.Column="0" 
+                       Margin="0,0,10,0" HorizontalAlignment="Left" 
+                       VerticalAlignment="TOp"
+                       Content="Integration scheme" />
+                <Label Grid.Row="3" Grid.Column="1" 
+                       Margin="0" HorizontalAlignment="Center" 
+                       VerticalAlignment="Top"
+                       Content="Euler" />
+            </Grid>
+        </Expander>
+    <Expander Header="Environment Settings" IsExpanded="True">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Label Grid.Row="0" Grid.Column="0" 
+                   Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Content="Gravitational acceleration [m/s²]" />
+            <TextBox Grid.Row="0" Grid.Column="1" 
+                     Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                     VerticalAlignment="Center"
+                     Width="100"
+                     Text="{Binding Path=GravitationalAcceleration, Mode=TwoWay}"/>
+
+            <Label Grid.Row="1" Grid.Column="0" 
+                   Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
+                   VerticalAlignment="Top"
+                   Content="Density [kg/m³]" />
+            <TextBox Grid.Row="1" Grid.Column="1" 
+                     Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                     VerticalAlignment="Center"
+                     Width="100"
+                     Text="{Binding Path=Density, Mode=TwoWay}"/>
+
+            </Grid>
     </Expander>
+    </StackPanel>
 </UserControl>

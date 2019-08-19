@@ -27,17 +27,21 @@ namespace Application.BalancedFieldLength.Controls
         private int maximumNrOfIterations;
         private double timeStep;
         private int endFailureVelocity;
+        private double gravitationalAcceleration;
+        private double density;
 
         /// <summary>
         /// Creates a new instance of <see cref="GeneralSimulationSettingsTabViewModel"/>.
         /// </summary>
         public GeneralSimulationSettingsTabViewModel()
         {
-            TimeStep = double.NaN;
+            timeStep = double.NaN;
+            gravitationalAcceleration = 9.81;
+            density = 1.225;
         }
 
         /// <summary>
-        /// Gets or sets the maximum number of iterations each simulation may run.
+        /// Gets or sets the maximum number of iterations each simulation may run. [-]
         /// </summary>
         public int MaximumNrOfIterations
         {
@@ -53,7 +57,7 @@ namespace Application.BalancedFieldLength.Controls
         }
 
         /// <summary>
-        /// Gets or sets the time past during each iteration.
+        /// Gets or sets the time past during each iteration. [s]
         /// </summary>
         public double TimeStep
         {
@@ -69,7 +73,7 @@ namespace Application.BalancedFieldLength.Controls
         }
 
         /// <summary>
-        /// Gets or sets the end failure velocity for which the simulation should stop.
+        /// Gets or sets the end failure velocity for which the simulation should stop. [m/s]
         /// </summary>
         public int EndFailureVelocity
         {
@@ -81,6 +85,38 @@ namespace Application.BalancedFieldLength.Controls
             {
                 endFailureVelocity = value;
                 OnPropertyChanged(nameof(EndFailureVelocity));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the gravitational acceleration for the simulation. [m/s^2]
+        /// </summary>
+        public double GravitationalAcceleration
+        {
+            get
+            {
+                return gravitationalAcceleration;
+            }
+            set
+            {
+                gravitationalAcceleration = value;
+                OnPropertyChanged(nameof(GravitationalAcceleration));
+            }
+        }
+
+        /// <summary>
+        /// Gets or sets the density for the simulation. [kg/m^3]
+        /// </summary>
+        public double Density
+        {
+            get
+            {
+                return density;
+            }
+            set
+            {
+                density = value;
+                OnPropertyChanged(nameof(Density));
             }
         }
 

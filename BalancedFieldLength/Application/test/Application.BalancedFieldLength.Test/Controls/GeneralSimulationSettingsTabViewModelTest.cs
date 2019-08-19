@@ -40,6 +40,8 @@ namespace Application.BalancedFieldLength.Test.Controls
             Assert.That(viewModel.MaximumNrOfIterations, Is.Zero);
             Assert.That(viewModel.TimeStep, Is.NaN);
             Assert.That(viewModel.EndFailureVelocity, Is.Zero);
+            Assert.That(viewModel.GravitationalAcceleration, Is.EqualTo(9.81));
+            Assert.That(viewModel.Density, Is.EqualTo(1.225));
         }
 
         [Test]
@@ -79,6 +81,13 @@ namespace Application.BalancedFieldLength.Test.Controls
             yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.EndFailureVelocity = 1),
                                           nameof(GeneralSimulationSettingsTabViewModel.EndFailureVelocity))
                 .SetName("End failure velocity");
+
+            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.GravitationalAcceleration = 0),
+                                          nameof(GeneralSimulationSettingsTabViewModel.GravitationalAcceleration))
+                .SetName("Gravitational acceleration");
+            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.Density = 2.0),
+                                          nameof(GeneralSimulationSettingsTabViewModel.Density))
+                .SetName("Gravitational acceleration");
         }
     }
 }
