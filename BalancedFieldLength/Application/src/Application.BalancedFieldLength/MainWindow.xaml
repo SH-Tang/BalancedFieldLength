@@ -37,6 +37,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type controls:GeneralSimulationSettingsTabViewModel}">
             <controls:GeneralSimulationSettingsTabView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:EngineSettingsTabViewModel}">
+            <controls:EngineSettingsTabView/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <ContentControl DockPanel.Dock="Top"
