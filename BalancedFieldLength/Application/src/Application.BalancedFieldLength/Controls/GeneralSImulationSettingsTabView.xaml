@@ -67,7 +67,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
-                         Text="{Binding Path=TimeStep, Mode=TwoWay}"/>
+                         Text="{Binding Path=TimeStep, Mode=TwoWay, 
+                                Converter={StaticResource DoubleValueConverter}}"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
