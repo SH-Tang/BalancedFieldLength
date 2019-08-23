@@ -48,6 +48,7 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Controls\EngineSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\GeneralSimulationSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\TabControlViewModelTest.cs" />
     <Compile Include="Converters\IntegerValueConverterTest.cs" />
