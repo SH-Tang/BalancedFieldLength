@@ -42,7 +42,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 propertyChangedTriggered = true;
                 eventArgs = e;
             };
-            
+
             var random = new Random(21);
 
             // Call 
@@ -110,7 +110,7 @@ namespace Application.BalancedFieldLength.Test.Controls
             int maximumNrOfFailedEngines = viewModel.MaximumNrOfFailedEngines;
 
             // Then
-            Assert.That(maximumNrOfFailedEngines, Is.EqualTo(nrOfEngines-1));
+            Assert.That(maximumNrOfFailedEngines, Is.EqualTo(nrOfEngines - 1));
             Assert.That(totalThrust, Is.EqualTo(nrOfEngines * thrustPerEngine).Within(1e-5));
             CollectionAssert.AreEquivalent(new[]
             {
@@ -119,7 +119,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 "MaximumNrOfFailedEngines"
             }, eventArgsCollection.Select(e => e.PropertyName));
         }
-        
+
         [Test]
         public void GivenViewModelWithNrOfEnginesAndThrustPerEngineNotZero_WhenSettingSameNrOfEngines_ThenNoEventsFired()
         {
@@ -206,6 +206,40 @@ namespace Application.BalancedFieldLength.Test.Controls
             {
                 "ThrustPerEngine",
                 "TotalThrust"
+            }, eventArgsCollection.Select(e => e.PropertyName));
+        }
+
+        [Test]
+        public void GivenViewModelWithMaximumNrOfFailedEngines_WhenNrOfEnginesDecreasesBelowMaximumAllowed_ThenMaximumNrOfEnginesCappedAndEventsFired()
+        {
+            // Given
+            const int nrOfEngines = 4;
+
+            var viewModel = new EngineSettingsTabViewModel
+            {
+                NrOfEngines = nrOfEngines,
+                NrOfFailedEngines = nrOfEngines - 1
+            };
+
+            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                eventArgsCollection.Add(e);
+            };
+
+            // When 
+            const int updatedNrOfEngines = 3;
+            viewModel.NrOfEngines = updatedNrOfEngines;
+            int updatedNrOfFailedEngines = viewModel.NrOfFailedEngines;
+
+            // Then
+            Assert.That(updatedNrOfFailedEngines, Is.EqualTo(updatedNrOfEngines - 1));
+            CollectionAssert.AreEquivalent(new[]
+            {
+                "NrOfEngines",
+                "TotalThrust",
+                "MaximumNrOfFailedEngines",
+                "NrOfFailedEngines"
             }, eventArgsCollection.Select(e => e.PropertyName));
         }
     }

@@ -89,6 +89,11 @@ namespace Application.BalancedFieldLength.Controls
                     OnPropertyChanged(nameof(TotalThrust));
                     OnPropertyChanged(nameof(MaximumNrOfFailedEngines));
                 }
+
+                if (nrOfFailedEngines >= value)
+                {
+                    NrOfFailedEngines = value - 1;
+                }
             }
         }
 
