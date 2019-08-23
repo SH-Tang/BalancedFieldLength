@@ -32,6 +32,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                             IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
+        <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
     </UserControl.Resources>
     <StackPanel>
         <Expander Header="Numerical simulation settings" IsExpanded="True">
@@ -55,7 +56,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        VerticalAlignment="Center"
                        Width="100"
                        Text="{Binding Path=MaximumNrOfIterations,
-                                Converter={StaticResource IntegerValueConverter}, 
+                                Converter={StaticResource IntegerValueConverter},
                                 Mode=TwoWay}"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
@@ -77,7 +78,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=EndFailureVelocity, 
-                                Mode=TwoWay, 
+                                Mode=TwoWay,
                                 Converter={StaticResource IntegerValueConverter}}"/>
 
                 <Label Grid.Row="3" Grid.Column="0" 
@@ -108,7 +109,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                      Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
                      Width="100"
-                     Text="{Binding Path=GravitationalAcceleration, Mode=TwoWay}"/>
+                     Text="{Binding Path=GravitationalAcceleration, 
+                            Mode=TwoWay,
+                            Converter={StaticResource DoubleValueConverter}}"/>
 
             <Label Grid.Row="1" Grid.Column="0" 
                    Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -118,7 +121,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                      Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
                      Width="100"
-                     Text="{Binding Path=Density, Mode=TwoWay}"/>
+                     Text="{Binding Path=Density, 
+                            Mode=TwoWay,
+                            Converter={StaticResource DoubleValueConverter}}"/>
 
             </Grid>
     </Expander>
