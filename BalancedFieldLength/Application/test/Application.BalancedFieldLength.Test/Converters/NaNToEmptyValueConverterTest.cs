@@ -24,25 +24,35 @@ using NUnit.Framework;
 namespace Application.BalancedFieldLength.Test.Converters
 {
     [TestFixture]
-    public class IntegerValueConverterTest
+    public class NaNToEmptyValueConverterTest
     {
         [Test]
         public static void Constructor_ExpectedValues()
         {
             // Call
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             // Assert
             Assert.That(converter, Is.InstanceOf<IValueConverter>());
         }
 
         [Test]
-        [TestCase(10, "10")]
-        [TestCase(1, "1")]
-        public void Convert_WithValidValue_ReturnsExpectedString(int? value, string expectedValue)
+        [SetCulture("en-US")]
+        [TestCase(10.5, "10.5")]
+        [TestCase(1.1, "1.1")]
+        [TestCase(1.1e-2, "0.011")]
+        [TestCase(1.1e-5, "1.1E-05")]
+        [TestCase(1.1e+15, "1.1E+15")]
+        [TestCase(1.1e2, "110")]
+        [TestCase(+10, "10")]
+        [TestCase(-10, "-10")]
+        [TestCase(double.NaN, "")]
+        [TestCase(double.PositiveInfinity, "Infinity")]
+        [TestCase(double.NegativeInfinity, "-Infinity")]
+        public void Convert_WithValidValueAndEnglishCulture_ReturnsExpectedString(double value, string expectedValue)
         {
             // Setup
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             // Call 
             object result = converter.Convert(value, typeof(string), null, null);
@@ -52,11 +62,36 @@ namespace Application.BalancedFieldLength.Test.Converters
         }
 
         [Test]
-        [TestCaseSource(nameof(GetNonIntegerValueObject))]
+        [SetCulture("nl-NL")]
+        [TestCase(10.5, "10.5")]
+        [TestCase(1.1, "1.1")]
+        [TestCase(1.1e-2, "0.011")]
+        [TestCase(1.1e-5, "1.1E-05")]
+        [TestCase(1.1e+15, "1.1E+15")]
+        [TestCase(1.1e2, "110")]
+        [TestCase(+10, "10")]
+        [TestCase(-10, "-10")]
+        [TestCase(double.NaN, "")]
+        [TestCase(double.PositiveInfinity, "Infinity")]
+        [TestCase(double.NegativeInfinity, "-Infinity")]
+        public void Convert_WithValidValueAndDutchCulture_ReturnsExpectedString(double value, string expectedValue)
+        {
+            // Setup
+            var converter = new NaNToEmptyValueConverter();
+
+            // Call 
+            object result = converter.Convert(value, typeof(string), null, null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedValue));
+        }
+
+        [Test]
+        [TestCaseSource(nameof(GetNonDoubleValueObject))]
         public void Convert_WithUnsupportedValue_ThrowsNotSupportedException(object unsupportedValue)
         {
             // Setup
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             // Call 
             TestDelegate call = () => converter.Convert(unsupportedValue, typeof(string), null, null);
@@ -72,9 +107,9 @@ namespace Application.BalancedFieldLength.Test.Converters
         {
             // Setup
             var random = new Random(21);
-            int valueToConvert = random.Next();
+            double valueToConvert = random.NextDouble();
 
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             Type unsupportedType = typeof(object);
 
@@ -88,25 +123,35 @@ namespace Application.BalancedFieldLength.Test.Converters
         }
 
         [Test]
-        [TestCase("10", 10)]
-        [TestCase("1", 1)]
-        public void ConvertBack_WithIntegerValueType_ReturnsExpectedResult(string value, int expectedResult)
+        [TestCase("10.5    ", 10.5)]
+        [TestCase("     10.5", 10.5)]
+        [TestCase("+10.5", 10.5)]
+        [TestCase("-10.5", -10.5)]
+        [TestCase("", double.NaN)]
+        [TestCase("NaN", double.NaN)]
+        [TestCase("3.14", 3.14)]
+        [TestCase("3,14.5", 314.5)]
+        [TestCase("2.27e-5", 2.27e-5)]
+        [TestCase("2.27e5", 2.27e5)]
+        [TestCase("Infinity", double.PositiveInfinity)]
+        [TestCase("-Infinity", double.NegativeInfinity)]
+        public void ConvertBack_WithDoubleValueType_ReturnsExpectedResult(string value, double expectedResult)
         {
             // Setup
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             // Call 
-            object result = converter.ConvertBack(value, typeof(int), null, null);
+            object result = converter.ConvertBack(value, typeof(double), null, null);
 
             // Assert
-            Assert.That(result, Is.EqualTo(expectedResult));
+            Assert.That(result, Is.EqualTo(expectedResult).Within(1e-5));
         }
 
         [Test]
         public void ConvertBack_WithUnsupportedType_ThrowsNotSupportedException()
         {
             // Setup
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             Type unsupportedType = typeof(object);
 
@@ -120,20 +165,20 @@ namespace Application.BalancedFieldLength.Test.Converters
         }
 
         [Test]
-        [TestCaseSource(nameof(GetNonIntegerValueObject))]
-        public void ConvertBack_WithNonIntegerValueType_ReturnsBindingDoNothing(object value)
+        [TestCaseSource(nameof(GetNonDoubleValueObject))]
+        public void ConvertBack_WithNonDoubleValueType_ReturnsBindingDoNothing(object value)
         {
             // Setup
-            var converter = new IntegerValueConverter();
+            var converter = new NaNToEmptyValueConverter();
 
             // Call 
-            object result = converter.ConvertBack(value, typeof(int), null, null);
+            object result = converter.ConvertBack(value, typeof(double), null, null);
 
             // Assert
             Assert.That(result, Is.EqualTo(Binding.DoNothing));
         }
 
-        private static IEnumerable<TestCaseData> GetNonIntegerValueObject()
+        private static IEnumerable<TestCaseData> GetNonDoubleValueObject()
         {
             yield return new TestCaseData(null);
             yield return new TestCaseData(new object());

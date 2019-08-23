@@ -63,6 +63,7 @@
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converters\IntegerValueConverter.cs" />
+    <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Compile Include="WPFCommon\ViewModelBase.cs" />
     <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
