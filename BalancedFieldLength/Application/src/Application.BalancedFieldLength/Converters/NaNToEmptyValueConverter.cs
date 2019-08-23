@@ -35,7 +35,8 @@ namespace Application.BalancedFieldLength.Converters
         /// <exception cref="NotSupportedException">Thrown when:
         /// <list type="bullet">
         /// <item>The <paramref name="value"/> is not of type <see cref="double"/>.</item>
-        /// <item>the <paramref name="targetType"/> is not of type <see cref="string"/>.</item>
+        /// <item>the <paramref name="targetType"/> is not of type <see cref="string"/>
+        /// or of type <see cref="object"/>.</item>
         /// </list></exception>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -44,7 +45,7 @@ namespace Application.BalancedFieldLength.Converters
                 throw new NotSupportedException($"Conversion from {value?.GetType().Name} is not supported.");
             }
 
-            if (targetType != typeof(string))
+            if (targetType != typeof(string) && targetType != typeof(object))
             {
                 throw new NotSupportedException($"Conversion to {targetType.Name} is not supported.");
             }

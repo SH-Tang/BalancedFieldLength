@@ -38,18 +38,8 @@ namespace Application.BalancedFieldLength.Test.Converters
 
         [Test]
         [SetCulture("en-US")]
-        [TestCase(10.5, "10.5")]
-        [TestCase(1.1, "1.1")]
-        [TestCase(1.1e-2, "0.011")]
-        [TestCase(1.1e-5, "1.1E-05")]
-        [TestCase(1.1e+15, "1.1E+15")]
-        [TestCase(1.1e2, "110")]
-        [TestCase(+10, "10")]
-        [TestCase(-10, "-10")]
-        [TestCase(double.NaN, "")]
-        [TestCase(double.PositiveInfinity, "Infinity")]
-        [TestCase(double.NegativeInfinity, "-Infinity")]
-        public void Convert_WithValidValueAndEnglishCulture_ReturnsExpectedString(double value, string expectedValue)
+        [TestCaseSource(nameof(GetConvertCases))]
+        public void Convert_WithValidValueAndEnglishCultureAndTargetTypeIsString_ReturnsExpectedString(double value, string expectedValue)
         {
             // Setup
             var converter = new NaNToEmptyValueConverter();
@@ -63,24 +53,44 @@ namespace Application.BalancedFieldLength.Test.Converters
 
         [Test]
         [SetCulture("nl-NL")]
-        [TestCase(10.5, "10.5")]
-        [TestCase(1.1, "1.1")]
-        [TestCase(1.1e-2, "0.011")]
-        [TestCase(1.1e-5, "1.1E-05")]
-        [TestCase(1.1e+15, "1.1E+15")]
-        [TestCase(1.1e2, "110")]
-        [TestCase(+10, "10")]
-        [TestCase(-10, "-10")]
-        [TestCase(double.NaN, "")]
-        [TestCase(double.PositiveInfinity, "Infinity")]
-        [TestCase(double.NegativeInfinity, "-Infinity")]
-        public void Convert_WithValidValueAndDutchCulture_ReturnsExpectedString(double value, string expectedValue)
+        [TestCaseSource(nameof(GetConvertCases))]
+        public void Convert_WithValidValueAndDutchCultureAndTargetTypeIsString_ReturnsExpectedString(double value, string expectedValue)
         {
             // Setup
             var converter = new NaNToEmptyValueConverter();
 
             // Call 
             object result = converter.Convert(value, typeof(string), null, null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedValue));
+        }
+
+        [Test]
+        [SetCulture("en-US")]
+        [TestCaseSource(nameof(GetConvertCases))]
+        public void Convert_WithValidValueAndEnglishCultureAndTargetTypeIsObject_ReturnsExpectedString(double value, string expectedValue)
+        {
+            // Setup
+            var converter = new NaNToEmptyValueConverter();
+
+            // Call 
+            object result = converter.Convert(value, typeof(object), null, null);
+
+            // Assert
+            Assert.That(result, Is.EqualTo(expectedValue));
+        }
+
+        [Test]
+        [SetCulture("nl-NL")]
+        [TestCaseSource(nameof(GetConvertCases))]
+        public void Convert_WithValidValueAndDutchCultureAndTargetTypeIsObject_ReturnsExpectedString(double value, string expectedValue)
+        {
+            // Setup
+            var converter = new NaNToEmptyValueConverter();
+
+            // Call 
+            object result = converter.Convert(value, typeof(object), null, null);
 
             // Assert
             Assert.That(result, Is.EqualTo(expectedValue));
@@ -111,7 +121,7 @@ namespace Application.BalancedFieldLength.Test.Converters
 
             var converter = new NaNToEmptyValueConverter();
 
-            Type unsupportedType = typeof(object);
+            Type unsupportedType = typeof(int);
 
             // Call 
             TestDelegate call = () => converter.Convert(valueToConvert, unsupportedType, null, null);
@@ -182,6 +192,21 @@ namespace Application.BalancedFieldLength.Test.Converters
         {
             yield return new TestCaseData(null);
             yield return new TestCaseData(new object());
+        }
+
+        private static IEnumerable<TestCaseData> GetConvertCases()
+        {
+            yield return new TestCaseData(10.5, "10.5");
+            yield return new TestCaseData(1.1, "1.1");
+            yield return new TestCaseData(1.1e-2, "0.011");
+            yield return new TestCaseData(1.1e-5, "1.1E-05");
+            yield return new TestCaseData(1.1e+15, "1.1E+15");
+            yield return new TestCaseData(1.1e2, "110");
+            yield return new TestCaseData(+10, "10");
+            yield return new TestCaseData(-10, "-10");
+            yield return new TestCaseData(double.NaN, "");
+            yield return new TestCaseData(double.PositiveInfinity, "Infinity");
+            yield return new TestCaseData(double.NegativeInfinity, "-Infinity");
         }
     }
 }
