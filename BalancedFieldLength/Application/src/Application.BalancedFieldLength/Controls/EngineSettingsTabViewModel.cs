@@ -27,6 +27,7 @@ namespace Application.BalancedFieldLength.Controls
     {
         private double thrustPerEngine;
         private int nrOfEngines;
+        private int nrOfFailedEngines;
 
         /// <summary>
         /// Creates a new instance of <see cref="EngineSettingsTabViewModel"/>.
@@ -82,9 +83,11 @@ namespace Application.BalancedFieldLength.Controls
                     nrOfEngines = value;
 
                     TotalThrust = thrustPerEngine * value;
+                    MaximumNrOfFailedEngines = value - 1;
 
                     OnPropertyChanged(nameof(NrOfEngines));
                     OnPropertyChanged(nameof(TotalThrust));
+                    OnPropertyChanged(nameof(MaximumNrOfFailedEngines));
                 }
             }
         }
@@ -92,7 +95,23 @@ namespace Application.BalancedFieldLength.Controls
         /// <summary>
         /// Gets or sets the number of failed engines.
         /// </summary>
-        public int NrOfFailedEngines { get; set; }
+        public int NrOfFailedEngines
+        {
+            get
+            {
+                return nrOfFailedEngines;
+            }
+            set
+            {
+                nrOfFailedEngines = value;
+                OnPropertyChanged(nameof(NrOfFailedEngines));
+            }
+        }
+
+        /// <summary>
+        /// Gets the maximum number of possible failed engines.
+        /// </summary>
+        public int MaximumNrOfFailedEngines { get; private set; }
 
         public string TabName
         {

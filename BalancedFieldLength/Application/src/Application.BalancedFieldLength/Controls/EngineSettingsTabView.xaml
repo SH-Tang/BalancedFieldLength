@@ -91,9 +91,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                VerticalAlignment="Top"
                Content="Number of failed engines" />
         <Slider Grid.Row="4" Grid.Column="1" Minimum="1"
-                Maximum="{Binding ElementName=NrOfEnginesSlider,
-                        Path=Value,
-                        UpdateSourceTrigger=PropertyChanged}"
+                Maximum="{Binding Path=MaximumNrOfFailedEngines}"
                 TickPlacement="BottomRight" TickFrequency="1"
                 IsSnapToTickEnabled="True"
                 Name="NrOfFailedEnginesSlider"

@@ -26,6 +26,31 @@ namespace Application.BalancedFieldLength.Test.Controls
             Assert.That(viewModel.TotalThrust, Is.NaN);
             Assert.That(viewModel.NrOfEngines, Is.Zero);
             Assert.That(viewModel.NrOfFailedEngines, Is.Zero);
+            Assert.That(viewModel.MaximumNrOfFailedEngines, Is.Zero);
+        }
+
+        [Test]
+        public void NrOfFailedEngines_SettingNewValue_RaisesOnPropertyChangedEvent()
+        {
+            // Setup
+            var viewModel = new EngineSettingsTabViewModel();
+
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+            
+            var random = new Random(21);
+
+            // Call 
+            viewModel.NrOfFailedEngines = random.Next();
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(EngineSettingsTabViewModel.NrOfFailedEngines)));
         }
 
         [Test]
@@ -82,16 +107,19 @@ namespace Application.BalancedFieldLength.Test.Controls
             // When 
             viewModel.NrOfEngines = nrOfEngines;
             double totalThrust = viewModel.TotalThrust;
+            int maximumNrOfFailedEngines = viewModel.MaximumNrOfFailedEngines;
 
             // Then
+            Assert.That(maximumNrOfFailedEngines, Is.EqualTo(nrOfEngines-1));
             Assert.That(totalThrust, Is.EqualTo(nrOfEngines * thrustPerEngine).Within(1e-5));
             CollectionAssert.AreEquivalent(new[]
             {
                 "NrOfEngines",
-                "TotalThrust"
+                "TotalThrust",
+                "MaximumNrOfFailedEngines"
             }, eventArgsCollection.Select(e => e.PropertyName));
         }
-
+        
         [Test]
         public void GivenViewModelWithNrOfEnginesAndThrustPerEngineNotZero_WhenSettingSameNrOfEngines_ThenNoEventsFired()
         {
