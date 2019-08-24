@@ -75,11 +75,11 @@ namespace Simulator.Data.TestUtil
         private static TestAerodynamicsData[] GetAerodynamicsData()
         {
             return new[]
-                   {
-                       new TestAerodynamicsData(new AerodynamicsData(15, 100, Angle.FromDegrees(-3), 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
-                       new TestAerodynamicsData(new AerodynamicsData(14, 200, Angle.FromDegrees(-4), 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
-                       new TestAerodynamicsData(new AerodynamicsData(12, 500, Angle.FromDegrees(-5), 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
-                   };
+            {
+                new TestAerodynamicsData(new AerodynamicsData(15, 100, Angle.FromDegrees(-3), 4.85, 1.60, 0.021, 0.026, 0.85), "Two Jet Power Engine"),
+                new TestAerodynamicsData(new AerodynamicsData(14, 200, Angle.FromDegrees(-4), 4.32, 1.45, 0.024, 0.028, 0.80), "Three Jet Power Engine"),
+                new TestAerodynamicsData(new AerodynamicsData(12, 500, Angle.FromDegrees(-5), 3.95, 1.40, 0.026, 0.029, 0.82), "Four Jet Power Engine")
+            };
         }
 
         private class TestAerodynamicsData

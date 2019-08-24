@@ -40,7 +40,7 @@ namespace Core.Common.Version.Test
             string assemblyCompany = assembly.GetCustomAttribute<AssemblyCompanyAttribute>().Company;
             string assemblyCopyright = assembly.GetCustomAttribute<AssemblyCopyrightAttribute>().Copyright;
             string assemblyTrademark = assembly.GetCustomAttribute<AssemblyTrademarkAttribute>().Trademark;
-            
+
             // Assert
             Assert.AreEqual("Core.Common.Version.Test", assemblyProduct);
             Assert.AreEqual("Core.Common.Version.Test", assemblyTitle);

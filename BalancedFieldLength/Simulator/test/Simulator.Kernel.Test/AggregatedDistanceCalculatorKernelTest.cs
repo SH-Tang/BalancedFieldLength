@@ -97,9 +97,9 @@ namespace Simulator.Kernel.Test
             // Assert
             Assert.IsFalse(result.IsValid);
             CollectionAssert.AreEqual(new[]
-                                      {
-                                          KernelValidationError.InvalidDensity
-                                      }, result.ValidationErrors);
+            {
+                KernelValidationError.InvalidDensity
+            }, result.ValidationErrors);
         }
 
         [Test]
@@ -123,9 +123,9 @@ namespace Simulator.Kernel.Test
             // Assert
             Assert.IsFalse(result.IsValid);
             CollectionAssert.AreEqual(new[]
-                                      {
-                                          KernelValidationError.InvalidGravitationalAcceleration
-                                      }, result.ValidationErrors);
+            {
+                KernelValidationError.InvalidGravitationalAcceleration
+            }, result.ValidationErrors);
         }
 
         [Test]
@@ -150,9 +150,9 @@ namespace Simulator.Kernel.Test
             // Assert
             Assert.IsFalse(result.IsValid);
             CollectionAssert.AreEqual(new[]
-                                      {
-                                          KernelValidationError.InvalidNrOfFailedEngines
-                                      }, result.ValidationErrors);
+            {
+                KernelValidationError.InvalidNrOfFailedEngines
+            }, result.ValidationErrors);
         }
 
         [Test]
@@ -170,11 +170,11 @@ namespace Simulator.Kernel.Test
             // Assert
             Assert.IsFalse(result.IsValid);
             CollectionAssert.AreEquivalent(new[]
-                                           {
-                                               KernelValidationError.InvalidDensity,
-                                               KernelValidationError.InvalidGravitationalAcceleration,
-                                               KernelValidationError.InvalidNrOfFailedEngines
-                                           }, result.ValidationErrors);
+            {
+                KernelValidationError.InvalidDensity,
+                KernelValidationError.InvalidGravitationalAcceleration,
+                KernelValidationError.InvalidNrOfFailedEngines
+            }, result.ValidationErrors);
         }
     }
 }

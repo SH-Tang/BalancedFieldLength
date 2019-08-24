@@ -87,10 +87,10 @@ namespace Simulator.Calculator
         public DistanceCalculatorOutput Calculate()
         {
             var state = new AircraftState();
-            var hasFailureOccurred = false;
+            bool hasFailureOccurred = false;
             int failureSpeed = calculationSettings.FailureSpeed;
 
-            for (var i = 0; i < calculationSettings.MaximumNrOfTimeSteps; i++)
+            for (int i = 0; i < calculationSettings.MaximumNrOfTimeSteps; i++)
             {
                 AircraftAccelerations accelerations = hasFailureOccurred
                                                           ? failureTakeOffDynamicsCalculator.Calculate(state)

@@ -58,7 +58,7 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
             }
 
             AggregatedDistanceOutput previousOutput = sortedOutputs.First();
-            for (var i = 1; i < sortedOutputs.Count(); i++)
+            for (int i = 1; i < sortedOutputs.Count(); i++)
             {
                 AggregatedDistanceOutput currentOutput = sortedOutputs.ElementAt(i);
 

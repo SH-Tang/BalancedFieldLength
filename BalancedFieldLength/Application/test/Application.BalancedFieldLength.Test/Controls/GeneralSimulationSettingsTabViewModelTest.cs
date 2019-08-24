@@ -47,7 +47,7 @@ namespace Application.BalancedFieldLength.Test.Controls
         [Test]
         [TestCaseSource(nameof(GetNotifyPropertyChangedTestCases))]
         public void Property_ValueChanges_RaisesNotifyPropertyChangedEvent(Action<GeneralSimulationSettingsTabViewModel> propertyChangeAction,
-                                                                           string propertyName) 
+                                                                           string propertyName)
         {
             // Setup
             var viewModel = new GeneralSimulationSettingsTabViewModel();

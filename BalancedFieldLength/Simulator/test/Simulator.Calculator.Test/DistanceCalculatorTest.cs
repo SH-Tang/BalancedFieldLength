@@ -269,14 +269,14 @@ namespace Simulator.Calculator.Test
             normalTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
-                             {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
-                                 normalTakeOffDynamicsCalculator.Calculate(states[0]);
-                                 integrator.Integrate(states[0], accelerations[1], timeStep);
+            {
+                normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
+                normalTakeOffDynamicsCalculator.Calculate(states[0]);
+                integrator.Integrate(states[0], accelerations[1], timeStep);
 
-                                 // Do not expect additional calls after the second state was returned
-                             });
+                // Do not expect additional calls after the second state was returned
+            });
         }
 
         [Test]
@@ -326,14 +326,14 @@ namespace Simulator.Calculator.Test
             normalTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(2).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
-                             {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
-                                 normalTakeOffDynamicsCalculator.Calculate(states[0]);
-                                 integrator.Integrate(states[0], accelerations[1], timeStep);
+            {
+                normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
+                normalTakeOffDynamicsCalculator.Calculate(states[0]);
+                integrator.Integrate(states[0], accelerations[1], timeStep);
 
-                                 // Do not expect additional calls after the second state was returned
-                             });
+                // Do not expect additional calls after the second state was returned
+            });
         }
 
         [Test]
@@ -383,16 +383,16 @@ namespace Simulator.Calculator.Test
             failureTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(3).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
-                             {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
+            {
+                normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
 
-                                 failureTakeOffDynamicsCalculator.Calculate(states[0]);
-                                 integrator.Integrate(states[0], accelerations[1], timeStep);
+                failureTakeOffDynamicsCalculator.Calculate(states[0]);
+                integrator.Integrate(states[0], accelerations[1], timeStep);
 
-                                 failureTakeOffDynamicsCalculator.Calculate(states[1]);
-                                 integrator.Integrate(states[1], accelerations[2], timeStep);
-                             });
+                failureTakeOffDynamicsCalculator.Calculate(states[1]);
+                integrator.Integrate(states[1], accelerations[2], timeStep);
+            });
 
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);
@@ -452,16 +452,16 @@ namespace Simulator.Calculator.Test
             failureTakeOffDynamicsCalculator.Received(2).Calculate(Arg.Any<AircraftState>());
             integrator.Received(3).Integrate(Arg.Any<AircraftState>(), Arg.Any<AircraftAccelerations>(), timeStep);
             Received.InOrder(() =>
-                             {
-                                 normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
-                                 integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
+            {
+                normalTakeOffDynamicsCalculator.Calculate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)));
+                integrator.Integrate(Arg.Is<AircraftState>(state => IsZeroAircraftState(state)), accelerations[0], timeStep);
 
-                                 failureTakeOffDynamicsCalculator.Calculate(states[0]);
-                                 integrator.Integrate(states[0], accelerations[1], timeStep);
+                failureTakeOffDynamicsCalculator.Calculate(states[0]);
+                integrator.Integrate(states[0], accelerations[1], timeStep);
 
-                                 failureTakeOffDynamicsCalculator.Calculate(states[1]);
-                                 integrator.Integrate(states[1], accelerations[2], timeStep);
-                             });
+                failureTakeOffDynamicsCalculator.Calculate(states[1]);
+                integrator.Integrate(states[1], accelerations[2], timeStep);
+            });
 
             Assert.AreEqual(states.Last().Distance, output.Distance);
             Assert.AreEqual(failureSpeed, output.FailureSpeed);

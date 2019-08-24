@@ -168,10 +168,10 @@ namespace Simulator.Components.Test.TakeOffDynamics
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
                 var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
-                                 {
-                                     Thrust = thrust,
-                                     Drag = drag
-                                 };
+                {
+                    Thrust = thrust,
+                    Drag = drag
+                };
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -211,10 +211,10 @@ namespace Simulator.Components.Test.TakeOffDynamics
                 double thrust = random.NextDouble() * 1000;
                 double drag = random.NextDouble() * 100;
                 var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
-                                 {
-                                     Thrust = thrust,
-                                     Drag = drag
-                                 };
+                {
+                    Thrust = thrust,
+                    Drag = drag
+                };
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);
@@ -255,11 +255,11 @@ namespace Simulator.Components.Test.TakeOffDynamics
                 double drag = random.NextDouble() * 100;
                 double frictionCoefficient = random.NextDouble();
                 var calculator = new TestTakeOffDynamicsCalculator(aircraftData, airDensity, gravitationalAcceleration)
-                                 {
-                                     Thrust = thrust,
-                                     Drag = drag,
-                                     RollDrag = frictionCoefficient
-                                 };
+                {
+                    Thrust = thrust,
+                    Drag = drag,
+                    RollDrag = frictionCoefficient
+                };
 
                 // Call 
                 AircraftAccelerations accelerations = calculator.Calculate(aircraftState);

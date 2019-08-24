@@ -45,7 +45,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <TabControl ItemsSource="{Binding Tabs}"
                     SelectedItem="{Binding SelectedTabItem}"
                     VerticalContentAlignment="Stretch"
-                    HorizontalContentAlignment="Stretch">
-        </TabControl>
+                    HorizontalContentAlignment="Stretch" />
     </DockPanel>
 </UserControl>

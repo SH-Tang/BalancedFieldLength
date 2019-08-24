@@ -63,7 +63,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 NrOfEngines = nrOfEngines
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
@@ -96,7 +96,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 ThrustPerEngine = thrustPerEngine
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
@@ -133,7 +133,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 ThrustPerEngine = random.NextDouble()
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
@@ -163,7 +163,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 ThrustPerEngine = thrustPerEngine
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
@@ -190,7 +190,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 ThrustPerEngine = thrustPerEngine
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
@@ -221,7 +221,7 @@ namespace Application.BalancedFieldLength.Test.Controls
                 NrOfFailedEngines = nrOfEngines - 1
             };
 
-            List<PropertyChangedEventArgs> eventArgsCollection = new List<PropertyChangedEventArgs>();
+            var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
             {
                 eventArgsCollection.Add(e);
