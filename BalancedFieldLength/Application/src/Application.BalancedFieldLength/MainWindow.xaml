@@ -40,6 +40,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type controls:EngineSettingsTabViewModel}">
             <controls:EngineSettingsTabView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:AircraftDataTabViewModel}">
+            <controls:AircraftDataTabView/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <ContentControl DockPanel.Dock="Top"

@@ -16,9 +16,10 @@ namespace Application.BalancedFieldLength.Test
             // Assert
             TabControlViewModel tabControlViewModel = mainViewModel.TabControlViewModel;
             ObservableCollection<ITabViewModel> tabs = tabControlViewModel.Tabs;
-            Assert.That(tabs, Has.Count.EqualTo(2));
+            Assert.That(tabs, Has.Count.EqualTo(3));
             Assert.That(tabs[0], Is.TypeOf<GeneralSimulationSettingsTabViewModel>());
             Assert.That(tabs[1], Is.TypeOf<EngineSettingsTabViewModel>());
+            Assert.That(tabs[2], Is.TypeOf<AircraftDataTabViewModel>());
             Assert.That(tabControlViewModel.SelectedTabItem, Is.SameAs(tabs[0]));
         }
     }

@@ -33,6 +33,7 @@ namespace Application.BalancedFieldLength
             var generalSettingsTab = new GeneralSimulationSettingsTabViewModel();
             tabControlViewModel.Tabs.Add(generalSettingsTab);
             tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel());
+            tabControlViewModel.Tabs.Add(new AircraftDataTabViewModel());
             tabControlViewModel.SelectedTabItem = generalSettingsTab;
 
             TabControlViewModel = tabControlViewModel;
