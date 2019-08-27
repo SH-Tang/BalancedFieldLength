@@ -45,7 +45,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         </DataTemplate>
     </Window.Resources>
     <DockPanel>
-        <ContentControl DockPanel.Dock="Top"
-                        Content="{Binding TabControlViewModel}" />
+        <StackPanel DockPanel.Dock="Right">
+            <ContentControl Content="{Binding TabControlViewModel}" />
+            <Button Content="Simulate"></Button>
+        </StackPanel>
     </DockPanel>
 </metro:MetroWindow>
