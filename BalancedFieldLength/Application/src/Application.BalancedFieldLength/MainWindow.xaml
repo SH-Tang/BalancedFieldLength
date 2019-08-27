@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="600" Width="800">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>

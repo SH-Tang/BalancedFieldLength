@@ -37,7 +37,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
             <ColumnDefinition Width="1*" />
-            <ColumnDefinition Width="1*" />
+            <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
@@ -85,7 +85,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                IsEnabled="False"
                Content="{Binding Path=TotalThrust, Converter={StaticResource DoubleValueConverter}}" />
         
-        <Separator Grid.Row="3" Grid.ColumnSpan="3"/>
         <Label Grid.Row="4" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"

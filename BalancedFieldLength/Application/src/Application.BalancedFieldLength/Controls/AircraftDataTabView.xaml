@@ -82,12 +82,12 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             </Grid>
         </Expander>
         <Expander Header="Lift properties" IsExpanded="True">
-            <Grid>
+            <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -134,7 +134,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                                 Converter={StaticResource DoubleValueConverter},
                                 Mode=TwoWay}"/>
 
-                <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4"/>
+                <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
 
                 <Label Grid.Row="4" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -178,9 +178,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
                     <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
-                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="1*" />
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
