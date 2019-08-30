@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
 using System.ComponentModel;
 using Application.BalancedFieldLength.Controls;
 using Application.BalancedFieldLength.WPFCommon;
@@ -46,7 +47,9 @@ namespace Application.BalancedFieldLength.Test.Controls
             TestDelegate call = () => viewModel.AddMessage(null);
 
             // Assert
-            Assert.That(call, Throws.ArgumentNullException);
+            Assert.That(call, Throws.ArgumentNullException
+                                    .With.Property(nameof(ArgumentNullException.ParamName))
+                                    .EqualTo("message"));
         }
 
         [Test]
