@@ -26,7 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="800">
+        Title="MainWindow" Height="600" Width="1200">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
@@ -43,11 +43,17 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type controls:AircraftDataTabViewModel}">
             <controls:AircraftDataTabView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:MessageWindowViewModel}">
+            <controls:MessageWindowView/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
+        <Border>
         <StackPanel DockPanel.Dock="Right">
-            <ContentControl Content="{Binding TabControlViewModel}" />
-            <Button Content="Simulate"></Button>
+            <ContentControl Content="{Binding TabControlViewModel}" MinWidth="700" MinHeight="525" />
+            <Button VerticalAlignment="Bottom" Content="Simulate"></Button>
         </StackPanel>
+        </Border>
+        <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" />
     </DockPanel>
 </metro:MetroWindow>

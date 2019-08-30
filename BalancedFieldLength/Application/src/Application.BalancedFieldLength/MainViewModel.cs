@@ -37,8 +37,16 @@ namespace Application.BalancedFieldLength
             tabControlViewModel.SelectedTabItem = generalSettingsTab;
 
             TabControlViewModel = tabControlViewModel;
+
+            MessageWindowViewModel = new MessageWindowViewModel();
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World."));
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World1."));
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World2."));
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World3."));
         }
 
         public TabControlViewModel TabControlViewModel { get; }
+
+        public MessageWindowViewModel MessageWindowViewModel { get; }
     }
 }
