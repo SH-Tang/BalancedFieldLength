@@ -27,14 +27,18 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=local:MessageWindowViewModel,
                             IsDesignTimeCreatable=True}">
-            <ItemsControl ItemsSource="{Binding Path=Messages}" >
-                <ItemsControl.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel>
-                            <TextBlock Text="{Binding Path=Message}"></TextBlock>
-                            <Separator/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ItemsControl.ItemTemplate>
-            </ItemsControl>
+            <StackPanel>
+                <Border Background="#41B1E1">
+                    <Label Content="MESSAGE WINDOW" Foreground="White"></Label>
+                </Border>
+                <ItemsControl ItemsSource="{Binding Path=Messages}" >
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <TextBlock Text="{Binding Path=Message}"></TextBlock>
+                            </Border>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+            </StackPanel>
 </UserControl>
