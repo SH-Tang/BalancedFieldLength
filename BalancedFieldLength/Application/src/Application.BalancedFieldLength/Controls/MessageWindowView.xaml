@@ -29,15 +29,16 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                             IsDesignTimeCreatable=True}">
             <StackPanel>
                 <Border Background="#41B1E1">
-                    <Label Content="MESSAGE WINDOW" Foreground="White"></Label>
+                    <Label Content="MESSAGE WINDOW" Foreground="White" />
                 </Border>
                 <ItemsControl ItemsSource="{Binding Path=Messages}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <Border>
-                                <TextBlock Text="{Binding Path=Message}"></TextBlock>
-                            </Border>
-                        </DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Path=Message}" />
+                                <Separator />
+                            </StackPanel>
+                    </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
             </StackPanel>
