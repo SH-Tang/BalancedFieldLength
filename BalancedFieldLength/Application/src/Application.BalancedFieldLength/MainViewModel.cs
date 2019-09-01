@@ -43,9 +43,13 @@ namespace Application.BalancedFieldLength
             MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World1."));
             MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World2."));
             MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World3."));
+
+            OutputViewModel = new OutputViewModel();
         }
 
         public TabControlViewModel TabControlViewModel { get; }
+
+        public OutputViewModel OutputViewModel { get; }
 
         public MessageWindowViewModel MessageWindowViewModel { get; }
     }

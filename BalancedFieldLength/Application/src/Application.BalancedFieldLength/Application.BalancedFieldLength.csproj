@@ -76,6 +76,9 @@
       <DependentUpon>MessageWindowView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MessageWindowViewModel.cs" />
+    <Compile Include="Controls\OutputView.xaml.cs">
+      <DependentUpon>OutputView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Controls\OutputViewModel.cs" />
     <Compile Include="Converters\IntegerValueConverter.cs" />
     <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
@@ -94,6 +97,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\MessageWindowView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\OutputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

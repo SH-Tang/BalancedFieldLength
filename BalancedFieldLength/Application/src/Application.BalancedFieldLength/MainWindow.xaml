@@ -46,6 +46,9 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type controls:MessageWindowViewModel}">
             <controls:MessageWindowView/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:OutputViewModel}">
+            <controls:OutputView/>
+        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <Border>
@@ -55,5 +58,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         </StackPanel>
         </Border>
         <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" />
+        <ContentControl Content="{Binding OutputViewModel}" />
     </DockPanel>
 </metro:MetroWindow>
