@@ -40,13 +40,13 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Label Content="Velocity: " Grid.Row="0" Grid.Column="0"></Label>
+        <Label Content="Velocity: " Grid.Row="0" Grid.Column="0" />
         <Label Content="{Binding Path=BalancedFieldLengthVelocity,
                         Converter={StaticResource DoubleValueConverter}}"
-               Grid.Row="0" Grid.Column="1"></Label>
-        <Label Content="Distance: " Grid.Row="1" Grid.Column="0"></Label>
+               Grid.Row="0" Grid.Column="1" />
+        <Label Content="Distance: " Grid.Row="1" Grid.Column="0" />
         <Label Content="{Binding Path=BalancedFieldLengthDistance,
                         Converter={StaticResource DoubleValueConverter}}"
-               Grid.Row="1" Grid.Column="1"></Label>
+               Grid.Row="1" Grid.Column="1" />
     </Grid>
 </UserControl>
