@@ -53,6 +53,7 @@
     <Compile Include="Controls\GeneralSimulationSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\MessageContextTest.cs" />
     <Compile Include="Controls\MessageViewModelTest.cs" />
+    <Compile Include="Controls\OutputViewModelTest.cs" />
     <Compile Include="Controls\TabControlViewModelTest.cs" />
     <Compile Include="Converters\IntegerValueConverterTest.cs" />
     <Compile Include="Converters\NaNToEmptyValueConverterTest.cs" />
