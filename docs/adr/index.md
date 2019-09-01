@@ -7,6 +7,9 @@
 - [ADR-00003](00003-Licensing.md) - License should be applied to the application
 - [ADR-00004](00004-GUI.md) - Implement a Windows based GUI instead of a command line prompt
 - [ADR-00005](00005-Unit-Testing.md) - Devise a testing strategy for the GUI related components
+- [ADR-00006](00006-GUI-Styling.md) - Modernise the look and feel of the application to the most recent Windows GUI styling
+- [ADR-00007](00007-IValueConverter-Realisations.md) - Ambiguous IValueConverter behaviour when defining realizations
+
 <!-- adrlogstop -->
 
 

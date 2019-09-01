@@ -46,7 +46,7 @@ namespace DemoConsoleApp
             var calculationKernel = new AggregatedDistanceCalculatorKernel();
 
             // Call the calculation
-            List<AggregatedDistanceOutput> results = new List<AggregatedDistanceOutput>();
+            var results = new List<AggregatedDistanceOutput>();
             for (int i = 0; i < 90; i++)
             {
                 Console.WriteLine($"Calculating for speed {i}");

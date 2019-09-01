@@ -15,7 +15,21 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+namespace Application.BalancedFieldLength.WPFCommon
+{
+    /// <summary>
+    /// Base class for a view model.
+    /// </summary>
+    public abstract class ViewModelBase : INotifyPropertyChanged
+    {
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
+}

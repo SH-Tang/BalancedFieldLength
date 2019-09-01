@@ -15,7 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+using System.Windows.Controls;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+namespace Application.BalancedFieldLength.Controls
+{
+    /// <summary>
+    /// Interaction logic for OutputView.xaml
+    /// </summary>
+    public partial class OutputView : UserControl
+    {
+        public OutputView()
+        {
+            InitializeComponent();
+        }
+    }
+}

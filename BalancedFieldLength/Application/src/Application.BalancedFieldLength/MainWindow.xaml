@@ -1,0 +1,63 @@
+﻿<!--
+Copyright (C) 2018 Dennis Tang. All rights reserved.
+
+This file is part of Balanced Field Length.
+
+Balanced Field Length is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <http://www.gnu.org/licenses/>.
+
+-->
+<metro:MetroWindow x:Class="Application.BalancedFieldLength.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Application.BalancedFieldLength"
+        xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="1200">
+    <Window.DataContext>
+        <local:MainViewModel />
+    </Window.DataContext>
+    <Window.Resources>
+        <DataTemplate DataType="{x:Type controls:TabControlViewModel}">
+            <controls:TabControlView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:GeneralSimulationSettingsTabViewModel}">
+            <controls:GeneralSimulationSettingsTabView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:EngineSettingsTabViewModel}">
+            <controls:EngineSettingsTabView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:AircraftDataTabViewModel}">
+            <controls:AircraftDataTabView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:MessageWindowViewModel}">
+            <controls:MessageWindowView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type controls:OutputViewModel}">
+            <controls:OutputView/>
+        </DataTemplate>
+    </Window.Resources>
+    <DockPanel>
+        <Border>
+        <StackPanel DockPanel.Dock="Right">
+            <ContentControl Content="{Binding TabControlViewModel}" MinWidth="700" MinHeight="525" />
+            <Button VerticalAlignment="Bottom" Content="Simulate" />
+        </StackPanel>
+        </Border>
+        <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" />
+        <ContentControl Content="{Binding OutputViewModel}" />
+    </DockPanel>
+</metro:MetroWindow>

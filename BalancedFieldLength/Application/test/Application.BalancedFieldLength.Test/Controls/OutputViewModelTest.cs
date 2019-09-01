@@ -15,7 +15,23 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+using Application.BalancedFieldLength.Controls;
+using NUnit.Framework;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+namespace Application.BalancedFieldLength.Test.Controls
+{
+    [TestFixture]
+    public class OutputViewModelTest
+    {
+        [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Call
+            var viewModel = new OutputViewModel();
+
+            // Assert
+            Assert.That(viewModel.BalancedFieldLengthDistance, Is.NaN);
+            Assert.That(viewModel.BalancedFieldLengthVelocity, Is.NaN);
+        }
+    }
+}

@@ -15,7 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+namespace Application.BalancedFieldLength.Controls
+{
+    /// <summary>
+    /// Enum representing the type of message.
+    /// </summary>
+    public enum MessageType
+    {
+        /// <summary>
+        /// Represents an information message.
+        /// </summary>
+        Info = 1,
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+        /// <summary>
+        /// Represents a warning message.
+        /// </summary>
+        Warning = 2,
+
+        /// <summary>
+        /// Represents an error message.
+        /// </summary>
+        Error = 3
+    }
+}

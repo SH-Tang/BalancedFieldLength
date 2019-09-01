@@ -17,5 +17,5 @@
 
 using System.Reflection;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+[assembly: AssemblyTitle("Application.BalancedFieldLength.Test")]
+[assembly: AssemblyProduct("Application.BalancedFieldLength.Test")]

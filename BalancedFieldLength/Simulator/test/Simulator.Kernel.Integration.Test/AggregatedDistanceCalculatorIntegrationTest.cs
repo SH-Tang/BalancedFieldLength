@@ -50,7 +50,7 @@ namespace Simulator.Kernel.Integration.Test
             var calculationKernel = new AggregatedDistanceCalculatorKernel();
 
             // When 
-            List<AggregatedDistanceOutput> outputs = new List<AggregatedDistanceOutput>();
+            var outputs = new List<AggregatedDistanceOutput>();
             for (int i = 0; i < 90; i++)
             {
                 var calculationSettings = new CalculationSettings(i, maximumTimeSteps, timeStep);
@@ -89,7 +89,7 @@ namespace Simulator.Kernel.Integration.Test
             string solutionPath = TestHelper.GetSolutionRootPath();
             string referenceFilePath = Path.Combine(solutionPath, @"Simulator\test\Simulator.Kernel.Integration.Test\test-data", fileName);
 
-            List<ReferenceOutput> referenceOutputs = new List<ReferenceOutput>();
+            var referenceOutputs = new List<ReferenceOutput>();
             using (var parser = new TextFieldParser(referenceFilePath))
             {
                 parser.TextFieldType = FieldType.Delimited;

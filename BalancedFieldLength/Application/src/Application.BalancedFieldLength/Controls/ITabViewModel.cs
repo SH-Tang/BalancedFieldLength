@@ -15,7 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+using System.ComponentModel;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+namespace Application.BalancedFieldLength.Controls
+{
+    /// <summary>
+    /// Interface for defining the view models of the <see cref="TabControlViewModel"/>.
+    /// </summary>
+    public interface ITabViewModel : INotifyPropertyChanged
+    {
+        /// <summary>
+        /// Gets the name of the tab.
+        /// </summary>
+        string TabName { get; }
+    }
+}

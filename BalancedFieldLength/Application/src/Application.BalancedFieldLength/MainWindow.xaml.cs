@@ -15,7 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Reflection;
+using MahApps.Metro.Controls;
 
-[assembly: AssemblyTitle("Core.Common.Data")]
-[assembly: AssemblyProduct("Core.Common.Data")]
+namespace Application.BalancedFieldLength
+{
+    /// <summary>
+    /// Interaction logic for MainWindow.xaml
+    /// </summary>
+    public partial class MainWindow : MetroWindow
+    {
+        public MainWindow()
+        {
+            InitializeComponent();
+        }
+    }
+}

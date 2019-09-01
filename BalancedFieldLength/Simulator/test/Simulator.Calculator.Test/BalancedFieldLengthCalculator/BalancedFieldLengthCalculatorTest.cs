@@ -172,51 +172,51 @@ namespace Simulator.Calculator.Test.BalancedFieldLengthCalculator
         private static IEnumerable<TestCaseData> GetTestCases()
         {
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 10, 30),
-                                              new AggregatedDistanceOutput(11, 20, 20),
-                                              new AggregatedDistanceOutput(12, 30, 10)
-                                          }, 11, 20)
+                {
+                    new AggregatedDistanceOutput(10, 10, 30),
+                    new AggregatedDistanceOutput(11, 20, 20),
+                    new AggregatedDistanceOutput(12, 30, 10)
+                }, 11, 20)
                 .SetName("AbortedDistance Increasing, ContinuedDistance Decreasing, Defined Intersection Point");
 
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 30, 10),
-                                              new AggregatedDistanceOutput(11, 20, 20),
-                                              new AggregatedDistanceOutput(12, 10, 30)
-                                          }, 11, 20)
+                {
+                    new AggregatedDistanceOutput(10, 30, 10),
+                    new AggregatedDistanceOutput(11, 20, 20),
+                    new AggregatedDistanceOutput(12, 10, 30)
+                }, 11, 20)
                 .SetName("AbortedDistance Decreasing, ContinuedDistance Increasing, Defined Intersection Point");
 
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 10, 30),
-                                              new AggregatedDistanceOutput(12, 30, 10)
-                                          }, 11, 20)
+                {
+                    new AggregatedDistanceOutput(10, 10, 30),
+                    new AggregatedDistanceOutput(12, 30, 10)
+                }, 11, 20)
                 .SetName("AbortedDistance Increasing, ContinuedDistance Decreasing, Undefined Intersection Point");
 
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 30, 10),
-                                              new AggregatedDistanceOutput(12, 10, 30)
-                                          }, 11, 20)
+                {
+                    new AggregatedDistanceOutput(10, 30, 10),
+                    new AggregatedDistanceOutput(12, 10, 30)
+                }, 11, 20)
                 .SetName("AbortedDistance Decreasing, ContinuedDistance Increasing, Undefined Intersection Point");
         }
 
         private static IEnumerable<TestCaseData> GetCollectionsWithDuplicateEntries()
         {
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 10, 30),
-                                              new AggregatedDistanceOutput(10, 10, 30),
-                                              new AggregatedDistanceOutput(12, 30, 10)
-                                          }, 10)
+                {
+                    new AggregatedDistanceOutput(10, 10, 30),
+                    new AggregatedDistanceOutput(10, 10, 30),
+                    new AggregatedDistanceOutput(12, 30, 10)
+                }, 10)
                 .SetName("Duplicate in sequence");
             yield return new TestCaseData(new[]
-                                          {
-                                              new AggregatedDistanceOutput(10, 10, 30),
-                                              new AggregatedDistanceOutput(12, 30, 10),
-                                              new AggregatedDistanceOutput(10, 10, 30)
-                                          }, 10)
+                {
+                    new AggregatedDistanceOutput(10, 10, 30),
+                    new AggregatedDistanceOutput(12, 30, 10),
+                    new AggregatedDistanceOutput(10, 10, 30)
+                }, 10)
                 .SetName("Duplicate out of order");
         }
     }

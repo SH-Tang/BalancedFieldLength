@@ -72,6 +72,7 @@ namespace Core.Common.Geometry
                 {
                     return line1.StartPoint;
                 }
+
                 if (line1.EndPoint.Equals(line2.StartPoint) || line1.EndPoint.Equals(line2.EndPoint))
                 {
                     return line1.EndPoint;
