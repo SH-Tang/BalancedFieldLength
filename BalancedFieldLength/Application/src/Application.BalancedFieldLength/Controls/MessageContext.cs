@@ -17,7 +17,8 @@
 
 using System;
 
-namespace Application.BalancedFieldLength.Controls {
+namespace Application.BalancedFieldLength.Controls
+{
     /// <summary>
     /// A class containing the context of which a message was generated.
     /// </summary>

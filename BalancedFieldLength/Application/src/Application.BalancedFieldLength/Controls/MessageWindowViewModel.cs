@@ -22,7 +22,7 @@ using Application.BalancedFieldLength.WPFCommon;
 namespace Application.BalancedFieldLength.Controls
 {
     /// <summary>
-    /// Viewmodel to display messages.
+    /// View model to display messages.
     /// </summary>
     public class MessageWindowViewModel : ViewModelBase
     {
