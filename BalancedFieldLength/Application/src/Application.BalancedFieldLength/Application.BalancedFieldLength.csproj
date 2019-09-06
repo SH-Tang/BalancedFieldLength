@@ -59,15 +59,15 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Views\AircraftDataTabView.xaml.cs">
+    <Compile Include="Views\TabViews\AircraftDataTabView.xaml.cs">
       <DependentUpon>AircraftDataTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\AircraftDataTabViewModel.cs" />
-    <Compile Include="Views\EngineSettingsTabView.xaml.cs">
+    <Compile Include="Views\TabViews\AircraftDataTabViewModel.cs" />
+    <Compile Include="Views\TabViews\EngineSettingsTabView.xaml.cs">
       <DependentUpon>EngineSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\EngineSettingsTabViewModel.cs" />
-    <Compile Include="Views\GeneralSimulationSettingsTabView.xaml.cs">
+    <Compile Include="Views\TabViews\EngineSettingsTabViewModel.cs" />
+    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\OutputView.xaml.cs">
@@ -75,15 +75,15 @@
     </Compile>
     <Compile Include="Views\OutputViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Page Include="Views\AircraftDataTabView.xaml">
+    <Page Include="Views\TabViews\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\EngineSettingsTabView.xaml">
+    <Page Include="Views\TabViews\EngineSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GeneralSimulationSettingsTabView.xaml">
+    <Page Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,7 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\GeneralSimulationSettingsTabViewModel.cs" />
+    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -147,6 +147,9 @@
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\OutputView\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

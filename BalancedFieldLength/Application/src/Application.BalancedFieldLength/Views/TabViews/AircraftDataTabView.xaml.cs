@@ -17,14 +17,14 @@
 
 using System.Windows.Controls;
 
-namespace Application.BalancedFieldLength.Controls
+namespace Application.BalancedFieldLength.Views.TabViews
 {
     /// <summary>
-    /// Interaction logic for GeneralSImulationSettingsTabView.xaml
+    /// Interaction logic for AircraftDataTabView.xaml
     /// </summary>
-    public partial class GeneralSimulationSettingsTabView : UserControl
+    public partial class AircraftDataTabView : UserControl
     {
-        public GeneralSimulationSettingsTabView()
+        public AircraftDataTabView()
         {
             InitializeComponent();
         }

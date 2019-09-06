@@ -18,7 +18,7 @@
 using WPF.Components.TabControl;
 using WPF.Core;
 
-namespace Application.BalancedFieldLength.Controls
+namespace Application.BalancedFieldLength.Views.TabViews
 {
     /// <summary>
     /// View model to display general simulation settings in a tab.

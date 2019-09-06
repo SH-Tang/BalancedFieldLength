@@ -17,6 +17,7 @@
 
 using System.Collections.ObjectModel;
 using Application.BalancedFieldLength.Controls;
+using Application.BalancedFieldLength.Views.TabViews;
 using NUnit.Framework;
 using WPF.Components.TabControl;
 

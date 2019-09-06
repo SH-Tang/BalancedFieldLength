@@ -19,7 +19,7 @@ using System;
 using WPF.Components.TabControl;
 using WPF.Core;
 
-namespace Application.BalancedFieldLength.Controls
+namespace Application.BalancedFieldLength.Views.TabViews
 {
     /// <summary>
     /// View model to display engine settings in a tab.

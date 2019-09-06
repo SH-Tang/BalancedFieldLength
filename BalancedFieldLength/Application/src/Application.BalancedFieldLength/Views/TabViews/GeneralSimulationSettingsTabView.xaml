@@ -17,18 +17,18 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 -->
-<UserControl x:Class="Application.BalancedFieldLength.Controls.GeneralSimulationSettingsTabView"
+<UserControl x:Class="Application.BalancedFieldLength.Views.TabViews.GeneralSimulationSettingsTabView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Application.BalancedFieldLength.Controls"
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
+             xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
              d:DesignHeight="500" d:DesignWidth="300"
-             d:DataContext="{d:DesignInstance Type=local:GeneralSimulationSettingsTabViewModel,
+             d:DataContext="{d:DesignInstance Type=tabViews:GeneralSimulationSettingsTabViewModel,
                             IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>

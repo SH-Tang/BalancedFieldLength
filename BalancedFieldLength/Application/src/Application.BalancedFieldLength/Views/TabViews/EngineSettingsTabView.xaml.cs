@@ -17,7 +17,7 @@
 
 using System.Windows.Controls;
 
-namespace Application.BalancedFieldLength.Controls
+namespace Application.BalancedFieldLength.Views.TabViews
 {
     /// <summary>
     /// Interaction logic for EngineSettingsTabView.xaml

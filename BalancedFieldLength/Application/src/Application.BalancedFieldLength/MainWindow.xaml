@@ -27,6 +27,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         xmlns:messageView="clr-namespace:WPF.Components.MessageView;assembly=WPF.Components"
         xmlns:tabControl="clr-namespace:WPF.Components.TabControl;assembly=WPF.Components"
+        xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200">
     <Window.DataContext>
@@ -36,14 +37,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type tabControl:TabControlViewModel}">
             <tabControl:TabControlView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type controls:GeneralSimulationSettingsTabViewModel}">
-            <controls:GeneralSimulationSettingsTabView/>
+        <DataTemplate DataType="{x:Type tabViews:GeneralSimulationSettingsTabViewModel}">
+            <tabViews:GeneralSimulationSettingsTabView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type controls:EngineSettingsTabViewModel}">
-            <controls:EngineSettingsTabView/>
+        <DataTemplate DataType="{x:Type tabViews:EngineSettingsTabViewModel}">
+            <tabViews:EngineSettingsTabView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type controls:AircraftDataTabViewModel}">
-            <controls:AircraftDataTabView/>
+        <DataTemplate DataType="{x:Type tabViews:AircraftDataTabViewModel}">
+            <tabViews:AircraftDataTabView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type messageView:MessageWindowViewModel}">
             <messageView:MessageWindowView/>

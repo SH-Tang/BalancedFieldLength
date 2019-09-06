@@ -18,12 +18,12 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using Application.BalancedFieldLength.Controls;
+using Application.BalancedFieldLength.Views.TabViews;
 using NUnit.Framework;
 using WPF.Components.TabControl;
 using WPF.Core;
 
-namespace Application.BalancedFieldLength.Test.Controls
+namespace Application.BalancedFieldLength.Test.Views.TabViews
 {
     [TestFixture]
     public class AircraftDataTabViewModelTest
