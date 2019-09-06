@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using WPF.Components.TabControl;
 using WPF.Core;
 
 namespace Application.BalancedFieldLength.Controls

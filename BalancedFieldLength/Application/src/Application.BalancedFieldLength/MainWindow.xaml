@@ -26,14 +26,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         xmlns:messageView="clr-namespace:WPF.Components.MessageView;assembly=WPF.Components"
+        xmlns:tabControl="clr-namespace:WPF.Components.TabControl;assembly=WPF.Components"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type controls:TabControlViewModel}">
-            <controls:TabControlView/>
+        <DataTemplate DataType="{x:Type tabControl:TabControlViewModel}">
+            <tabControl:TabControlView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type controls:GeneralSimulationSettingsTabViewModel}">
             <controls:GeneralSimulationSettingsTabView/>

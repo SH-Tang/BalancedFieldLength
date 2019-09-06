@@ -18,6 +18,7 @@
 using System.Collections.ObjectModel;
 using Application.BalancedFieldLength.Controls;
 using NUnit.Framework;
+using WPF.Components.TabControl;
 
 namespace Application.BalancedFieldLength.Test
 {

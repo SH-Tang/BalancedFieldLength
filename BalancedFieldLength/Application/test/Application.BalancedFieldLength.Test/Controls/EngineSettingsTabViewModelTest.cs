@@ -21,6 +21,7 @@ using System.ComponentModel;
 using System.Linq;
 using Application.BalancedFieldLength.Controls;
 using NUnit.Framework;
+using WPF.Components.TabControl;
 using WPF.Core;
 
 namespace Application.BalancedFieldLength.Test.Controls

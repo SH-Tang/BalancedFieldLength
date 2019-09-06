@@ -15,18 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System.Windows.Controls;
+using System.ComponentModel;
 
-namespace Application.BalancedFieldLength.Controls
+namespace WPF.Components.TabControl
 {
     /// <summary>
-    /// Interaction logic for TabControlView.xaml
+    /// Interface for defining the view models of the <see cref="TabControlViewModel"/>.
     /// </summary>
-    public partial class TabControlView : UserControl
+    public interface ITabViewModel : INotifyPropertyChanged
     {
-        public TabControlView()
-        {
-            InitializeComponent();
-        }
+        /// <summary>
+        /// Gets the name of the tab.
+        /// </summary>
+        string TabName { get; }
     }
 }

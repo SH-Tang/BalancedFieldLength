@@ -21,7 +21,7 @@ using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Application.BalancedFieldLength.Controls
+namespace WPF.Components.TabControl
 {
     /// <summary>
     /// The view model for a control that hosts tabs.

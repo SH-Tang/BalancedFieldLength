@@ -18,10 +18,10 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using Application.BalancedFieldLength.Controls;
 using NUnit.Framework;
+using WPF.Components.TabControl;
 
-namespace Application.BalancedFieldLength.Test.Controls
+namespace WPF.Components.Test.TabControl
 {
     [TestFixture]
     public class TabControlViewModelTest

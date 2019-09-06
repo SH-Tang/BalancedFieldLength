@@ -17,6 +17,7 @@
 
 using Application.BalancedFieldLength.Controls;
 using WPF.Components.MessageView;
+using WPF.Components.TabControl;
 
 namespace Application.BalancedFieldLength
 {

@@ -52,7 +52,6 @@
     <Compile Include="Controls\EngineSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\GeneralSimulationSettingsTabViewModelTest.cs" />
     <Compile Include="Controls\OutputViewModelTest.cs" />
-    <Compile Include="Controls\TabControlViewModelTest.cs" />
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -63,6 +62,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
+      <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
+      <Name>WPF.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
