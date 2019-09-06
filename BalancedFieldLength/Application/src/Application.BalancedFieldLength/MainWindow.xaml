@@ -24,10 +24,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Application.BalancedFieldLength"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
-        xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
         xmlns:messageView="clr-namespace:WPF.Components.MessageView;assembly=WPF.Components"
         xmlns:tabControl="clr-namespace:WPF.Components.TabControl;assembly=WPF.Components"
         xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
+        xmlns:outputView="clr-namespace:Application.BalancedFieldLength.Views.OutputView"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200">
     <Window.DataContext>
@@ -49,8 +49,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type messageView:MessageWindowViewModel}">
             <messageView:MessageWindowView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type controls:OutputViewModel}">
-            <controls:OutputView/>
+        <DataTemplate DataType="{x:Type outputView:OutputViewModel}">
+            <outputView:OutputView/>
         </DataTemplate>
     </Window.Resources>
     <DockPanel>

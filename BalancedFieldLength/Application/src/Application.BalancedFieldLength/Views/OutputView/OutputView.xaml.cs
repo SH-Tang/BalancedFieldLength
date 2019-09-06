@@ -15,23 +15,18 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using Application.BalancedFieldLength.Controls;
-using NUnit.Framework;
+using System.Windows.Controls;
 
-namespace Application.BalancedFieldLength.Test.Controls
+namespace Application.BalancedFieldLength.Views.OutputView
 {
-    [TestFixture]
-    public class OutputViewModelTest
+    /// <summary>
+    /// Interaction logic for OutputView.xaml
+    /// </summary>
+    public partial class OutputView : UserControl
     {
-        [Test]
-        public static void Constructor_ExpectedValues()
+        public OutputView()
         {
-            // Call
-            var viewModel = new OutputViewModel();
-
-            // Assert
-            Assert.That(viewModel.BalancedFieldLengthDistance, Is.NaN);
-            Assert.That(viewModel.BalancedFieldLengthVelocity, Is.NaN);
+            InitializeComponent();
         }
     }
 }

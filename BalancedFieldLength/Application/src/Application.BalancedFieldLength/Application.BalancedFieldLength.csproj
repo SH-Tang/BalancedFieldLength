@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -70,10 +70,10 @@
     <Compile Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputView.xaml.cs">
+    <Compile Include="Views\OutputView\OutputView.xaml.cs">
       <DependentUpon>OutputView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\OutputViewModel.cs" />
+    <Compile Include="Views\OutputView\OutputViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
     <Page Include="Views\TabViews\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
@@ -87,7 +87,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\OutputView.xaml">
+    <Page Include="Views\OutputView\OutputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -147,9 +147,6 @@
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\OutputView\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -51,7 +51,7 @@
     <Compile Include="Views\TabViews\AircraftDataTabViewModelTest.cs" />
     <Compile Include="Views\TabViews\EngineSettingsTabViewModelTest.cs" />
     <Compile Include="Views\TabViews\GeneralSimulationSettingsTabViewModelTest.cs" />
-    <Compile Include="Views\OutputViewModelTest.cs" />
+    <Compile Include="Views\OutputView\OutputViewModelTest.cs" />
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -75,9 +75,7 @@
       <Name>Application.BalancedFieldLength</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\OutputView\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

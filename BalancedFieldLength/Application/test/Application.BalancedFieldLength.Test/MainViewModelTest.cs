@@ -16,7 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.ObjectModel;
-using Application.BalancedFieldLength.Controls;
 using Application.BalancedFieldLength.Views.TabViews;
 using NUnit.Framework;
 using WPF.Components.TabControl;
