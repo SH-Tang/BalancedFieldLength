@@ -19,7 +19,7 @@ using System;
 using System.Globalization;
 using System.Windows.Data;
 
-namespace Application.BalancedFieldLength.Converters
+namespace WPF.Core.Converters
 {
     /// <summary>
     /// Value converter which converts NaN values to empty string values and back.

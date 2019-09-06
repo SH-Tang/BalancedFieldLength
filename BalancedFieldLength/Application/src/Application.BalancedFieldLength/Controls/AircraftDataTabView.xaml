@@ -23,7 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Application.BalancedFieldLength.Controls"
-             xmlns:converters="clr-namespace:Application.BalancedFieldLength.Converters"
+             xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="700"
              d:DataContext="{d:DesignInstance Type=local:AircraftDataTabViewModel,

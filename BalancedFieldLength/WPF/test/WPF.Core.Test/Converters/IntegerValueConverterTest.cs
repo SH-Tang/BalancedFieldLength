@@ -18,10 +18,10 @@
 using System;
 using System.Collections.Generic;
 using System.Windows.Data;
-using Application.BalancedFieldLength.Converters;
 using NUnit.Framework;
+using WPF.Core.Converters;
 
-namespace Application.BalancedFieldLength.Test.Converters
+namespace WPF.Core.Test.Converters
 {
     [TestFixture]
     public class IntegerValueConverterTest

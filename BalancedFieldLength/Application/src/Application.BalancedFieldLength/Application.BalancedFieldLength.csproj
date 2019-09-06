@@ -80,8 +80,6 @@
       <DependentUpon>OutputView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\OutputViewModel.cs" />
-    <Compile Include="Converters\IntegerValueConverter.cs" />
-    <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
     <Compile Include="MainViewModel.cs" />
     <Page Include="Controls\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>

@@ -55,8 +55,6 @@
     <Compile Include="Controls\MessageViewModelTest.cs" />
     <Compile Include="Controls\OutputViewModelTest.cs" />
     <Compile Include="Controls\TabControlViewModelTest.cs" />
-    <Compile Include="Converters\IntegerValueConverterTest.cs" />
-    <Compile Include="Converters\NaNToEmptyValueConverterTest.cs" />
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
