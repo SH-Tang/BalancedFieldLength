@@ -48,10 +48,10 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>GlobalAssemblyInfo.cs</Link>
     </Compile>
-    <Compile Include="Controls\AircraftDataTabViewModelTest.cs" />
-    <Compile Include="Controls\EngineSettingsTabViewModelTest.cs" />
-    <Compile Include="Controls\GeneralSimulationSettingsTabViewModelTest.cs" />
-    <Compile Include="Controls\OutputViewModelTest.cs" />
+    <Compile Include="Views\AircraftDataTabViewModelTest.cs" />
+    <Compile Include="Views\EngineSettingsTabViewModelTest.cs" />
+    <Compile Include="Views\GeneralSimulationSettingsTabViewModelTest.cs" />
+    <Compile Include="Views\OutputViewModelTest.cs" />
     <Compile Include="MainViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -74,6 +74,10 @@
       <Project>{2B5FC268-5FDC-4C66-8D48-447C2A58167F}</Project>
       <Name>Application.BalancedFieldLength</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Views\OutputView\" />
+    <Folder Include="Views\TabViews\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

@@ -59,35 +59,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\AircraftDataTabView.xaml.cs">
+    <Compile Include="Views\AircraftDataTabView.xaml.cs">
       <DependentUpon>AircraftDataTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AircraftDataTabViewModel.cs" />
-    <Compile Include="Controls\EngineSettingsTabView.xaml.cs">
+    <Compile Include="Views\AircraftDataTabViewModel.cs" />
+    <Compile Include="Views\EngineSettingsTabView.xaml.cs">
       <DependentUpon>EngineSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\EngineSettingsTabViewModel.cs" />
-    <Compile Include="Controls\GeneralSimulationSettingsTabView.xaml.cs">
+    <Compile Include="Views\EngineSettingsTabViewModel.cs" />
+    <Compile Include="Views\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\OutputView.xaml.cs">
+    <Compile Include="Views\OutputView.xaml.cs">
       <DependentUpon>OutputView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\OutputViewModel.cs" />
+    <Compile Include="Views\OutputViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Page Include="Controls\AircraftDataTabView.xaml">
+    <Page Include="Views\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\EngineSettingsTabView.xaml">
+    <Page Include="Views\EngineSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
+    <Page Include="Views\GeneralSimulationSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\OutputView.xaml">
+    <Page Include="Views\OutputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -102,7 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\GeneralSimulationSettingsTabViewModel.cs" />
+    <Compile Include="Views\GeneralSimulationSettingsTabViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
