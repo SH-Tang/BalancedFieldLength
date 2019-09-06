@@ -18,7 +18,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace Application.BalancedFieldLength.WPFCommon
+namespace WPF.Core
 {
     /// <summary>
     /// Base class for a view model.

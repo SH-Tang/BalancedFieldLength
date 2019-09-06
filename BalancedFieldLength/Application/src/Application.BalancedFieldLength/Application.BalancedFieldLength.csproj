@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -83,7 +83,6 @@
     <Compile Include="Converters\IntegerValueConverter.cs" />
     <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Compile Include="WPFCommon\ViewModelBase.cs" />
     <Page Include="Controls\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -160,6 +159,11 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
+      <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
+      <Name>WPF.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

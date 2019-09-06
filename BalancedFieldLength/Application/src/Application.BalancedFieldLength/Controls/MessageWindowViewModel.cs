@@ -17,7 +17,7 @@
 
 using System;
 using System.Collections.Generic;
-using Application.BalancedFieldLength.WPFCommon;
+using WPF.Core;
 
 namespace Application.BalancedFieldLength.Controls
 {

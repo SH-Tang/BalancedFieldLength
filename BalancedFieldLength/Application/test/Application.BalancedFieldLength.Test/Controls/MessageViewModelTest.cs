@@ -18,8 +18,8 @@
 using System;
 using System.ComponentModel;
 using Application.BalancedFieldLength.Controls;
-using Application.BalancedFieldLength.WPFCommon;
 using NUnit.Framework;
+using WPF.Core;
 
 namespace Application.BalancedFieldLength.Test.Controls
 {

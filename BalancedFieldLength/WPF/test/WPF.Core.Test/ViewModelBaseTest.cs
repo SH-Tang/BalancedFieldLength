@@ -16,10 +16,9 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.ComponentModel;
-using Application.BalancedFieldLength.WPFCommon;
 using NUnit.Framework;
 
-namespace Application.BalancedFieldLength.Test.WPFCommon
+namespace WPF.Core.Test
 {
     [TestFixture]
     public class ViewModelBaseTest
