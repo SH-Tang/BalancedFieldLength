@@ -16,10 +16,10 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using Application.BalancedFieldLength.Controls;
 using NUnit.Framework;
+using WPF.Components.MessageView;
 
-namespace Application.BalancedFieldLength.Test.Controls
+namespace WPF.Components.Test.MessageView
 {
     [TestFixture]
     public class MessageContextTest

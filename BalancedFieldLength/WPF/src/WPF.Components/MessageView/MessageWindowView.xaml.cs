@@ -17,7 +17,7 @@
 
 using System.Windows.Controls;
 
-namespace Application.BalancedFieldLength.Controls
+namespace WPF.Components.MessageView
 {
     /// <summary>
     /// Interaction logic for MessageWindowView.xaml

@@ -17,11 +17,11 @@
 
 using System;
 using System.ComponentModel;
-using Application.BalancedFieldLength.Controls;
 using NUnit.Framework;
+using WPF.Components.MessageView;
 using WPF.Core;
 
-namespace Application.BalancedFieldLength.Test.Controls
+namespace WPF.Components.Test.MessageView
 {
     [TestFixture]
     public class MessageViewModelTest

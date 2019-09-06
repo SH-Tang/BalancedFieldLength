@@ -15,41 +15,26 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using System;
-
-namespace Application.BalancedFieldLength.Controls
+namespace WPF.Components.MessageView
 {
     /// <summary>
-    /// A class containing the context of which a message was generated.
+    /// Enum representing the type of message.
     /// </summary>
-    public class MessageContext
+    public enum MessageType
     {
         /// <summary>
-        /// Creates a new instance of <see cref="MessageContext"/>.
+        /// Represents an information message.
         /// </summary>
-        /// <param name="messageType">The <see cref="Controls.MessageType"/>.</param>
-        /// <param name="message">The message.</param>
-        /// <exception cref="ArgumentNullException">Thrown when <paramref name="message"/>
-        /// is <c>null</c>.</exception>
-        public MessageContext(MessageType messageType, string message)
-        {
-            if (message == null)
-            {
-                throw new ArgumentNullException(nameof(message));
-            }
-
-            MessageType = messageType;
-            Message = message;
-        }
+        Info = 1,
 
         /// <summary>
-        /// Gets the message type.
+        /// Represents a warning message.
         /// </summary>
-        public MessageType MessageType { get; }
+        Warning = 2,
 
         /// <summary>
-        /// Gets the message.
+        /// Represents an error message.
         /// </summary>
-        public string Message { get; }
+        Error = 3
     }
 }

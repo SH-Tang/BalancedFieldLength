@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -70,12 +70,6 @@
     <Compile Include="Controls\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageContext.cs" />
-    <Compile Include="Controls\MessageType.cs" />
-    <Compile Include="Controls\MessageWindowView.xaml.cs">
-      <DependentUpon>MessageWindowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MessageWindowViewModel.cs" />
     <Compile Include="Controls\OutputView.xaml.cs">
       <DependentUpon>OutputView.xaml</DependentUpon>
     </Compile>
@@ -90,10 +84,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\MessageWindowView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +148,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
+      <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
+      <Name>WPF.Components</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>

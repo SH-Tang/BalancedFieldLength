@@ -31,19 +31,42 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Xaml" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="MessageView\MessageContext.cs" />
+    <Compile Include="MessageView\MessageType.cs" />
+    <Compile Include="MessageView\MessageWindowView.xaml.cs">
+      <DependentUpon>MessageWindowView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="MessageView\MessageWindowViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Include="MessageView\MessageWindowView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\WPF.Core\WPF.Core.csproj">
+      <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
+      <Name>WPF.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

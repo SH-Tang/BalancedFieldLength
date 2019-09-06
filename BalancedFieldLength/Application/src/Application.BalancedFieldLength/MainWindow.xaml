@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:local="clr-namespace:Application.BalancedFieldLength"
         xmlns:metro="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
         xmlns:controls="clr-namespace:Application.BalancedFieldLength.Controls"
+        xmlns:messageView="clr-namespace:WPF.Components.MessageView;assembly=WPF.Components"
         mc:Ignorable="d"
         Title="MainWindow" Height="600" Width="1200">
     <Window.DataContext>
@@ -43,8 +44,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type controls:AircraftDataTabViewModel}">
             <controls:AircraftDataTabView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type controls:MessageWindowViewModel}">
-            <controls:MessageWindowView/>
+        <DataTemplate DataType="{x:Type messageView:MessageWindowViewModel}">
+            <messageView:MessageWindowView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type controls:OutputViewModel}">
             <controls:OutputView/>

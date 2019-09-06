@@ -16,52 +16,40 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using WPF.Core;
 
-namespace Application.BalancedFieldLength.Controls
+namespace WPF.Components.MessageView
 {
     /// <summary>
-    /// View model to display messages.
+    /// A class containing the context of which a message was generated.
     /// </summary>
-    public class MessageWindowViewModel : ViewModelBase
+    public class MessageContext
     {
-        private readonly List<MessageContext> messages;
-
         /// <summary>
-        /// Creates a new instance of <see cref="MessageWindowViewModel"/>.
+        /// Creates a new instance of <see cref="MessageContext"/>.
         /// </summary>
-        public MessageWindowViewModel()
-        {
-            messages = new List<MessageContext>();
-        }
-
-        /// <summary>
-        /// Gets the collection of messages.
-        /// </summary>
-        public IEnumerable<MessageContext> Messages
-        {
-            get
-            {
-                return messages;
-            }
-        }
-
-        /// <summary>
-        /// Adds a message to the message window.
-        /// </summary>
-        /// <param name="message">The <see cref="MessageContext"/> to add.</param>
+        /// <param name="messageType">The <see cref="MessageView.MessageType"/>.</param>
+        /// <param name="message">The message.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="message"/>
         /// is <c>null</c>.</exception>
-        public void AddMessage(MessageContext message)
+        public MessageContext(MessageType messageType, string message)
         {
             if (message == null)
             {
                 throw new ArgumentNullException(nameof(message));
             }
 
-            messages.Add(message);
-            OnPropertyChanged(nameof(Messages));
+            MessageType = messageType;
+            Message = message;
         }
+
+        /// <summary>
+        /// Gets the message type.
+        /// </summary>
+        public MessageType MessageType { get; }
+
+        /// <summary>
+        /// Gets the message.
+        /// </summary>
+        public string Message { get; }
     }
 }
