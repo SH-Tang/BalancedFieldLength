@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Core.Common.Geometry;
 using Simulator.Calculator.AggregatedDistanceCalculator;
+using Simulator.Calculator.Properties;
 
 namespace Simulator.Calculator.BalancedFieldLengthCalculator
 {
@@ -54,7 +55,7 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
             IEnumerable<AggregatedDistanceOutput> sortedOutputs = SortOutputs(outputs);
             if (sortedOutputs.Count() <= 1)
             {
-                throw new ArgumentException("Cannot determine crossing from a collection containing 0 or 1 item.");
+                throw new ArgumentException(Resources.BalancedFieldLengthCalculator_Cannot_determine_crossing_from_empty_or_single_item_collection);
             }
 
             AggregatedDistanceOutput previousOutput = sortedOutputs.First();
@@ -100,7 +101,8 @@ namespace Simulator.Calculator.BalancedFieldLengthCalculator
                 double failureSpeed = output.FailureSpeed;
                 if (list.ContainsKey(failureSpeed))
                 {
-                    throw new ArgumentException($"Outputs cannot contain duplicate definitions for failure speed {failureSpeed}.");
+                    string message = string.Format(Resources.BalancedFieldLengthCalculators_Outputs_cannot_contain_duplicate_definitions_for_FailureSpeed_0, failureSpeed);
+                    throw new ArgumentException(message);
                 }
 
                 list.Add(failureSpeed, output);

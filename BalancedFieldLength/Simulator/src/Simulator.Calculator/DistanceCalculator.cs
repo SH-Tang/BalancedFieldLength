@@ -17,6 +17,7 @@
 
 using System;
 using Simulator.Calculator.Integrators;
+using Simulator.Calculator.Properties;
 using Simulator.Calculator.TakeOffDynamics;
 using Simulator.Data;
 using Simulator.Data.Exceptions;
@@ -107,14 +108,14 @@ namespace Simulator.Calculator
                 {
                     if (!hasFailureOccurred)
                     {
-                        throw new CalculatorException("Calculation converged before failure occurred.");
+                        throw new CalculatorException(Resources.DistanceCalculator_Calculation_converged_before_failure);
                     }
 
                     return new DistanceCalculatorOutput(failureSpeed, state.Distance);
                 }
             }
 
-            throw new CalculatorException("Calculation did not converge.");
+            throw new CalculatorException(Resources.DistanceCalculator_No_calculation_convergence);
         }
     }
 }
