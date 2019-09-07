@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -59,52 +59,35 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controls\AircraftDataTabView.xaml.cs">
+    <Compile Include="Views\TabViews\AircraftDataTabView.xaml.cs">
       <DependentUpon>AircraftDataTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\AircraftDataTabViewModel.cs" />
-    <Compile Include="Controls\EngineSettingsTabView.xaml.cs">
+    <Compile Include="Views\TabViews\AircraftDataTabViewModel.cs" />
+    <Compile Include="Views\TabViews\EngineSettingsTabView.xaml.cs">
       <DependentUpon>EngineSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\EngineSettingsTabViewModel.cs" />
-    <Compile Include="Controls\GeneralSimulationSettingsTabView.xaml.cs">
+    <Compile Include="Views\TabViews\EngineSettingsTabViewModel.cs" />
+    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml.cs">
       <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\MessageContext.cs" />
-    <Compile Include="Controls\MessageType.cs" />
-    <Compile Include="Controls\MessageWindowView.xaml.cs">
-      <DependentUpon>MessageWindowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\MessageWindowViewModel.cs" />
-    <Compile Include="Controls\OutputView.xaml.cs">
+    <Compile Include="Views\OutputView\OutputView.xaml.cs">
       <DependentUpon>OutputView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\OutputViewModel.cs" />
-    <Compile Include="Converters\IntegerValueConverter.cs" />
-    <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
+    <Compile Include="Views\OutputView\OutputViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
-    <Compile Include="WPFCommon\ViewModelBase.cs" />
-    <Page Include="Controls\AircraftDataTabView.xaml">
+    <Page Include="Views\TabViews\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\EngineSettingsTabView.xaml">
+    <Page Include="Views\TabViews\EngineSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\GeneralSimulationSettingsTabView.xaml">
+    <Page Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\MessageWindowView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\OutputView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Controls\TabControlView.xaml">
+    <Page Include="Views\OutputView\OutputView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,12 +102,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Controls\GeneralSimulationSettingsTabViewModel.cs" />
-    <Compile Include="Controls\ITabViewModel.cs" />
-    <Compile Include="Controls\TabControlView.xaml.cs">
-      <DependentUpon>TabControlView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Controls\TabControlViewModel.cs" />
+    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabViewModel.cs" />
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
@@ -160,6 +138,15 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
+      <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
+      <Name>WPF.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
+      <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
+      <Name>WPF.Core</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

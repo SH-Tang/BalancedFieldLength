@@ -15,7 +15,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-using Application.BalancedFieldLength.Controls;
+using Application.BalancedFieldLength.Views.OutputView;
+using Application.BalancedFieldLength.Views.TabViews;
+using WPF.Components.MessageView;
+using WPF.Components.TabControl;
 
 namespace Application.BalancedFieldLength
 {

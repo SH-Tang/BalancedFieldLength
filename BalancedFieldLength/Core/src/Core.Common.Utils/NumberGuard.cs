@@ -17,6 +17,7 @@
 
 using System;
 using Core.Common.Data;
+using Core.Common.Utils.Properties;
 
 namespace Core.Common.Utils
 {
@@ -36,7 +37,8 @@ namespace Core.Common.Utils
         {
             if (argument <= 0)
             {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+                string message = string.Format(Resources.PropertyName_0_must_be_larger_than_Zero, propertyName);
+                throw new ArgumentOutOfRangeException(propertyName, message);
             }
         }
 
@@ -51,7 +53,8 @@ namespace Core.Common.Utils
         {
             if (argument <= 0)
             {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+                string message = string.Format(Resources.PropertyName_0_must_be_larger_than_Zero, propertyName);
+                throw new ArgumentOutOfRangeException(propertyName, message);
             }
         }
 
@@ -66,7 +69,8 @@ namespace Core.Common.Utils
         {
             if (argument <= Angle.FromRadians(0))
             {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger than 0.");
+                string message = string.Format(Resources.PropertyName_0_must_be_larger_than_Zero, propertyName);
+                throw new ArgumentOutOfRangeException(propertyName, message);
             }
         }
 
@@ -81,7 +85,8 @@ namespace Core.Common.Utils
         {
             if (argument < 0)
             {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+                string message = string.Format(Resources.PropertyName_0_must_be_larger_or_equal_to_Zero, propertyName);
+                throw new ArgumentOutOfRangeException(propertyName, message);
             }
         }
 
@@ -96,7 +101,8 @@ namespace Core.Common.Utils
         {
             if (argument < 0)
             {
-                throw new ArgumentOutOfRangeException(propertyName, $"{propertyName} must be larger or equal to 0.");
+                string message = string.Format(Resources.PropertyName_0_must_be_larger_or_equal_to_Zero, propertyName);
+                throw new ArgumentOutOfRangeException(propertyName, message);
             }
         }
 
@@ -111,7 +117,8 @@ namespace Core.Common.Utils
         {
             if (double.IsNaN(argument) || double.IsInfinity(argument))
             {
-                throw new ArgumentException($"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
+                string message = string.Format(Resources.PropertyName_0_must_be_a_concrete_number_and_cannot_be_NaN_or_Infinity, propertyName);
+                throw new ArgumentException(message);
             }
         }
 
@@ -127,7 +134,8 @@ namespace Core.Common.Utils
             double radians = argument.Radians;
             if (double.IsNaN(radians) || double.IsInfinity(radians))
             {
-                throw new ArgumentException($"{propertyName} must be a concrete number and cannot be NaN or Infinity.");
+                string message = string.Format(Resources.PropertyName_0_must_be_a_concrete_number_and_cannot_be_NaN_or_Infinity, propertyName);
+                throw new ArgumentException(message);
             }
         }
     }

@@ -282,6 +282,7 @@ namespace Simulator.Data.Test.Helpers
             // Assert
             var exception = Assert.Throws<InvalidCalculationException>(call);
             Assert.AreEqual("Velocity must be larger or equal to 0.", exception.Message);
+            Assert.IsInstanceOf<ArgumentOutOfRangeException>(exception.InnerException);
         }
 
         [Test]
@@ -294,6 +295,7 @@ namespace Simulator.Data.Test.Helpers
             // Assert
             var exception = Assert.Throws<InvalidCalculationException>(call);
             Assert.AreEqual("Density must be larger than 0.", exception.Message);
+            Assert.IsInstanceOf<ArgumentOutOfRangeException>(exception.InnerException);
         }
 
         private static double CalculateExpectedLift(AerodynamicsData aerodynamicsData,
