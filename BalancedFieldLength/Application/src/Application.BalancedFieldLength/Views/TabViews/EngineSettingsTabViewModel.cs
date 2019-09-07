@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using Application.BalancedFieldLength.Properties;
 using WPF.Components.TabControl;
 using WPF.Core;
 
@@ -123,7 +124,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         {
             get
             {
-                return "Engine data";
+                return Resources.EngineSettingsTabViewModel_TabName;
             }
         }
     }

@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using Application.BalancedFieldLength.Properties;
 using WPF.Components.TabControl;
 using WPF.Core;
 
@@ -125,7 +126,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         {
             get
             {
-                return "Simulation Settings";
+                return Resources.GeneralSimulationSettingsTabViewModel_TabName;
             }
         }
     }
