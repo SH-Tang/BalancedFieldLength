@@ -17,6 +17,7 @@
 
 using System;
 using Core.Common.Data;
+using Simulator.Data.Properties;
 using Simulator.Data.Exceptions;
 
 namespace Simulator.Data.Helpers
@@ -70,14 +71,14 @@ namespace Simulator.Data.Helpers
 
             if (angleOfAttack < aerodynamicsData.ZeroLiftAngleOfAttack)
             {
-                throw new InvalidCalculationException("Angle of attack must be larger than zero lift angle of attack.");
+                throw new InvalidCalculationException(Resources.AerodynamicsHelper_Angle_of_attack_must_be_larger_than_ZeroLiftAngleOfAttack);
             }
 
             double liftCoefficient = aerodynamicsData.LiftCoefficientGradient *
                                      (angleOfAttack.Radians - aerodynamicsData.ZeroLiftAngleOfAttack.Radians);
             if (liftCoefficient > aerodynamicsData.MaximumLiftCoefficient)
             {
-                throw new InvalidCalculationException("Angle of attack results in a lift coefficient larger than the maximum lift coefficient CLMax.");
+                throw new InvalidCalculationException(Resources.AerodynamicsHelper_Angle_of_attack_results_in_exceeding_CLMax);
             }
 
             return liftCoefficient;
@@ -198,7 +199,7 @@ namespace Simulator.Data.Helpers
         {
             if (velocity < 0)
             {
-                throw new InvalidCalculationException("Velocity must be larger or equal to 0.");
+                throw new InvalidCalculationException(Resources.AerodynamicsHelper_Velocity_must_be_larger_or_equal_to_Zero);
             }
         }
 
@@ -211,7 +212,7 @@ namespace Simulator.Data.Helpers
         {
             if (density <= 0)
             {
-                throw new InvalidCalculationException("Density must be larger than 0.");
+                throw new InvalidCalculationException(Resources.AerodynamicsHelper_Density_must_be_larger_than_Zero);
             }
         }
 
@@ -225,7 +226,7 @@ namespace Simulator.Data.Helpers
         {
             if (liftCoefficient < 0 || liftCoefficient > aerodynamicsData.MaximumLiftCoefficient)
             {
-                throw new InvalidCalculationException("Lift coefficient must be in the range of [0, CLMax].");
+                throw new InvalidCalculationException(Resources.AerodynamicsHelper_LiftCoefficient_out_of_range);
             }
         }
 
