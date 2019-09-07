@@ -18,8 +18,8 @@
 using System;
 using Core.Common.Data;
 using Core.Common.Utils;
-using Simulator.Data.Properties;
 using Simulator.Data.Exceptions;
+using Simulator.Data.Properties;
 
 namespace Simulator.Data.Helpers
 {
