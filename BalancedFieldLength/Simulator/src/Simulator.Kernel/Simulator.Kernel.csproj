@@ -41,7 +41,6 @@
     <Compile Include="AggregatedDistanceCalculatorKernel.cs" />
     <Compile Include="IAggregatedDistanceCalculatorKernel.cs" />
     <Compile Include="KernelValidationError.cs" />
-    <Compile Include="KernelValidationResult.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

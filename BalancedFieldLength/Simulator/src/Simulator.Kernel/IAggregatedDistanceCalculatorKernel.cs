@@ -34,13 +34,13 @@ namespace Simulator.Kernel
         /// <param name="density">The density. [kg/m^3]</param>
         /// <param name="gravitationalAcceleration">The gravitational acceleration. [m/s^2]</param>
         /// <param name="nrOfFailedEngines">The number of failed engines.</param>
-        /// <returns>The <see cref="KernelValidationResult"/>.</returns>
+        /// <returns>The <see cref="KernelValidationError"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        KernelValidationResult Validate(AircraftData aircraftData,
-                                        double density,
-                                        double gravitationalAcceleration,
-                                        int nrOfFailedEngines);
+        KernelValidationError Validate(AircraftData aircraftData,
+                                       double density,
+                                       double gravitationalAcceleration,
+                                       int nrOfFailedEngines);
 
         /// <summary>
         /// Calculates the <see cref="AggregatedDistanceOutput"/> based on the input.
