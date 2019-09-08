@@ -66,14 +66,13 @@ namespace Simulator.Kernel.Test
             var kernel = new AggregatedDistanceCalculatorKernel();
 
             // Call
-            KernelValidationResult result = kernel.Validate(aircraftData,
-                                                            density,
-                                                            gravitationalAcceleration,
-                                                            aircraftData.NrOfEngines - 1);
+            KernelValidationError result = kernel.Validate(aircraftData,
+                                                           density,
+                                                           gravitationalAcceleration,
+                                                           aircraftData.NrOfEngines - 1);
 
             // Assert
-            Assert.IsTrue(result.IsValid);
-            CollectionAssert.IsEmpty(result.ValidationErrors);
+            Assert.AreEqual(KernelValidationError.None, result);
         }
 
         [Test]
@@ -89,17 +88,15 @@ namespace Simulator.Kernel.Test
             var kernel = new AggregatedDistanceCalculatorKernel();
 
             // Call
-            KernelValidationResult result = kernel.Validate(aircraftData,
-                                                            density,
-                                                            gravitationalAcceleration,
-                                                            aircraftData.NrOfEngines - 1);
+            KernelValidationError result = kernel.Validate(aircraftData,
+                                                           density,
+                                                           gravitationalAcceleration,
+                                                           aircraftData.NrOfEngines - 1);
 
             // Assert
-            Assert.IsFalse(result.IsValid);
-            CollectionAssert.AreEqual(new[]
-            {
-                KernelValidationError.InvalidDensity
-            }, result.ValidationErrors);
+            Assert.IsTrue(result.HasFlag(KernelValidationError.InvalidDensity));
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidGravitationalAcceleration));
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidNrOfFailedEngines));
         }
 
         [Test]
@@ -115,17 +112,15 @@ namespace Simulator.Kernel.Test
             var kernel = new AggregatedDistanceCalculatorKernel();
 
             // Call
-            KernelValidationResult result = kernel.Validate(aircraftData,
-                                                            density,
-                                                            gravitationalAcceleration,
-                                                            aircraftData.NrOfEngines - 1);
+            KernelValidationError result = kernel.Validate(aircraftData,
+                                                           density,
+                                                           gravitationalAcceleration,
+                                                           aircraftData.NrOfEngines - 1);
 
             // Assert
-            Assert.IsFalse(result.IsValid);
-            CollectionAssert.AreEqual(new[]
-            {
-                KernelValidationError.InvalidGravitationalAcceleration
-            }, result.ValidationErrors);
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidDensity));
+            Assert.IsTrue(result.HasFlag(KernelValidationError.InvalidGravitationalAcceleration));
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidNrOfFailedEngines));
         }
 
         [Test]
@@ -142,17 +137,15 @@ namespace Simulator.Kernel.Test
             var kernel = new AggregatedDistanceCalculatorKernel();
 
             // Call
-            KernelValidationResult result = kernel.Validate(aircraftData,
-                                                            density,
-                                                            gravitationalAcceleration,
-                                                            aircraftData.NrOfEngines + offset);
+            KernelValidationError result = kernel.Validate(aircraftData,
+                                                           density,
+                                                           gravitationalAcceleration,
+                                                           aircraftData.NrOfEngines + offset);
 
             // Assert
-            Assert.IsFalse(result.IsValid);
-            CollectionAssert.AreEqual(new[]
-            {
-                KernelValidationError.InvalidNrOfFailedEngines
-            }, result.ValidationErrors);
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidDensity));
+            Assert.IsFalse(result.HasFlag(KernelValidationError.InvalidGravitationalAcceleration));
+            Assert.IsTrue(result.HasFlag(KernelValidationError.InvalidNrOfFailedEngines));
         }
 
         [Test]
@@ -164,17 +157,15 @@ namespace Simulator.Kernel.Test
             var kernel = new AggregatedDistanceCalculatorKernel();
 
             // Call
-            KernelValidationResult result = kernel.Validate(aircraftData, 0, 0,
-                                                            aircraftData.NrOfEngines + 1);
+            KernelValidationError result = kernel.Validate(aircraftData, 0, 0,
+                                                           aircraftData.NrOfEngines + 1);
 
             // Assert
-            Assert.IsFalse(result.IsValid);
-            CollectionAssert.AreEquivalent(new[]
-            {
-                KernelValidationError.InvalidDensity,
-                KernelValidationError.InvalidGravitationalAcceleration,
-                KernelValidationError.InvalidNrOfFailedEngines
-            }, result.ValidationErrors);
+            const KernelValidationError expectedResult = KernelValidationError.InvalidDensity
+                                                         | KernelValidationError.InvalidGravitationalAcceleration
+                                                         | KernelValidationError.InvalidNrOfFailedEngines;
+
+            Assert.AreEqual(expectedResult, result);
         }
     }
 }

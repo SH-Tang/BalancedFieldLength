@@ -15,26 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+
 namespace Simulator.Kernel
 {
     /// <summary>
     /// Enum representing the kernel validation errors.
     /// </summary>
+    [Flags]
     public enum KernelValidationError
     {
         /// <summary>
+        /// Represents no validation errors.
+        /// </summary>
+        None = 0, // 0000
+
+        /// <summary>
         /// Represents an invalid density.
         /// </summary>
-        InvalidDensity,
+        InvalidDensity = 1, // 0001
 
         /// <summary>
         /// Represents an invalid gravitational acceleration.
         /// </summary>
-        InvalidGravitationalAcceleration,
+        InvalidGravitationalAcceleration = 2, // 0010
 
         /// <summary>
         /// Indicates an invalid number of failed engines
         /// </summary>
-        InvalidNrOfFailedEngines
+        InvalidNrOfFailedEngines = 4 // 0100
     }
 }

@@ -16,8 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Simulator.Calculator.AggregatedDistanceCalculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Components.Factories;
@@ -41,33 +39,34 @@ namespace Simulator.Kernel
             aggregatedDistanceCalculator = new AggregatedDistanceCalculator(distanceCalculatorFactory);
         }
 
-        public KernelValidationResult Validate(AircraftData aircraftData,
-                                               double density,
-                                               double gravitationalAcceleration,
-                                               int nrOfFailedEngines)
+        public KernelValidationError Validate(AircraftData aircraftData,
+                                              double density,
+                                              double gravitationalAcceleration,
+                                              int nrOfFailedEngines)
         {
             if (aircraftData == null)
             {
                 throw new ArgumentNullException(nameof(aircraftData));
             }
 
-            var validationErrors = new List<KernelValidationError>();
+            var validationError = KernelValidationError.None;
+
             if (density <= 0)
             {
-                validationErrors.Add(KernelValidationError.InvalidDensity);
+                validationError |= KernelValidationError.InvalidDensity;
             }
 
             if (gravitationalAcceleration <= 0)
             {
-                validationErrors.Add(KernelValidationError.InvalidGravitationalAcceleration);
+                validationError |= KernelValidationError.InvalidGravitationalAcceleration;
             }
 
             if (nrOfFailedEngines >= aircraftData.NrOfEngines)
             {
-                validationErrors.Add(KernelValidationError.InvalidNrOfFailedEngines);
+                validationError |= KernelValidationError.InvalidNrOfFailedEngines;
             }
 
-            return new KernelValidationResult(!validationErrors.Any(), validationErrors);
+            return validationError;
         }
 
         public AggregatedDistanceOutput Calculate(AircraftData aircraftData,
