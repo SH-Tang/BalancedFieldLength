@@ -113,6 +113,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{bc4da602-fab8-4c71-9cd5-dcf08c85ab13}</Project>
+      <Name>Core.Common.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
       <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
       <Name>WPF.Components</Name>

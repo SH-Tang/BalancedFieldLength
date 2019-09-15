@@ -30,6 +30,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                             IsDesignTimeCreatable=True}">
     <UserControl.Resources>
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
+        <converters:AngleValueConverter x:Key="AngleDegreesValueConverter" IsDegrees="True"/>
     </UserControl.Resources>
     <StackPanel>
         <Expander Header="Aircraft properties" IsExpanded="True">
@@ -65,7 +66,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=PitchGradient,
-                                Converter={StaticResource DoubleValueConverter},
+                                Converter={StaticResource AngleDegreesValueConverter},
                                 Mode=TwoWay}"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
@@ -77,7 +78,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=MaximumPitchAngle,
-                                Converter={StaticResource DoubleValueConverter},
+                                Converter={StaticResource AngleDegreesValueConverter},
                                 Mode=TwoWay}"/>
             </Grid>
         </Expander>
@@ -169,7 +170,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=ZeroLiftAngleOfAttack,
-                                Converter={StaticResource DoubleValueConverter},
+                                Converter={StaticResource AngleDegreesValueConverter},
                                 Mode=TwoWay}"/>
 
             </Grid>

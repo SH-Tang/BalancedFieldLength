@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using Application.BalancedFieldLength.Views.TabViews;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 using WPF.Components.TabControl;
 using WPF.Core;
@@ -40,8 +41,8 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             Assert.That(viewModel.TabName, Is.EqualTo("Aircraft data"));
 
             Assert.That(viewModel.TakeOffWeight, Is.NaN);
-            Assert.That(viewModel.PitchGradient, Is.NaN);
-            Assert.That(viewModel.MaximumPitchAngle, Is.NaN);
+            Assert.That(viewModel.PitchGradient.Degrees, Is.NaN);
+            Assert.That(viewModel.MaximumPitchAngle.Degrees, Is.NaN);
 
             Assert.That(viewModel.WingSurfaceArea, Is.NaN);
             Assert.That(viewModel.AspectRatio, Is.NaN);
@@ -49,7 +50,7 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
 
             Assert.That(viewModel.MaximumLiftCoefficient, Is.NaN);
             Assert.That(viewModel.LiftCoefficientGradient, Is.NaN);
-            Assert.That(viewModel.ZeroLiftAngleOfAttack, Is.NaN);
+            Assert.That(viewModel.ZeroLiftAngleOfAttack.Degrees, Is.NaN);
 
             Assert.That(viewModel.RestDragCoefficientWithEngineFailure, Is.NaN);
             Assert.That(viewModel.RestDragCoefficient, Is.NaN);
@@ -86,15 +87,16 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
 
         private static IEnumerable<TestCaseData> GetNotifyPropertyChangedTestCases()
         {
+            var random = new Random();
             yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.TakeOffWeight = 3.14),
                                           nameof(AircraftDataTabViewModel.TakeOffWeight))
                 .SetName("Take off weight");
 
-            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.PitchGradient = 3.14),
+            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.PitchGradient = random.NextAngle()),
                                           nameof(AircraftDataTabViewModel.PitchGradient))
                 .SetName("Pitch gradient");
 
-            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.MaximumPitchAngle = 3.14),
+            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.MaximumPitchAngle = random.NextAngle()),
                                           nameof(AircraftDataTabViewModel.MaximumPitchAngle))
                 .SetName("Maximum pitch angle");
 
@@ -118,7 +120,7 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
                                           nameof(AircraftDataTabViewModel.LiftCoefficientGradient))
                 .SetName("Lift coefficient gradient");
 
-            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.ZeroLiftAngleOfAttack = 3.14),
+            yield return new TestCaseData(new Action<AircraftDataTabViewModel>(vm => vm.ZeroLiftAngleOfAttack = random.NextAngle()),
                                           nameof(AircraftDataTabViewModel.ZeroLiftAngleOfAttack))
                 .SetName("Zero lift angle of attack");
 

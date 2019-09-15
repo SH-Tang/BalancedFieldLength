@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using Application.BalancedFieldLength.Properties;
+using Core.Common.Data;
 using WPF.Components.TabControl;
 using WPF.Core;
 
@@ -27,14 +28,14 @@ namespace Application.BalancedFieldLength.Views.TabViews
     public class AircraftDataTabViewModel : ViewModelBase, ITabViewModel
     {
         private double takeOffWeight;
-        private double pitchGradient;
-        private double maximumPitchAngle;
+        private Angle pitchGradient;
+        private Angle maximumPitchAngle;
         private double wingSurfaceArea;
         private double aspectRatio;
         private double oswaldFactor;
         private double maximumLiftCoefficient;
         private double liftCoefficientGradient;
-        private double zeroLiftAngleOfAttack;
+        private Angle zeroLiftAngleOfAttack;
         private double restDragCoefficient;
         private double restDragCoefficientWithEngineFailure;
         private double rollResistanceCoefficient;
@@ -46,8 +47,8 @@ namespace Application.BalancedFieldLength.Views.TabViews
         public AircraftDataTabViewModel()
         {
             TakeOffWeight = double.NaN;
-            PitchGradient = double.NaN;
-            MaximumPitchAngle = double.NaN;
+            PitchGradient = Angle.FromRadians(double.NaN);
+            MaximumPitchAngle = Angle.FromRadians(double.NaN);
 
             WingSurfaceArea = double.NaN;
             AspectRatio = double.NaN;
@@ -55,7 +56,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
 
             MaximumLiftCoefficient = double.NaN;
             LiftCoefficientGradient = double.NaN;
-            ZeroLiftAngleOfAttack = double.NaN;
+            ZeroLiftAngleOfAttack = Angle.FromRadians(double.NaN);
 
             RestDragCoefficient = double.NaN;
             RestDragCoefficientWithEngineFailure = double.NaN;
@@ -86,7 +87,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <remarks>The linear gradient in which the pitch angle
         /// increases from 0 angle to the maximum pitch angle as a function
         /// of time.</remarks>
-        public double PitchGradient
+        public Angle PitchGradient
         {
             get
             {
@@ -103,7 +104,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// Gets or sets the maximum pitch angle. [-]
         /// </summary>
         /// <remarks>Also denoted as ThetaMax</remarks>
-        public double MaximumPitchAngle
+        public Angle MaximumPitchAngle
         {
             get
             {
@@ -206,7 +207,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <summary>
         /// Gets or sets the angle of attack where the lift is 0. [-]
         /// </summary>
-        public double ZeroLiftAngleOfAttack
+        public Angle ZeroLiftAngleOfAttack
         {
             get
             {
