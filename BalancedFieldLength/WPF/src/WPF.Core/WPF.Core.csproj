@@ -16,6 +16,7 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\AngleValueConverter.cs" />
     <Compile Include="Converters\IntegerValueConverter.cs" />
     <Compile Include="Converters\NaNToEmptyValueConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -25,5 +26,12 @@
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{bc4da602-fab8-4c71-9cd5-dcf08c85ab13}</Project>
+      <Name>Core.Common.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>

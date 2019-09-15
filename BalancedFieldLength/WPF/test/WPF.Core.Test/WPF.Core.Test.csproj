@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="..\..\..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" />
   <PropertyGroup>
@@ -20,6 +20,7 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="Converters\AngleValueConverterTest.cs" />
     <Compile Include="Converters\IntegerValueConverterTest.cs" />
     <Compile Include="Converters\NaNToEmptyValueConverterTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -32,6 +33,14 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
+      <Name>Core.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
+      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
+      <Name>Core.Common.TestUtil</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\WPF.Core\WPF.Core.csproj">
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
