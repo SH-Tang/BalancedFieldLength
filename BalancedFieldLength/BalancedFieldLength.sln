@@ -85,6 +85,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Core.Test", "WPF\test\W
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.BalancedFieldLength.Data", "Application\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj", "{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.BalancedFieldLength.Data.Test", "Application\test\Application.BalancedFieldLength.Data.Test\Application.BalancedFieldLength.Data.Test.csproj", "{6503D984-0547-4FE1-93ED-03563FED35F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -203,6 +205,10 @@ Global
 		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6503D984-0547-4FE1-93ED-03563FED35F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6503D984-0547-4FE1-93ED-03563FED35F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6503D984-0547-4FE1-93ED-03563FED35F8}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{6503D984-0547-4FE1-93ED-03563FED35F8}.Release|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -244,6 +250,7 @@ Global
 		{0DDA44F1-A496-4D1A-8E74-F5A3C7214D60} = {14C328E6-9131-4DD6-BC11-E90700A8C06E}
 		{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE} = {14C328E6-9131-4DD6-BC11-E90700A8C06E}
 		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53} = {11C13E2D-3EE8-4022-B4D4-15D5DD394BC3}
+		{6503D984-0547-4FE1-93ED-03563FED35F8} = {BA15E908-5C02-425E-BBAB-308BA05D2CC8}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}
