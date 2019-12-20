@@ -20,6 +20,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="AircraftDataTest.cs" />
+    <Compile Include="BalancedFieldLengthCalculationTest.cs" />
     <Compile Include="EngineDataTest.cs" />
     <Compile Include="GeneralSimulationSettingsDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
