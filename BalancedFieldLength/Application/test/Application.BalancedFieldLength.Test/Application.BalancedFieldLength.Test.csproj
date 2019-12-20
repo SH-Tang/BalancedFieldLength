@@ -18,7 +18,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
-      <Link>GlobalAssemblyInfo.cs</Link>
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="Views\TabViews\AircraftDataTabViewModelTest.cs" />
     <Compile Include="Views\TabViews\EngineSettingsTabViewModelTest.cs" />
