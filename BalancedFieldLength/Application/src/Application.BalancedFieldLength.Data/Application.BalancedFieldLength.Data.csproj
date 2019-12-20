@@ -17,6 +17,7 @@
     </Compile>
     <Compile Include="AircraftData.cs" />
     <Compile Include="EngineData.cs" />
+    <Compile Include="GeneralSimulationSettingsData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

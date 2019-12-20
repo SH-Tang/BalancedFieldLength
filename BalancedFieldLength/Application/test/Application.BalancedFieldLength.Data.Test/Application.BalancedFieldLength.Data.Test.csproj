@@ -21,6 +21,7 @@
     </Compile>
     <Compile Include="AircraftDataTest.cs" />
     <Compile Include="EngineDataTest.cs" />
+    <Compile Include="GeneralSimulationSettingsDataTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
