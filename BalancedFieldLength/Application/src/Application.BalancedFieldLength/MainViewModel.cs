@@ -38,7 +38,7 @@ namespace Application.BalancedFieldLength
             var calculation = new BalancedFieldLengthCalculation();
             
             var tabControlViewModel = new TabControlViewModel();
-            var generalSettingsTab = new GeneralSimulationSettingsTabViewModel();
+            var generalSettingsTab = new GeneralSimulationSettingsTabViewModel(calculation.SimulationSettings);
             tabControlViewModel.Tabs.Add(generalSettingsTab);
             tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel(calculation.EngineData));
             tabControlViewModel.Tabs.Add(new AircraftDataTabViewModel());
