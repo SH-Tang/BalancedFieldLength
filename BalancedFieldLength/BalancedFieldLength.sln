@@ -83,6 +83,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Components.Test", "WPF\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF.Core.Test", "WPF\test\WPF.Core.Test\WPF.Core.Test.csproj", "{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application.BalancedFieldLength.Data", "Application\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj", "{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -197,6 +199,10 @@ Global
 		{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -237,6 +243,7 @@ Global
 		{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831} = {02B04A99-DA84-4B0B-885A-82F8BDEAB371}
 		{0DDA44F1-A496-4D1A-8E74-F5A3C7214D60} = {14C328E6-9131-4DD6-BC11-E90700A8C06E}
 		{33FE3484-61F4-4C2B-8C38-F7CB6FC04BFE} = {14C328E6-9131-4DD6-BC11-E90700A8C06E}
+		{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53} = {11C13E2D-3EE8-4022-B4D4-15D5DD394BC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {57FB13EF-9969-4D13-B4C1-FDDF859E81F3}
