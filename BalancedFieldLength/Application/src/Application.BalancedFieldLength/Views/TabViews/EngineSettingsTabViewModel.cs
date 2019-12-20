@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Properties;
 using WPF.Components.TabControl;
 using WPF.Core;
@@ -27,6 +28,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
     /// </summary>
     public class EngineSettingsTabViewModel : ViewModelBase, ITabViewModel
     {
+        private readonly EngineData engineData;
         private double thrustPerEngine;
         private int nrOfEngines;
         private int nrOfFailedEngines;
@@ -34,9 +36,22 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <summary>
         /// Creates a new instance of <see cref="EngineSettingsTabViewModel"/>.
         /// </summary>
-        public EngineSettingsTabViewModel()
+        /// <param name="engineData">The <see cref="EngineData"/> to create
+        /// the view model for.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="engineData"/>
+        /// is <c>null</c>.</exception>
+        public EngineSettingsTabViewModel(EngineData engineData)
         {
-            thrustPerEngine = double.NaN;
+            if (engineData == null)
+            {
+                throw new ArgumentNullException(nameof(engineData));
+            }
+
+            this.engineData = engineData;
+
+            thrustPerEngine = engineData.ThrustPerEngine;
+            nrOfEngines = engineData.NrOfEngines;
+            nrOfFailedEngines = engineData.NrOfFailedEngines;
             TotalThrust = double.NaN;
         }
 
@@ -57,6 +72,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
                 {
                     thrustPerEngine = value;
                     TotalThrust = value * NrOfEngines;
+                    engineData.ThrustPerEngine = thrustPerEngine;
 
                     OnPropertyChanged(nameof(ThrustPerEngine));
                     OnPropertyChanged(nameof(TotalThrust));
@@ -87,6 +103,8 @@ namespace Application.BalancedFieldLength.Views.TabViews
                     TotalThrust = thrustPerEngine * value;
                     MaximumNrOfFailedEngines = value - 1;
 
+                    engineData.NrOfEngines = nrOfEngines;
+
                     OnPropertyChanged(nameof(NrOfEngines));
                     OnPropertyChanged(nameof(TotalThrust));
                     OnPropertyChanged(nameof(MaximumNrOfFailedEngines));
@@ -111,6 +129,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 nrOfFailedEngines = value;
+                engineData.NrOfFailedEngines = nrOfFailedEngines;
                 OnPropertyChanged(nameof(NrOfFailedEngines));
             }
         }

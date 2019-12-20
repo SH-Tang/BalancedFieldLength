@@ -128,5 +128,10 @@
       <Name>WPF.Core</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
 </Project>

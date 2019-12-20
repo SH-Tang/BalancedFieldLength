@@ -15,6 +15,7 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Views.OutputView;
 using Application.BalancedFieldLength.Views.TabViews;
 using WPF.Components.MessageView;
@@ -27,15 +28,19 @@ namespace Application.BalancedFieldLength
     /// </summary>
     public class MainViewModel
     {
+        
+
         /// <summary>
         /// Creates a new instance of <see cref="MainViewModel"/>.
         /// </summary>
         public MainViewModel()
         {
+            var calculation = new BalancedFieldLengthCalculation();
+            
             var tabControlViewModel = new TabControlViewModel();
             var generalSettingsTab = new GeneralSimulationSettingsTabViewModel();
             tabControlViewModel.Tabs.Add(generalSettingsTab);
-            tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel());
+            tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel(calculation.EngineData));
             tabControlViewModel.Tabs.Add(new AircraftDataTabViewModel());
             tabControlViewModel.SelectedTabItem = generalSettingsTab;
 

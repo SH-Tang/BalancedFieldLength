@@ -50,6 +50,10 @@
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\Application.BalancedFieldLength\Application.BalancedFieldLength.csproj">
       <Project>{2B5FC268-5FDC-4C66-8D48-447C2A58167F}</Project>
       <Name>Application.BalancedFieldLength</Name>
