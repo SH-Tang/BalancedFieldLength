@@ -46,5 +46,10 @@ namespace Application.BalancedFieldLength.Data
         /// Gets the <see cref="Data.EngineData"/>.
         /// </summary>
         public EngineData EngineData { get; }
+
+        /// <summary>
+        /// Gets or sets the <see cref="BalancedFieldLengthOutput"/> of the calculation.
+        /// </summary>
+        public BalancedFieldLengthOutput Output { get; set; }
     }
 }

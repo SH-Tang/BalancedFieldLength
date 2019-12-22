@@ -32,6 +32,7 @@ namespace Application.BalancedFieldLength.Data.Test
             Assert.That(calculation.AircraftData, Is.Not.Null);
             Assert.That(calculation.EngineData, Is.Not.Null);
             Assert.That(calculation.SimulationSettings, Is.Not.Null);
+            Assert.That(calculation.Output, Is.Null);
         }
     }
 }

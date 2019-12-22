@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Views.OutputView;
 using NUnit.Framework;
 
@@ -24,14 +26,31 @@ namespace Application.BalancedFieldLength.Test.Views.OutputView
     public class OutputViewModelTest
     {
         [Test]
-        public static void Constructor_ExpectedValues()
+        public void Constructor_OutputNull_ThrowsArgumentNullException()
         {
             // Call
-            var viewModel = new OutputViewModel();
+            TestDelegate call = () => new OutputViewModel(null);
 
             // Assert
-            Assert.That(viewModel.BalancedFieldLengthDistance, Is.NaN);
-            Assert.That(viewModel.BalancedFieldLengthVelocity, Is.NaN);
+            Assert.That(call, Throws.ArgumentNullException
+                                    .With.Property(nameof(ArgumentNullException.ParamName))
+                                    .EqualTo("output"));
+        }
+
+        [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var random = new Random(21);
+            var output = new BalancedFieldLengthOutput(random.NextDouble(),
+                                                       random.NextDouble());
+
+            // Call
+            var viewModel = new OutputViewModel(output);
+
+            // Assert
+            Assert.That(viewModel.BalancedFieldLengthDistance, Is.EqualTo(output.Distance));
+            Assert.That(viewModel.BalancedFieldLengthVelocity, Is.EqualTo(output.Velocity));
         }
     }
 }
