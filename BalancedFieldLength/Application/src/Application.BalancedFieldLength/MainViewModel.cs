@@ -28,8 +28,6 @@ namespace Application.BalancedFieldLength
     /// </summary>
     public class MainViewModel
     {
-        
-
         /// <summary>
         /// Creates a new instance of <see cref="MainViewModel"/>.
         /// </summary>
@@ -52,7 +50,7 @@ namespace Application.BalancedFieldLength
             MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World2."));
             MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World3."));
 
-            OutputViewModel = new OutputViewModel();
+            OutputViewModel = null;
         }
 
         public TabControlViewModel TabControlViewModel { get; }

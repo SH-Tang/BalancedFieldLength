@@ -32,7 +32,7 @@ namespace Application.BalancedFieldLength.Test
             var mainViewModel = new MainViewModel();
 
             // Assert
-            Assert.That(mainViewModel.OutputViewModel, Is.Not.Null);
+            Assert.That(mainViewModel.OutputViewModel, Is.Null);
             Assert.That(mainViewModel.MessageWindowViewModel, Is.Not.Null);
             Assert.That(mainViewModel.TabControlViewModel, Is.Not.Null);
 
