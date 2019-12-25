@@ -27,18 +27,18 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         public void Instance_Always_ReturnsFactory()
         {
             // Call 
-            BalancedFieldLengthKernelFactory factory = BalancedFieldLengthKernelFactory.Instance;
+            IBalancedFieldLengthKernelFactory factory = BalancedFieldLengthKernelFactory.Instance;
 
             // Assert
-            Assert.That(factory, Is.InstanceOf<IBalancedFieldLengthKernelFactory>());
+            Assert.That(factory, Is.TypeOf<BalancedFieldLengthKernelFactory>());
         }
 
         [Test]
         public void Instance_Always_ReturnsSameInstance()
         {
             // Call 
-            BalancedFieldLengthKernelFactory firstFactory = BalancedFieldLengthKernelFactory.Instance;
-            BalancedFieldLengthKernelFactory secondFactory = BalancedFieldLengthKernelFactory.Instance;
+            IBalancedFieldLengthKernelFactory firstFactory = BalancedFieldLengthKernelFactory.Instance;
+            IBalancedFieldLengthKernelFactory secondFactory = BalancedFieldLengthKernelFactory.Instance;
 
             // Assert
             Assert.That(firstFactory, Is.SameAs(secondFactory));
@@ -48,7 +48,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         public void CreateDistanceCalculatorKernel_Always_ReturnsKernel()
         {
             // Setup
-            BalancedFieldLengthKernelFactory factory = BalancedFieldLengthKernelFactory.Instance;
+            IBalancedFieldLengthKernelFactory factory = BalancedFieldLengthKernelFactory.Instance;
 
             // Call 
             IAggregatedDistanceCalculatorKernel kernel = factory.CreateDistanceCalculatorKernel();

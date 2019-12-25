@@ -24,14 +24,14 @@ namespace Application.BalancedFieldLength.KernelWrapper
     /// </summary>
     public class BalancedFieldLengthKernelFactory : IBalancedFieldLengthKernelFactory
     {
-        private static BalancedFieldLengthKernelFactory instance;
+        private static IBalancedFieldLengthKernelFactory instance;
 
         private BalancedFieldLengthKernelFactory() {}
 
         /// <summary>
         /// Gets the current instance of <see cref="BalancedFieldLengthKernelFactory"/>.
         /// </summary>
-        public static BalancedFieldLengthKernelFactory Instance
+        public static IBalancedFieldLengthKernelFactory Instance
         {
             get
             {
