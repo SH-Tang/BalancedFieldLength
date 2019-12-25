@@ -15,12 +15,21 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BalancedFieldLengthKernelFactory.cs" />
+    <Compile Include="IBalancedFieldLengthKernelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Kernel\Simulator.Kernel.csproj">
+      <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
+      <Name>Simulator.Kernel</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
