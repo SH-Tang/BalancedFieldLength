@@ -16,6 +16,8 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 
 [assembly: AssemblyTitle("Application.BalancedFieldLength.KernelWrapper")]
 [assembly: AssemblyProduct("Application.BalancedFieldLength.KernelWrapper")]
+[assembly: InternalsVisibleTo("Application.BalancedFieldLength.KernelWrapper.TestUtils")]
