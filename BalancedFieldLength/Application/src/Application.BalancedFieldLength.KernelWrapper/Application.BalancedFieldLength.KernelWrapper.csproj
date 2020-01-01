@@ -18,6 +18,7 @@
     <Compile Include="BalancedFieldLengthKernelFactory.cs" />
     <Compile Include="Exceptions\CreateKernelDataException.cs" />
     <Compile Include="Factories\AerodynamicsDataFactory.cs" />
+    <Compile Include="Factories\CalculationSettingsFactory.cs" />
     <Compile Include="IBalancedFieldLengthKernelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -23,6 +23,7 @@
     </Compile>
     <Compile Include="BalancedFieldLengthKernelFactoryTest.cs" />
     <Compile Include="Factories\AerodynamicsDataFactoryTest.cs" />
+    <Compile Include="Factories\CalculationSettingsFactoryTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
