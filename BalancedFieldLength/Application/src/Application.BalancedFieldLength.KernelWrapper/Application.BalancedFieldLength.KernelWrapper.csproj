@@ -16,6 +16,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BalancedFieldLengthKernelFactory.cs" />
+    <Compile Include="Factories\AerodynamicsDataFactory.cs" />
     <Compile Include="IBalancedFieldLengthKernelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -25,11 +26,26 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{bc4da602-fab8-4c71-9cd5-dcf08c85ab13}</Project>
+      <Name>Core.Common.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Data\Simulator.Data.csproj">
+      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
+      <Name>Simulator.Data</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\Simulator\src\Simulator.Kernel\Simulator.Kernel.csproj">
       <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
       <Name>Simulator.Kernel</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{af6c5bf4-a433-4a82-9d6e-1654dbf0ef53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
