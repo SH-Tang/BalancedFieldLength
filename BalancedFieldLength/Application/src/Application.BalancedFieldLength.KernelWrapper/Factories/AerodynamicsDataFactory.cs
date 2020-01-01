@@ -51,7 +51,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Factories
                                                   aircraftData.MaximumLiftCoefficient, aircraftData.RestDragCoefficient,
                                                   aircraftData.RestDragCoefficientWithEngineFailure, aircraftData.OswaldFactor);
             }
-            catch (Exception e) when(e is ArgumentException)
+            catch (ArgumentException e)
             {
                 throw new CreateKernelDataException(e.Message, e);
             }
