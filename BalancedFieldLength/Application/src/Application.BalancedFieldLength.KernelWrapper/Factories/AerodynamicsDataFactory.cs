@@ -17,34 +17,44 @@
 
 using System;
 using Application.BalancedFieldLength.Data;
-using KernelAerodynamicData = Simulator.Data.AerodynamicsData;
+using Application.BalancedFieldLength.KernelWrapper.Exceptions;
+using KernelAerodynamicsData = Simulator.Data.AerodynamicsData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.Factories
 {
     /// <summary>
-    /// Factory for creating <see cref="Simulator.Data.AerodynamicsData"/>.
+    /// Factory for creating <see cref="KernelAerodynamicsData"/>.
     /// </summary>
     public static class AerodynamicsDataFactory
     {
         /// <summary>
-        /// Creates an <see cref="Simulator.Data.AerodynamicsData"/> based on <see cref="AircraftData"/>.
+        /// Creates an <see cref="KernelAerodynamicsData"/> based on <see cref="AircraftData"/>.
         /// </summary>
         /// <param name="aircraftData">The <see cref="AircraftData"/> to create an
-        /// <see cref="Simulator.Data.AerodynamicsData"/> for.</param>
-        /// <returns>An <see cref="Simulator.Data.AerodynamicsData"/>.</returns>
+        /// <see cref="KernelAerodynamicsData"/> for.</param>
+        /// <returns>An <see cref="KernelAerodynamicsData"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/>
         /// is <c>null</c>.</exception>
-        public static KernelAerodynamicData Create(AircraftData aircraftData)
+        /// <exception cref="CreateKernelDataException">Thrown when the <see cref="KernelAerodynamicsData"/>
+        /// could not be created.</exception>
+        public static KernelAerodynamicsData Create(AircraftData aircraftData)
         {
             if (aircraftData == null)
             {
                 throw new ArgumentNullException(nameof(aircraftData));
             }
 
-            return new KernelAerodynamicData(aircraftData.AspectRatio, aircraftData.WingSurfaceArea,
-                                             aircraftData.ZeroLiftAngleOfAttack, aircraftData.LiftCoefficientGradient,
-                                             aircraftData.MaximumLiftCoefficient, aircraftData.RestDragCoefficient,
-                                             aircraftData.RestDragCoefficientWithEngineFailure, aircraftData.OswaldFactor);
+            try
+            {
+                return new KernelAerodynamicsData(aircraftData.AspectRatio, aircraftData.WingSurfaceArea,
+                                                  aircraftData.ZeroLiftAngleOfAttack, aircraftData.LiftCoefficientGradient,
+                                                  aircraftData.MaximumLiftCoefficient, aircraftData.RestDragCoefficient,
+                                                  aircraftData.RestDragCoefficientWithEngineFailure, aircraftData.OswaldFactor);
+            }
+            catch (Exception e) when(e is ArgumentException)
+            {
+                throw new CreateKernelDataException(e.Message, e);
+            }
         }
     }
 }

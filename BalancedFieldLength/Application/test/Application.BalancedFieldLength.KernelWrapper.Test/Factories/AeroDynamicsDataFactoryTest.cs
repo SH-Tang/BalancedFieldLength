@@ -17,6 +17,7 @@
 
 using System;
 using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
 using Core.Common.TestUtil;
 using NUnit.Framework;
@@ -70,6 +71,60 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
 
             Assert.That(data.RestDragCoefficientWithEngineFailure, Is.EqualTo(aircraftData.RestDragCoefficientWithEngineFailure));
             Assert.That(data.RestDragCoefficientWithoutEngineFailure, Is.EqualTo(aircraftData.RestDragCoefficient));
+        }
+
+        [Test]
+        public void Create_WithAircraftDataResultingInArgumentException_ThrowsCreateKernelDataException()
+        {
+            // Setup
+            var random = new Random(21);
+            var aircraftData = new AircraftData
+            {
+                WingSurfaceArea = double.NaN,
+                AspectRatio = random.NextDouble(),
+                OswaldFactor = random.NextDouble(),
+                MaximumLiftCoefficient = random.NextDouble(),
+                LiftCoefficientGradient = random.NextDouble(),
+                ZeroLiftAngleOfAttack = random.NextAngle(),
+                RestDragCoefficient = random.NextDouble(),
+                RestDragCoefficientWithEngineFailure = random.NextDouble()
+            };
+
+            // Call 
+            TestDelegate call = () => AerodynamicsDataFactory.Create(aircraftData);
+
+            // Assert
+            var exception = Assert.Throws<CreateKernelDataException>(call);
+            Exception innerException = exception.InnerException;
+            Assert.That(innerException, Is.TypeOf<ArgumentException>());
+            Assert.That(exception.Message, Is.EqualTo(exception.Message));
+        }
+
+        [Test]
+        public void Create_WithAircraftDataResultingInArgumentOutOfRangeException_ThrowsCreateKernelDataException()
+        {
+            // Setup
+            var random = new Random(21);
+            var aircraftData = new AircraftData
+            {
+                WingSurfaceArea = -1 * random.NextDouble(),
+                AspectRatio = random.NextDouble(),
+                OswaldFactor = random.NextDouble(),
+                MaximumLiftCoefficient = random.NextDouble(),
+                LiftCoefficientGradient = random.NextDouble(),
+                ZeroLiftAngleOfAttack = random.NextAngle(),
+                RestDragCoefficient = random.NextDouble(),
+                RestDragCoefficientWithEngineFailure = random.NextDouble()
+            };
+
+            // Call 
+            TestDelegate call = () => AerodynamicsDataFactory.Create(aircraftData);
+
+            // Assert
+            var exception = Assert.Throws<CreateKernelDataException>(call);
+            Exception innerException = exception.InnerException;
+            Assert.That(innerException, Is.TypeOf<ArgumentOutOfRangeException>());
+            Assert.That(exception.Message, Is.EqualTo(exception.Message));
         }
     }
 }

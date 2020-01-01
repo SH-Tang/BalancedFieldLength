@@ -16,6 +16,7 @@
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
     <Compile Include="BalancedFieldLengthKernelFactory.cs" />
+    <Compile Include="Exceptions\CreateKernelDataException.cs" />
     <Compile Include="Factories\AerodynamicsDataFactory.cs" />
     <Compile Include="IBalancedFieldLengthKernelFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
