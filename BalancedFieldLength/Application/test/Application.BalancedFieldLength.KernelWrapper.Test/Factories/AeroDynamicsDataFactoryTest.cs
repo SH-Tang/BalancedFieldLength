@@ -16,11 +16,12 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
+using Application.BalancedFieldLength.KernelWrapper.TestUtils;
 using Core.Common.TestUtil;
 using NUnit.Framework;
+using AircraftData = Application.BalancedFieldLength.Data.AircraftData;
 using KernelAerodynamicsData = Simulator.Data.AerodynamicsData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
@@ -61,16 +62,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
             KernelAerodynamicsData data = AerodynamicsDataFactory.Create(aircraftData);
 
             // Assert
-            Assert.That(data.AspectRatio, Is.EqualTo(aircraftData.AspectRatio));
-            Assert.That(data.WingArea, Is.EqualTo(aircraftData.WingSurfaceArea));
-
-            Assert.That(data.LiftCoefficientGradient, Is.EqualTo(aircraftData.LiftCoefficientGradient));
-            Assert.That(data.MaximumLiftCoefficient, Is.EqualTo(aircraftData.MaximumLiftCoefficient));
-            Assert.That(data.ZeroLiftAngleOfAttack, Is.EqualTo(aircraftData.ZeroLiftAngleOfAttack));
-            Assert.That(data.OswaldFactor, Is.EqualTo(aircraftData.OswaldFactor));
-
-            Assert.That(data.RestDragCoefficientWithEngineFailure, Is.EqualTo(aircraftData.RestDragCoefficientWithEngineFailure));
-            Assert.That(data.RestDragCoefficientWithoutEngineFailure, Is.EqualTo(aircraftData.RestDragCoefficient));
+            AerodynamicsDataTestHelper.AssertAerodynamicsData(aircraftData, data);
         }
 
         [Test]

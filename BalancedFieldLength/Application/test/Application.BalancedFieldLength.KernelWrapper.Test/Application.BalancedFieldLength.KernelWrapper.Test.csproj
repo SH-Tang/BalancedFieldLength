@@ -57,6 +57,10 @@
       <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
       <Name>Application.BalancedFieldLength.KernelWrapper</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper.TestUtils\Application.BalancedFieldLength.KernelWrapper.TestUtils.csproj">
+      <Project>{43AC4467-B4E7-43FE-AF93-3E553F072FD3}</Project>
+      <Name>Application.BalancedFieldLength.KernelWrapper.TestUtils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
