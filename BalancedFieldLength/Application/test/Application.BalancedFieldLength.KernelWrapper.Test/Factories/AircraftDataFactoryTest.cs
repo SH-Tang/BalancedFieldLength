@@ -86,16 +86,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
             KernelAircraftData data = AircraftDataFactory.Create(aircraftData, engineData);
 
             // Assert
-            Assert.That(data.MaximumPitchAngle, Is.EqualTo(aircraftData.MaximumPitchAngle));
-            Assert.That(data.PitchAngleGradient, Is.EqualTo(aircraftData.PitchGradient));
-            Assert.That(data.RollingResistanceCoefficient, Is.EqualTo(aircraftData.RollResistanceCoefficient));
-            Assert.That(data.BrakingResistanceCoefficient, Is.EqualTo(aircraftData.RollResistanceWithBrakesCoefficient));
-
-            Assert.That(data.NrOfEngines, Is.EqualTo(engineData.NrOfEngines));
-            Assert.That(data.MaximumThrustPerEngine, Is.EqualTo(engineData.ThrustPerEngine));
-            Assert.That(data.TakeOffWeight, Is.EqualTo(aircraftData.TakeOffWeight));
-
-            AerodynamicsDataTestHelper.AssertAerodynamicsData(aircraftData, data.AerodynamicsData);
+            AircraftDataTestHelper.AssertAircraftData(aircraftData, engineData, data);
         }
 
         [Test]
