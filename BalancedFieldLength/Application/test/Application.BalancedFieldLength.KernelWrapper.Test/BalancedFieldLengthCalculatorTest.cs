@@ -201,36 +201,5 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             data.NrOfEngines = random.Next();
             data.ThrustPerEngine = random.NextDouble();
         }
-
-        /// <summary>
-        /// Mockup class for creating instances of <see cref="IAggregatedDistanceCalculatorKernel"/>
-        /// which can be used for testing in combination with the <see cref="BalancedFieldLengthKernelFactoryConfig"/>.
-        /// </summary>
-        private class TestKernelFactory : IBalancedFieldLengthKernelFactory
-        {
-            private readonly IAggregatedDistanceCalculatorKernel testKernel;
-
-            /// <summary>
-            /// Creates a new instance of <see cref="TestKernelFactory"/>.
-            /// </summary>
-            /// <param name="testKernel">The <see cref="IAggregatedDistanceCalculatorKernel"/>
-            /// to run the factory with.</param>
-            /// <exception cref="ArgumentNullException">Thrown when <paramref name="testKernel"/>
-            /// is <c>null</c>.</exception>
-            public TestKernelFactory(IAggregatedDistanceCalculatorKernel testKernel)
-            {
-                if (testKernel == null)
-                {
-                    throw new ArgumentNullException(nameof(testKernel));
-                }
-
-                this.testKernel = testKernel;
-            }
-
-            public IAggregatedDistanceCalculatorKernel CreateDistanceCalculatorKernel()
-            {
-                return testKernel;
-            }
-        }
     }
 }
