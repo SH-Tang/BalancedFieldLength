@@ -41,6 +41,7 @@ namespace Simulator.Kernel.Integration.Test
         private const double tolerance = 1e-2;
 
         [Test]
+        [SetCulture("en-US")]
         [TestCaseSource(nameof(GetAircraftData))]
         public void GivenKernel_WhenCalculationsAreMadeForVelocityRange_ThenReturnsExpectedOutputsAndBalancedFieldLength(AircraftData aircraftData,
                                                                                                                          IntegrationReferenceData integrationReferenceData)
