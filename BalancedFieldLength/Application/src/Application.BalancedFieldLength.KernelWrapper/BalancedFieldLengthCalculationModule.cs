@@ -34,7 +34,7 @@ namespace Application.BalancedFieldLength.KernelWrapper
     /// <summary>
     /// Module to validate and calculate the balanced field length calculation.
     /// </summary>
-    public class BalancedFieldLengthCalculationModule
+    public class BalancedFieldLengthCalculationModule : IBalancedFieldLengthCalculationModule
     {
         private readonly IAggregatedDistanceCalculatorKernel kernel;
 

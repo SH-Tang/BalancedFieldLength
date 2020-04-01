@@ -40,6 +40,16 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
     public class BalancedFieldLengthCalculationModuleTest
     {
         [Test]
+        public void Constructor_ExpectedValues()
+        {
+            // Call
+            var calculationModule = new BalancedFieldLengthCalculationModule();
+
+            // Assert
+            Assert.That(calculationModule, Is.InstanceOf<IBalancedFieldLengthCalculationModule>());
+        }
+
+        [Test]
         public void Validate_CalculationNull_ThrowsArgumentNullException()
         {
             // Setup 

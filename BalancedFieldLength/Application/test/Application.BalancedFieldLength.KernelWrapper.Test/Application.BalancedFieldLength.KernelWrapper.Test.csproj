@@ -32,6 +32,7 @@
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
       <Link>Properties\GlobalAssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="BalancedFieldLengthCalculationModuleFactoryTest.cs" />
     <Compile Include="BalancedFieldLengthCalculationModuleTest.cs" />
     <Compile Include="BalancedFieldLengthKernelFactoryTest.cs" />
     <Compile Include="Factories\AerodynamicsDataFactoryTest.cs" />
