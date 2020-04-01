@@ -44,7 +44,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         {
             // Setup 
             var module = new BalancedFieldLengthCalculationModule();
-            
+
             // Call
             TestDelegate call = () => module.Validate(null);
 
@@ -143,7 +143,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
                 var module = new BalancedFieldLengthCalculationModule();
-                
+
                 // Call
                 IEnumerable<string> messages = module.Validate(calculation);
 
@@ -156,19 +156,14 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         [TestCase(KernelValidationError.InvalidDensity, "Density is invalid.")]
         [TestCase(KernelValidationError.InvalidNrOfFailedEngines, "Number of failed engines is invalid.")]
         [TestCase(KernelValidationError.InvalidGravitationalAcceleration, "Gravitational acceleration is invalid.")]
-        public void Validate_WithArgumentAndErrorOccurs_ReturnsErrorMessages(KernelValidationError error,
-                                                                             string expectedMessage)
+        public void Validate_WithArgumentAndKernelValidationErrorOccurs_ReturnsErrorMessages(KernelValidationError error,
+                                                                                             string expectedMessage)
         {
             // Setup
-            var random = new Random(21);
-            int nrOfFailedEngines = random.Next();
-
             var calculation = new BalancedFieldLengthCalculation();
             SetValidAircraftData(calculation.AircraftData);
             SetEngineData(calculation.EngineData);
             SetSimulationSettingsData(calculation.SimulationSettings);
-
-            calculation.EngineData.NrOfFailedEngines = nrOfFailedEngines;
 
             var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
             kernel.Validate(Arg.Any<KernelAircraftData>(),
@@ -181,7 +176,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
                 var module = new BalancedFieldLengthCalculationModule();
-                
+
                 // Call
                 IEnumerable<string> messages = module.Validate(calculation);
 
@@ -189,6 +184,42 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
                 CollectionAssert.AreEqual(new[]
                 {
                     expectedMessage
+                }, messages);
+            }
+        }
+
+        [Test]
+        [TestCase(0)]
+        [TestCase(-1)]
+        public void Validate_InvalidEndFailureSpeed_ReturnsValidationMessage(int invalidEndFailureSpeed)
+        {
+            // Setup
+            var calculation = new BalancedFieldLengthCalculation();
+            SetValidAircraftData(calculation.AircraftData);
+            SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
+
+            calculation.SimulationSettings.EndFailureVelocity = invalidEndFailureSpeed;
+
+            var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
+            kernel.Validate(Arg.Any<KernelAircraftData>(),
+                            Arg.Any<double>(),
+                            Arg.Any<double>(),
+                            Arg.Any<int>())
+                  .ReturnsForAnyArgs(KernelValidationError.None);
+
+            var testFactory = new TestKernelFactory(kernel);
+            using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
+            {
+                var module = new BalancedFieldLengthCalculationModule();
+
+                // Call
+                IEnumerable<string> messages = module.Validate(calculation);
+
+                // Assert
+                CollectionAssert.AreEqual(new[]
+                {
+                    "End failure velocity must be larger than 0."
                 }, messages);
             }
         }
@@ -291,7 +322,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
                 var module = new BalancedFieldLengthCalculationModule();
-                
+
                 // Call
                 TestDelegate call = () => module.Calculate(calculation);
 
@@ -355,6 +386,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             data.MaximumNrOfIterations = random.Next();
             data.Density = random.NextDouble();
             data.GravitationalAcceleration = random.NextDouble();
+            data.EndFailureVelocity = random.Next();
         }
     }
 }

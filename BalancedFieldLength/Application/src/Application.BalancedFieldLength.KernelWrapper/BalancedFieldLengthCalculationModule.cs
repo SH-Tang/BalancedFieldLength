@@ -20,6 +20,7 @@ using System.Collections.Generic;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
+using Application.BalancedFieldLength.KernelWrapper.Properties;
 using Simulator.Calculator.AggregatedDistanceCalculator;
 using Simulator.Calculator.Integrators;
 using Simulator.Components.Integrators;
@@ -71,19 +72,24 @@ namespace Application.BalancedFieldLength.KernelWrapper
                                                                          engineData.NrOfFailedEngines);
 
                 var messages = new List<string>();
+                if (generalSimulationSettings.EndFailureVelocity < 1)
+                {
+                    messages.Add(Resources.BalancedFieldLengthCalculationModule_ValidationMessage_End_failure_velocity_must_be_larger_than_Zero);
+                }
+
                 if (validationResult.HasFlag(KernelValidationError.InvalidDensity))
                 {
-                    messages.Add("Density is invalid.");
+                    messages.Add(Resources.BalancedFieldLengthCalculationModule_ValidationMessage_Invalid_Density);
                 }
 
                 if (validationResult.HasFlag(KernelValidationError.InvalidGravitationalAcceleration))
                 {
-                    messages.Add("Gravitational acceleration is invalid.");
+                    messages.Add(Resources.BalancedFieldLengthCalculationModule_ValidationMessage_Invalid_GravitationalAcceleration);
                 }
 
                 if (validationResult.HasFlag(KernelValidationError.InvalidNrOfFailedEngines))
                 {
-                    messages.Add("Number of failed engines is invalid.");
+                    messages.Add(Resources.BalancedFieldLengthCalculationModule_ValidationMessage_Invalid_NrOfFailedEngines);
                 }
 
                 return messages;
