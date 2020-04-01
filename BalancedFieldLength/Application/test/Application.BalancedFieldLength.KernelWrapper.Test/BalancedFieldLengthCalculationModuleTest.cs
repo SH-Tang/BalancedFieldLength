@@ -92,7 +92,8 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             kernel.Validate(null,
                             double.NaN,
                             double.NaN,
-                            0).ReturnsForAnyArgs(KernelValidationError.None);
+                            0)
+                  .ReturnsForAnyArgs(KernelValidationError.None);
 
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
@@ -137,7 +138,8 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             kernel.Validate(Arg.Any<KernelAircraftData>(),
                             Arg.Any<double>(),
                             Arg.Any<double>(),
-                            Arg.Any<int>()).ReturnsForAnyArgs(KernelValidationError.None);
+                            Arg.Any<int>())
+                  .ReturnsForAnyArgs(KernelValidationError.None);
 
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
@@ -177,7 +179,8 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             kernel.Validate(Arg.Any<KernelAircraftData>(),
                             Arg.Any<double>(),
                             Arg.Any<double>(),
-                            Arg.Any<int>()).ReturnsForAnyArgs(error);
+                            Arg.Any<int>())
+                  .ReturnsForAnyArgs(error);
 
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
@@ -193,6 +196,21 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
                     expectedMessage
                 }, messages);
             }
+        }
+
+        [Test]
+        public void Calculate_CalculationNull_ThrowsArgumentNullException()
+        {
+            // Setup
+            var module = new BalancedFieldLengthCalculationModule();
+
+            // Call
+            TestDelegate call = () => module.Calculate(null);
+
+            // Assert
+            Assert.That(call, Throws.TypeOf<ArgumentNullException>()
+                                    .With.Property(nameof(ArgumentNullException.ParamName))
+                                    .EqualTo("calculation"));
         }
 
         [Test]
@@ -332,6 +350,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var random = new Random(21);
             data.NrOfEngines = random.Next();
             data.ThrustPerEngine = random.NextDouble();
+            data.NrOfFailedEngines = data.NrOfEngines - 1;
         }
 
         private static void SetSimulationSettingsData(GeneralSimulationSettingsData data)

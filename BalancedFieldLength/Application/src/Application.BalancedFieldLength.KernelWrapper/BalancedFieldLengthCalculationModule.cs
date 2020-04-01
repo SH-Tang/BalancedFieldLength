@@ -102,13 +102,18 @@ namespace Application.BalancedFieldLength.KernelWrapper
         /// </summary>
         /// <param name="calculation">The <see cref="BalancedFieldLengthCalculation"/> to calculate for.</param>
         /// <returns>A <see cref="BalancedFieldLengthOutput"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="calculation"/> is <c>null</c>.</exception>
         /// <exception cref="CreateKernelDataException">Thrown when the calculation input
         /// could not be created for the kernel.</exception>
         /// <exception cref="KernelCalculationException">Thrown when <see cref="AggregatedDistanceOutput"/>
         /// could not be calculated.</exception>
         public BalancedFieldLengthOutput Calculate(BalancedFieldLengthCalculation calculation)
         {
-            
+            if (calculation == null)
+            {
+                throw new ArgumentNullException(nameof(calculation));
+            }
+
             GeneralSimulationSettingsData generalSimulationSettings = calculation.SimulationSettings;
             double density = generalSimulationSettings.Density;
             int endVelocity = generalSimulationSettings.EndFailureVelocity;
