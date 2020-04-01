@@ -15,33 +15,16 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
-namespace Application.BalancedFieldLength.KernelWrapper
+namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
 {
     /// <summary>
-    /// Factory that creates balanced field length calculation modules.
+    /// Implementation of <see cref="IBalancedFieldLengthCalculationModuleFactory"/> which can be used for testing.
     /// </summary>
-    public class BalancedFieldLengthCalculationModuleFactory : IBalancedFieldLengthCalculationModuleFactory
+    public class TestBalancedFieldLengthCalculationModuleFactory : IBalancedFieldLengthCalculationModuleFactory
     {
-        private static IBalancedFieldLengthCalculationModuleFactory instance;
-
-        /// <summary>
-        /// Gets the current instance of <see cref="BalancedFieldLengthKernelFactory"/>.
-        /// </summary>
-        public static IBalancedFieldLengthCalculationModuleFactory Instance
-        {
-            get
-            {
-                return instance ?? (instance = new BalancedFieldLengthCalculationModuleFactory());
-            }
-            internal set
-            {
-                instance = value;
-            }
-        }
-
         public IBalancedFieldLengthCalculationModule CreateModule()
         {
-            return new BalancedFieldLengthCalculationModule();
+            return new TestBalancedFieldLengthCalculationModule();
         }
     }
 }
