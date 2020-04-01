@@ -24,6 +24,7 @@
     <Compile Include="AerodynamicsDataTestHelper.cs" />
     <Compile Include="AircraftDataTestHelper.cs" />
     <Compile Include="BalancedFieldLengthKernelFactoryConfig.cs" />
+    <Compile Include="CalculationSettingsTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestKernelFactory.cs" />
   </ItemGroup>

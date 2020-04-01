@@ -19,6 +19,7 @@ using System;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
+using Application.BalancedFieldLength.KernelWrapper.TestUtils;
 using NUnit.Framework;
 using Simulator.Data;
 
@@ -59,9 +60,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
             CalculationSettings calculationSettings = CalculationSettingsFactory.Create(settings, failureSpeed);
 
             // Assert
-            Assert.That(calculationSettings.TimeStep, Is.EqualTo(settings.TimeStep));
-            Assert.That(calculationSettings.MaximumNrOfTimeSteps, Is.EqualTo(settings.MaximumNrOfIterations));
-            Assert.That(calculationSettings.FailureSpeed, Is.EqualTo(failureSpeed));
+            CalculationSettingsTestHelper.AssertCalculationSettings(settings, failureSpeed, calculationSettings);
         }
 
         [Test]
