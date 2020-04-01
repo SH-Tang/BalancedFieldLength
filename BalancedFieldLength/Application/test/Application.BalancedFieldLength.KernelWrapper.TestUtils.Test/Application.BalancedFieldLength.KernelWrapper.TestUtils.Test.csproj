@@ -34,6 +34,7 @@
     </Compile>
     <Compile Include="BalancedFieldLengthKernelFactoryConfigTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBalancedFieldLengthCalculationModuleTest.cs" />
     <Compile Include="TestKernelFactoryTest.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -46,6 +47,10 @@
     <ProjectReference Include="..\..\..\Simulator\src\Simulator.Kernel\Simulator.Kernel.csproj">
       <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
       <Name>Simulator.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
     </ProjectReference>
     <ProjectReference Include="..\..\src\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
       <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>

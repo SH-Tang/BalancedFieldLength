@@ -26,6 +26,7 @@
     <Compile Include="BalancedFieldLengthKernelFactoryConfig.cs" />
     <Compile Include="CalculationSettingsTestHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestBalancedFieldLengthCalculationModule.cs" />
     <Compile Include="TestKernelFactory.cs" />
   </ItemGroup>
   <ItemGroup>
