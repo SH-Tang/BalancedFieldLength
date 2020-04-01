@@ -87,12 +87,13 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var calculation = new BalancedFieldLengthCalculation();
             SetValidAircraftData(calculation.AircraftData);
             SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
 
             var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
-            kernel.Validate(null,
-                            double.NaN,
-                            double.NaN,
-                            0)
+            kernel.Validate(Arg.Any<KernelAircraftData>(),
+                            Arg.Any<double>(),
+                            Arg.Any<double>(),
+                            Arg.Any<int>())
                   .ReturnsForAnyArgs(KernelValidationError.None);
 
             var testFactory = new TestKernelFactory(kernel);
@@ -123,16 +124,13 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             // Setup
             var random = new Random(21);
             int nrOfFailedEngines = random.Next();
-            double density = random.NextDouble();
-            double gravitationalAcceleration = random.NextDouble();
 
             var calculation = new BalancedFieldLengthCalculation();
             SetValidAircraftData(calculation.AircraftData);
             SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
 
-            calculation.SimulationSettings.Density = density;
             calculation.EngineData.NrOfFailedEngines = nrOfFailedEngines;
-            calculation.SimulationSettings.GravitationalAcceleration = gravitationalAcceleration;
 
             var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
             kernel.Validate(Arg.Any<KernelAircraftData>(),
@@ -164,16 +162,13 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             // Setup
             var random = new Random(21);
             int nrOfFailedEngines = random.Next();
-            double density = random.NextDouble();
-            double gravitationalAcceleration = random.NextDouble();
 
             var calculation = new BalancedFieldLengthCalculation();
             SetValidAircraftData(calculation.AircraftData);
             SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
 
-            calculation.SimulationSettings.Density = density;
             calculation.EngineData.NrOfFailedEngines = nrOfFailedEngines;
-            calculation.SimulationSettings.GravitationalAcceleration = gravitationalAcceleration;
 
             var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
             kernel.Validate(Arg.Any<KernelAircraftData>(),
@@ -356,9 +351,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         private static void SetSimulationSettingsData(GeneralSimulationSettingsData data)
         {
             var random = new Random(21);
-
             data.TimeStep = random.NextDouble();
             data.MaximumNrOfIterations = random.Next();
+            data.Density = random.NextDouble();
+            data.GravitationalAcceleration = random.NextDouble();
         }
     }
 }
