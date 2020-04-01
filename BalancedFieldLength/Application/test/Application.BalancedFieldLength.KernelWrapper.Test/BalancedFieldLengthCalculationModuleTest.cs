@@ -30,7 +30,7 @@ using KernelAircraftData = Simulator.Data.AircraftData;
 namespace Application.BalancedFieldLength.KernelWrapper.Test
 {
     [TestFixture]
-    public class BalancedFieldLengthCalculatorTest
+    public class BalancedFieldLengthCalculationModuleTest
     {
         [Test]
         public void Validate_CalculationNull_ThrowsArgumentNullException()
