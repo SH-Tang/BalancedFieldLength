@@ -19,12 +19,19 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.TestUtils;
 using Core.Common.TestUtil;
 using NSubstitute;
 using NSubstitute.Core;
+using NSubstitute.ExceptionExtensions;
 using NUnit.Framework;
+using Simulator.Calculator.AggregatedDistanceCalculator;
+using Simulator.Components.Integrators;
+using Simulator.Data;
+using Simulator.Data.Exceptions;
 using Simulator.Kernel;
+using AircraftData = Application.BalancedFieldLength.Data.AircraftData;
 using KernelAircraftData = Simulator.Data.AircraftData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.Test
@@ -35,8 +42,11 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         [Test]
         public void Validate_CalculationNull_ThrowsArgumentNullException()
         {
+            // Setup 
+            var module = new BalancedFieldLengthCalculationModule();
+            
             // Call
-            TestDelegate call = () => BalancedFieldLengthCalculationModule.Validate(null);
+            TestDelegate call = () => module.Validate(null);
 
             Assert.That(call, Throws.ArgumentNullException
                                     .With.Property(nameof(ArgumentNullException.ParamName))
@@ -57,8 +67,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
+                var module = new BalancedFieldLengthCalculationModule();
+
                 // Call
-                IEnumerable<string> messages = BalancedFieldLengthCalculationModule.Validate(calculation);
+                IEnumerable<string> messages = module.Validate(calculation);
 
                 // Assert
                 CollectionAssert.AreEqual(new[]
@@ -85,8 +97,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
+                var module = new BalancedFieldLengthCalculationModule();
+
                 // Call
-                BalancedFieldLengthCalculationModule.Validate(calculation);
+                module.Validate(calculation);
 
                 // Assert
                 ICall calls = kernel.ReceivedCalls().Single();
@@ -128,8 +142,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
+                var module = new BalancedFieldLengthCalculationModule();
+                
                 // Call
-                IEnumerable<string> messages = BalancedFieldLengthCalculationModule.Validate(calculation);
+                IEnumerable<string> messages = module.Validate(calculation);
 
                 // Assert
                 CollectionAssert.IsEmpty(messages);
@@ -166,8 +182,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var testFactory = new TestKernelFactory(kernel);
             using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
             {
+                var module = new BalancedFieldLengthCalculationModule();
+                
                 // Call
-                IEnumerable<string> messages = BalancedFieldLengthCalculationModule.Validate(calculation);
+                IEnumerable<string> messages = module.Validate(calculation);
 
                 // Assert
                 CollectionAssert.AreEqual(new[]
@@ -175,6 +193,120 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
                     expectedMessage
                 }, messages);
             }
+        }
+
+        [Test]
+        public void Calculate_WithValidArgumentsAndResult_ReturnsExpectedOutput()
+        {
+            // Setup
+            var random = new Random(21);
+            int nrOfFailedEngines = random.Next();
+            double density = random.NextDouble();
+            double gravitationalAcceleration = random.NextDouble();
+
+            var calculation = new BalancedFieldLengthCalculation();
+            SetValidAircraftData(calculation.AircraftData);
+            SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
+
+            calculation.SimulationSettings.Density = density;
+            calculation.SimulationSettings.GravitationalAcceleration = gravitationalAcceleration;
+            calculation.SimulationSettings.EndFailureVelocity = 3;
+
+            calculation.EngineData.NrOfFailedEngines = nrOfFailedEngines;
+
+            const double expectedVelocity = 11;
+            const double expectedDistance = 20;
+            var outputs = new[]
+            {
+                new AggregatedDistanceOutput(10, 10, 30),
+                new AggregatedDistanceOutput(expectedVelocity, expectedDistance, 20),
+                new AggregatedDistanceOutput(12, 30, 10)
+            };
+
+            var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
+            kernel.Calculate(Arg.Any<KernelAircraftData>(),
+                             Arg.Any<EulerIntegrator>(),
+                             Arg.Any<int>(),
+                             Arg.Any<double>(),
+                             Arg.Any<double>(),
+                             Arg.Any<CalculationSettings>())
+                  .Returns(outputs[0], outputs[1], outputs[2]);
+
+            var testFactory = new TestKernelFactory(kernel);
+            using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
+            {
+                var module = new BalancedFieldLengthCalculationModule();
+
+                // Call
+                BalancedFieldLengthOutput output = module.Calculate(calculation);
+
+                // Assert
+                Assert.That(output.Velocity, Is.EqualTo(expectedVelocity));
+                Assert.That(output.Distance, Is.EqualTo(expectedDistance));
+
+                ICall[] calls = kernel.ReceivedCalls().ToArray();
+                Assert.That(calls.Length, Is.EqualTo(3));
+                AssertCalculateCall(calls[0], calculation, 0);
+                AssertCalculateCall(calls[1], calculation, 1);
+                AssertCalculateCall(calls[2], calculation, 2);
+            }
+        }
+
+        [Test]
+        public void Calculate_CalculatorThrowsCalculateException_ThrowsKernelCalculateException()
+        {
+            // Setup
+            var calculation = new BalancedFieldLengthCalculation();
+            SetValidAircraftData(calculation.AircraftData);
+            SetEngineData(calculation.EngineData);
+            SetSimulationSettingsData(calculation.SimulationSettings);
+
+            calculation.SimulationSettings.EndFailureVelocity = 1;
+
+            var kernel = Substitute.For<IAggregatedDistanceCalculatorKernel>();
+            var calculatorException = new CalculatorException("Can't calculate this.");
+            kernel.Calculate(Arg.Any<KernelAircraftData>(),
+                             Arg.Any<EulerIntegrator>(),
+                             Arg.Any<int>(),
+                             Arg.Any<double>(),
+                             Arg.Any<double>(),
+                             Arg.Any<CalculationSettings>())
+                  .ThrowsForAnyArgs(calculatorException);
+
+            var testFactory = new TestKernelFactory(kernel);
+            using (new BalancedFieldLengthKernelFactoryConfig(testFactory))
+            {
+                var module = new BalancedFieldLengthCalculationModule();
+                
+                // Call
+                TestDelegate call = () => module.Calculate(calculation);
+
+                // Assert
+                var exception = Assert.Throws<KernelCalculationException>(call);
+                Assert.That(exception.InnerException, Is.SameAs(calculatorException));
+                Assert.That(exception.Message, Is.EqualTo(calculatorException.Message));
+            }
+        }
+
+        private static void AssertCalculateCall(ICall call,
+                                                BalancedFieldLengthCalculation calculation,
+                                                int failureVelocity)
+        {
+            object[] arguments = call.GetArguments();
+            AircraftDataTestHelper.AssertAircraftData(calculation.AircraftData,
+                                                      calculation.EngineData,
+                                                      (KernelAircraftData) arguments[0]);
+
+            Assert.That(arguments[1], Is.TypeOf<EulerIntegrator>());
+
+            GeneralSimulationSettingsData simulationSettings = calculation.SimulationSettings;
+            Assert.That(arguments[2], Is.EqualTo(calculation.EngineData.NrOfFailedEngines));
+            Assert.That(arguments[3], Is.EqualTo(simulationSettings.Density));
+            Assert.That(arguments[4], Is.EqualTo(simulationSettings.GravitationalAcceleration));
+
+            CalculationSettingsTestHelper.AssertCalculationSettings(simulationSettings, failureVelocity,
+                                                                    (CalculationSettings) arguments[5]);
         }
 
         private static void SetValidAircraftData(AircraftData data)
@@ -200,6 +332,14 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
             var random = new Random(21);
             data.NrOfEngines = random.Next();
             data.ThrustPerEngine = random.NextDouble();
+        }
+
+        private static void SetSimulationSettingsData(GeneralSimulationSettingsData data)
+        {
+            var random = new Random(21);
+
+            data.TimeStep = random.NextDouble();
+            data.MaximumNrOfIterations = random.Next();
         }
     }
 }

@@ -20,16 +20,31 @@ using System.Collections.Generic;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
+using Simulator.Calculator.AggregatedDistanceCalculator;
+using Simulator.Calculator.Integrators;
+using Simulator.Components.Integrators;
+using Simulator.Data;
+using Simulator.Data.Exceptions;
 using Simulator.Kernel;
 using AircraftData = Simulator.Data.AircraftData;
 
 namespace Application.BalancedFieldLength.KernelWrapper
 {
     /// <summary>
-    /// Class which performs the balanced field length calculation.
+    /// Module to validate and calculate the balanced field length calculation.
     /// </summary>
-    public static class BalancedFieldLengthCalculationModule
+    public class BalancedFieldLengthCalculationModule
     {
+        private readonly IAggregatedDistanceCalculatorKernel kernel;
+
+        /// <summary>
+        /// Creates a new instance of <see cref="BalancedFieldLengthCalculationModule"/>.
+        /// </summary>
+        public BalancedFieldLengthCalculationModule()
+        {
+            kernel = BalancedFieldLengthKernelFactory.Instance.CreateDistanceCalculatorKernel();
+        }
+
         /// <summary>
         /// Validates a <see cref="BalancedFieldLengthCalculation"/>.
         /// </summary>
@@ -37,7 +52,7 @@ namespace Application.BalancedFieldLength.KernelWrapper
         /// <returns>A collection of validation messages if the validation failed, empty otherwise.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="calculation"/>
         /// is <c>null</c>.</exception>
-        public static IEnumerable<string> Validate(BalancedFieldLengthCalculation calculation)
+        public IEnumerable<string> Validate(BalancedFieldLengthCalculation calculation)
         {
             if (calculation == null)
             {
@@ -46,7 +61,6 @@ namespace Application.BalancedFieldLength.KernelWrapper
 
             try
             {
-                IAggregatedDistanceCalculatorKernel kernel = BalancedFieldLengthKernelFactory.Instance.CreateDistanceCalculatorKernel();
                 EngineData engineData = calculation.EngineData;
                 GeneralSimulationSettingsData generalSimulationSettings = calculation.SimulationSettings;
 
@@ -81,6 +95,102 @@ namespace Application.BalancedFieldLength.KernelWrapper
                     e.Message
                 };
             }
+        }
+
+        /// <summary>
+        /// Calculates the <see cref="BalancedFieldLengthOutput"/> based on <paramref name="calculation"/>.
+        /// </summary>
+        /// <param name="calculation">The <see cref="BalancedFieldLengthCalculation"/> to calculate for.</param>
+        /// <returns>A <see cref="BalancedFieldLengthOutput"/>.</returns>
+        /// <exception cref="CreateKernelDataException">Thrown when the calculation input
+        /// could not be created for the kernel.</exception>
+        /// <exception cref="KernelCalculationException">Thrown when <see cref="AggregatedDistanceOutput"/>
+        /// could not be calculated.</exception>
+        public BalancedFieldLengthOutput Calculate(BalancedFieldLengthCalculation calculation)
+        {
+            
+            GeneralSimulationSettingsData generalSimulationSettings = calculation.SimulationSettings;
+            double density = generalSimulationSettings.Density;
+            int endVelocity = generalSimulationSettings.EndFailureVelocity;
+            double gravitationalAcceleration = generalSimulationSettings.GravitationalAcceleration;
+
+            EngineData engineData = calculation.EngineData;
+            int nrOfFailedEngines = engineData.NrOfFailedEngines;
+            AircraftData aircraftData = AircraftDataFactory.Create(calculation.AircraftData, engineData);
+
+            var integrator = new EulerIntegrator();
+
+            var outputs = new List<AggregatedDistanceOutput>();
+            for (var i = 0; i < endVelocity; i++)
+            {
+                var calculationInput = new CalculationInput(generalSimulationSettings,
+                                                            i,
+                                                            aircraftData,
+                                                            integrator,
+                                                            nrOfFailedEngines,
+                                                            density,
+                                                            gravitationalAcceleration);
+                AggregatedDistanceOutput output = CalculateDistances(calculationInput);
+                outputs.Add(output);
+            }
+
+            return BalancedFieldLengthOutputFactory.Create(outputs);
+        }
+
+        /// <summary>
+        /// Calculates the <see cref="AggregatedDistanceOutput"/> based on the calculation input.
+        /// </summary>
+        /// <param name="calculationInput">The calculation input to calculate for.</param>
+        /// <returns>A <see cref="AggregatedDistanceOutput"/>.</returns>
+        /// <exception cref="CreateKernelDataException">Thrown when the calculation input
+        /// could not be created for the kernel.</exception>
+        /// <exception cref="KernelCalculationException">Thrown when <see cref="AggregatedDistanceOutput"/>
+        /// could not be calculated.</exception>
+        private AggregatedDistanceOutput CalculateDistances(CalculationInput calculationInput)
+        {
+            try
+            {
+                CalculationSettings simulationSettings = CalculationSettingsFactory.Create(calculationInput.GeneralSimulationSettings,
+                                                                                           calculationInput.FailureVelocity);
+                return kernel.Calculate(calculationInput.AircraftData,
+                                        calculationInput.Integrator,
+                                        calculationInput.NrOfFailedEngines,
+                                        calculationInput.Density,
+                                        calculationInput.GravitationalAcceleration,
+                                        simulationSettings);
+            }
+            catch (CalculatorException e)
+            {
+                throw new KernelCalculationException(e.Message, e);
+            }
+        }
+
+        private class CalculationInput
+        {
+            public CalculationInput(GeneralSimulationSettingsData generalSimulationSettings,
+                                    int failureVelocity,
+                                    AircraftData aircraftData,
+                                    IIntegrator integrator,
+                                    int nrOfFailedEngines,
+                                    double density,
+                                    double gravitationalAcceleration)
+            {
+                GeneralSimulationSettings = generalSimulationSettings;
+                FailureVelocity = failureVelocity;
+                AircraftData = aircraftData;
+                Integrator = integrator;
+                NrOfFailedEngines = nrOfFailedEngines;
+                Density = density;
+                GravitationalAcceleration = gravitationalAcceleration;
+            }
+
+            public GeneralSimulationSettingsData GeneralSimulationSettings { get; }
+            public int FailureVelocity { get; }
+            public AircraftData AircraftData { get; }
+            public IIntegrator Integrator { get; }
+            public int NrOfFailedEngines { get; }
+            public double Density { get; }
+            public double GravitationalAcceleration { get; }
         }
     }
 }
