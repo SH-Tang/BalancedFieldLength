@@ -157,7 +157,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
-                         Text="{Binding Path=LiftCoefficientGradient,
+                         Text="{Binding Path=MaximumLiftCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
                                 Mode=TwoWay}"/>
 
@@ -207,7 +207,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
-                         Text="{Binding Path=RestDragCoefficient,
+                         Text="{Binding Path=RestDragCoefficientWithEngineFailure,
                                 Converter={StaticResource DoubleValueConverter},
                                 Mode=TwoWay}"/>
 
@@ -219,7 +219,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
-                         Text="{Binding Path=RestDragCoefficient,
+                         Text="{Binding Path=RollResistanceCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
                                 Mode=TwoWay}"/>
 
@@ -231,7 +231,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
-                         Text="{Binding Path=RestDragCoefficient,
+                         Text="{Binding Path=RollResistanceWithBrakesCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
                                 Mode=TwoWay}"/>
 
