@@ -16,8 +16,8 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.ComponentModel;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Views.TabViews;
 using NUnit.Framework;
 using WPF.Components.TabControl;
@@ -29,29 +29,44 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
     public class GeneralSimulationSettingsTabViewModelTest
     {
         [Test]
-        public static void Constructor_ExpectedValues()
+        public void Constructor_SettingsNull_ThrowsArgumentNullException()
         {
             // Call
-            var viewModel = new GeneralSimulationSettingsTabViewModel();
+            TestDelegate call = () => new GeneralSimulationSettingsTabViewModel(null);
+
+            // Assert
+            Assert.That(call, Throws.ArgumentNullException
+                                    .With.Property(nameof(ArgumentNullException.ParamName))
+                                    .EqualTo("settings"));
+        }
+
+        [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var settings = new GeneralSimulationSettingsData();
+
+            // Call
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
 
             // Assert
             Assert.That(viewModel, Is.InstanceOf<ITabViewModel>());
             Assert.That(viewModel, Is.InstanceOf<ViewModelBase>());
             Assert.That(viewModel.TabName, Is.EqualTo("Simulation Settings"));
-            Assert.That(viewModel.MaximumNrOfIterations, Is.Zero);
-            Assert.That(viewModel.TimeStep, Is.NaN);
-            Assert.That(viewModel.EndFailureVelocity, Is.Zero);
-            Assert.That(viewModel.GravitationalAcceleration, Is.EqualTo(9.81));
-            Assert.That(viewModel.Density, Is.EqualTo(1.225));
+
+            Assert.That(viewModel.MaximumNrOfIterations, Is.EqualTo(settings.MaximumNrOfIterations));
+            Assert.That(viewModel.TimeStep, Is.EqualTo(settings.TimeStep));
+            Assert.That(viewModel.EndFailureVelocity, Is.EqualTo(settings.EndFailureVelocity));
+            Assert.That(viewModel.GravitationalAcceleration, Is.EqualTo(settings.GravitationalAcceleration));
+            Assert.That(viewModel.Density, Is.EqualTo(settings.Density));
         }
 
         [Test]
-        [TestCaseSource(nameof(GetNotifyPropertyChangedTestCases))]
-        public void Property_ValueChanges_RaisesNotifyPropertyChangedEvent(Action<GeneralSimulationSettingsTabViewModel> propertyChangeAction,
-                                                                           string propertyName)
+        public void MaximumNrOfIterations_ValueChanges_RaisesNotifyPropertyChangedEvent()
         {
             // Setup
-            var viewModel = new GeneralSimulationSettingsTabViewModel();
+            var settings = new GeneralSimulationSettingsData();
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
 
             bool propertyChangedTriggered = false;
             PropertyChangedEventArgs eventArgs = null;
@@ -61,34 +76,134 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
                 eventArgs = e;
             };
 
+            var random = new Random(21);
+            int newValue = random.Next();
+
             // Call 
-            propertyChangeAction(viewModel);
+            viewModel.MaximumNrOfIterations = newValue;
 
             // Assert
             Assert.That(propertyChangedTriggered, Is.True);
 
             Assert.That(eventArgs, Is.Not.Null);
-            Assert.That(eventArgs.PropertyName, Is.EqualTo(propertyName));
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(GeneralSimulationSettingsTabViewModel.MaximumNrOfIterations)));
+            Assert.That(settings.MaximumNrOfIterations, Is.EqualTo(newValue));
         }
 
-        private static IEnumerable<TestCaseData> GetNotifyPropertyChangedTestCases()
+        [Test]
+        public void TimeStep_ValueChanges_RaisesNotifyPropertyChangedEvent()
         {
-            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.MaximumNrOfIterations = 1),
-                                          nameof(GeneralSimulationSettingsTabViewModel.MaximumNrOfIterations))
-                .SetName("Maximum number of iterations");
-            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.TimeStep = 0.1),
-                                          nameof(GeneralSimulationSettingsTabViewModel.TimeStep))
-                .SetName("Time step");
-            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.EndFailureVelocity = 1),
-                                          nameof(GeneralSimulationSettingsTabViewModel.EndFailureVelocity))
-                .SetName("End failure velocity");
+            // Setup
+            var settings = new GeneralSimulationSettingsData();
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
 
-            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.GravitationalAcceleration = 0),
-                                          nameof(GeneralSimulationSettingsTabViewModel.GravitationalAcceleration))
-                .SetName("Gravitational acceleration");
-            yield return new TestCaseData(new Action<GeneralSimulationSettingsTabViewModel>(vm => vm.Density = 2.0),
-                                          nameof(GeneralSimulationSettingsTabViewModel.Density))
-                .SetName("Gravitational acceleration");
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+
+            var random = new Random(21);
+            double newValue = random.NextDouble();
+
+            // Call 
+            viewModel.TimeStep = newValue;
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+
+            Assert.That(eventArgs, Is.Not.Null);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(GeneralSimulationSettingsTabViewModel.TimeStep)));
+            Assert.That(settings.TimeStep, Is.EqualTo(newValue));
+        }
+
+        [Test]
+        public void EndFailureVelocity_ValueChanges_RaisesNotifyPropertyChangedEvent()
+        {
+            // Setup
+            var settings = new GeneralSimulationSettingsData();
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
+
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+
+            var random = new Random(21);
+            int newValue = random.Next();
+
+            // Call 
+            viewModel.EndFailureVelocity = newValue;
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+
+            Assert.That(eventArgs, Is.Not.Null);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(GeneralSimulationSettingsTabViewModel.EndFailureVelocity)));
+            Assert.That(settings.EndFailureVelocity, Is.EqualTo(newValue));
+        }
+
+        [Test]
+        public void GravitationalAcceleration_ValueChanges_RaisesNotifyPropertyChangedEvent()
+        {
+            // Setup
+            var settings = new GeneralSimulationSettingsData();
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
+
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+
+            var random = new Random(21);
+            double newValue = random.NextDouble();
+
+            // Call 
+            viewModel.GravitationalAcceleration = newValue;
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+
+            Assert.That(eventArgs, Is.Not.Null);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(GeneralSimulationSettingsTabViewModel.GravitationalAcceleration)));
+            Assert.That(settings.GravitationalAcceleration, Is.EqualTo(newValue));
+        }
+
+        [Test]
+        public void Density_ValueChanges_RaisesNotifyPropertyChangedEvent()
+        {
+            // Setup
+            var settings = new GeneralSimulationSettingsData();
+            var viewModel = new GeneralSimulationSettingsTabViewModel(settings);
+
+            bool propertyChangedTriggered = false;
+            PropertyChangedEventArgs eventArgs = null;
+            viewModel.PropertyChanged += (o, e) =>
+            {
+                propertyChangedTriggered = true;
+                eventArgs = e;
+            };
+
+            var random = new Random(21);
+            double newValue = random.NextDouble();
+
+            // Call 
+            viewModel.Density = newValue;
+
+            // Assert
+            Assert.That(propertyChangedTriggered, Is.True);
+
+            Assert.That(eventArgs, Is.Not.Null);
+            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(GeneralSimulationSettingsTabViewModel.Density)));
+            Assert.That(settings.Density, Is.EqualTo(newValue));
         }
     }
 }

@@ -20,7 +20,7 @@ using System;
 namespace Core.Common.Data
 {
     /// <summary>
-    /// Represents an angle between 0 and 360 degrees.
+    /// Represents an angle.
     /// </summary>
     public struct Angle
     {

@@ -113,6 +113,11 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{bc4da602-fab8-4c71-9cd5-dcf08c85ab13}</Project>
+      <Name>Core.Common.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
       <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
       <Name>WPF.Components</Name>
@@ -122,6 +127,15 @@
       <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
       <Name>WPF.Core</Name>
       <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
+      <Private>False</Private>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
+      <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
+      <Name>Application.BalancedFieldLength.KernelWrapper</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

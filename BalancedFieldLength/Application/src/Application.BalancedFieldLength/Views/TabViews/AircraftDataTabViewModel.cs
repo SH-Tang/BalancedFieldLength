@@ -15,7 +15,10 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Properties;
+using Core.Common.Data;
 using WPF.Components.TabControl;
 using WPF.Core;
 
@@ -26,15 +29,16 @@ namespace Application.BalancedFieldLength.Views.TabViews
     /// </summary>
     public class AircraftDataTabViewModel : ViewModelBase, ITabViewModel
     {
+        private readonly AircraftData aircraftData;
         private double takeOffWeight;
-        private double pitchGradient;
-        private double maximumPitchAngle;
+        private Angle pitchGradient;
+        private Angle maximumPitchAngle;
         private double wingSurfaceArea;
         private double aspectRatio;
         private double oswaldFactor;
         private double maximumLiftCoefficient;
         private double liftCoefficientGradient;
-        private double zeroLiftAngleOfAttack;
+        private Angle zeroLiftAngleOfAttack;
         private double restDragCoefficient;
         private double restDragCoefficientWithEngineFailure;
         private double rollResistanceCoefficient;
@@ -43,25 +47,34 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <summary>
         /// Creates a new instance of <see cref="AircraftDataTabViewModel"/>.
         /// </summary>
-        public AircraftDataTabViewModel()
+        /// <param name="aircraftData">The <see cref="AircraftData"/> to create the view model for.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="aircraftData"/> is <c>null</c>.</exception>
+        public AircraftDataTabViewModel(AircraftData aircraftData)
         {
-            TakeOffWeight = double.NaN;
-            PitchGradient = double.NaN;
-            MaximumPitchAngle = double.NaN;
+            if (aircraftData == null)
+            {
+                throw new ArgumentNullException(nameof(aircraftData));
+            }
 
-            WingSurfaceArea = double.NaN;
-            AspectRatio = double.NaN;
-            OswaldFactor = double.NaN;
+            this.aircraftData = aircraftData;
 
-            MaximumLiftCoefficient = double.NaN;
-            LiftCoefficientGradient = double.NaN;
-            ZeroLiftAngleOfAttack = double.NaN;
+            TakeOffWeight = aircraftData.TakeOffWeight;
+            PitchGradient = aircraftData.PitchGradient;
+            MaximumPitchAngle = aircraftData.MaximumPitchAngle;
 
-            RestDragCoefficient = double.NaN;
-            RestDragCoefficientWithEngineFailure = double.NaN;
+            WingSurfaceArea = aircraftData.WingSurfaceArea;
+            AspectRatio = aircraftData.AspectRatio;
+            OswaldFactor = aircraftData.OswaldFactor;
 
-            RollResistanceCoefficient = double.NaN;
-            RollResistanceWithBrakesCoefficient = double.NaN;
+            MaximumLiftCoefficient = aircraftData.MaximumLiftCoefficient;
+            LiftCoefficientGradient = aircraftData.LiftCoefficientGradient;
+            ZeroLiftAngleOfAttack = aircraftData.ZeroLiftAngleOfAttack;
+
+            RestDragCoefficient = aircraftData.RestDragCoefficient;
+            RestDragCoefficientWithEngineFailure = aircraftData.RestDragCoefficientWithEngineFailure;
+
+            RollResistanceCoefficient = aircraftData.RollResistanceCoefficient;
+            RollResistanceWithBrakesCoefficient = aircraftData.RollResistanceWithBrakesCoefficient;
         }
 
         /// <summary>
@@ -76,6 +89,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 takeOffWeight = value;
+                aircraftData.TakeOffWeight = value;
                 OnPropertyChanged(nameof(TakeOffWeight));
             }
         }
@@ -86,7 +100,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <remarks>The linear gradient in which the pitch angle
         /// increases from 0 angle to the maximum pitch angle as a function
         /// of time.</remarks>
-        public double PitchGradient
+        public Angle PitchGradient
         {
             get
             {
@@ -95,6 +109,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 pitchGradient = value;
+                aircraftData.PitchGradient = value;
                 OnPropertyChanged(nameof(PitchGradient));
             }
         }
@@ -103,7 +118,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// Gets or sets the maximum pitch angle. [-]
         /// </summary>
         /// <remarks>Also denoted as ThetaMax</remarks>
-        public double MaximumPitchAngle
+        public Angle MaximumPitchAngle
         {
             get
             {
@@ -112,6 +127,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 maximumPitchAngle = value;
+                aircraftData.MaximumPitchAngle = value;
                 OnPropertyChanged(nameof(MaximumPitchAngle));
             }
         }
@@ -129,6 +145,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 wingSurfaceArea = value;
+                aircraftData.WingSurfaceArea = value;
                 OnPropertyChanged(nameof(WingSurfaceArea));
             }
         }
@@ -146,6 +163,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 aspectRatio = value;
+                aircraftData.AspectRatio = value;
                 OnPropertyChanged(nameof(AspectRatio));
             }
         }
@@ -163,6 +181,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 oswaldFactor = value;
+                aircraftData.OswaldFactor = value;
                 OnPropertyChanged(nameof(OswaldFactor));
             }
         }
@@ -180,6 +199,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 maximumLiftCoefficient = value;
+                aircraftData.MaximumLiftCoefficient = value;
                 OnPropertyChanged(nameof(MaximumLiftCoefficient));
             }
         }
@@ -199,6 +219,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 liftCoefficientGradient = value;
+                aircraftData.LiftCoefficientGradient = value;
                 OnPropertyChanged(nameof(LiftCoefficientGradient));
             }
         }
@@ -206,7 +227,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <summary>
         /// Gets or sets the angle of attack where the lift is 0. [-]
         /// </summary>
-        public double ZeroLiftAngleOfAttack
+        public Angle ZeroLiftAngleOfAttack
         {
             get
             {
@@ -215,6 +236,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 zeroLiftAngleOfAttack = value;
+                aircraftData.ZeroLiftAngleOfAttack = value;
                 OnPropertyChanged(nameof(ZeroLiftAngleOfAttack));
             }
         }
@@ -232,6 +254,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 restDragCoefficient = value;
+                aircraftData.RestDragCoefficient = value;
                 OnPropertyChanged(nameof(RestDragCoefficient));
             }
         }
@@ -249,6 +272,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 restDragCoefficientWithEngineFailure = value;
+                aircraftData.RestDragCoefficientWithEngineFailure = value;
                 OnPropertyChanged(nameof(RestDragCoefficientWithEngineFailure));
             }
         }
@@ -266,6 +290,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 rollResistanceCoefficient = value;
+                aircraftData.RollResistanceCoefficient = value;
                 OnPropertyChanged(nameof(RollResistanceCoefficient));
             }
         }
@@ -283,6 +308,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 rollResistanceWithBrakesCoefficient = value;
+                aircraftData.RollResistanceWithBrakesCoefficient = value;
                 OnPropertyChanged(nameof(RollResistanceWithBrakesCoefficient));
             }
         }

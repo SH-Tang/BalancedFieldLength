@@ -26,7 +26,7 @@ namespace WPF.Components.TabControl
     /// <summary>
     /// The view model for a control that hosts tabs.
     /// </summary>
-    public class TabControlViewModel : INotifyPropertyChanged
+    public class TabControlViewModel : INotifyPropertyChanged, IDisposable
     {
         private ITabViewModel selectedTabItem;
         public event PropertyChangedEventHandler PropertyChanged;
@@ -66,6 +66,16 @@ namespace WPF.Components.TabControl
                 selectedTabItem = value;
                 OnPropertyChanged(nameof(SelectedTabItem));
             }
+        }
+
+        public void Dispose()
+        {
+            foreach (ITabViewModel tab in Tabs)
+            {
+                tab.PropertyChanged -= TabPropertyChanged;
+            }
+
+            Tabs.Clear();
         }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)

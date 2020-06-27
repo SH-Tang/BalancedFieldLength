@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Views.TabViews;
 using NUnit.Framework;
 using WPF.Components.TabControl;
@@ -30,28 +31,76 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
     public class EngineSettingsTabViewModelTest
     {
         [Test]
-        public static void Constructor_ExpectedValues()
+        public void Constructor_EngineDataNull_ThrowsArgumentNullException()
         {
             // Call
-            var viewModel = new EngineSettingsTabViewModel();
+            TestDelegate call = () => new EngineSettingsTabViewModel(null);
+
+            // Assert
+            Assert.That(call, Throws.ArgumentNullException
+                                    .With.Property(nameof(ArgumentNullException.ParamName))
+                                    .EqualTo("engineData"));
+        }
+
+        [Test]
+        public static void Constructor_ExpectedValues()
+        {
+            // Setup
+            var engineData = new EngineData();
+
+            // Call
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             // Assert
             Assert.That(viewModel, Is.InstanceOf<ViewModelBase>());
             Assert.That(viewModel, Is.InstanceOf<ITabViewModel>());
             Assert.That(viewModel.TabName, Is.EqualTo("Engine data"));
 
-            Assert.That(viewModel.ThrustPerEngine, Is.NaN);
-            Assert.That(viewModel.TotalThrust, Is.NaN);
-            Assert.That(viewModel.NrOfEngines, Is.Zero);
-            Assert.That(viewModel.NrOfFailedEngines, Is.Zero);
-            Assert.That(viewModel.MaximumNrOfFailedEngines, Is.Zero);
+            Assert.That(viewModel.ThrustPerEngine, Is.EqualTo(engineData.ThrustPerEngine));
+            Assert.That(viewModel.NrOfEngines, Is.EqualTo(engineData.NrOfEngines));
+            Assert.That(viewModel.NrOfFailedEngines, Is.EqualTo(engineData.NrOfFailedEngines));
         }
 
         [Test]
-        public void NrOfFailedEngines_SettingNewValue_RaisesOnPropertyChangedEvent()
+        public void NrOfEngines_SettingNewValue_SetsEngineData()
         {
             // Setup
-            var viewModel = new EngineSettingsTabViewModel();
+            var engineData = new EngineData();
+            var viewModel = new EngineSettingsTabViewModel(engineData);
+
+            var random = new Random(21);
+            int newValue = random.Next();
+
+            // Call 
+            viewModel.NrOfEngines = newValue;
+
+            // Assert
+            Assert.That(engineData.NrOfEngines, Is.EqualTo(newValue));
+        }
+
+        [Test]
+        public void ThrustPerEngine_SettingNewValue_SetsEngineData()
+        {
+            // Setup
+            var engineData = new EngineData();
+            var viewModel = new EngineSettingsTabViewModel(engineData);
+
+            var random = new Random(21);
+            double newValue = random.NextDouble();
+
+            // Call 
+            viewModel.ThrustPerEngine = newValue;
+
+            // Assert
+            Assert.That(engineData.ThrustPerEngine, Is.EqualTo(newValue));
+        }
+
+        [Test]
+        public void NrOfFailedEngines_SettingNewValue_RaisesOnPropertyChangedEventAndSetsEngineDat()
+        {
+            // Setup
+            var engineData = new EngineData();
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             bool propertyChangedTriggered = false;
             PropertyChangedEventArgs eventArgs = null;
@@ -62,11 +111,13 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             };
 
             var random = new Random(21);
+            int newValue = random.Next();
 
             // Call 
-            viewModel.NrOfFailedEngines = random.Next();
+            viewModel.NrOfFailedEngines = newValue;
 
             // Assert
+            Assert.That(engineData.NrOfFailedEngines, Is.EqualTo(newValue));
             Assert.That(propertyChangedTriggered, Is.True);
             Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(EngineSettingsTabViewModel.NrOfFailedEngines)));
         }
@@ -76,10 +127,11 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
         {
             // Given
             const int nrOfEngines = 4;
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 NrOfEngines = nrOfEngines
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -95,7 +147,8 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             double totalThrust = viewModel.TotalThrust;
 
             // Then
-            Assert.That(totalThrust, Is.EqualTo(nrOfEngines * thrustPerEngine).Within(1e-5));
+            double expectedTotalThrust = nrOfEngines * thrustPerEngine;
+            Assert.That(totalThrust, Is.EqualTo(expectedTotalThrust).Within(1e-5));
             CollectionAssert.AreEquivalent(new[]
             {
                 "ThrustPerEngine",
@@ -109,10 +162,11 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             // Given
             var random = new Random(21);
             double thrustPerEngine = random.NextDouble();
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 ThrustPerEngine = thrustPerEngine
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -145,11 +199,12 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             const int nrOfEngines = 4;
 
             var random = new Random(21);
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 NrOfEngines = nrOfEngines,
                 ThrustPerEngine = random.NextDouble()
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -175,11 +230,12 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
 
             var random = new Random(21);
             double thrustPerEngine = random.NextDouble();
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 NrOfEngines = nrOfEngines,
                 ThrustPerEngine = thrustPerEngine
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -191,6 +247,7 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             viewModel.ThrustPerEngine = thrustPerEngine + tolerance;
 
             // Then
+            Assert.That(engineData.ThrustPerEngine, Is.EqualTo(thrustPerEngine));
             Assert.That(eventArgsCollection, Is.Empty);
         }
 
@@ -202,11 +259,12 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
 
             var random = new Random(21);
             double thrustPerEngine = random.NextDouble();
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 NrOfEngines = nrOfEngines,
                 ThrustPerEngine = thrustPerEngine
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -233,11 +291,12 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             // Given
             const int nrOfEngines = 4;
 
-            var viewModel = new EngineSettingsTabViewModel
+            var engineData = new EngineData
             {
                 NrOfEngines = nrOfEngines,
                 NrOfFailedEngines = nrOfEngines - 1
             };
+            var viewModel = new EngineSettingsTabViewModel(engineData);
 
             var eventArgsCollection = new List<PropertyChangedEventArgs>();
             viewModel.PropertyChanged += (o, e) =>
@@ -251,7 +310,12 @@ namespace Application.BalancedFieldLength.Test.Views.TabViews
             int updatedNrOfFailedEngines = viewModel.NrOfFailedEngines;
 
             // Then
-            Assert.That(updatedNrOfFailedEngines, Is.EqualTo(updatedNrOfEngines - 1));
+            Assert.That(engineData.NrOfEngines, Is.EqualTo(updatedNrOfEngines));
+
+            const int expectedNrOfFailedEngines = updatedNrOfEngines - 1;
+            Assert.That(engineData.NrOfFailedEngines, Is.EqualTo(expectedNrOfFailedEngines));
+            Assert.That(updatedNrOfFailedEngines, Is.EqualTo(expectedNrOfFailedEngines));
+
             CollectionAssert.AreEquivalent(new[]
             {
                 "NrOfEngines",

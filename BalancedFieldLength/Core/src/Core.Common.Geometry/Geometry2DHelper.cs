@@ -61,8 +61,7 @@ namespace Core.Common.Geometry
                 line2.EndPoint
             };
 
-            double determinant = (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.Y - line2.EndPoint.Y)
-                                 - (line1.StartPoint.Y - line1.EndPoint.Y) * (line2.StartPoint.X - line2.EndPoint.X);
+            double determinant = CalculateDeterminant(line1, line2);
 
             // If the determinant equals 0, the lines are either parallel or on top of each other.
             if (Math.Abs(determinant) > tolerance)
@@ -78,11 +77,8 @@ namespace Core.Common.Geometry
                     return line1.EndPoint;
                 }
 
-                double xCoordinate = (line1.StartPoint.X * line1.EndPoint.Y - line1.StartPoint.Y * line1.EndPoint.X) * (line2.StartPoint.X - line2.EndPoint.X) -
-                                     (line1.StartPoint.X - line1.EndPoint.X) * (line2.StartPoint.X * line2.EndPoint.Y - line2.StartPoint.Y * line2.EndPoint.X);
-
-                double yCoordinate = (line1.StartPoint.X * line1.EndPoint.Y - line1.StartPoint.Y * line1.EndPoint.X) * (line2.StartPoint.Y - line2.EndPoint.Y) -
-                                     (line1.StartPoint.Y - line1.EndPoint.Y) * (line2.StartPoint.X * line2.EndPoint.Y - line2.StartPoint.Y * line2.EndPoint.X);
+                double xCoordinate = CalculatePx(line1, line2);
+                double yCoordinate = CalculatePy(line1, line2);
 
                 // Check interval. If the new coordinates are outside the defined start and end points, then it is not an intersection.
                 double xMaxInterval = GetMaximumValue(points.Select(p => p.X));
@@ -104,6 +100,24 @@ namespace Core.Common.Geometry
             }
 
             return new Point2D(double.NaN, double.NaN);
+        }
+
+        private static double CalculatePy(LineSegment lineOne, LineSegment lineTwo)
+        {
+            return (lineOne.StartPoint.X * lineOne.EndPoint.Y - lineOne.StartPoint.Y * lineOne.EndPoint.X) * (lineTwo.StartPoint.Y - lineTwo.EndPoint.Y) -
+                   (lineOne.StartPoint.Y - lineOne.EndPoint.Y) * (lineTwo.StartPoint.X * lineTwo.EndPoint.Y - lineTwo.StartPoint.Y * lineTwo.EndPoint.X);
+        }
+
+        private static double CalculatePx(LineSegment lineOne, LineSegment lineTwo)
+        {
+            return (lineOne.StartPoint.X * lineOne.EndPoint.Y - lineOne.StartPoint.Y * lineOne.EndPoint.X) * (lineTwo.StartPoint.X - lineTwo.EndPoint.X) -
+                   (lineOne.StartPoint.X - lineOne.EndPoint.X) * (lineTwo.StartPoint.X * lineTwo.EndPoint.Y - lineTwo.StartPoint.Y * lineTwo.EndPoint.X);
+        }
+
+        private static double CalculateDeterminant(LineSegment lineOne, LineSegment lineTwo)
+        {
+            return (lineOne.StartPoint.X - lineOne.EndPoint.X) * (lineTwo.StartPoint.Y - lineTwo.EndPoint.Y)
+                   - (lineOne.StartPoint.Y - lineOne.EndPoint.Y) * (lineTwo.StartPoint.X - lineTwo.EndPoint.X);
         }
 
         private static double GetMinimumValue(IEnumerable<double> numbers)

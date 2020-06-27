@@ -34,6 +34,7 @@ namespace WPF.Components.Test.TabControl
 
             // Assert
             Assert.That(tabControlViewModel, Is.InstanceOf<INotifyPropertyChanged>());
+            Assert.That(tabControlViewModel, Is.InstanceOf<IDisposable>());
             Assert.That(tabControlViewModel.Tabs, Is.Empty);
         }
 
@@ -94,6 +95,43 @@ namespace WPF.Components.Test.TabControl
             Assert.That(propertyChangedTriggered, Is.False);
             Assert.That(eventArgs, Is.Null);
         }
+
+        [Test]
+        public void GivenTabControlViewModelWithTabs_WhenViewModelDisposedAndTabRaisesPropertyChangedEvent_ThenTabControlDoesNotRaiseEvent()
+        {
+            // Given
+            var tabControlViewModel = new TabControlViewModel();
+
+            PropertyChangedEventArgs eventArgs = null;
+            bool propertyChangedTriggered = false;
+            tabControlViewModel.PropertyChanged += (o, e) =>
+            {
+                eventArgs = e;
+                propertyChangedTriggered = true;
+            };
+
+            var tabViewModel = new TestTabViewModel();
+            tabControlViewModel.Tabs.Add(tabViewModel);
+
+            var random = new Random(21);
+
+            // Precondition
+            CollectionAssert.AreEqual(new[]
+            {
+                tabViewModel
+            }, tabControlViewModel.Tabs);
+
+            // When 
+            tabControlViewModel.Dispose();
+
+            tabViewModel.TabProperty = random.Next();
+
+            // Then
+            Assert.That(propertyChangedTriggered, Is.False);
+            Assert.That(eventArgs, Is.Null);
+            Assert.That(tabControlViewModel.Tabs, Is.Empty);
+        }
+
 
         [Test]
         public void SelectedTabItem_WithValidValue_RaisesPropertyChangedEvent()

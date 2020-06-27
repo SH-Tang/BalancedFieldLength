@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.Properties;
 using WPF.Components.TabControl;
 using WPF.Core;
@@ -26,6 +28,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
     /// </summary>
     public class GeneralSimulationSettingsTabViewModel : ViewModelBase, ITabViewModel
     {
+        private readonly GeneralSimulationSettingsData settings;
         private int maximumNrOfIterations;
         private double timeStep;
         private int endFailureVelocity;
@@ -35,8 +38,17 @@ namespace Application.BalancedFieldLength.Views.TabViews
         /// <summary>
         /// Creates a new instance of <see cref="GeneralSimulationSettingsTabViewModel"/>.
         /// </summary>
-        public GeneralSimulationSettingsTabViewModel()
+        /// <param name="settings">The <see cref="GeneralSimulationSettingsData"/> to create the viewmodel for.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="settings"/> is <c>null</c>.</exception>
+        public GeneralSimulationSettingsTabViewModel(GeneralSimulationSettingsData settings)
         {
+            if (settings == null)
+            {
+                throw new ArgumentNullException(nameof(settings));
+            }
+
+            this.settings = settings;
+
             timeStep = double.NaN;
             gravitationalAcceleration = 9.81;
             density = 1.225;
@@ -54,6 +66,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 maximumNrOfIterations = value;
+                settings.MaximumNrOfIterations = value;
                 OnPropertyChanged(nameof(MaximumNrOfIterations));
             }
         }
@@ -70,6 +83,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 timeStep = value;
+                settings.TimeStep = value;
                 OnPropertyChanged(nameof(TimeStep));
             }
         }
@@ -86,6 +100,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 endFailureVelocity = value;
+                settings.EndFailureVelocity = value;
                 OnPropertyChanged(nameof(EndFailureVelocity));
             }
         }
@@ -102,6 +117,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 gravitationalAcceleration = value;
+                settings.GravitationalAcceleration = value;
                 OnPropertyChanged(nameof(GravitationalAcceleration));
             }
         }
@@ -118,6 +134,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
             set
             {
                 density = value;
+                settings.Density = value;
                 OnPropertyChanged(nameof(Density));
             }
         }

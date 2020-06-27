@@ -15,6 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using Application.BalancedFieldLength.Data;
+
 namespace Application.BalancedFieldLength.Views.OutputView
 {
     /// <summary>
@@ -25,10 +28,19 @@ namespace Application.BalancedFieldLength.Views.OutputView
         /// <summary>
         /// Creates a new instance of <see cref="OutputViewModel"/>.
         /// </summary>
-        public OutputViewModel()
+        /// <param name="output">The <see cref="BalancedFieldLengthOutput"/>
+        /// to create the view model for.</param>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="output"/>
+        /// is <c>null</c>.</exception>
+        public OutputViewModel(BalancedFieldLengthOutput output)
         {
-            BalancedFieldLengthDistance = double.NaN;
-            BalancedFieldLengthVelocity = double.NaN;
+            if (output == null)
+            {
+                throw new ArgumentNullException(nameof(output));
+            }
+
+            BalancedFieldLengthDistance = output.Distance;
+            BalancedFieldLengthVelocity = output.Velocity;
         }
 
         /// <summary>

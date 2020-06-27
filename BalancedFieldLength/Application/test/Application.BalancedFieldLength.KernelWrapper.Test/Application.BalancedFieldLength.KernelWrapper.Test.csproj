@@ -1,0 +1,95 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" />
+  <PropertyGroup>
+    <ProjectGuid>{6FF3AA22-3382-4079-B87C-1571B475AB76}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>Application.BalancedFieldLength.KernelWrapper.Test</RootNamespace>
+    <AssemblyName>Application.BalancedFieldLength.KernelWrapper.Test</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <Import Project="$(SolutionDir)\build\BalancedFieldLength.targets" />
+  <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NSubstitute, Version=4.2.0.0, Culture=neutral, PublicKeyToken=92dd2e9066daa5ca, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NSubstitute.4.2.1\lib\net46\NSubstitute.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.1.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Threading.Tasks.Extensions.4.3.0\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
+      <Link>Properties\GlobalAssemblyInfo.cs</Link>
+    </Compile>
+    <Compile Include="BalancedFieldLengthCalculationModuleFactoryTest.cs" />
+    <Compile Include="BalancedFieldLengthCalculationModuleTest.cs" />
+    <Compile Include="BalancedFieldLengthKernelFactoryTest.cs" />
+    <Compile Include="Factories\AerodynamicsDataFactoryTest.cs" />
+    <Compile Include="Factories\AircraftDataFactoryTest.cs" />
+    <Compile Include="Factories\CalculationSettingsFactoryTest.cs" />
+    <Compile Include="Factories\BalancedFieldLengthOutputFactoryTest.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\..\..\licenses\Copying.licenseheader">
+      <Link>Copying.licenseheader</Link>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
+      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
+      <Name>Core.Common.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
+      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
+      <Name>Core.Common.TestUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Calculator\Simulator.Calculator.csproj">
+      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
+      <Name>Simulator.Calculator</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Components\Simulator.Components.csproj">
+      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
+      <Name>Simulator.Components</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Data\Simulator.Data.csproj">
+      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
+      <Name>Simulator.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Simulator\src\Simulator.Kernel\Simulator.Kernel.csproj">
+      <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
+      <Name>Simulator.Kernel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
+      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
+      <Name>Application.BalancedFieldLength.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
+      <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
+      <Name>Application.BalancedFieldLength.KernelWrapper</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper.TestUtils\Application.BalancedFieldLength.KernelWrapper.TestUtils.csproj">
+      <Project>{43AC4467-B4E7-43FE-AF93-3E553F072FD3}</Project>
+      <Name>Application.BalancedFieldLength.KernelWrapper.TestUtils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit.3.12.0\build\NUnit.props'))" />
+  </Target>
+</Project>

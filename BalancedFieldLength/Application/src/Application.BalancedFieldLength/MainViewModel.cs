@@ -15,45 +15,84 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System;
+using System.Windows.Input;
+using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.KernelWrapper;
+using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.Views.OutputView;
 using Application.BalancedFieldLength.Views.TabViews;
 using WPF.Components.MessageView;
 using WPF.Components.TabControl;
+using WPF.Core;
 
 namespace Application.BalancedFieldLength
 {
     /// <summary>
     /// The view model of the application.
     /// </summary>
-    public class MainViewModel
+    public class MainViewModel : ViewModelBase
     {
+        private OutputViewModel outputViewModel;
+        private readonly BalancedFieldLengthCalculation calculation;
+
         /// <summary>
         /// Creates a new instance of <see cref="MainViewModel"/>.
         /// </summary>
         public MainViewModel()
         {
+            calculation = new BalancedFieldLengthCalculation();
+
             var tabControlViewModel = new TabControlViewModel();
-            var generalSettingsTab = new GeneralSimulationSettingsTabViewModel();
+            var generalSettingsTab = new GeneralSimulationSettingsTabViewModel(calculation.SimulationSettings);
             tabControlViewModel.Tabs.Add(generalSettingsTab);
-            tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel());
-            tabControlViewModel.Tabs.Add(new AircraftDataTabViewModel());
+            tabControlViewModel.Tabs.Add(new EngineSettingsTabViewModel(calculation.EngineData));
+            tabControlViewModel.Tabs.Add(new AircraftDataTabViewModel(calculation.AircraftData));
             tabControlViewModel.SelectedTabItem = generalSettingsTab;
 
             TabControlViewModel = tabControlViewModel;
 
             MessageWindowViewModel = new MessageWindowViewModel();
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World1."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World2."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World3."));
+            OutputViewModel = null;
 
-            OutputViewModel = new OutputViewModel();
+            CalculateCommand = new RelayCommand(Calculate);
         }
 
         public TabControlViewModel TabControlViewModel { get; }
 
-        public OutputViewModel OutputViewModel { get; }
+        public OutputViewModel OutputViewModel
+        {
+            get
+            {
+                return outputViewModel;
+
+            }
+            private set
+            {
+                outputViewModel = value;
+                OnPropertyChanged(nameof(OutputViewModel));
+            }
+        }
 
         public MessageWindowViewModel MessageWindowViewModel { get; }
+
+        public ICommand CalculateCommand { get; }
+
+        private void Calculate()
+        {
+            try
+            {
+                IBalancedFieldLengthCalculationModuleFactory factory = BalancedFieldLengthCalculationModuleFactory.Instance;
+                IBalancedFieldLengthCalculationModule calculationModule = factory.CreateModule();
+                BalancedFieldLengthOutput output = calculationModule.Calculate(calculation);
+
+                OutputViewModel = new OutputViewModel(output);
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Calculation completed."));
+            }
+            catch (Exception e) when (e is CreateKernelDataException || e is KernelCalculationException)
+            {
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, e.Message));
+            }
+        }
     }
 }
