@@ -75,5 +75,33 @@ namespace WPF.Components.Test.MessageView
             Assert.That(propertyChangedTriggered, Is.True);
             Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(viewModel.Messages)));
         }
+
+        [Test]
+        public void GivenViewModelWithMessages_WhenAddingNewMessage_ThenMessageAddedAtHead()
+        {
+            // Given
+            var messageOne = new MessageContext(MessageType.Warning, "Message1");
+
+            var viewModel = new MessageWindowViewModel();
+            viewModel.AddMessage(messageOne);
+
+            // Precondition
+            CollectionAssert.AreEqual(new[]
+            {
+                messageOne
+            }, viewModel.Messages);
+
+            var messageTwo = new MessageContext(MessageType.Warning, "Message2");
+            
+            // When 
+            viewModel.AddMessage(messageTwo);
+
+            // Then
+            CollectionAssert.AreEqual(new[]
+            {
+                messageTwo,
+                messageOne
+            }, viewModel.Messages);
+        }
     }
 }
