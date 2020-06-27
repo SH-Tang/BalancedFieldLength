@@ -53,11 +53,6 @@ namespace Application.BalancedFieldLength
             TabControlViewModel = tabControlViewModel;
 
             MessageWindowViewModel = new MessageWindowViewModel();
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World1."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World2."));
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Hello World3."));
-
             OutputViewModel = null;
 
             CalculateCommand = new RelayCommand(Calculate);
