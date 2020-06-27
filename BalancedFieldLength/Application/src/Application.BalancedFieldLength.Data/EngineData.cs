@@ -28,6 +28,8 @@ namespace Application.BalancedFieldLength.Data
         public EngineData()
         {
             ThrustPerEngine = double.NaN;
+            NrOfEngines = 2;
+            NrOfFailedEngines = 1;
         }
 
         /// <summary>

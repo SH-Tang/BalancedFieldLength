@@ -29,8 +29,8 @@ namespace Application.BalancedFieldLength.Data.Test
             var engineData = new EngineData();
 
             // Assert
-            Assert.That(engineData.NrOfEngines, Is.Zero);
-            Assert.That(engineData.NrOfFailedEngines, Is.Zero);
+            Assert.That(engineData.NrOfEngines, Is.EqualTo(2));
+            Assert.That(engineData.NrOfFailedEngines, Is.EqualTo(1));
             Assert.That(engineData.ThrustPerEngine, Is.NaN);
         }
     }
