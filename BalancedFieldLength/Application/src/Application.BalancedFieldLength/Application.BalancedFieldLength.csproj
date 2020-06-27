@@ -133,5 +133,9 @@
       <Name>Application.BalancedFieldLength.Data</Name>
       <Private>False</Private>
     </ProjectReference>
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
+      <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
+      <Name>Application.BalancedFieldLength.KernelWrapper</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>
