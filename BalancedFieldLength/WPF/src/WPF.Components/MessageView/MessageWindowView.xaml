@@ -27,8 +27,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=local:MessageWindowViewModel,
                             IsDesignTimeCreatable=True}">
-            <StackPanel>
-                <Border Background="#41B1E1">
+            <DockPanel>
+                <Border Background="#41B1E1" DockPanel.Dock="Top">
                     <Label Content="MESSAGE WINDOW" Foreground="White" />
                 </Border>
                 <ScrollViewer VerticalScrollBarVisibility="Auto">
@@ -43,5 +43,5 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 </ScrollViewer>
-    </StackPanel>
+            </DockPanel>
 </UserControl>
