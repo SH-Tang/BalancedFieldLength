@@ -29,7 +29,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
         xmlns:outputView="clr-namespace:Application.BalancedFieldLength.Views.OutputView"
         mc:Ignorable="d"
-        Title="MainWindow" Height="600" Width="1200">
+        Title="Balanced Field Length" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200">
     <Window.DataContext>
         <local:MainViewModel />
     </Window.DataContext>
@@ -55,12 +56,15 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     </Window.Resources>
     <DockPanel>
         <Border>
-        <StackPanel DockPanel.Dock="Right">
-            <ContentControl Content="{Binding TabControlViewModel}" MinWidth="700" MinHeight="525" />
-            <Button VerticalAlignment="Bottom" Content="Simulate" Command="{Binding CalculateCommand}"/>
-        </StackPanel>
+            <DockPanel DockPanel.Dock="Left" MinWidth="700">
+                <Button DockPanel.Dock="Bottom" Content="Simulate" Command="{Binding CalculateCommand}" 
+                        MaxHeight="30" 
+                        MaxWidth="350"
+                        Margin="3" />
+                    <ContentControl DockPanel.Dock="Top" Content="{Binding TabControlViewModel}"/>
+            </DockPanel>
         </Border>
-        <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" />
+        <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" MinHeight="150" MaxHeight="150"/>
         <ContentControl Content="{Binding OutputViewModel}" />
     </DockPanel>
 </metro:MetroWindow>
