@@ -30,6 +30,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.TestUtils.Test
 
             // Assert
             Assert.That(factory, Is.InstanceOf<IBalancedFieldLengthCalculationModuleFactory>());
+            Assert.That(factory.TestModule, Is.Not.Null);
         }
 
         [Test]
@@ -43,6 +44,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.TestUtils.Test
 
             // Assert
             Assert.That(calculationModule, Is.TypeOf<TestBalancedFieldLengthCalculationModule>());
+            Assert.That(calculationModule, Is.SameAs(factory.TestModule));
         }
     }
 }

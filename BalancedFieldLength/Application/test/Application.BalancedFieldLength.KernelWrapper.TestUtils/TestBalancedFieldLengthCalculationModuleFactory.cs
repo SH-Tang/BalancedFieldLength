@@ -22,9 +22,20 @@ namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
     /// </summary>
     public class TestBalancedFieldLengthCalculationModuleFactory : IBalancedFieldLengthCalculationModuleFactory
     {
+        public TestBalancedFieldLengthCalculationModuleFactory()
+        {
+            TestModule = new TestBalancedFieldLengthCalculationModule();
+        }
+
         public IBalancedFieldLengthCalculationModule CreateModule()
         {
-            return new TestBalancedFieldLengthCalculationModule();
+            return TestModule;
         }
+
+        /// <summary>
+        /// Gets the <see cref="TestBalancedFieldLengthCalculationModule"/> that is generated when calling
+        /// <see cref="CreateModule"/>.
+        /// </summary>
+        public TestBalancedFieldLengthCalculationModule TestModule { get; }
     }
 }
