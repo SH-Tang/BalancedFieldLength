@@ -70,6 +70,10 @@ namespace Application.BalancedFieldLength.Test
                 TestBalancedFieldLengthCalculationModule testModule = instance.TestModule;
                 testModule.Output = calculatedOutput;
 
+                // Precondition
+                MessageWindowViewModel messageWindowViewModel = viewModel.MessageWindowViewModel;
+                Assert.That(messageWindowViewModel.Messages, Is.Empty);
+
                 // When
                 viewModel.CalculateCommand.Execute(null);
 
@@ -78,6 +82,11 @@ namespace Application.BalancedFieldLength.Test
                 Assert.That(outputViewModel, Is.Not.Null);
                 Assert.That(outputViewModel.BalancedFieldLengthDistance, Is.EqualTo(calculatedOutput.Distance));
                 Assert.That(outputViewModel.BalancedFieldLengthVelocity, Is.EqualTo(calculatedOutput.Velocity));
+
+                Assert.That(messageWindowViewModel.Messages, Has.Count.EqualTo(1));
+                MessageContext message = messageWindowViewModel.Messages.Single();
+                Assert.That(message.MessageType, Is.EqualTo(MessageType.Info));
+                Assert.That(message.Message, Is.EqualTo("Calculation completed."));
             }
         }
 

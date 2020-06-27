@@ -87,6 +87,7 @@ namespace Application.BalancedFieldLength
                 BalancedFieldLengthOutput output = calculationModule.Calculate(calculation);
 
                 OutputViewModel = new OutputViewModel(output);
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Calculation completed."));
             }
             catch (Exception e) when (e is CreateKernelDataException || e is KernelCalculationException)
             {
