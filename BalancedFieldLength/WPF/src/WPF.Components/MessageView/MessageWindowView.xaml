@@ -31,6 +31,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Border Background="#41B1E1">
                     <Label Content="MESSAGE WINDOW" Foreground="White" />
                 </Border>
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <ItemsControl ItemsSource="{Binding Path=Messages}" >
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
@@ -41,5 +42,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                     </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
-            </StackPanel>
+                </ScrollViewer>
+    </StackPanel>
 </UserControl>
