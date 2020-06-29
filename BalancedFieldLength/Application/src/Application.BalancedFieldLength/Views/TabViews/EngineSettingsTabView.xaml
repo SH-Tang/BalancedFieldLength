@@ -56,7 +56,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                  Width="100"
                  Text="{Binding Path=ThrustPerEngine,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}" />
+                                Mode=TwoWay}" 
+                 Name="ThrustPerEngineTextBox"/>
 
         <Label Grid.Row="1" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"

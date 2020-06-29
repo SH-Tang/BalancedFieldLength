@@ -57,7 +57,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        Width="100"
                        Text="{Binding Path=MaximumNrOfIterations,
                                 Converter={StaticResource IntegerValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                       Name="MaximumNrOfIterationsTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -68,7 +69,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=TimeStep, Mode=TwoWay, 
-                                Converter={StaticResource DoubleValueConverter}}"/>
+                                Converter={StaticResource DoubleValueConverter}}"
+                         Name="TimeStepTextBox"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -80,7 +82,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=EndFailureVelocity, 
                                 Mode=TwoWay,
-                                Converter={StaticResource IntegerValueConverter}}"/>
+                                Converter={StaticResource IntegerValueConverter}}"
+                         Name="EndFailureVelocityTextBox"/>
 
                 <Label Grid.Row="3" Grid.Column="0" 
                        Margin="0,0,10,0" HorizontalAlignment="Left" 
@@ -112,7 +115,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                      Width="100"
                      Text="{Binding Path=GravitationalAcceleration, 
                             Mode=TwoWay,
-                            Converter={StaticResource DoubleValueConverter}}"/>
+                            Converter={StaticResource DoubleValueConverter}}"
+                     Name="GravitationalAccelerationTextBox"/>
 
             <Label Grid.Row="1" Grid.Column="0" 
                    Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -124,7 +128,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                      Width="100"
                      Text="{Binding Path=Density, 
                             Mode=TwoWay,
-                            Converter={StaticResource DoubleValueConverter}}"/>
+                            Converter={StaticResource DoubleValueConverter}}"
+                     Name="DensityTextBox"/>
 
             </Grid>
     </Expander>
