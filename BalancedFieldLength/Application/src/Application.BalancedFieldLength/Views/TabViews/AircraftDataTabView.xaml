@@ -55,7 +55,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=TakeOffWeight,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="TakeOffWeightTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -67,7 +68,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=PitchGradient,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="PitchGradientTextBox"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -79,7 +81,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=MaximumPitchAngle,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="MaximumPitchAngleTextBox"/>
             </Grid>
         </Expander>
         <Expander Header="Lift properties" IsExpanded="True">
@@ -109,7 +112,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=WingSurfaceArea,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="WingSurfaceAreaTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -121,7 +125,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=AspectRatio,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="AspectRatioTextBox"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -133,7 +138,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=OswaldFactor,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="OswaldFactorTextBox"/>
 
                 <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
 
@@ -147,7 +153,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=LiftCoefficientGradient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="LiftCoefficientGradientTextBox"/>
 
                 <Label Grid.Row="4" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -159,7 +166,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=MaximumLiftCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="MaximumLiftCoefficientTextBox"/>
 
                 <Label Grid.Row="5" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -171,7 +179,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=ZeroLiftAngleOfAttack,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="ZeroLiftAngleTextBox"/>
 
             </Grid>
         </Expander>
@@ -197,7 +206,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=RestDragCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RestDragCoefficientTextBox"/>
 
                 <Label Grid.Row="0" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -209,7 +219,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=RestDragCoefficientWithEngineFailure,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RestDragCoefficientWithEngineFailureTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -221,7 +232,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=RollResistanceCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RollResistanceCoefficientTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -233,7 +245,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Width="100"
                          Text="{Binding Path=RollResistanceWithBrakesCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RollResistanceWithBrakesCoefficientTextBox"/>
 
             </Grid>
         </Expander>

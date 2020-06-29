@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
+using WPF.Components;
 
 namespace Application.BalancedFieldLength.Views.TabViews
 {
@@ -27,6 +28,45 @@ namespace Application.BalancedFieldLength.Views.TabViews
         public AircraftDataTabView()
         {
             InitializeComponent();
+
+            TextBoxModificationBinding.Create(TakeOffWeightTextBox);
+            TextBoxMoveFocusOnModification.Create(TakeOffWeightTextBox);
+
+            TextBoxModificationBinding.Create(PitchGradientTextBox);
+            TextBoxMoveFocusOnModification.Create(PitchGradientTextBox);
+
+            TextBoxModificationBinding.Create(MaximumPitchAngleTextBox);
+            TextBoxMoveFocusOnModification.Create(MaximumPitchAngleTextBox);
+
+            TextBoxModificationBinding.Create(WingSurfaceAreaTextBox);
+            TextBoxMoveFocusOnModification.Create(WingSurfaceAreaTextBox);
+
+            TextBoxModificationBinding.Create(AspectRatioTextBox);
+            TextBoxMoveFocusOnModification.Create(AspectRatioTextBox);
+
+            TextBoxModificationBinding.Create(OswaldFactorTextBox);
+            TextBoxMoveFocusOnModification.Create(OswaldFactorTextBox);
+
+            TextBoxModificationBinding.Create(LiftCoefficientGradientTextBox);
+            TextBoxMoveFocusOnModification.Create(LiftCoefficientGradientTextBox);
+
+            TextBoxModificationBinding.Create(MaximumLiftCoefficientTextBox);
+            TextBoxMoveFocusOnModification.Create(MaximumLiftCoefficientTextBox);
+
+            TextBoxModificationBinding.Create(ZeroLiftAngleTextBox);
+            TextBoxMoveFocusOnModification.Create(ZeroLiftAngleTextBox);
+
+            TextBoxModificationBinding.Create(RestDragCoefficientTextBox);
+            TextBoxMoveFocusOnModification.Create(RestDragCoefficientTextBox);
+
+            TextBoxModificationBinding.Create(RestDragCoefficientWithEngineFailureTextBox);
+            TextBoxMoveFocusOnModification.Create(RestDragCoefficientWithEngineFailureTextBox);
+
+            TextBoxModificationBinding.Create(RollResistanceCoefficientTextBox);
+            TextBoxMoveFocusOnModification.Create(RollResistanceCoefficientTextBox);
+
+            TextBoxModificationBinding.Create(RollResistanceWithBrakesCoefficientTextBox);
+            TextBoxMoveFocusOnModification.Create(RollResistanceWithBrakesCoefficientTextBox);
         }
     }
 }
