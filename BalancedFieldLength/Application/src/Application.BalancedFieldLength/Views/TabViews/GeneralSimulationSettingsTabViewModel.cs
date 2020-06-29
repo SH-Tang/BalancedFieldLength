@@ -49,9 +49,9 @@ namespace Application.BalancedFieldLength.Views.TabViews
 
             this.settings = settings;
 
-            timeStep = double.NaN;
-            gravitationalAcceleration = 9.81;
-            density = 1.225;
+            timeStep = settings.TimeStep;
+            gravitationalAcceleration = settings.GravitationalAcceleration;
+            density = settings.Density;
         }
 
         /// <summary>
