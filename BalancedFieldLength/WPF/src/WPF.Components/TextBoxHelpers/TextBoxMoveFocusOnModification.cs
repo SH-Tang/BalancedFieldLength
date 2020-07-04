@@ -16,22 +16,21 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
 using System.Windows.Input;
 
-namespace WPF.Components
+namespace WPF.Components.TextBoxHelpers
 {
     /// <summary>
-    /// Helper class which commits values of a text box after losing focus or hitting the return key.
+    /// Helper class which moves the focus of a text box to its next control element after hitting the return key.
     /// </summary>
-    public static class TextBoxModificationBinding
+    public static class TextBoxMoveFocusOnModification
     {
         /// <summary>
-        /// Creates a modification binding on the input argument to commit values after losing
-        /// focus or hitting the return key.
+        /// Creates a move focus behaviour on the input argument after the return key was pressed.
         /// </summary>
-        /// <param name="textBox">The <see cref="TextBox"/> to create the binding for.</param>
+        /// <param name="textBox">The <see cref="TextBox"/> to move the focus for for.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="textBox" />
         /// is <c>null</c>.</exception>
         public static void Create(TextBox textBox)
@@ -41,22 +40,15 @@ namespace WPF.Components
                 throw new ArgumentNullException(nameof(textBox));
             }
 
-            BindingExpression textBoxBinding = textBox.GetBindingExpression(TextBox.TextProperty);
-            textBox.KeyDown += (sender, e) => OnKeyDown(e, textBoxBinding);
-            textBox.LostFocus += (sender, e) => OnLostFocus(textBoxBinding);
+            textBox.KeyDown += (sender, e) => OnKeyDown(e, textBox);
         }
 
-        private static void OnKeyDown(KeyEventArgs e, BindingExpressionBase binding)
+        private static void OnKeyDown(KeyEventArgs e, UIElement textBox)
         {
             if (e.Key.Equals(Key.Return))
             {
-                binding.UpdateSource();
+                textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
-        }
-
-        private static void OnLostFocus(BindingExpressionBase binding)
-        {
-            binding.UpdateSource();
         }
     }
 }

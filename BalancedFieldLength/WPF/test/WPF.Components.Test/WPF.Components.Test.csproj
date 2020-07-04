@@ -39,8 +39,8 @@
     <Compile Include="MessageView\MessageViewModelTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TabControl\TabControlViewModelTest.cs" />
-    <Compile Include="TextBoxModificationBindingTest.cs" />
-    <Compile Include="TextBoxMoveFocusOnModificationTest.cs" />
+    <Compile Include="TextBoxHelpers\TextBoxModificationBindingTest.cs" />
+    <Compile Include="TextBoxHelpers\TextBoxMoveFocusOnModificationTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">

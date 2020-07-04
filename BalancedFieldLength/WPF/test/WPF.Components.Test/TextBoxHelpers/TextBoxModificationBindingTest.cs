@@ -22,8 +22,9 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using NSubstitute;
 using NUnit.Framework;
+using WPF.Components.TextBoxHelpers;
 
-namespace WPF.Components.Test
+namespace WPF.Components.Test.TextBoxHelpers
 {
     [TestFixture]
     public class TextBoxModificationBindingTest
