@@ -23,14 +23,14 @@ using System.Windows.Input;
 namespace WPF.Components
 {
     /// <summary>
-    /// 
+    /// Helper class which moves the focus of a text box to its next control element after hitting the return key.
     /// </summary>
     public static class TextBoxMoveFocusOnModification
     {
         /// <summary>
-        /// Creates a modification binding on the input argument.
+        /// Creates a move focus behaviour on the input argument after the return key was pressed.
         /// </summary>
-        /// <param name="textBox">The <see cref="TextBox"/> to create the binding for.</param>
+        /// <param name="textBox">The <see cref="TextBox"/> to move the focus for for.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="textBox" />
         /// is <c>null</c>.</exception>
         public static void Create(TextBox textBox)
@@ -41,7 +41,6 @@ namespace WPF.Components
             }
 
             textBox.KeyDown += (sender, e) => OnKeyDown(e, textBox);
-            textBox.LostFocus += (sender, e) => OnLostFocus(textBox);
         }
 
         private static void OnKeyDown(KeyEventArgs e, UIElement textBox)
@@ -50,11 +49,6 @@ namespace WPF.Components
             {
                 textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
             }
-        }
-
-        private static void OnLostFocus(UIElement textBox)
-        {
-            textBox.MoveFocus(new TraversalRequest(FocusNavigationDirection.Next));
         }
     }
 }
