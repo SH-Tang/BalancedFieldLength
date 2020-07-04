@@ -23,12 +23,13 @@ using System.Windows.Input;
 namespace WPF.Components
 {
     /// <summary>
-    /// 
+    /// Helper class which commits values of a text box after losing focus or hitting the return key.
     /// </summary>
     public static class TextBoxModificationBinding
     {
         /// <summary>
-        /// Creates a modification binding on the input argument.
+        /// Creates a modification binding on the input argument to commit values after losing
+        /// focus or hitting the return key.
         /// </summary>
         /// <param name="textBox">The <see cref="TextBox"/> to create the binding for.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="textBox" />
