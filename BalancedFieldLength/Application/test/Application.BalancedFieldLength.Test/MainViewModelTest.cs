@@ -23,6 +23,7 @@ using Application.BalancedFieldLength.KernelWrapper;
 using Application.BalancedFieldLength.KernelWrapper.TestUtils;
 using Application.BalancedFieldLength.Views.OutputView;
 using Application.BalancedFieldLength.Views.TabViews;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 using WPF.Components.MessageView;
 using WPF.Components.TabControl;
@@ -54,6 +55,49 @@ namespace Application.BalancedFieldLength.Test
         }
 
         [Test]
+        public void GivenViewModel_WhenCalculationPressed_ThenInputArgumentSent()
+        {
+            // Given
+            var random = new Random(21);
+
+            var viewModel = new MainViewModel();
+            TabControlViewModel tabControlViewModel = viewModel.TabControlViewModel;
+            ObservableCollection<ITabViewModel> tabs = tabControlViewModel.Tabs;
+
+            // Precondition
+            Assert.That(tabs, Has.Count.EqualTo(3));
+            Assert.That(tabs[0], Is.TypeOf<GeneralSimulationSettingsTabViewModel>());
+            Assert.That(tabs[1], Is.TypeOf<EngineSettingsTabViewModel>());
+            Assert.That(tabs[2], Is.TypeOf<AircraftDataTabViewModel>());
+
+            var generalSimulationSettingsViewModel = (GeneralSimulationSettingsTabViewModel) tabs[0];
+            var engineSettingsViewModel = (EngineSettingsTabViewModel) tabs[1];
+            var aircraftDataViewModel = (AircraftDataTabViewModel) tabs[2];
+
+            SetGeneralSettings(generalSimulationSettingsViewModel, random.Next());
+            SetEngineData(engineSettingsViewModel, random.Next());
+            SetAircraftData(aircraftDataViewModel, random.Next());
+
+            using (new BalancedFieldLengthCalculationModuleFactoryConfig())
+            {
+                var instance = (TestBalancedFieldLengthCalculationModuleFactory)
+                    BalancedFieldLengthCalculationModuleFactory.Instance;
+
+                TestBalancedFieldLengthCalculationModule testModule = instance.TestModule;
+                testModule.Output = new BalancedFieldLengthOutput(random.NextDouble(), random.NextDouble());
+
+                // When
+                viewModel.CalculateCommand.Execute(null);
+
+                // Then
+                BalancedFieldLengthCalculation calculationInput = testModule.InputCalculation;
+                AssertGeneralSettings(generalSimulationSettingsViewModel, calculationInput.SimulationSettings);
+                AssertEngineData(engineSettingsViewModel, calculationInput.EngineData);
+                AssertAircraftData(aircraftDataViewModel, calculationInput.AircraftData);
+            }
+        }
+
+        [Test]
         public void GivenViewModelAndCalculationSuccessful_WhenCalculating_ThenOutputGenerated()
         {
             // Given
@@ -66,7 +110,7 @@ namespace Application.BalancedFieldLength.Test
             {
                 var instance = (TestBalancedFieldLengthCalculationModuleFactory)
                     BalancedFieldLengthCalculationModuleFactory.Instance;
-                
+
                 TestBalancedFieldLengthCalculationModule testModule = instance.TestModule;
                 testModule.Output = calculatedOutput;
 
@@ -150,6 +194,92 @@ namespace Application.BalancedFieldLength.Test
                 Assert.That(message.MessageType, Is.EqualTo(MessageType.Error));
                 Assert.That(message.Message, Is.EqualTo("Exception"));
             }
+        }
+
+        private static void SetGeneralSettings(GeneralSimulationSettingsTabViewModel viewModel, int seed)
+        {
+            var random = new Random(seed);
+            viewModel.MaximumNrOfIterations = random.Next();
+            viewModel.TimeStep = random.NextDouble();
+            viewModel.EndFailureVelocity = random.Next();
+            viewModel.GravitationalAcceleration = random.NextDouble();
+            viewModel.Density = random.NextDouble();
+        }
+
+        private static void SetEngineData(EngineSettingsTabViewModel viewModel, int seed)
+        {
+            var random = new Random(seed);
+            viewModel.ThrustPerEngine = random.Next();
+            viewModel.NrOfEngines = random.Next();
+            viewModel.NrOfFailedEngines = viewModel.NrOfEngines - 1;
+
+            // Precondition
+            var defaultSettings = new EngineData();
+            Assert.That(viewModel.NrOfEngines, Is.Not.EqualTo(defaultSettings.NrOfEngines));
+            Assert.That(viewModel.NrOfFailedEngines, Is.Not.EqualTo(defaultSettings.NrOfFailedEngines));
+        }
+
+        private static void SetAircraftData(AircraftDataTabViewModel viewModel, int seed)
+        {
+            var random = new Random(seed);
+
+            viewModel.TakeOffWeight = random.NextDouble();
+            viewModel.PitchGradient = random.NextAngle();
+            viewModel.MaximumPitchAngle = random.NextAngle();
+
+            viewModel.WingSurfaceArea = random.NextDouble();
+            viewModel.AspectRatio = random.NextDouble();
+            viewModel.OswaldFactor = random.NextDouble();
+
+            viewModel.MaximumLiftCoefficient = random.NextDouble();
+            viewModel.LiftCoefficientGradient = random.NextDouble();
+            viewModel.ZeroLiftAngleOfAttack = random.NextAngle();
+
+            viewModel.RestDragCoefficientWithEngineFailure = random.NextDouble();
+            viewModel.RestDragCoefficient = random.NextDouble();
+
+            viewModel.RollResistanceCoefficient = random.NextDouble();
+            viewModel.RollResistanceWithBrakesCoefficient = random.NextDouble();
+        }
+
+        private static void AssertGeneralSettings(GeneralSimulationSettingsTabViewModel expected,
+                                                  GeneralSimulationSettingsData actual)
+        {
+            Assert.That(actual.MaximumNrOfIterations, Is.EqualTo(expected.MaximumNrOfIterations));
+            Assert.That(actual.TimeStep, Is.EqualTo(expected.TimeStep));
+            Assert.That(actual.EndFailureVelocity, Is.EqualTo(expected.EndFailureVelocity));
+            Assert.That(actual.GravitationalAcceleration, Is.EqualTo(expected.GravitationalAcceleration));
+            Assert.That(actual.Density, Is.EqualTo(expected.Density));
+        }
+
+        private static void AssertEngineData(EngineSettingsTabViewModel expected,
+                                             EngineData actual)
+        {
+            Assert.That(actual.ThrustPerEngine, Is.EqualTo(expected.ThrustPerEngine));
+            Assert.That(actual.NrOfEngines, Is.EqualTo(expected.NrOfEngines));
+            Assert.That(actual.NrOfFailedEngines, Is.EqualTo(expected.NrOfFailedEngines));
+        }
+
+        private static void AssertAircraftData(AircraftDataTabViewModel expected,
+                                               AircraftData actual)
+        {
+            Assert.That(actual.TakeOffWeight, Is.EqualTo(expected.TakeOffWeight));
+            Assert.That(actual.PitchGradient, Is.EqualTo(expected.PitchGradient));
+            Assert.That(actual.MaximumPitchAngle, Is.EqualTo(expected.MaximumPitchAngle));
+
+            Assert.That(actual.WingSurfaceArea, Is.EqualTo(expected.WingSurfaceArea));
+            Assert.That(actual.AspectRatio, Is.EqualTo(expected.AspectRatio));
+            Assert.That(actual.OswaldFactor, Is.EqualTo(expected.OswaldFactor));
+
+            Assert.That(actual.MaximumLiftCoefficient, Is.EqualTo(expected.MaximumLiftCoefficient));
+            Assert.That(actual.LiftCoefficientGradient, Is.EqualTo(expected.LiftCoefficientGradient));
+            Assert.That(actual.ZeroLiftAngleOfAttack, Is.EqualTo(expected.ZeroLiftAngleOfAttack));
+
+            Assert.That(actual.RestDragCoefficientWithEngineFailure, Is.EqualTo(expected.RestDragCoefficientWithEngineFailure));
+            Assert.That(actual.RestDragCoefficient, Is.EqualTo(expected.RestDragCoefficient));
+
+            Assert.That(actual.RollResistanceCoefficient, Is.EqualTo(expected.RollResistanceCoefficient));
+            Assert.That(actual.RollResistanceWithBrakesCoefficient, Is.EqualTo(expected.RollResistanceWithBrakesCoefficient));
         }
     }
 }
