@@ -26,7 +26,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         public void Instance_Always_ReturnsFactory()
         {
             // Call 
-            var factory = BalancedFieldLengthCalculationModuleFactory.Instance;
+            IBalancedFieldLengthCalculationModuleFactory factory = BalancedFieldLengthCalculationModuleFactory.Instance;
 
             // Assert
             Assert.That(factory, Is.TypeOf<BalancedFieldLengthCalculationModuleFactory>());
@@ -36,8 +36,8 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         public void Instance_Always_ReturnsSameInstance()
         {
             // Call 
-            var firstFactory = BalancedFieldLengthCalculationModuleFactory.Instance;
-            var secondFactory = BalancedFieldLengthCalculationModuleFactory.Instance;
+            IBalancedFieldLengthCalculationModuleFactory firstFactory = BalancedFieldLengthCalculationModuleFactory.Instance;
+            IBalancedFieldLengthCalculationModuleFactory secondFactory = BalancedFieldLengthCalculationModuleFactory.Instance;
 
             // Assert
             Assert.That(firstFactory, Is.SameAs(secondFactory));
@@ -47,7 +47,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test
         public void CreateModule_Always_ReturnsKernel()
         {
             // Setup
-            var factory = BalancedFieldLengthCalculationModuleFactory.Instance;
+            IBalancedFieldLengthCalculationModuleFactory factory = BalancedFieldLengthCalculationModuleFactory.Instance;
 
             // Call 
             IBalancedFieldLengthCalculationModule calculationModule = factory.CreateModule();

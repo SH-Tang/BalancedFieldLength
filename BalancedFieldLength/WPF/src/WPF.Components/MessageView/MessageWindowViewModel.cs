@@ -16,7 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using WPF.Core;
 
@@ -27,26 +26,18 @@ namespace WPF.Components.MessageView
     /// </summary>
     public class MessageWindowViewModel : ViewModelBase
     {
-        private readonly ObservableCollection<MessageContext> messages;
-
         /// <summary>
         /// Creates a new instance of <see cref="MessageWindowViewModel"/>.
         /// </summary>
         public MessageWindowViewModel()
         {
-            messages = new ObservableCollection<MessageContext>();
+            Messages = new ObservableCollection<MessageContext>();
         }
 
         /// <summary>
         /// Gets the collection of messages.
         /// </summary>
-        public ObservableCollection<MessageContext> Messages
-        {
-            get
-            {
-                return messages;
-            }
-        }
+        public ObservableCollection<MessageContext> Messages { get; }
 
         /// <summary>
         /// Adds a message to the message window.
@@ -61,7 +52,7 @@ namespace WPF.Components.MessageView
                 throw new ArgumentNullException(nameof(message));
             }
 
-            messages.Insert(0, message);
+            Messages.Insert(0, message);
             OnPropertyChanged(nameof(Messages));
         }
     }

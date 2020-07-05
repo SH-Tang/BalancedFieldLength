@@ -17,6 +17,7 @@
 
 using NUnit.Framework;
 using Simulator.Data;
+using AircraftData = Application.BalancedFieldLength.Data.AircraftData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
 {
@@ -31,7 +32,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
         /// </summary>
         /// <param name="aircraftData">The <see cref="Data.AircraftData"/> to use as a reference.</param>
         /// <param name="aerodynamicsData">The <see cref="AerodynamicsData"/> to assert.</param>
-        public static void AssertAerodynamicsData(Data.AircraftData aircraftData, AerodynamicsData aerodynamicsData)
+        public static void AssertAerodynamicsData(AircraftData aircraftData, AerodynamicsData aerodynamicsData)
         {
             Assert.That(aerodynamicsData.AspectRatio, Is.EqualTo(aircraftData.AspectRatio));
             Assert.That(aerodynamicsData.WingArea, Is.EqualTo(aircraftData.WingSurfaceArea));

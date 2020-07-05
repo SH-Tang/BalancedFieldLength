@@ -16,7 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
-using WPF.Components;
 using WPF.Components.TextBoxHelpers;
 
 namespace Application.BalancedFieldLength.Views.TabViews
@@ -38,7 +37,7 @@ namespace Application.BalancedFieldLength.Views.TabViews
 
             TextBoxModificationBinding.Create(EndFailureVelocityTextBox);
             TextBoxMoveFocusOnModification.Create(EndFailureVelocityTextBox);
-            
+
             TextBoxModificationBinding.Create(DensityTextBox);
             TextBoxMoveFocusOnModification.Create(DensityTextBox);
 

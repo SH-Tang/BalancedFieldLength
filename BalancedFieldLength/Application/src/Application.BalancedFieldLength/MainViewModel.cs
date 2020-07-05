@@ -33,8 +33,8 @@ namespace Application.BalancedFieldLength
     /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        private OutputViewModel outputViewModel;
         private readonly BalancedFieldLengthCalculation calculation;
+        private OutputViewModel outputViewModel;
 
         /// <summary>
         /// Creates a new instance of <see cref="MainViewModel"/>.
@@ -65,7 +65,6 @@ namespace Application.BalancedFieldLength
             get
             {
                 return outputViewModel;
-
             }
             private set
             {

@@ -132,7 +132,6 @@ namespace WPF.Components.Test.TabControl
             Assert.That(tabControlViewModel.Tabs, Is.Empty);
         }
 
-
         [Test]
         public void SelectedTabItem_WithValidValue_RaisesPropertyChangedEvent()
         {

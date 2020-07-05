@@ -19,6 +19,7 @@ using System;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Simulator.Data;
+using AircraftData = Application.BalancedFieldLength.Data.AircraftData;
 using KernelAircraftData = Simulator.Data.AircraftData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.Factories
@@ -39,7 +40,7 @@ namespace Application.BalancedFieldLength.KernelWrapper.Factories
         /// <exception cref="ArgumentNullException">Thrown when any argument is <c>null</c>.</exception>
         /// <exception cref="CreateKernelDataException">Thrown when the <see cref="KernelAircraftData"/>
         /// could not be created.</exception>
-        public static KernelAircraftData Create(Data.AircraftData aircraftData, EngineData engineData)
+        public static KernelAircraftData Create(AircraftData aircraftData, EngineData engineData)
         {
             if (engineData == null)
             {
@@ -51,9 +52,9 @@ namespace Application.BalancedFieldLength.KernelWrapper.Factories
             try
             {
                 return new KernelAircraftData(engineData.NrOfEngines, engineData.ThrustPerEngine, aircraftData.TakeOffWeight,
-                                        aircraftData.PitchGradient, aircraftData.MaximumPitchAngle,
-                                        aircraftData.RollResistanceCoefficient, aircraftData.RollResistanceWithBrakesCoefficient,
-                                        aerodynamicsData);
+                                              aircraftData.PitchGradient, aircraftData.MaximumPitchAngle,
+                                              aircraftData.RollResistanceCoefficient, aircraftData.RollResistanceWithBrakesCoefficient,
+                                              aerodynamicsData);
             }
             catch (ArgumentException e)
             {
