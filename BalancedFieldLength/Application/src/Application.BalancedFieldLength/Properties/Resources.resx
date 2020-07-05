@@ -174,4 +174,16 @@
   <data name="AircraftData_Take_off_properties_DisplayName" xml:space="preserve">
     <value>Takeoff properties</value>
   </data>
+  <data name="EngineData_ThrustPerEngine_DisplayName" xml:space="preserve">
+    <value>Thrust per engine [kN]</value>
+  </data>
+  <data name="EngineData_NumberOfEngines_DisplayName" xml:space="preserve">
+    <value>Number of engines</value>
+  </data>
+  <data name="EngineData_TotalThrust_DisplayName" xml:space="preserve">
+    <value>Total thrust [kN]</value>
+  </data>
+  <data name="EngineData_NrOfFailedEngines_DisplayName" xml:space="preserve">
+    <value>Number of failed engines</value>
+  </data>
 </root>

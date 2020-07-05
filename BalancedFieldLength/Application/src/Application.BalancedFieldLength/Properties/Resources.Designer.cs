@@ -231,6 +231,42 @@ namespace Application.BalancedFieldLength.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of failed engines.
+        /// </summary>
+        public static string EngineData_NrOfFailedEngines_DisplayName {
+            get {
+                return ResourceManager.GetString("EngineData_NrOfFailedEngines_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of engines.
+        /// </summary>
+        public static string EngineData_NumberOfEngines_DisplayName {
+            get {
+                return ResourceManager.GetString("EngineData_NumberOfEngines_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Thrust per engine [kN].
+        /// </summary>
+        public static string EngineData_ThrustPerEngine_DisplayName {
+            get {
+                return ResourceManager.GetString("EngineData_ThrustPerEngine_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Total thrust [kN].
+        /// </summary>
+        public static string EngineData_TotalThrust_DisplayName {
+            get {
+                return ResourceManager.GetString("EngineData_TotalThrust_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Engine data.
         /// </summary>
         public static string EngineSettingsTabViewModel_TabName {

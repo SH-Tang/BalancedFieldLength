@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
+             xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
              mc:Ignorable="d"
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -49,7 +50,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Label Grid.Row="0" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Thrust per engine [kN]" />
+               Content="{x:Static properties:Resources.EngineData_ThrustPerEngine_DisplayName}" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
                  Margin="0, 5, 0, 5" HorizontalAlignment="Left"
                  VerticalAlignment="Center"
@@ -62,7 +63,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Label Grid.Row="1" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Number of engines" />
+               Content="{x:Static properties:Resources.EngineData_NumberOfEngines_DisplayName}" />
         <Slider Grid.Row="1" Grid.Column="1" Minimum="2" Maximum="6"
                 TickPlacement="BottomRight" TickFrequency="1"
                 IsSnapToTickEnabled="True"
@@ -78,7 +79,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Label Grid.Row="2" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Total thrust [kN]" />
+               Content="{x:Static properties:Resources.EngineData_TotalThrust_DisplayName}" />
         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                Margin="0, 5, 0, 5" HorizontalAlignment="Left"
                VerticalAlignment="Center"
@@ -89,7 +90,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <Label Grid.Row="4" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"
-               Content="Number of failed engines" />
+               Content="{x:Static properties:Resources.EngineData_NrOfFailedEngines_DisplayName}" />
         <Slider Grid.Row="4" Grid.Column="1" Minimum="1"
                 Maximum="{Binding Path=MaximumNrOfFailedEngines}"
                 TickPlacement="BottomRight" TickFrequency="1"
