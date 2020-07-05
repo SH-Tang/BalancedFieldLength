@@ -96,20 +96,20 @@ namespace Application.BalancedFieldLength.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum lift coefficient [-].
+        /// </summary>
+        internal static string AircraftData_MaximumLiftCoefficient_DisplayName {
+            get {
+                return ResourceManager.GetString("AircraftData_MaximumLiftCoefficient_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Maximum pitch angle gradient [deg].
         /// </summary>
         internal static string AircraftData_MaximumPitchAngle_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_MaximumPitchAngle_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Maximum lift coefficient [-].
-        /// </summary>
-        internal static string AircraftData_MaximumumLiftCoeffcient_DisplayName {
-            get {
-                return ResourceManager.GetString("AircraftData_MaximumumLiftCoeffcient_DisplayName", resourceCulture);
             }
         }
         

@@ -150,7 +150,7 @@
   <data name="AircraftData_LiftCoefficientGradient_DisplayName" xml:space="preserve">
     <value>Lift coefficient gradient [-/rad]</value>
   </data>
-  <data name="AircraftData_MaximumumLiftCoeffcient_DisplayName" xml:space="preserve">
+  <data name="AircraftData_MaximumLiftCoefficient_DisplayName" xml:space="preserve">
     <value>Maximum lift coefficient [-]</value>
   </data>
   <data name="AircraftData_ZeroLiftAngleOfAttack_DisplayName" xml:space="preserve">
