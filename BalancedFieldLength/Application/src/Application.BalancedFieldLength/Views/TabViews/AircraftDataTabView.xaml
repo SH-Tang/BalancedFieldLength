@@ -34,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <converters:AngleValueConverter x:Key="AngleDegreesValueConverter" IsDegrees="True"/>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="{x:Static properties:Resources.AircraftData_Take_off_properties_DisplayName}" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Take_off_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -86,7 +86,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                          Name="MaximumPitchAngleTextBox"/>
             </Grid>
         </Expander>
-        <Expander Header="{x:Static properties:Resources.AircraftData_Lift_properties_DisplayName}" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Lift_properties_DisplayName}" IsExpanded="True">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -185,7 +185,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
             </Grid>
         </Expander>
-        <Expander Header="{x:Static properties:Resources.AircraftData_Drag_properties_DisplayName}" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Drag_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />

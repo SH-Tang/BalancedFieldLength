@@ -36,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="{x:Static properties:Resources.GeneralSimulationSettings_Numerical_settings_properties_DisplayName}" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -96,7 +96,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        Content="{x:Static properties:Resources.GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName}" />
             </Grid>
         </Expander>
-    <Expander Header="{x:Static properties:Resources.GeneralSimulationSettings_Environment_properties_DisplayName}" IsExpanded="True">
+    <Expander Header="{x:Static properties:Resources.GeneralSimulationSettingsTabView_Environment_properties_DisplayName}" IsExpanded="True">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />

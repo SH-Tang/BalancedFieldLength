@@ -126,7 +126,7 @@
   <data name="GeneralSimulationSettingsTabViewModel_TabName" xml:space="preserve">
     <value>Simulation Settings</value>
   </data>
-  <data name="AircraftData_Lift_properties_DisplayName" xml:space="preserve">
+  <data name="AircraftDataTabView_Lift_properties_DisplayName" xml:space="preserve">
     <value>Lift properties</value>
   </data>
   <data name="AircraftData_TakeOffWeight_DisplayName" xml:space="preserve">
@@ -156,7 +156,7 @@
   <data name="AircraftData_ZeroLiftAngleOfAttack_DisplayName" xml:space="preserve">
     <value>Zero lift angle of attack [deg]</value>
   </data>
-  <data name="AircraftData_Drag_properties_DisplayName" xml:space="preserve">
+  <data name="AircraftDataTabView_Drag_properties_DisplayName" xml:space="preserve">
     <value>Drag properties</value>
   </data>
   <data name="AircraftData_RestDragCoefficient_DisplayName" xml:space="preserve">
@@ -171,7 +171,7 @@
   <data name="AircraftData_RollResistanceWithBrakesCoefficient_DisplayName" xml:space="preserve">
     <value>Roll resistance coefficient, with brakes applied [-]</value>
   </data>
-  <data name="AircraftData_Take_off_properties_DisplayName" xml:space="preserve">
+  <data name="AircraftDataTabView_Take_off_properties_DisplayName" xml:space="preserve">
     <value>Takeoff properties</value>
   </data>
   <data name="EngineData_ThrustPerEngine_DisplayName" xml:space="preserve">
@@ -186,7 +186,7 @@
   <data name="EngineData_NrOfFailedEngines_DisplayName" xml:space="preserve">
     <value>Number of failed engines</value>
   </data>
-  <data name="GeneralSimulationSettings_Numerical_settings_properties_DisplayName" xml:space="preserve">
+  <data name="GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName" xml:space="preserve">
     <value>Numerical simulation settings</value>
   </data>
   <data name="GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName" xml:space="preserve">
@@ -204,7 +204,7 @@
   <data name="GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName" xml:space="preserve">
     <value>Euler</value>
   </data>
-  <data name="GeneralSimulationSettings_Environment_properties_DisplayName" xml:space="preserve">
+  <data name="GeneralSimulationSettingsTabView_Environment_properties_DisplayName" xml:space="preserve">
     <value>Environment Settings</value>
   </data>
   <data name="GeneralSimulationSettings_GravitationalAcceleration_DisplayName" xml:space="preserve">

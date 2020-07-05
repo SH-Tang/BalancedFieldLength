@@ -39,7 +39,7 @@ namespace Application.BalancedFieldLength.Properties {
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    public class Resources {
+    internal class Resources {
         
         private static global::System.Resources.ResourceManager resourceMan;
         
@@ -53,7 +53,7 @@ namespace Application.BalancedFieldLength.Properties {
         ///   Returns the cached ResourceManager instance used by this class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Resources.ResourceManager ResourceManager {
+        internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
                     global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Application.BalancedFieldLength.Properties.Resources", typeof(Resources).Assembly);
@@ -68,7 +68,7 @@ namespace Application.BalancedFieldLength.Properties {
         ///   resource lookups using this strongly typed resource class.
         /// </summary>
         [global::System.ComponentModel.EditorBrowsableAttribute(global::System.ComponentModel.EditorBrowsableState.Advanced)]
-        public static global::System.Globalization.CultureInfo Culture {
+        internal static global::System.Globalization.CultureInfo Culture {
             get {
                 return resourceCulture;
             }
@@ -80,34 +80,16 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Aspect ratio [-].
         /// </summary>
-        public static string AircraftData_AspectRatio_DisplayName {
+        internal static string AircraftData_AspectRatio_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_AspectRatio_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Drag properties.
-        /// </summary>
-        public static string AircraftData_Drag_properties_DisplayName {
-            get {
-                return ResourceManager.GetString("AircraftData_Drag_properties_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Lift properties.
-        /// </summary>
-        public static string AircraftData_Lift_properties_DisplayName {
-            get {
-                return ResourceManager.GetString("AircraftData_Lift_properties_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Lift coefficient gradient [-/rad].
         /// </summary>
-        public static string AircraftData_LiftCoefficientGradient_DisplayName {
+        internal static string AircraftData_LiftCoefficientGradient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_LiftCoefficientGradient_DisplayName", resourceCulture);
             }
@@ -116,7 +98,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Maximum pitch angle gradient [deg].
         /// </summary>
-        public static string AircraftData_MaximumPitchAngle_DisplayName {
+        internal static string AircraftData_MaximumPitchAngle_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_MaximumPitchAngle_DisplayName", resourceCulture);
             }
@@ -125,7 +107,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Maximum lift coefficient [-].
         /// </summary>
-        public static string AircraftData_MaximumumLiftCoeffcient_DisplayName {
+        internal static string AircraftData_MaximumumLiftCoeffcient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_MaximumumLiftCoeffcient_DisplayName", resourceCulture);
             }
@@ -134,7 +116,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Oswald factor [-].
         /// </summary>
-        public static string AircraftData_OswaldFactor_DisplayName {
+        internal static string AircraftData_OswaldFactor_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_OswaldFactor_DisplayName", resourceCulture);
             }
@@ -143,7 +125,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Pitch angle gradient [deg/s].
         /// </summary>
-        public static string AircraftData_PitchAngleGradient_DisplayName {
+        internal static string AircraftData_PitchAngleGradient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_PitchAngleGradient_DisplayName", resourceCulture);
             }
@@ -152,7 +134,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Rest drag coefficient [-].
         /// </summary>
-        public static string AircraftData_RestDragCoefficient_DisplayName {
+        internal static string AircraftData_RestDragCoefficient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_RestDragCoefficient_DisplayName", resourceCulture);
             }
@@ -161,7 +143,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Rest drag coefficient, with engine failure [-].
         /// </summary>
-        public static string AircraftData_RestDragCoefficientWithEngineFailure_DisplayName {
+        internal static string AircraftData_RestDragCoefficientWithEngineFailure_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_RestDragCoefficientWithEngineFailure_DisplayName", resourceCulture);
             }
@@ -170,7 +152,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Roll resistance coefficient [-].
         /// </summary>
-        public static string AircraftData_RollResistanceCoefficient_DisplayName {
+        internal static string AircraftData_RollResistanceCoefficient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_RollResistanceCoefficient_DisplayName", resourceCulture);
             }
@@ -179,25 +161,16 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Roll resistance coefficient, with brakes applied [-].
         /// </summary>
-        public static string AircraftData_RollResistanceWithBrakesCoefficient_DisplayName {
+        internal static string AircraftData_RollResistanceWithBrakesCoefficient_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_RollResistanceWithBrakesCoefficient_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Takeoff properties.
-        /// </summary>
-        public static string AircraftData_Take_off_properties_DisplayName {
-            get {
-                return ResourceManager.GetString("AircraftData_Take_off_properties_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Take off weight [kN].
         /// </summary>
-        public static string AircraftData_TakeOffWeight_DisplayName {
+        internal static string AircraftData_TakeOffWeight_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_TakeOffWeight_DisplayName", resourceCulture);
             }
@@ -206,7 +179,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Wing surface area [m²].
         /// </summary>
-        public static string AircraftData_WingSurfaceArea_DisplayName {
+        internal static string AircraftData_WingSurfaceArea_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_WingSurfaceArea_DisplayName", resourceCulture);
             }
@@ -215,16 +188,43 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Zero lift angle of attack [deg].
         /// </summary>
-        public static string AircraftData_ZeroLiftAngleOfAttack_DisplayName {
+        internal static string AircraftData_ZeroLiftAngleOfAttack_DisplayName {
             get {
                 return ResourceManager.GetString("AircraftData_ZeroLiftAngleOfAttack_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Drag properties.
+        /// </summary>
+        internal static string AircraftDataTabView_Drag_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("AircraftDataTabView_Drag_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lift properties.
+        /// </summary>
+        internal static string AircraftDataTabView_Lift_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("AircraftDataTabView_Lift_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Takeoff properties.
+        /// </summary>
+        internal static string AircraftDataTabView_Take_off_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("AircraftDataTabView_Take_off_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Aircraft data.
         /// </summary>
-        public static string AircraftDataTabViewModel_TabName {
+        internal static string AircraftDataTabViewModel_TabName {
             get {
                 return ResourceManager.GetString("AircraftDataTabViewModel_TabName", resourceCulture);
             }
@@ -233,7 +233,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Number of failed engines.
         /// </summary>
-        public static string EngineData_NrOfFailedEngines_DisplayName {
+        internal static string EngineData_NrOfFailedEngines_DisplayName {
             get {
                 return ResourceManager.GetString("EngineData_NrOfFailedEngines_DisplayName", resourceCulture);
             }
@@ -242,7 +242,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Number of engines.
         /// </summary>
-        public static string EngineData_NumberOfEngines_DisplayName {
+        internal static string EngineData_NumberOfEngines_DisplayName {
             get {
                 return ResourceManager.GetString("EngineData_NumberOfEngines_DisplayName", resourceCulture);
             }
@@ -251,7 +251,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Thrust per engine [kN].
         /// </summary>
-        public static string EngineData_ThrustPerEngine_DisplayName {
+        internal static string EngineData_ThrustPerEngine_DisplayName {
             get {
                 return ResourceManager.GetString("EngineData_ThrustPerEngine_DisplayName", resourceCulture);
             }
@@ -260,7 +260,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Total thrust [kN].
         /// </summary>
-        public static string EngineData_TotalThrust_DisplayName {
+        internal static string EngineData_TotalThrust_DisplayName {
             get {
                 return ResourceManager.GetString("EngineData_TotalThrust_DisplayName", resourceCulture);
             }
@@ -269,7 +269,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Engine data.
         /// </summary>
-        public static string EngineSettingsTabViewModel_TabName {
+        internal static string EngineSettingsTabViewModel_TabName {
             get {
                 return ResourceManager.GetString("EngineSettingsTabViewModel_TabName", resourceCulture);
             }
@@ -278,7 +278,7 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Density [kg/m³].
         /// </summary>
-        public static string GeneralSimulationSettings_Density_DisplayName {
+        internal static string GeneralSimulationSettings_Density_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettings_Density_DisplayName", resourceCulture);
             }
@@ -287,25 +287,16 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to End velocity [m/s].
         /// </summary>
-        public static string GeneralSimulationSettings_EndFailureVelocity_DisplayName {
+        internal static string GeneralSimulationSettings_EndFailureVelocity_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettings_EndFailureVelocity_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Environment Settings.
-        /// </summary>
-        public static string GeneralSimulationSettings_Environment_properties_DisplayName {
-            get {
-                return ResourceManager.GetString("GeneralSimulationSettings_Environment_properties_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Gravitational acceleration [m/s²].
         /// </summary>
-        public static string GeneralSimulationSettings_GravitationalAcceleration_DisplayName {
+        internal static string GeneralSimulationSettings_GravitationalAcceleration_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettings_GravitationalAcceleration_DisplayName", resourceCulture);
             }
@@ -314,34 +305,34 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Maximum number of iterations.
         /// </summary>
-        public static string GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName {
+        internal static string GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Numerical simulation settings.
-        /// </summary>
-        public static string GeneralSimulationSettings_Numerical_settings_properties_DisplayName {
-            get {
-                return ResourceManager.GetString("GeneralSimulationSettings_Numerical_settings_properties_DisplayName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Time step [s].
         /// </summary>
-        public static string GeneralSimulationSettings_TimeStep_DisplayName {
+        internal static string GeneralSimulationSettings_TimeStep_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettings_TimeStep_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Environment Settings.
+        /// </summary>
+        internal static string GeneralSimulationSettingsTabView_Environment_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettingsTabView_Environment_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Integration scheme.
         /// </summary>
-        public static string GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName {
+        internal static string GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName", resourceCulture);
             }
@@ -350,16 +341,25 @@ namespace Application.BalancedFieldLength.Properties {
         /// <summary>
         ///   Looks up a localized string similar to Euler.
         /// </summary>
-        public static string GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName {
+        internal static string GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName", resourceCulture);
             }
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Numerical simulation settings.
+        /// </summary>
+        internal static string GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Simulation Settings.
         /// </summary>
-        public static string GeneralSimulationSettingsTabViewModel_TabName {
+        internal static string GeneralSimulationSettingsTabViewModel_TabName {
             get {
                 return ResourceManager.GetString("GeneralSimulationSettingsTabViewModel_TabName", resourceCulture);
             }
