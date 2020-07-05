@@ -186,4 +186,31 @@
   <data name="EngineData_NrOfFailedEngines_DisplayName" xml:space="preserve">
     <value>Number of failed engines</value>
   </data>
+  <data name="GeneralSimulationSettings_Numerical_settings_properties_DisplayName" xml:space="preserve">
+    <value>Numerical simulation settings</value>
+  </data>
+  <data name="GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName" xml:space="preserve">
+    <value>Maximum number of iterations</value>
+  </data>
+  <data name="GeneralSimulationSettings_TimeStep_DisplayName" xml:space="preserve">
+    <value>Time step [s]</value>
+  </data>
+  <data name="GeneralSimulationSettings_EndFailureVelocity_DisplayName" xml:space="preserve">
+    <value>End velocity [m/s]</value>
+  </data>
+  <data name="GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName" xml:space="preserve">
+    <value>Integration scheme</value>
+  </data>
+  <data name="GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName" xml:space="preserve">
+    <value>Euler</value>
+  </data>
+  <data name="GeneralSimulationSettings_Environment_properties_DisplayName" xml:space="preserve">
+    <value>Environment Settings</value>
+  </data>
+  <data name="GeneralSimulationSettings_GravitationalAcceleration_DisplayName" xml:space="preserve">
+    <value>Gravitational acceleration [m/s²]</value>
+  </data>
+  <data name="GeneralSimulationSettings_Density_DisplayName" xml:space="preserve">
+    <value>Density [kg/m³]</value>
+  </data>
 </root>

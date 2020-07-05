@@ -276,6 +276,87 @@ namespace Application.BalancedFieldLength.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Density [kg/m³].
+        /// </summary>
+        public static string GeneralSimulationSettings_Density_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_Density_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to End velocity [m/s].
+        /// </summary>
+        public static string GeneralSimulationSettings_EndFailureVelocity_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_EndFailureVelocity_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Environment Settings.
+        /// </summary>
+        public static string GeneralSimulationSettings_Environment_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_Environment_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Gravitational acceleration [m/s²].
+        /// </summary>
+        public static string GeneralSimulationSettings_GravitationalAcceleration_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_GravitationalAcceleration_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum number of iterations.
+        /// </summary>
+        public static string GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Numerical simulation settings.
+        /// </summary>
+        public static string GeneralSimulationSettings_Numerical_settings_properties_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_Numerical_settings_properties_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Time step [s].
+        /// </summary>
+        public static string GeneralSimulationSettings_TimeStep_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettings_TimeStep_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Integration scheme.
+        /// </summary>
+        public static string GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Euler.
+        /// </summary>
+        public static string GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName {
+            get {
+                return ResourceManager.GetString("GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Simulation Settings.
         /// </summary>
         public static string GeneralSimulationSettingsTabViewModel_TabName {

@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
+             xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -35,7 +36,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="Numerical simulation settings" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.GeneralSimulationSettings_Numerical_settings_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -50,7 +51,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="0" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Maximum number of iterations" />
+                       Content="{x:Static properties:Resources.GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
                        Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
@@ -63,7 +64,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Time step [s]" />
+                       Content="{x:Static properties:Resources.GeneralSimulationSettings_TimeStep_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
@@ -75,7 +76,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="End velocity [m/s]" />
+                       Content="{x:Static properties:Resources.GeneralSimulationSettings_EndFailureVelocity_DisplayName}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
                          Margin="0" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
@@ -88,14 +89,14 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="3" Grid.Column="0" 
                        Margin="0,0,10,0" HorizontalAlignment="Left" 
                        VerticalAlignment="TOp"
-                       Content="Integration scheme" />
+                       Content="{x:Static properties:Resources.GeneralSimulationSettingsTabView_IntegrationScheme_DisplayName}" />
                 <Label Grid.Row="3" Grid.Column="1" 
                        Margin="0" HorizontalAlignment="Center" 
                        VerticalAlignment="Top"
-                       Content="Euler" />
+                       Content="{x:Static properties:Resources.GeneralSimulationSettingsTabView_IntegrationScheme_Euler_DisplayName}" />
             </Grid>
         </Expander>
-    <Expander Header="Environment Settings" IsExpanded="True">
+    <Expander Header="{x:Static properties:Resources.GeneralSimulationSettings_Environment_properties_DisplayName}" IsExpanded="True">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto" />
@@ -108,7 +109,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             <Label Grid.Row="0" Grid.Column="0" 
                    Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                    VerticalAlignment="Top"
-                   Content="Gravitational acceleration [m/s²]" />
+                   Content="{x:Static properties:Resources.GeneralSimulationSettings_GravitationalAcceleration_DisplayName}" />
             <TextBox Grid.Row="0" Grid.Column="1" 
                      Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
@@ -121,7 +122,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
             <Label Grid.Row="1" Grid.Column="0" 
                    Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                    VerticalAlignment="Top"
-                   Content="Density [kg/m³]" />
+                   Content="{x:Static properties:Resources.GeneralSimulationSettings_Density_DisplayName}" />
             <TextBox Grid.Row="1" Grid.Column="1" 
                      Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
