@@ -11,6 +11,7 @@
 - [ADR-00007](00007-IValueConverter-Realisations.md) - Ambiguous IValueConverter behaviour when defining realizations
 - [ADR-00008](00008-Refactor-Components.md) - Refactor the Application.BalancedFieldLength assembly into reusable components
 - [ADR-00009](00009-Refactor-MVVM-Components.md) - Refactor the MVVM components within the Application.BalancedFieldLength assembly
+- [ADR-00010](00010-KernelWrapperDesign.md) - Kernel wrapper design
 
 <!-- adrlogstop -->
 
