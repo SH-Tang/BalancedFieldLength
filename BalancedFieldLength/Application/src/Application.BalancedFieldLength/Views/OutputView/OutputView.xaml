@@ -26,8 +26,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:outputView="clr-namespace:Application.BalancedFieldLength.Views.OutputView"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
-             d:DataContext="{d:DesignInstance Type=outputView:OutputViewModel,
-                            IsDesignTimeCreatable=True}">
+             d:DataContext="{d:DesignInstance outputView:OutputViewModel}">
     <UserControl.Resources>
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
     </UserControl.Resources>
