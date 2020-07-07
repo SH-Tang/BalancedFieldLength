@@ -15,7 +15,9 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace WPF.Components.TabControl
 {
@@ -27,6 +29,13 @@ namespace WPF.Components.TabControl
         public TabControlView()
         {
             InitializeComponent();
+        }
+
+        private void TabControl_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // This commits control values when the tab control changes tab.
+            // See also: https://stackoverflow.com/questions/10208861/wpf-data-bound-tabcontrol-doesnt-commit-changes-when-new-tab-is-selected
+            Keyboard.FocusedElement?.RaiseEvent(new RoutedEventArgs(LostFocusEvent));
         }
     }
 }

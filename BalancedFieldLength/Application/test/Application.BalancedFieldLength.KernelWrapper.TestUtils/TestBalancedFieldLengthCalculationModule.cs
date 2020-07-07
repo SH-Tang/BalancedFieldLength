@@ -19,7 +19,8 @@ using System.Collections.Generic;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 
-namespace Application.BalancedFieldLength.KernelWrapper.TestUtils {
+namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
+{
     /// <summary>
     /// Implementation of <see cref="IBalancedFieldLengthCalculationModule"/> which can be
     /// used for testing purposes.

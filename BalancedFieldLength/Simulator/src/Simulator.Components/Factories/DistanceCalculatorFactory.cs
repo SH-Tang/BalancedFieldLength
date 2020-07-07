@@ -53,11 +53,6 @@ namespace Simulator.Components.Factories
                                                                             double gravitationalAcceleration,
                                                                             CalculationSettings calculationSettings)
         {
-            if (takeOffDynamicsCalculatorFactory == null)
-            {
-                throw new ArgumentNullException(nameof(takeOffDynamicsCalculatorFactory));
-            }
-
             INormalTakeOffDynamicsCalculator normalTakeOffDynamicsCalculator =
                 takeOffDynamicsCalculatorFactory.CreateNormalTakeOffDynamics(data, density, gravitationalAcceleration);
             IFailureTakeOffDynamicsCalculator failureTakeOffDynamicsCalculator =

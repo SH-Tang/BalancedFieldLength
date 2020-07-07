@@ -16,17 +16,33 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
+using WPF.Components.TextBoxHelpers;
 
 namespace Application.BalancedFieldLength.Views.TabViews
 {
     /// <summary>
-    /// Interaction logic for GeneralSImulationSettingsTabView.xaml
+    /// Interaction logic for GeneralSimulationSettingsTabView.xaml
     /// </summary>
     public partial class GeneralSimulationSettingsTabView : UserControl
     {
         public GeneralSimulationSettingsTabView()
         {
             InitializeComponent();
+
+            TextBoxModificationBinding.Create(MaximumNrOfIterationsTextBox);
+            TextBoxMoveFocusOnModification.Create(MaximumNrOfIterationsTextBox);
+
+            TextBoxModificationBinding.Create(TimeStepTextBox);
+            TextBoxMoveFocusOnModification.Create(TimeStepTextBox);
+
+            TextBoxModificationBinding.Create(EndFailureVelocityTextBox);
+            TextBoxMoveFocusOnModification.Create(EndFailureVelocityTextBox);
+
+            TextBoxModificationBinding.Create(DensityTextBox);
+            TextBoxMoveFocusOnModification.Create(DensityTextBox);
+
+            TextBoxModificationBinding.Create(GravitationalAccelerationTextBox);
+            TextBoxMoveFocusOnModification.Create(GravitationalAccelerationTextBox);
         }
     }
 }

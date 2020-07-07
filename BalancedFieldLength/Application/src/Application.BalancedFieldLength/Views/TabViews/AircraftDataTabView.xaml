@@ -24,6 +24,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
+             xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="700"
              d:DataContext="{d:DesignInstance Type=tabViews:AircraftDataTabViewModel,
@@ -33,7 +34,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <converters:AngleValueConverter x:Key="AngleDegreesValueConverter" IsDegrees="True"/>
     </UserControl.Resources>
     <StackPanel>
-        <Expander Header="Aircraft properties" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Take_off_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -48,41 +49,44 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="0" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Take off weight [kN]" />
+                       Content="{x:Static properties:Resources.AircraftData_TakeOffWeight_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=TakeOffWeight,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="TakeOffWeightTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Pitch angle gradient [deg/s]" />
+                       Content="{x:Static properties:Resources.AircraftData_PitchAngleGradient_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=PitchGradient,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="PitchGradientTextBox"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Maximum pitch angle gradient [deg]" />
+                       Content="{x:Static properties:Resources.AircraftData_MaximumPitchAngle_DisplayName}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=MaximumPitchAngle,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="MaximumPitchAngleTextBox"/>
             </Grid>
         </Expander>
-        <Expander Header="Lift properties" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Lift_properties_DisplayName}" IsExpanded="True">
             <Grid Margin="0">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -102,80 +106,86 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="0" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Wing surface area [m²]" />
+                       Content="{x:Static properties:Resources.AircraftData_WingSurfaceArea_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=WingSurfaceArea,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="WingSurfaceAreaTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Aspect ratio [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_AspectRatio_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=AspectRatio,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="AspectRatioTextBox"/>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Oswald factor [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_OswaldFactor_DisplayName}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=OswaldFactor,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="OswaldFactorTextBox"/>
 
                 <Separator Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="4" />
 
                 <Label Grid.Row="4" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Lift coefficient gradient [-/deg]" />
+                       Content="{x:Static properties:Resources.AircraftData_LiftCoefficientGradient_DisplayName}" />
                 <TextBox Grid.Row="4" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=LiftCoefficientGradient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="LiftCoefficientGradientTextBox"/>
 
                 <Label Grid.Row="4" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Maximum lift coefficient [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_MaximumLiftCoefficient_DisplayName}" />
                 <TextBox Grid.Row="4" Grid.Column="3" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=MaximumLiftCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="MaximumLiftCoefficientTextBox"/>
 
                 <Label Grid.Row="5" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Zero lift angle of attack [deg]" />
+                       Content="{x:Static properties:Resources.AircraftData_ZeroLiftAngleOfAttack_DisplayName}" />
                 <TextBox Grid.Row="5" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=ZeroLiftAngleOfAttack,
                                 Converter={StaticResource AngleDegreesValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="ZeroLiftAngleTextBox"/>
 
             </Grid>
         </Expander>
-        <Expander Header="Drag properties" IsExpanded="True">
+        <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Drag_properties_DisplayName}" IsExpanded="True">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto" />
@@ -190,50 +200,54 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Label Grid.Row="0" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Rest drag coefficient [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_RestDragCoefficient_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=RestDragCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RestDragCoefficientTextBox"/>
 
                 <Label Grid.Row="0" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Rest drag coefficient, with engine failure [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_RestDragCoefficientWithEngineFailure_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="3" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=RestDragCoefficientWithEngineFailure,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RestDragCoefficientWithEngineFailureTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Roll resistance coefficient [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_RollResistanceCoefficient_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=RollResistanceCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RollResistanceCoefficientTextBox"/>
 
                 <Label Grid.Row="1" Grid.Column="2" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                        VerticalAlignment="Top"
-                       Content="Roll resistance coefficient, with brakes applied [-]" />
+                       Content="{x:Static properties:Resources.AircraftData_RollResistanceWithBrakesCoefficient_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="3" 
                          Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
                          Width="100"
                          Text="{Binding Path=RollResistanceWithBrakesCoefficient,
                                 Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}"/>
+                                Mode=TwoWay}"
+                         Name="RollResistanceWithBrakesCoefficientTextBox"/>
 
             </Grid>
         </Expander>

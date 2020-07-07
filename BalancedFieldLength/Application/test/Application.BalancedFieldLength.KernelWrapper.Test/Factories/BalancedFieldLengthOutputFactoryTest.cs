@@ -67,10 +67,10 @@ namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories
         {
             // Setup
             IEnumerable<AggregatedDistanceOutput> outputs = Enumerable.Empty<AggregatedDistanceOutput>();
-            
+
             // Call
-            TestDelegate call = () =>  BalancedFieldLengthOutputFactory.Create(outputs);
-            
+            TestDelegate call = () => BalancedFieldLengthOutputFactory.Create(outputs);
+
             // Assert
             var exception = Assert.Throws<KernelCalculationException>(call);
             Exception innerException = exception.InnerException;

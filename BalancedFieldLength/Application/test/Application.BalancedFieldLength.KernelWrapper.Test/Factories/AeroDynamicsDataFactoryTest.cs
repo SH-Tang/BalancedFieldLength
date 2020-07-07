@@ -16,12 +16,12 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
 using Application.BalancedFieldLength.KernelWrapper.Factories;
 using Application.BalancedFieldLength.KernelWrapper.TestUtils;
 using Core.Common.TestUtil;
 using NUnit.Framework;
-using AircraftData = Application.BalancedFieldLength.Data.AircraftData;
 using KernelAerodynamicsData = Simulator.Data.AerodynamicsData;
 
 namespace Application.BalancedFieldLength.KernelWrapper.Test.Factories

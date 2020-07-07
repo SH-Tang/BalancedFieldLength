@@ -16,7 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using NSubstitute;
 using NUnit.Framework;
 
 namespace Application.BalancedFieldLength.KernelWrapper.TestUtils.Test

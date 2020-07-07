@@ -132,7 +132,7 @@ namespace Application.BalancedFieldLength.KernelWrapper
             var integrator = new EulerIntegrator();
 
             var outputs = new List<AggregatedDistanceOutput>();
-            for (var i = 0; i < endVelocity; i++)
+            for (int i = 0; i < endVelocity; i++)
             {
                 var calculationInput = new CalculationInput(generalSimulationSettings,
                                                             i,

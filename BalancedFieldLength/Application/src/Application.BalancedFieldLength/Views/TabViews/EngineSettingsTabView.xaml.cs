@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System.Windows.Controls;
+using WPF.Components.TextBoxHelpers;
 
 namespace Application.BalancedFieldLength.Views.TabViews
 {
@@ -27,6 +28,9 @@ namespace Application.BalancedFieldLength.Views.TabViews
         public EngineSettingsTabView()
         {
             InitializeComponent();
+
+            TextBoxModificationBinding.Create(ThrustPerEngineTextBox);
+            TextBoxMoveFocusOnModification.Create(ThrustPerEngineTextBox);
         }
     }
 }

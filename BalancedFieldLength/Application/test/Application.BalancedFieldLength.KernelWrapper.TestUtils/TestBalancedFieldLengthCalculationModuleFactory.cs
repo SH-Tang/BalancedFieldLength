@@ -27,15 +27,15 @@ namespace Application.BalancedFieldLength.KernelWrapper.TestUtils
             TestModule = new TestBalancedFieldLengthCalculationModule();
         }
 
-        public IBalancedFieldLengthCalculationModule CreateModule()
-        {
-            return TestModule;
-        }
-
         /// <summary>
         /// Gets the <see cref="TestBalancedFieldLengthCalculationModule"/> that is generated when calling
         /// <see cref="CreateModule"/>.
         /// </summary>
         public TestBalancedFieldLengthCalculationModule TestModule { get; }
+
+        public IBalancedFieldLengthCalculationModule CreateModule()
+        {
+            return TestModule;
+        }
     }
 }

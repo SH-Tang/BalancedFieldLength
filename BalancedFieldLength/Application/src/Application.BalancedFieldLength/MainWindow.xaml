@@ -35,9 +35,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <local:MainViewModel />
     </Window.DataContext>
     <Window.Resources>
-        <DataTemplate DataType="{x:Type tabControl:TabControlViewModel}">
-            <tabControl:TabControlView/>
-        </DataTemplate>
         <DataTemplate DataType="{x:Type tabViews:GeneralSimulationSettingsTabViewModel}">
             <tabViews:GeneralSimulationSettingsTabView/>
         </DataTemplate>
@@ -47,12 +44,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
         <DataTemplate DataType="{x:Type tabViews:AircraftDataTabViewModel}">
             <tabViews:AircraftDataTabView/>
         </DataTemplate>
-        <DataTemplate DataType="{x:Type messageView:MessageWindowViewModel}">
-            <messageView:MessageWindowView/>
-        </DataTemplate>
-        <DataTemplate DataType="{x:Type outputView:OutputViewModel}">
-            <outputView:OutputView/>
-        </DataTemplate>
     </Window.Resources>
     <DockPanel>
         <Border>
@@ -61,10 +52,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                         MaxHeight="30" 
                         MaxWidth="350"
                         Margin="3" />
-                    <ContentControl DockPanel.Dock="Top" Content="{Binding TabControlViewModel}"/>
+                    <tabControl:TabControlView DockPanel.Dock="Top" DataContext="{Binding TabControlViewModel}"/>
             </DockPanel>
         </Border>
-        <ContentControl DockPanel.Dock="Bottom" Content="{Binding MessageWindowViewModel}" MinHeight="150" MaxHeight="150"/>
-        <ContentControl Content="{Binding OutputViewModel}" />
+        <messageView:MessageWindowView DockPanel.Dock="Bottom" DataContext="{Binding MessageWindowViewModel}" MinHeight="150" MaxHeight="150"/>
+        <outputView:OutputView DataContext="{Binding OutputViewModel}" />
     </DockPanel>
 </metro:MetroWindow>

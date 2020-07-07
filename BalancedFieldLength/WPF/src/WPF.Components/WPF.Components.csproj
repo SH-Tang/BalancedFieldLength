@@ -33,6 +33,8 @@
       <DependentUpon>TabControlView.xaml</DependentUpon>
     </Compile>
     <Compile Include="TabControl\TabControlViewModel.cs" />
+    <Compile Include="TextBoxHelpers\TextBoxMoveFocusOnModification.cs" />
+    <Compile Include="TextBoxHelpers\TextBoxModificationBinding.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">

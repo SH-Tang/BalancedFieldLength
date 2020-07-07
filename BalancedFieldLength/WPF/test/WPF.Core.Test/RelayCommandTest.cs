@@ -50,7 +50,7 @@ namespace WPF.Core.Test
         public void Execute_WithoutCanExecuteFunction_InvokesExecuteAction()
         {
             // Setup
-            var isExecuted = false;
+            bool isExecuted = false;
             var command = new RelayCommand(() => isExecuted = true);
 
             // Call
@@ -88,7 +88,7 @@ namespace WPF.Core.Test
         public void Execute_WithCanExecuteFunction_InvokesExecuteAction()
         {
             // Setup
-            var isExecuted = false;
+            bool isExecuted = false;
             var command = new RelayCommand(() => isExecuted = true, null);
 
             // Call
@@ -103,12 +103,12 @@ namespace WPF.Core.Test
         {
             // Setup
             const bool canExecuteResult = true;
-            var isCanExecuteFunc = false;
+            bool isCanExecuteFunc = false;
             var command = new RelayCommand(() => {}, () =>
-                                                     {
-                                                         isCanExecuteFunc = true;
-                                                         return canExecuteResult;
-                                                     });
+            {
+                isCanExecuteFunc = true;
+                return canExecuteResult;
+            });
 
             // Call
             bool canExecute = command.CanExecute(null);

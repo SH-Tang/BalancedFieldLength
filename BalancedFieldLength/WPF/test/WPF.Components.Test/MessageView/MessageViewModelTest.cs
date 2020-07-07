@@ -92,7 +92,7 @@ namespace WPF.Components.Test.MessageView
             }, viewModel.Messages);
 
             var messageTwo = new MessageContext(MessageType.Warning, "Message2");
-            
+
             // When 
             viewModel.AddMessage(messageTwo);
 
