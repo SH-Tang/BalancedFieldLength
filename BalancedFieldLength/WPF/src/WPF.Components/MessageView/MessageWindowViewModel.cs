@@ -17,27 +17,29 @@
 
 using System;
 using System.Collections.ObjectModel;
-using WPF.Core;
 
 namespace WPF.Components.MessageView
 {
     /// <summary>
     /// View model to display messages.
     /// </summary>
-    public class MessageWindowViewModel : ViewModelBase
+    public class MessageWindowViewModel
     {
+        private readonly ObservableCollection<MessageContext> messages;
+
         /// <summary>
         /// Creates a new instance of <see cref="MessageWindowViewModel"/>.
         /// </summary>
         public MessageWindowViewModel()
         {
-            Messages = new ObservableCollection<MessageContext>();
+            messages = new ObservableCollection<MessageContext>();
+            Messages = new ReadOnlyObservableCollection<MessageContext>(messages);
         }
 
         /// <summary>
         /// Gets the collection of messages.
         /// </summary>
-        public ObservableCollection<MessageContext> Messages { get; }
+        public ReadOnlyObservableCollection<MessageContext> Messages { get; }
 
         /// <summary>
         /// Adds a message to the message window.
@@ -52,8 +54,7 @@ namespace WPF.Components.MessageView
                 throw new ArgumentNullException(nameof(message));
             }
 
-            Messages.Insert(0, message);
-            OnPropertyChanged(nameof(Messages));
+            messages.Insert(0, message);
         }
     }
 }

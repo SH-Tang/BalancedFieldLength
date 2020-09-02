@@ -16,7 +16,6 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
-using System.ComponentModel;
 using NUnit.Framework;
 using WPF.Components.MessageView;
 using WPF.Core;
@@ -24,7 +23,7 @@ using WPF.Core;
 namespace WPF.Components.Test.MessageView
 {
     [TestFixture]
-    public class MessageViewModelTest
+    public class MessageWindowViewModelTest
     {
         [Test]
         public static void Constructor_ExpectedValues()
@@ -50,30 +49,6 @@ namespace WPF.Components.Test.MessageView
             Assert.That(call, Throws.ArgumentNullException
                                     .With.Property(nameof(ArgumentNullException.ParamName))
                                     .EqualTo("message"));
-        }
-
-        [Test]
-        public void AddMessage_MessageValid_AddsMessageToCollectionAndNotifyPropertyChanged()
-        {
-            // Setup
-            var viewModel = new MessageWindowViewModel();
-
-            bool propertyChangedTriggered = false;
-            PropertyChangedEventArgs eventArgs = null;
-            viewModel.PropertyChanged += (o, e) =>
-            {
-                propertyChangedTriggered = true;
-                eventArgs = e;
-            };
-
-            var message = new MessageContext(MessageType.Warning, string.Empty);
-
-            // Call 
-            viewModel.AddMessage(message);
-
-            // Assert
-            Assert.That(propertyChangedTriggered, Is.True);
-            Assert.That(eventArgs.PropertyName, Is.EqualTo(nameof(viewModel.Messages)));
         }
 
         [Test]
