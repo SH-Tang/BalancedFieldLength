@@ -18,7 +18,6 @@
 using System;
 using NUnit.Framework;
 using WPF.Components.MessageView;
-using WPF.Core;
 
 namespace WPF.Components.Test.MessageView
 {
@@ -32,7 +31,6 @@ namespace WPF.Components.Test.MessageView
             var viewModel = new MessageWindowViewModel();
 
             // Assert
-            Assert.That(viewModel, Is.InstanceOf<ViewModelBase>());
             Assert.That(viewModel.Messages, Is.Not.Null.And.Empty);
         }
 
