@@ -23,7 +23,7 @@ using WPF.Core;
 namespace WPF.Components.Test.MessageView
 {
     [TestFixture]
-    public class MessageViewModelTest
+    public class MessageWindowViewModelTest
     {
         [Test]
         public static void Constructor_ExpectedValues()
