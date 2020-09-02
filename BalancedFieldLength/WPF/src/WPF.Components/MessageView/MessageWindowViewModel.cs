@@ -17,14 +17,13 @@
 
 using System;
 using System.Collections.ObjectModel;
-using WPF.Core;
 
 namespace WPF.Components.MessageView
 {
     /// <summary>
     /// View model to display messages.
     /// </summary>
-    public class MessageWindowViewModel : ViewModelBase
+    public class MessageWindowViewModel
     {
         private readonly ObservableCollection<MessageContext> messages;
 
