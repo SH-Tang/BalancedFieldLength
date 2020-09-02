@@ -56,7 +56,6 @@ namespace WPF.Components.MessageView
             }
 
             messages.Insert(0, message);
-            OnPropertyChanged(nameof(Messages));
         }
     }
 }
