@@ -6,7 +6,7 @@ The user is currently allowed to enter every value in the input fields. Even tho
 
 ## Considered Options
 
-# Validation on the data model
+### Validation on the data model
 The data model is responsible for determining which values are allowed as input and are then passed to the kernel for the calculation. Validation will happen by means of throwing exceptions when a value is invalid. 
 
 Advantages:
@@ -17,7 +17,7 @@ Disadvantages:
 * It will not retain the invalid entered value. The exception basically prevents the view from committing the value. As a consequence, the last (valid) value will be shown. 
 * The focus will remain on the control element. The user cannot change the control unless they correct the wrong value. 
 
-# Using the interface `INotifyDataErrorInfo`
+### Using the interface `INotifyDataErrorInfo`
 The view model becomes responsible for validating the values with this choice. WPF supports this approach and it basically means that the ViewModel will contain the  logic to verify whether the data is valid. It is not recommended to implement this interface on the domain data, because that will introduce a dependency of the domain data to GUI components. (which is undesirable)
 
 Advantages:
@@ -28,7 +28,7 @@ Advantages:
 Disadvantages:
 * By introducing validation rules within the ViewModel, the business logic is potentially at two places. In case an import functionality is to be implemented, the domain model has to guarantee that the data passed around in the application is valid with the business logic satisfied. The introduction of the validation rules might cause this redundancy as it needs to be present in the ViewModel as well. Alternatively, this could be refactored in a helper class that validates the data. (Drawback of this approach is that the helper needs to be called whenever the data is involved)
 
-# Using the abstract class `ValidationRule` 
+### Using the abstract class `ValidationRule` 
 The abstract class 'ValidationRule` enables a generic validation rule to be executed before the value is being bound. This basically means that it will intercept the user input before the value is being committed to the underlying datamodel in the ViewModel. 
 
 However, the `ValidationRule` is rather generic and is extremely basic in containing business logic. The behaviour makes it more suitable to validate user input independent of the bussiness logic. 
