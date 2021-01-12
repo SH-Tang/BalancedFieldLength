@@ -70,6 +70,15 @@ namespace WPF.Core.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} could not be parsed as an integer..
+        /// </summary>
+        internal static string IntegerNumberValidationRule_Validate_Value_0_is_not_an_integer {
+            get {
+                return ResourceManager.GetString("IntegerNumberValidationRule_Validate_Value_0_is_not_an_integer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} must be a string..
         /// </summary>
         internal static string NumericValidationRule_Parameter_0_must_be_a_string {
