@@ -23,6 +23,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
+             xmlns:validationRules="clr-namespace:WPF.Core.ValidationRules;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
              xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
              mc:Ignorable="d"
@@ -32,6 +33,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              d:DataContext="{d:DesignInstance tabViews:EngineSettingsTabViewModel}">
     <UserControl.Resources>
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter" />
+        <Style x:Key="TextBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+              Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="0, 5, 0, 5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -51,13 +65,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                VerticalAlignment="Top"
                Content="{x:Static properties:Resources.EngineData_ThrustPerEngine_DisplayName}" />
         <TextBox Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2"
-                 Margin="0, 5, 0, 5" HorizontalAlignment="Left"
+                 HorizontalAlignment="Left"
                  VerticalAlignment="Center"
-                 Width="100"
-                 Text="{Binding Path=ThrustPerEngine,
-                                Converter={StaticResource DoubleValueConverter},
-                                Mode=TwoWay}" 
-                 Name="ThrustPerEngineTextBox"/>
+                 Style="{StaticResource TextBoxInError}"
+                 Name="ThrustPerEngineTextBox">
+            <TextBox.Text>
+                <Binding Path="ThrustPerEngine"
+                         Converter="{StaticResource DoubleValueConverter}"
+                         Mode="TwoWay"
+                         NotifyOnValidationError="True">
+                    <Binding.ValidationRules>
+                        <validationRules:FloatingNumberValidationRule IsWhitespaceStringValid="True" />
+                    </Binding.ValidationRules>
+                </Binding>
+            </TextBox.Text>
+        </TextBox>
 
         <Label Grid.Row="1" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
@@ -85,7 +107,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                Width="100"
                IsEnabled="False"
                Content="{Binding Path=TotalThrust, Converter={StaticResource DoubleValueConverter}}" />
-        
+
         <Label Grid.Row="4" Grid.Column="0"
                Margin="0, 5, 10, 5" HorizontalAlignment="Left"
                VerticalAlignment="Top"
