@@ -25,6 +25,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
              xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
+             xmlns:validationRules="clr-namespace:WPF.Core.ValidationRules;assembly=WPF.Core"
              mc:Ignorable="d" 
              VerticalContentAlignment="Stretch"
              HorizontalContentAlignment="Stretch"
@@ -33,6 +34,19 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
     <UserControl.Resources>
         <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
         <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
+        <Style x:Key="TextBoxInError" TargetType="{x:Type TextBox}">
+            <Style.Triggers>
+                <Trigger Property="Validation.HasError" Value="true">
+                    <Setter Property="ToolTip"
+                            Value="{Binding RelativeSource={x:Static RelativeSource.Self},
+              Path=(Validation.Errors)[0].ErrorContent}" />
+                </Trigger>
+            </Style.Triggers>
+            <Setter Property="Height" Value="25" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Margin" Value="0, 5, 0, 5" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
     <StackPanel>
         <Expander Header="{x:Static properties:Resources.GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName}" IsExpanded="True">
@@ -65,12 +79,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        VerticalAlignment="Top"
                        Content="{x:Static properties:Resources.GeneralSimulationSettings_TimeStep_DisplayName}" />
                 <TextBox Grid.Row="1" Grid.Column="1" 
-                         Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                         HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
-                         Width="100"
-                         Text="{Binding Path=TimeStep, Mode=TwoWay, 
-                                Converter={StaticResource DoubleValueConverter}}"
-                         Name="TimeStepTextBox"/>
+                         Style="{StaticResource TextBoxInError}"
+                         Name="TimeStepTextBox">
+                    <TextBox.Text>
+                        <Binding Path="TimeStep"
+                                 Converter="{StaticResource DoubleValueConverter}"
+                                 Mode="TwoWay"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <validationRules:FloatingNumberValidationRule IsWhitespaceStringValid="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label Grid.Row="2" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -110,26 +133,42 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                    VerticalAlignment="Top"
                    Content="{x:Static properties:Resources.GeneralSimulationSettings_GravitationalAcceleration_DisplayName}" />
             <TextBox Grid.Row="0" Grid.Column="1" 
-                     Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                     HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
-                     Width="100"
-                     Text="{Binding Path=GravitationalAcceleration, 
-                            Mode=TwoWay,
-                            Converter={StaticResource DoubleValueConverter}}"
-                     Name="GravitationalAccelerationTextBox"/>
+                     Style="{StaticResource TextBoxInError}"
+                     Name="GravitationalAccelerationTextBox">
+                <TextBox.Text>
+                    <Binding Path="GravitationalAcceleration"
+                             Converter="{StaticResource DoubleValueConverter}"
+                             Mode="TwoWay"
+                             NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <validationRules:FloatingNumberValidationRule IsWhitespaceStringValid="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
-            <Label Grid.Row="1" Grid.Column="0" 
+                <Label Grid.Row="1" Grid.Column="0" 
                    Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
                    VerticalAlignment="Top"
                    Content="{x:Static properties:Resources.GeneralSimulationSettings_Density_DisplayName}" />
             <TextBox Grid.Row="1" Grid.Column="1" 
-                     Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                     HorizontalAlignment="Center" 
                      VerticalAlignment="Center"
-                     Width="100"
-                     Text="{Binding Path=Density, 
-                            Mode=TwoWay,
-                            Converter={StaticResource DoubleValueConverter}}"
-                     Name="DensityTextBox"/>
+                     Style="{StaticResource TextBoxInError}"
+                     Name="DensityTextBox">
+                <TextBox.Text>
+                    <Binding Path="Density"
+                             Converter="{StaticResource DoubleValueConverter}"
+                             Mode="TwoWay"
+                             NotifyOnValidationError="True">
+                        <Binding.ValidationRules>
+                            <validationRules:FloatingNumberValidationRule IsWhitespaceStringValid="True" />
+                        </Binding.ValidationRules>
+                    </Binding>
+                </TextBox.Text>
+            </TextBox>
 
             </Grid>
     </Expander>
