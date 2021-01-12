@@ -30,6 +30,11 @@ namespace WPF.Core.ValidationRules
                                                  | NumberStyles.AllowDecimalPoint
                                                  | NumberStyles.AllowThousands;
 
+        /// <summary>
+        /// Gets or sets whether a string value consisting of whitespace is valid
+        /// </summary>
+        public bool IsWhitespaceStringValid { get; set; }
+
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {
             string stringValue = value as string;
@@ -38,13 +43,14 @@ namespace WPF.Core.ValidationRules
                 return new ValidationResult(false, $"{nameof(value)} must be a string.");
             }
 
-            if (string.IsNullOrWhiteSpace(stringValue))
+            if (IsWhitespaceStringValid && string.IsNullOrWhiteSpace(stringValue))
             {
                 return ValidationResult.ValidResult;
             }
 
             double parsedValue;
-            if (!double.TryParse(stringValue, numberStyle, CultureInfo.InvariantCulture, out parsedValue))
+            string trimmedStringValue = stringValue.Trim();
+            if (!double.TryParse(trimmedStringValue, numberStyle, CultureInfo.InvariantCulture, out parsedValue))
             {
                 return new ValidationResult(false, $"{stringValue} could not be parsed as a floating number.");
             }
