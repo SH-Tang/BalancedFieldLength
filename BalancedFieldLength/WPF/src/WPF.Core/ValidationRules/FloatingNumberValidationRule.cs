@@ -17,6 +17,7 @@
 
 using System.Globalization;
 using System.Windows.Controls;
+using WPF.Core.Properties;
 
 namespace WPF.Core.ValidationRules
 {
@@ -40,7 +41,7 @@ namespace WPF.Core.ValidationRules
             string stringValue = value as string;
             if (stringValue == null)
             {
-                return new ValidationResult(false, $"{nameof(value)} must be a string.");
+                return new ValidationResult(false, string.Format(Resources.NumericValidationRule_Parameter_0_must_be_a_string, nameof(value)));
             }
 
             if (IsWhitespaceStringValid && string.IsNullOrWhiteSpace(stringValue))
@@ -52,7 +53,7 @@ namespace WPF.Core.ValidationRules
             string trimmedStringValue = stringValue.Trim();
             if (!double.TryParse(trimmedStringValue, numberStyle, CultureInfo.InvariantCulture, out parsedValue))
             {
-                return new ValidationResult(false, $"{stringValue} could not be parsed as a floating number.");
+                return new ValidationResult(false, string.Format(Resources.FloatingNumberValidationRule_Validate_Value_0_is_not_a_floating_number, stringValue));
             }
 
             return ValidationResult.ValidResult;
