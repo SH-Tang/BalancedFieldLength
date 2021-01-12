@@ -49,6 +49,9 @@ namespace Application.BalancedFieldLength.Views.TabViews
 
             this.settings = settings;
 
+            maximumNrOfIterations = settings.MaximumNrOfIterations;
+            endFailureVelocity = settings.EndFailureVelocity;
+
             timeStep = settings.TimeStep;
             gravitationalAcceleration = settings.GravitationalAcceleration;
             density = settings.Density;
