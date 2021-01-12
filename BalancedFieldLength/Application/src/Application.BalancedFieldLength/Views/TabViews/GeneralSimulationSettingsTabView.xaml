@@ -39,7 +39,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                 <Trigger Property="Validation.HasError" Value="true">
                     <Setter Property="ToolTip"
                             Value="{Binding RelativeSource={x:Static RelativeSource.Self},
-              Path=(Validation.Errors)[0].ErrorContent}" />
+                            Path=(Validation.Errors)[0].ErrorContent}" />
                 </Trigger>
             </Style.Triggers>
             <Setter Property="Height" Value="25" />
@@ -66,13 +66,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        VerticalAlignment="Top"
                        Content="{x:Static properties:Resources.GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName}" />
                 <TextBox Grid.Row="0" Grid.Column="1" 
-                       Margin="0, 5, 0, 5" HorizontalAlignment="Center" 
+                       HorizontalAlignment="Center" 
                        VerticalAlignment="Center"
-                       Width="100"
-                       Text="{Binding Path=MaximumNrOfIterations,
-                                Converter={StaticResource IntegerValueConverter},
-                                Mode=TwoWay}"
-                       Name="MaximumNrOfIterationsTextBox"/>
+                       Style="{StaticResource TextBoxInError}"
+                       Name="MaximumNrOfIterationsTextBox">
+                    <TextBox.Text>
+                        <Binding Path="MaximumNrOfIterations"
+                                 Converter="{StaticResource IntegerValueConverter}"
+                                 Mode="TwoWay"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label Grid.Row="1" Grid.Column="0" 
                        Margin="0, 5, 10, 5" HorizontalAlignment="Left" 
@@ -100,13 +108,21 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                        VerticalAlignment="Top"
                        Content="{x:Static properties:Resources.GeneralSimulationSettings_EndFailureVelocity_DisplayName}" />
                 <TextBox Grid.Row="2" Grid.Column="1" 
-                         Margin="0" HorizontalAlignment="Center" 
+                         HorizontalAlignment="Center" 
                          VerticalAlignment="Center"
-                         Width="100"
-                         Text="{Binding Path=EndFailureVelocity, 
-                                Mode=TwoWay,
-                                Converter={StaticResource IntegerValueConverter}}"
-                         Name="EndFailureVelocityTextBox"/>
+                         Style="{StaticResource TextBoxInError}"
+                         Name="EndFailureVelocityTextBox">
+                    <TextBox.Text>
+                        <Binding Path="EndFailureVelocity"
+                                 Converter="{StaticResource IntegerValueConverter}"
+                                 Mode="TwoWay"
+                                 NotifyOnValidationError="True">
+                            <Binding.ValidationRules>
+                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="True" />
+                            </Binding.ValidationRules>
+                        </Binding>
+                    </TextBox.Text>
+                </TextBox>
 
                 <Label Grid.Row="3" Grid.Column="0" 
                        Margin="0,0,10,0" HorizontalAlignment="Left" 
