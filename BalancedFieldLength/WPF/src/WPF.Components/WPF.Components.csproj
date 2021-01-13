@@ -23,6 +23,7 @@
     </Compile>
     <Compile Include="MessageView\MessageContext.cs" />
     <Compile Include="MessageView\MessageType.cs" />
+    <Compile Include="MessageView\MessageTypeConverter.cs" />
     <Compile Include="MessageView\MessageWindowView.xaml.cs">
       <DependentUpon>MessageWindowView.xaml</DependentUpon>
     </Compile>
