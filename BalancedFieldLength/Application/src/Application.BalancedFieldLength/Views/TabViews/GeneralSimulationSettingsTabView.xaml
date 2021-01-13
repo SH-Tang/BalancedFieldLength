@@ -31,10 +31,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              HorizontalContentAlignment="Stretch"
              d:DesignHeight="500" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance tabViews:GeneralSimulationSettingsTabViewModel}">
-    <UserControl.Resources>
-        <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
-        <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
-    </UserControl.Resources>
     <StackPanel>
         <Expander Header="{x:Static properties:Resources.GeneralSimulationSettingsTabView_Numerical_settings_properties_DisplayName}" IsExpanded="True">
             <Grid>

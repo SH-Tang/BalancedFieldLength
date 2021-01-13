@@ -30,10 +30,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              d:DesignHeight="600" d:DesignWidth="700"
              d:DataContext="{d:DesignInstance Type=tabViews:AircraftDataTabViewModel,
                             IsDesignTimeCreatable=True}">
-    <UserControl.Resources>
-        <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter" />
-        <converters:AngleValueConverter x:Key="AngleDegreesValueConverter" IsDegrees="True" />
-    </UserControl.Resources>
     <StackPanel>
         <Expander Header="{x:Static properties:Resources.AircraftDataTabView_Take_off_properties_DisplayName}"
                   IsExpanded="True">

@@ -31,9 +31,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              HorizontalContentAlignment="Stretch"
              d:DesignHeight="500" d:DesignWidth="300"
              d:DataContext="{d:DesignInstance tabViews:EngineSettingsTabViewModel}">
-    <UserControl.Resources>
-        <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter" />
-    </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="Auto" />
