@@ -49,6 +49,10 @@
     </Compile>
     <Compile Include="Views\OutputView\OutputViewModel.cs" />
     <Compile Include="MainViewModel.cs" />
+    <Page Include="ComponentStylingDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\TabViews\AircraftDataTabView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
