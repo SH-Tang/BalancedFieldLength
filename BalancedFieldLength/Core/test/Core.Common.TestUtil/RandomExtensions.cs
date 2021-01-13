@@ -41,5 +41,24 @@ namespace Core.Common.TestUtil
 
             return Angle.FromDegrees(random.NextDouble());
         }
+
+        /// <summary>
+        /// Retrieves a random value from an enumeration.
+        /// </summary>
+        /// <typeparam name="T">The type of <see cref="Enum"/> to randomly select a value from.</typeparam>
+        /// <param name="random">A pseudo-random generator.</param>
+        /// <returns>A random enum of <typeparamref name="T"/>.</returns>
+        /// <exception cref="ArgumentNullException">Thrown when <paramref name="random"/>
+        /// is <c>null</c>.</exception>
+        public static T NextEnum<T>(this Random random) where T : struct
+        {
+            if (random == null)
+            {
+                throw new ArgumentNullException(nameof(random));
+            }
+
+            Array values = Enum.GetValues(typeof(T));
+            return (T)values.GetValue(random.Next(values.Length));
+        }
     }
 }
