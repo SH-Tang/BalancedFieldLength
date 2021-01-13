@@ -75,7 +75,7 @@ namespace WPF.Components.Test.MessageView
 
         [Test]
         [TestCaseSource(nameof(GetConvertCases))]
-        public void Convert_WithValidMessageTypeAndTargetValueObject_ReturnsExpectedValue(
+        public void Convert_WithValidMessageTypeAndTargetTypeObject_ReturnsExpectedValue(
             MessageType valueToConvert, Brush expectedValue)
         {
             // Setup
@@ -91,7 +91,7 @@ namespace WPF.Components.Test.MessageView
 
         [Test]
         [TestCaseSource(nameof(GetConvertCases))]
-        public void Convert_WithValidMessageTypeAndTargetValueBrush_ReturnsExpectedValue(
+        public void Convert_WithValidMessageTypeAndTargetTypeBrush_ReturnsExpectedValue(
             MessageType valueToConvert, Brush expectedValue)
         {
             // Setup

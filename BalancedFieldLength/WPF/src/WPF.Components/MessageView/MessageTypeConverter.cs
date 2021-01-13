@@ -34,7 +34,7 @@ namespace WPF.Components.MessageView
         /// <exception cref="NotSupportedException">Thrown when:
         /// <list type="bullet">
         /// <item>The <paramref name="value"/> is not of type <see cref="MessageType"/>.</item>
-        /// <item>The <paramref name="value"/> is a valid <see cref="MessageType"/> but not supported.</item>
+        /// <item>The <paramref name="value"/> is a valid <see cref="MessageType"/>, but not supported.</item>
         /// <item>the <paramref name="targetType"/> is not of type <see cref="Brush"/>
         /// or of type <see cref="object"/>.</item>
         /// </list></exception>
@@ -73,7 +73,7 @@ namespace WPF.Components.MessageView
         /// <exception cref="NotSupportedException">Thrown when function is called.</exception>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            throw new NotSupportedException("ConvertBack operation is not supported.");
+            throw new NotSupportedException($"{nameof(ConvertBack)} operation is not supported.");
         }
     }
 }
