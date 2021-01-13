@@ -22,4 +22,5 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                     xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core">
     <converters:IntegerValueConverter x:Key="IntegerValueConverter"/>
     <converters:NaNToEmptyValueConverter x:Key="DoubleValueConverter"/>
+    <converters:AngleValueConverter x:Key="AngleDegreesValueConverter" IsDegrees="True" />
 </ResourceDictionary>

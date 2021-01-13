@@ -22,7 +22,6 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:converters="clr-namespace:WPF.Core.Converters;assembly=WPF.Core"
              xmlns:validationRules="clr-namespace:WPF.Core.ValidationRules;assembly=WPF.Core"
              xmlns:tabViews="clr-namespace:Application.BalancedFieldLength.Views.TabViews"
              xmlns:properties="clr-namespace:Application.BalancedFieldLength.Properties"
