@@ -1,64 +1,28 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{E6D4E4A5-1602-452A-976C-E414FE793419}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Simulator.Kernel.Integration.Test</RootNamespace>
-    <AssemblyName>Simulator.Kernel.Integration.Test</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\build\BalancedFieldLength.targets" />
   <ItemGroup>
-    <Reference Include="Microsoft.VisualBasic" />
-    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="AggregatedDistanceCalculatorIntegrationTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Reference Include="Microsoft.VisualBasic" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
-      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
-      <Name>Core.Common.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
-      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
-      <Name>Core.Common.TestUtil</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Simulator.Calculator\Simulator.Calculator.csproj">
-      <Project>{CB3E4E86-F575-4D7F-ABB3-F655F1BBFA99}</Project>
-      <Name>Simulator.Calculator</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Simulator.Components\Simulator.Components.csproj">
-      <Project>{8F5FF824-68A1-4589-A573-52640DC985C9}</Project>
-      <Name>Simulator.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Simulator.Data\Simulator.Data.csproj">
-      <Project>{C512FD2B-E141-401C-A55C-E993D017BBB0}</Project>
-      <Name>Simulator.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Simulator.Kernel\Simulator.Kernel.csproj">
-      <Project>{ECE0E8F4-4CD1-4E70-90A9-41A93429E91F}</Project>
-      <Name>Simulator.Kernel</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj" />
+    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj" />
+    <ProjectReference Include="..\..\src\Simulator.Calculator\Simulator.Calculator.csproj" />
+    <ProjectReference Include="..\..\src\Simulator.Components\Simulator.Components.csproj" />
+    <ProjectReference Include="..\..\src\Simulator.Data\Simulator.Data.csproj" />
+    <ProjectReference Include="..\..\src\Simulator.Kernel\Simulator.Kernel.csproj" />
   </ItemGroup>
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit.3.12.0\build\NUnit.props'))" />
-  </Target>
 </Project>
