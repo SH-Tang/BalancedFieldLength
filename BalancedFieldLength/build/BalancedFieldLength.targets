@@ -6,7 +6,7 @@
     <SolutionDir>$(MSBuildThisFileDirectory)</SolutionDir>
     <OutputPath Condition="$(OutputPath) == ''">$(SolutionDir)\bin\$(Configuration)\</OutputPath>
     <OutDir>$(OutputPath)</OutDir>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFramework>net472</TargetFramework>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -26,5 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <PackageReference Include="MSBuildConfigurationDefaults" Version="1.0.1" />
+  </ItemGroup>
 </Project>
