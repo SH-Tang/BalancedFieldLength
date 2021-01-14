@@ -27,3 +27,8 @@ jobs:
       run: dotnet build $env:build_directory --no-restore
     - name: Run UnitTests
       run: dotnet test $env:build_directory --no-build --logger:nunit
+    - uses: ./
+      if: always()
+      with: 
+        path: 'TestResults/*.xml'
+        access-token: ${{secrets.GITHUB_TOKEN}}
