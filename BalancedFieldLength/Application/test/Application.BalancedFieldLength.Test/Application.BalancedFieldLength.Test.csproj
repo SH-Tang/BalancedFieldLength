@@ -1,78 +1,30 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\..\..\packages\NUnit.3.12.0\build\NUnit.props" Condition="Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" />
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <ProjectGuid>{5B848E49-EFD1-4612-9198-B6C6C8643596}</ProjectGuid>
-    <OutputType>Library</OutputType>
-    <RootNamespace>Application.BalancedFieldLength.Test</RootNamespace>
-    <AssemblyName>Application.BalancedFieldLength.Test</AssemblyName>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\build\BalancedFieldLength.targets" />
   <ItemGroup>
-    <Reference Include="nunit.framework, Version=3.12.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\NUnit.3.12.0\lib\net45\nunit.framework.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Configuration" />
-    <Reference Include="System.Core" />
+    <PackageReference Include="NUnit" Version="3.12.0" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="MainViewModelIntegrationTest.cs" />
-    <Compile Include="Views\TabViews\AircraftDataTabViewModelTest.cs" />
-    <Compile Include="Views\TabViews\EngineSettingsTabViewModelTest.cs" />
-    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabViewModelTest.cs" />
-    <Compile Include="Views\OutputView\OutputViewModelTest.cs" />
-    <Compile Include="MainViewModelTest.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
-      <Project>{BC4DA602-FAB8-4C71-9CD5-DCF08C85AB13}</Project>
-      <Name>Core.Common.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj">
-      <Project>{F751B0AC-12E0-461B-93BD-3546B39E994B}</Project>
-      <Name>Core.Common.TestUtil</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
-      <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
-      <Name>WPF.Components</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
-      <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
-      <Name>WPF.Core</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
-      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
-      <Name>Application.BalancedFieldLength.Data</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
-      <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
-      <Name>Application.BalancedFieldLength.KernelWrapper</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\Application.BalancedFieldLength\Application.BalancedFieldLength.csproj">
-      <Project>{2B5FC268-5FDC-4C66-8D48-447C2A58167F}</Project>
-      <Name>Application.BalancedFieldLength</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper.TestUtils\Application.BalancedFieldLength.KernelWrapper.TestUtils.csproj">
-      <Project>{43AC4467-B4E7-43FE-AF93-3E553F072FD3}</Project>
-      <Name>Application.BalancedFieldLength.KernelWrapper.TestUtils</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj" />
+    <ProjectReference Include="..\..\..\Core\test\Core.Common.TestUtil\Core.Common.TestUtil.csproj" />
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj" />
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj" />
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj" />
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj" />
+    <ProjectReference Include="..\..\src\Application.BalancedFieldLength\Application.BalancedFieldLength.csproj" />
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper.TestUtils\Application.BalancedFieldLength.KernelWrapper.TestUtils.csproj" />
   </ItemGroup>
-  <ItemGroup />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\..\packages\NUnit.3.12.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\NUnit.3.12.0\build\NUnit.props'))" />
-  </Target>
 </Project>
