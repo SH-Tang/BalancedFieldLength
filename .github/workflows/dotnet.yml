@@ -21,7 +21,7 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Restore dependencies
-      run: dotnet restore $env:build_directory
+      run: dotnet restore $env:build_directory --verbosity normal
     - name: Build
       run: dotnet build $env:build_directory --no-restore
     - name: Test
