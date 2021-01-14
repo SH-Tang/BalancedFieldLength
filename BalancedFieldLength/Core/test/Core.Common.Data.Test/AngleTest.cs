@@ -316,19 +316,6 @@ namespace Core.Common.Data.Test
             Assert.IsFalse(result21);
         }
 
-        [Test]
-        public void FailingTest_Expect_ToFail()
-        {
-            // Setup
-            Assert.Fail("Ought to fail.");
-
-            // Call
-
-
-            // Assert
-
-        }
-
         private static double DegreesToRadians(double degrees)
         {
             return (degrees * Math.PI) / 180;
