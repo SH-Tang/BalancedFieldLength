@@ -1,6 +1,7 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\build\BalancedFieldLength.targets" />
   <ItemGroup>
@@ -11,27 +12,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
-    <Compile Update="MessageView\MessageWindowView.xaml.cs">
-      <DependentUpon>MessageWindowView.xaml</DependentUpon>
-    </Compile>
-    <Compile Update="TabControl\TabControlView.xaml.cs">
-      <DependentUpon>TabControlView.xaml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="MessageView\MessageWindowView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="TabControl\TabControlView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\WPF.Core\WPF.Core.csproj" />
