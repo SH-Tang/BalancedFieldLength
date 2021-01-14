@@ -31,8 +31,8 @@ jobs:
       run: dotnet test $env:build_directory --no-build --logger:nunit
 
     - name: Publish Unit Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1.7
+      uses: MirrorNG/nunit-reporter@v1.0.9
       if: always()
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
-        files: TestResults/**/*.xml
+        path: TestResults/*.xml
+        access-token: ${{ secrets.GITHUB_TOKEN }}
