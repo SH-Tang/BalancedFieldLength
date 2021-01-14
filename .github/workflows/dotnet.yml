@@ -34,5 +34,5 @@ jobs:
       uses: MirrorNG/nunit-reporter@v1.0.9
       if: always()
       with:
-        path: TestResults/*.xml
+        paths: $env:build_directory/**/TestResults/*.xml
         access-token: ${{ secrets.GITHUB_TOKEN }}
