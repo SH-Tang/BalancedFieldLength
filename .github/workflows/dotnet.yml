@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ master ]
 
+env:
+  build_directory: ./BalancedFieldLength/ 
+
 jobs:
   build:
 
@@ -18,8 +21,8 @@ jobs:
       with:
         dotnet-version: 3.1.301
     - name: Restore dependencies
-      run: dotnet restore
+      run: dotnet restore $env:build_directory
     - name: Build
-      run: dotnet build --no-restore
+      run: dotnet build $env:build_directory --no-restore
     - name: Test
-      run: dotnet test --no-build --verbosity normal
+      run: dotnet test $env:build_directory --no-build --verbosity normal
