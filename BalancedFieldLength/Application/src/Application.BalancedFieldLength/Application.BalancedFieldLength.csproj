@@ -1,141 +1,39 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <ProjectGuid>{2B5FC268-5FDC-4C66-8D48-447C2A58167F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Application.BalancedFieldLength</RootNamespace>
-    <AssemblyName>Application.BalancedFieldLength</AssemblyName>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
+    <UseWPF>true</UseWPF>
+    <TargetFramework>net472</TargetFramework>
   </PropertyGroup>
   <Import Project="$(SolutionDir)\build\BalancedFieldLength.targets" />
   <ItemGroup>
-    <Reference Include="ControlzEx, Version=3.0.2.4, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ControlzEx.3.0.2.4\lib\net462\ControlzEx.dll</HintPath>
-    </Reference>
-    <Reference Include="MahApps.Metro, Version=1.6.5.1, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\MahApps.Metro.1.6.5\lib\net47\MahApps.Metro.dll</HintPath>
-    </Reference>
-    <Reference Include="System" />
-    <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\..\..\packages\ControlzEx.3.0.2.4\lib\net462\System.Windows.Interactivity.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xaml">
-      <RequiredTargetFramework>4.0</RequiredTargetFramework>
-    </Reference>
+    <PackageReference Include="ControlzEx" Version="3.0.2.4" />
+    <PackageReference Include="MahApps.Metro" Version="1.6.5" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Xaml" />
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <ApplicationDefinition Include="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </ApplicationDefinition>
-    <Compile Include="Views\TabViews\AircraftDataTabView.xaml.cs">
-      <DependentUpon>AircraftDataTabView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TabViews\AircraftDataTabViewModel.cs" />
-    <Compile Include="Views\TabViews\EngineSettingsTabView.xaml.cs">
-      <DependentUpon>EngineSettingsTabView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\TabViews\EngineSettingsTabViewModel.cs" />
-    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml.cs">
-      <DependentUpon>GeneralSimulationSettingsTabView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OutputView\OutputView.xaml.cs">
-      <DependentUpon>OutputView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\OutputView\OutputViewModel.cs" />
-    <Compile Include="MainViewModel.cs" />
-    <Page Include="Views\TabViews\AircraftDataTabView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TabViews\EngineSettingsTabView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\TabViews\GeneralSimulationSettingsTabView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\OutputView\OutputView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="MainWindow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs">
-      <Link>Properties\GlobalAssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="App.xaml.cs">
-      <DependentUpon>App.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Views\TabViews\GeneralSimulationSettingsTabViewModel.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="..\..\..\Core\src\Core.Common.Version\GlobalAssemblyInfo.cs" Link="Properties\GlobalAssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Properties\AssemblyInfo.cs">
-      <SubType>Code</SubType>
-    </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Settings.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
-      <DesignTimeSharedInput>True</DesignTimeSharedInput>
-    </Compile>
-    <EmbeddedResource Include="Properties\Resources.resx">
+    <EmbeddedResource Update="Properties\Resources.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="..\..\..\licenses\Copying.licenseheader">
       <Link>Copying.licenseheader</Link>
     </None>
-    <None Include="packages.config" />
-    <None Include="Properties\Settings.settings">
-      <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj">
-      <Project>{bc4da602-fab8-4c71-9cd5-dcf08c85ab13}</Project>
-      <Name>Core.Common.Data</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj">
-      <Project>{E852B86C-1FA3-45B2-8D4E-95C3D0B4D831}</Project>
-      <Name>WPF.Components</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj">
-      <Project>{A79B5A37-8228-4A15-AF36-932C331EC1A3}</Project>
-      <Name>WPF.Core</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj">
-      <Project>{AF6C5BF4-A433-4A82-9D6E-1654DBF0EF53}</Project>
-      <Name>Application.BalancedFieldLength.Data</Name>
-      <Private>False</Private>
-    </ProjectReference>
-    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj">
-      <Project>{7F292019-809B-4C8A-B33F-4B1E78AAC2F2}</Project>
-      <Name>Application.BalancedFieldLength.KernelWrapper</Name>
-    </ProjectReference>
+    <ProjectReference Include="..\..\..\Core\src\Core.Common.Data\Core.Common.Data.csproj" />
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Components\WPF.Components.csproj" />
+    <ProjectReference Include="..\..\..\WPF\src\WPF.Core\WPF.Core.csproj" />
+    <ProjectReference Include="..\Application.BalancedFieldLength.Data\Application.BalancedFieldLength.Data.csproj" />
+    <ProjectReference Include="..\Application.BalancedFieldLength.KernelWrapper\Application.BalancedFieldLength.KernelWrapper.csproj" />
   </ItemGroup>
 </Project>
