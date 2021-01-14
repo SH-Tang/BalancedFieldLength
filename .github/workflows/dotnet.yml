@@ -19,10 +19,10 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
       with:
-        dotnet-version: 3.1.x
+        dotnet-version: 3.1.301
     - name: Restore dependencies
-      run: dotnet restore $env:build_directory --verbosity normal
+      run: dotnet restore $env:build_directory
     - name: Build
       run: dotnet build $env:build_directory --no-restore
     - name: Test
-      run: dotnet test $env:build_directory --no-build --logger:nunit
+      run: dotnet test $env:build_directory --no-build --verbosity normal
