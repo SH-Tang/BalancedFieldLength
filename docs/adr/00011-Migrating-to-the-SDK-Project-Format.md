@@ -21,7 +21,7 @@ The following options are considered:
 ### Converting the files to the SDK file format
 
 **Pros:**
-* Enables the solution to be compiled with the dotnet cli and making it more platform independent. The `dotnet` CLI operatibility also makes the solution more suitable to work in combination with Github Actions (see ADR-00012](00012-Using-GithubActions.md)
+* Enables the solution to be compiled with the dotnet cli and making it more platform independent. The `dotnet` CLI operatibility also makes the solution more suitable to work in combination with Github Actions (see [ADR-00012](00012-Making-use-of-GithubAction.md))
 * Leaner file format which prevents the risk of merge conflicts
 * No references with the files that are part of the project. Source files are automatically recognised from the directory
 
