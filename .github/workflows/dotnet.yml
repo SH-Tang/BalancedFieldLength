@@ -24,6 +24,7 @@ jobs:
 
   build_and_test:
     name: Build and test application
+    needs: setup
     steps:
     - name: Restore dependencies
       run: dotnet restore $env:build_directory --verbosity normal --force
