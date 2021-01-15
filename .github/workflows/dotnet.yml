@@ -10,8 +10,8 @@ env:
   build_directory: ./BalancedFieldLength/ 
 
 jobs:
-  setup:
-    name: Setup environment
+  build_and_test:
+    name: Build and Test Application
     runs-on: windows-latest
     steps:
     - name: Checkout
@@ -22,10 +22,6 @@ jobs:
       with:
         dotnet-version: 3.1.x
 
-  build_and_test:
-    name: Build and test application
-    needs: setup
-    steps:
     - name: Restore dependencies
       run: dotnet restore $env:build_directory --verbosity normal --force
 
