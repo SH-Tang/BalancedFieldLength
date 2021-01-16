@@ -13,6 +13,7 @@
 * [ADR-00009](00009-Refactor-MVVM-Components.md) - Refactor the MVVM components within the Application.BalancedFieldLength assembly
 * [ADR-00010](00010-KernelWrapperDesign.md) - Kernel wrapper design
 * [ADR-00011](00011-Migrating-to-the-SDK-Project-Format.md) - Migrating to the SDK Project Format
+* [ADR-00012](00012-Selecting-NUnit-test-logger-to-report-results-in-GithubActions.md) - Selecting NUnit test logger to report results in GithubActions
 
 <!-- adrlogstop -->
 
