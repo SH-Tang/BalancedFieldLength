@@ -22,18 +22,18 @@ using System.Linq;
 namespace Core.Common.Data.DataModel
 {
     /// <summary>
-    /// Helper class which can be used for validation <see cref="IHasDataModelValidation"/>.
+    /// Helper class which can be used for validation <see cref="IDataModelRuleProvider"/>.
     /// </summary>
     public static class DataModelValidator
     {
         /// <summary>
-        /// Validates the collection of <see cref="IHasDataModelValidation"/>.
+        /// Validates the collection of <see cref="IDataModelRuleProvider"/>.
         /// </summary>
-        /// <param name="dataModels">The collection of <see cref="IHasDataModelValidation"/>
+        /// <param name="dataModels">The collection of <see cref="IDataModelRuleProvider"/>
         /// to create the validator for.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="dataModels"/> is <c>null</c>.</exception>
         /// <exception cref="ArgumentException">Thrown when <paramref name="dataModels"/> is <c>empty</c>.</exception>
-        public static DataModelValidatorResult Validate(IEnumerable<IHasDataModelValidation> dataModels)
+        public static DataModelValidatorResult Validate(IEnumerable<IDataModelRuleProvider> dataModels)
         {
             if (dataModels == null)
             {
@@ -49,12 +49,9 @@ namespace Core.Common.Data.DataModel
             IEnumerable<ValidationRuleResult> results = GatherValidationResults(validationRules);
 
             IEnumerable<ValidationRuleResult> validationFailures = results.Where(r => !r.IsValid);
-            if (validationFailures.Any())
-            {
-                return DataModelValidatorResult.CreateInvalidResult(validationFailures.Select(f => f.ValidationMessage));
-            }
-
-            return DataModelValidatorResult.CreateValidResult();
+            return validationFailures.Any() 
+                       ? DataModelValidatorResult.CreateInvalidResult(validationFailures.Select(f => f.ValidationMessage))
+                       : DataModelValidatorResult.CreateValidResult();
         }
 
         private static IEnumerable<ValidationRuleResult> GatherValidationResults(IEnumerable<IDataModelValidationRule> validationRules)
@@ -62,10 +59,10 @@ namespace Core.Common.Data.DataModel
             return validationRules.Select(rule => rule.Execute()).ToArray();
         }
 
-        private static IEnumerable<IDataModelValidationRule> GatherDataModelValidationRules(IEnumerable<IHasDataModelValidation> dataModels)
+        private static IEnumerable<IDataModelValidationRule> GatherDataModelValidationRules(IEnumerable<IDataModelRuleProvider> dataModels)
         {
             var validationRules = new List<IDataModelValidationRule>();
-            foreach (IHasDataModelValidation hasDataModelValidation in dataModels)
+            foreach (IDataModelRuleProvider hasDataModelValidation in dataModels)
             {
                 validationRules.AddRange(hasDataModelValidation.GetDataModelValidationRules());
             }

@@ -20,9 +20,9 @@ using System.Collections.Generic;
 namespace Core.Common.Data.DataModel
 {
     /// <summary>
-    /// Interface for describing data models with model data validation.
+    /// Interface describing a provider to provide validation rules for a data model.
     /// </summary>
-    public interface IHasDataModelValidation
+    public interface IDataModelRuleProvider
     {
         /// <summary>
         /// Gets the collection of <see cref="IDataModelValidationRule"/>.

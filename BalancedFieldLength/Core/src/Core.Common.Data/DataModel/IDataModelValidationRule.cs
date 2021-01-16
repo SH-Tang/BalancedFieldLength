@@ -18,7 +18,7 @@
 namespace Core.Common.Data.DataModel
 {
     /// <summary>
-    /// Interface for describing a validation rule for a data model.
+    /// Interface describing a validation rule for a data model.
     /// </summary>
     public interface IDataModelValidationRule
     {

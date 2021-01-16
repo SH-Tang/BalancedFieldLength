@@ -43,7 +43,7 @@ namespace Core.Common.Data.Test.DataModel
         public void Validate_DataModelsEmpty_ThrowsArgumentException()
         {
             // Call
-            TestDelegate call = () => DataModelValidator.Validate(Enumerable.Empty<IHasDataModelValidation>());
+            TestDelegate call = () => DataModelValidator.Validate(Enumerable.Empty<IDataModelRuleProvider>());
 
             // Assert
             const string expectedMessage = "dataModels cannot be empty.";
@@ -57,8 +57,8 @@ namespace Core.Common.Data.Test.DataModel
             var validationRuleOne = Substitute.For<IDataModelValidationRule>();
             validationRuleOne.Execute().Returns(ValidationRuleResult.CreateValidResult());
 
-            var validModelOne = Substitute.For<IHasDataModelValidation>();
-            validModelOne.GetDataModelValidationRules().Returns(new[]
+            var validProviderOne = Substitute.For<IDataModelRuleProvider>();
+            validProviderOne.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleOne
             });
@@ -66,16 +66,16 @@ namespace Core.Common.Data.Test.DataModel
             var validationRuleTwo = Substitute.For<IDataModelValidationRule>();
             validationRuleTwo.Execute().Returns(ValidationRuleResult.CreateValidResult());
 
-            var validModelTwo = Substitute.For<IHasDataModelValidation>();
-            validModelTwo.GetDataModelValidationRules().Returns(new[]
+            var validProviderTwo = Substitute.For<IDataModelRuleProvider>();
+            validProviderTwo.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleTwo
             });
 
-            IHasDataModelValidation[] models =
+            IDataModelRuleProvider[] models =
             {
-                validModelOne,
-                validModelTwo
+                validProviderOne,
+                validProviderTwo
             };
 
             // Call
@@ -85,10 +85,10 @@ namespace Core.Common.Data.Test.DataModel
             Assert.That(result.IsValid, Is.True);
             Assert.That(result.ValidationMessages, Is.Empty);
 
-            validModelOne.Received(1).GetDataModelValidationRules();
+            validProviderOne.Received(1).GetDataModelValidationRules();
             validationRuleOne.Received(1).Execute();
 
-            validModelTwo.Received(1).GetDataModelValidationRules();
+            validProviderTwo.Received(1).GetDataModelValidationRules();
             validationRuleTwo.Received(1).Execute();
         }
 
@@ -99,8 +99,8 @@ namespace Core.Common.Data.Test.DataModel
             var validationRuleOne = Substitute.For<IDataModelValidationRule>();
             validationRuleOne.Execute().Returns(ValidationRuleResult.CreateValidResult());
 
-            var validModelOne = Substitute.For<IHasDataModelValidation>();
-            validModelOne.GetDataModelValidationRules().Returns(new[]
+            var validProvider = Substitute.For<IDataModelRuleProvider>();
+            validProvider.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleOne
             });
@@ -112,17 +112,17 @@ namespace Core.Common.Data.Test.DataModel
             var invalidValidationRule = Substitute.For<IDataModelValidationRule>();
             invalidValidationRule.Execute().Returns(ValidationRuleResult.CreateInvalidResult(validationError));
 
-            var invalidModelTwo = Substitute.For<IHasDataModelValidation>();
-            invalidModelTwo.GetDataModelValidationRules().Returns(new[]
+            var invalidProvider = Substitute.For<IDataModelRuleProvider>();
+            invalidProvider.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleTwo,
                 invalidValidationRule
             });
 
-            IHasDataModelValidation[] models =
+            IDataModelRuleProvider[] models =
             {
-                validModelOne,
-                invalidModelTwo
+                validProvider,
+                invalidProvider
             };
 
             // Call
@@ -147,8 +147,8 @@ namespace Core.Common.Data.Test.DataModel
             var invalidValidationRuleOne = Substitute.For<IDataModelValidationRule>();
             invalidValidationRuleOne.Execute().Returns(ValidationRuleResult.CreateInvalidResult(validationErrorOne));
 
-            var invalidModelOne = Substitute.For<IHasDataModelValidation>();
-            invalidModelOne.GetDataModelValidationRules().Returns(new[]
+            var invalidProviderOne = Substitute.For<IDataModelRuleProvider>();
+            invalidProviderOne.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleOne,
                 invalidValidationRuleOne
@@ -161,17 +161,17 @@ namespace Core.Common.Data.Test.DataModel
             var invalidValidationRuleTwo = Substitute.For<IDataModelValidationRule>();
             invalidValidationRuleTwo.Execute().Returns(ValidationRuleResult.CreateInvalidResult(validationErrorTwo));
 
-            var invalidModelTwo = Substitute.For<IHasDataModelValidation>();
-            invalidModelTwo.GetDataModelValidationRules().Returns(new[]
+            var invalidProviderTwo = Substitute.For<IDataModelRuleProvider>();
+            invalidProviderTwo.GetDataModelValidationRules().Returns(new[]
             {
                 validationRuleTwo,
                 invalidValidationRuleTwo
             });
 
-            IHasDataModelValidation[] models =
+            IDataModelRuleProvider[] models =
             {
-                invalidModelOne,
-                invalidModelTwo
+                invalidProviderOne,
+                invalidProviderTwo
             };
 
             // Call
