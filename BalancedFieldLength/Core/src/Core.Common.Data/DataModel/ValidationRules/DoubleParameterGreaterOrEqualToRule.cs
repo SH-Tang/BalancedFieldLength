@@ -44,12 +44,9 @@ namespace Core.Common.Data.DataModel.ValidationRules
                 return result;
             }
 
-            if (!(Value >= lowerLimit))
-            {
-                ValidationRuleResult.CreateInvalidResult($"{ParameterName} must be >= {lowerLimit}. Current value: {Value}");
-            }
-
-            return ValidationRuleResult.ValidResult;
+            return !(Value >= lowerLimit) 
+                       ? ValidationRuleResult.CreateInvalidResult($"{ParameterName} must be >= {lowerLimit}. Current value: {Value}") 
+                       : ValidationRuleResult.ValidResult;
         }
     }
 }
