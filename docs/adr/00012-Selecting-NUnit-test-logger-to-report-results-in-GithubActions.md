@@ -62,3 +62,5 @@ This dependency allows the unit tests to run with the integrated test window wit
 * Microsoft.NET.Test.Sdk
 This dependency is necessary to run the unit tests within the integrated test window and with the `dotnet test` command
 * GitHubActionsTestLogger
+
+Note that the older versions of ReSharper unit test runner has issues with a different version of the NUnit3TestAdapter. Updating Resharper to version 3.2, build 2020-12-29 in combination with NUnit3TestAdapter 3.17.0 resolves this issue.
