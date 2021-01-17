@@ -26,7 +26,10 @@ namespace Core.Common.Data.DataModel
     /// </summary>
     public class DataModelValidatorResult
     {
-        private static readonly DataModelValidatorResult validResult = 
+        /// <summary>
+        /// Field representing a valid result.
+        /// </summary>
+        public static readonly DataModelValidatorResult ValidResult = 
             new DataModelValidatorResult(true, Enumerable.Empty<string>());
 
         private DataModelValidatorResult(bool isValid, IEnumerable<string> validationMessages)
@@ -44,15 +47,6 @@ namespace Core.Common.Data.DataModel
         /// Gets the collection of validation messages.
         /// </summary>
         public IEnumerable<string> ValidationMessages { get; }
-
-        /// <summary>
-        /// Creates a <see cref="DataModelValidatorResult"/> which represents a valid result.
-        /// </summary>
-        /// <returns>A configured <see cref="DataModelValidatorResult"/>.</returns>
-        internal static DataModelValidatorResult CreateValidResult()
-        {
-            return validResult;
-        }
 
         /// <summary>
         /// Creates a <see cref="DataModelValidatorResult"/> which represents an invalid result.

@@ -51,7 +51,7 @@ namespace Core.Common.Data.DataModel
             IEnumerable<ValidationRuleResult> validationFailures = results.Where(r => !r.IsValid);
             return validationFailures.Any() 
                        ? DataModelValidatorResult.CreateInvalidResult(validationFailures.Select(f => f.ValidationMessage))
-                       : DataModelValidatorResult.CreateValidResult();
+                       : DataModelValidatorResult.ValidResult;
         }
 
         private static IEnumerable<ValidationRuleResult> GatherValidationResults(IEnumerable<IDataModelValidationRule> validationRules)
