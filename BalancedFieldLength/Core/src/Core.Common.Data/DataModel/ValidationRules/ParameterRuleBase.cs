@@ -36,7 +36,7 @@ namespace Core.Common.Data.DataModel.ValidationRules
         {
             if (string.IsNullOrWhiteSpace(parameterName))
             {
-                throw new ArgumentException("Value cannot be null or whitespace.", nameof(parameterName));
+                throw new ArgumentException(@"Value cannot be null or whitespace.", nameof(parameterName));
             }
 
             ParameterName = parameterName;

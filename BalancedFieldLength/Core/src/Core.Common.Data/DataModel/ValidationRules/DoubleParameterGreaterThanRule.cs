@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using Core.Common.Data.Properties;
+
 namespace Core.Common.Data.DataModel.ValidationRules
 {
     /// <summary>
@@ -44,7 +46,9 @@ namespace Core.Common.Data.DataModel.ValidationRules
             }
 
             return !(Value >= lowerLimit)
-                       ? ValidationRuleResult.CreateInvalidResult($"{ParameterName} must be > {lowerLimit}. Current value: {Value}")
+                       ? ValidationRuleResult.CreateInvalidResult(
+                           string.Format(Resources.NumericRule_Value_0_must_be_greater_than_LowerLimit_1_Current_value_2,
+                                         ParameterName, lowerLimit, Value))
                        : ValidationRuleResult.ValidResult;
         }
     }

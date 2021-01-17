@@ -15,6 +15,8 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using Core.Common.Data.Properties;
+
 namespace Core.Common.Data.DataModel.ValidationRules
 {
     /// <summary>
@@ -36,12 +38,10 @@ namespace Core.Common.Data.DataModel.ValidationRules
 
         protected ValidationRuleResult ValidateValueConcreteNumber()
         {
-            if (double.IsNaN(Value) || double.IsInfinity(Value))
-            {
-                return ValidationRuleResult.CreateInvalidResult($"{ParameterName} must be a concrete number.");
-            }
-
-            return ValidationRuleResult.ValidResult;
+            return double.IsNaN(Value) || double.IsInfinity(Value)
+                       ? ValidationRuleResult.CreateInvalidResult(
+                           string.Format(Resources.DoubleParameterRuleBase_Value_0__must_be_a_concrete_number, ParameterName))
+                       : ValidationRuleResult.ValidResult;
         }
     }
 }
