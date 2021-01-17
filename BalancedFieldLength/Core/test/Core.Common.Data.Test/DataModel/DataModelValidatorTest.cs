@@ -55,7 +55,7 @@ namespace Core.Common.Data.Test.DataModel
         {
             // Setup
             var validationRuleOne = Substitute.For<IDataModelValidationRule>();
-            validationRuleOne.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleOne.Execute().Returns(ValidationRuleResult.ValidResult);
 
             var validProviderOne = Substitute.For<IDataModelRuleProvider>();
             validProviderOne.GetDataModelValidationRules().Returns(new[]
@@ -64,7 +64,7 @@ namespace Core.Common.Data.Test.DataModel
             });
 
             var validationRuleTwo = Substitute.For<IDataModelValidationRule>();
-            validationRuleTwo.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleTwo.Execute().Returns(ValidationRuleResult.ValidResult);
 
             var validProviderTwo = Substitute.For<IDataModelRuleProvider>();
             validProviderTwo.GetDataModelValidationRules().Returns(new[]
@@ -97,7 +97,7 @@ namespace Core.Common.Data.Test.DataModel
         {
             // Setup
             var validationRuleOne = Substitute.For<IDataModelValidationRule>();
-            validationRuleOne.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleOne.Execute().Returns(ValidationRuleResult.ValidResult);
 
             var validProvider = Substitute.For<IDataModelRuleProvider>();
             validProvider.GetDataModelValidationRules().Returns(new[]
@@ -106,7 +106,7 @@ namespace Core.Common.Data.Test.DataModel
             });
 
             var validationRuleTwo = Substitute.For<IDataModelValidationRule>();
-            validationRuleTwo.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleTwo.Execute().Returns(ValidationRuleResult.ValidResult);
 
             const string validationError = "Validation Error";
             var invalidValidationRule = Substitute.For<IDataModelValidationRule>();
@@ -141,7 +141,7 @@ namespace Core.Common.Data.Test.DataModel
         {
             // Setup
             var validationRuleOne = Substitute.For<IDataModelValidationRule>();
-            validationRuleOne.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleOne.Execute().Returns(ValidationRuleResult.ValidResult);
             
             const string validationErrorOne = "Validation Error One";
             var invalidValidationRuleOne = Substitute.For<IDataModelValidationRule>();
@@ -155,7 +155,7 @@ namespace Core.Common.Data.Test.DataModel
             });
 
             var validationRuleTwo = Substitute.For<IDataModelValidationRule>();
-            validationRuleTwo.Execute().Returns(ValidationRuleResult.CreateValidResult());
+            validationRuleTwo.Execute().Returns(ValidationRuleResult.ValidResult);
 
             const string validationErrorTwo = "Validation Error Two";
             var invalidValidationRuleTwo = Substitute.For<IDataModelValidationRule>();

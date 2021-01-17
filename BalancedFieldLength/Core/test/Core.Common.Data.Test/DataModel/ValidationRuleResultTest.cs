@@ -26,25 +26,14 @@ namespace Core.Common.Data.Test.DataModel
     public class ValidationRuleResultTest
     {
         [Test]
-        public void CreateValidResult_Always_ReturnsExpectedValidationRuleResult()
+        public void ValidResult_Always_ReturnsExpectedValidationRuleResult()
         {
             // Call 
-            ValidationRuleResult result = ValidationRuleResult.CreateValidResult();
+            ValidationRuleResult result = ValidationRuleResult.ValidResult;
 
             // Assert
             Assert.That(result.IsValid, Is.True);
             Assert.That(result.ValidationMessage, Is.Empty);
-        }
-
-        [Test]
-        public void CreateValidResult_Always_ReturnsSameInstance()
-        {
-            // Call
-            ValidationRuleResult resultOne = ValidationRuleResult.CreateValidResult();
-            ValidationRuleResult resultTwo = ValidationRuleResult.CreateValidResult();
-
-            // Assert
-            Assert.That(resultOne, Is.SameAs(resultTwo));
         }
 
         [Test]

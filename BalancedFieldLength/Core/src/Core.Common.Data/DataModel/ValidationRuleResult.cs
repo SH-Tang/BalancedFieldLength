@@ -24,7 +24,10 @@ namespace Core.Common.Data.DataModel
     /// </summary>
     public class ValidationRuleResult
     {
-        private static readonly ValidationRuleResult validationRuleResult = 
+        /// <summary>
+        /// Field representing a valid result.
+        /// </summary>
+        public static readonly ValidationRuleResult ValidResult = 
             new ValidationRuleResult(true, string.Empty);
 
         private ValidationRuleResult(bool isValid, string validationMessage)
@@ -42,15 +45,6 @@ namespace Core.Common.Data.DataModel
         /// Gets the validation message.
         /// </summary>
         public string ValidationMessage { get; }
-
-        /// <summary>
-        /// Creates a <see cref="ValidationRuleResult"/> which represents a valid result.
-        /// </summary>
-        /// <returns>A configured <see cref="ValidationRuleResult"/>.</returns>
-        public static ValidationRuleResult CreateValidResult()
-        {
-            return validationRuleResult;
-        }
 
         /// <summary>
         /// Creates a <see cref="ValidationRuleResult"/> which represents an invalid result.
