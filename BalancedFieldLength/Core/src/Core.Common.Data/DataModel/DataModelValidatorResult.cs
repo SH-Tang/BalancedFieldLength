@@ -26,6 +26,9 @@ namespace Core.Common.Data.DataModel
     /// </summary>
     public class DataModelValidatorResult
     {
+        private static readonly DataModelValidatorResult validResult = 
+            new DataModelValidatorResult(true, Enumerable.Empty<string>());
+
         private DataModelValidatorResult(bool isValid, IEnumerable<string> validationMessages)
         {
             IsValid = isValid;
@@ -48,7 +51,7 @@ namespace Core.Common.Data.DataModel
         /// <returns>A configured <see cref="DataModelValidatorResult"/>.</returns>
         internal static DataModelValidatorResult CreateValidResult()
         {
-            return new DataModelValidatorResult(true, Enumerable.Empty<string>());
+            return validResult;
         }
 
         /// <summary>

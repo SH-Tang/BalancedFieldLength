@@ -24,6 +24,9 @@ namespace Core.Common.Data.DataModel
     /// </summary>
     public class ValidationRuleResult
     {
+        private static readonly ValidationRuleResult validationRuleResult = 
+            new ValidationRuleResult(true, string.Empty);
+
         private ValidationRuleResult(bool isValid, string validationMessage)
         {
             IsValid = isValid;
@@ -46,7 +49,7 @@ namespace Core.Common.Data.DataModel
         /// <returns>A configured <see cref="ValidationRuleResult"/>.</returns>
         public static ValidationRuleResult CreateValidResult()
         {
-            return new ValidationRuleResult(true, string.Empty);
+            return validationRuleResult;
         }
 
         /// <summary>

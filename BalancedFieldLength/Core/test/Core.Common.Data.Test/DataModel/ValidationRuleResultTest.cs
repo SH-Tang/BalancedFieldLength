@@ -37,6 +37,17 @@ namespace Core.Common.Data.Test.DataModel
         }
 
         [Test]
+        public void CreateValidResult_Always_ReturnsSameInstance()
+        {
+            // Call
+            ValidationRuleResult resultOne = ValidationRuleResult.CreateValidResult();
+            ValidationRuleResult resultTwo = ValidationRuleResult.CreateValidResult();
+
+            // Assert
+            Assert.That(resultOne, Is.SameAs(resultTwo));
+        }
+
+        [Test]
         public void CreateInvalidResult_WithValidMessage_ReturnsExpectedValidationRuleResult()
         {
             // Setup
