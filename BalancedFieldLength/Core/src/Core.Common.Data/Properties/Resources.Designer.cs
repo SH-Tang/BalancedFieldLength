@@ -63,9 +63,9 @@ namespace Core.Common.Data.Properties {
         /// <summary>
         ///   Looks up a localized string similar to {0} must be a concrete number..
         /// </summary>
-        internal static string DoubleParameterRuleBase_Value_0_must_be_a_concrete_number {
+        internal static string NumberParameterRuleBase_Value_0_must_be_a_concrete_number {
             get {
-                return ResourceManager.GetString("DoubleParameterRuleBase_Value_0_must_be_a_concrete_number", resourceCulture);
+                return ResourceManager.GetString("NumberParameterRuleBase_Value_0_must_be_a_concrete_number", resourceCulture);
             }
         }
         

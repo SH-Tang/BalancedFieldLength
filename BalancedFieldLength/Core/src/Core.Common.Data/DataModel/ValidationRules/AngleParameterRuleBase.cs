@@ -20,25 +20,25 @@ using Core.Common.Data.Properties;
 namespace Core.Common.Data.DataModel.ValidationRules
 {
     /// <summary>
-    /// Base definition of a validation rule based on parameters representing double values.
+    /// Base definition of a validation rule based on parameters representing <see cref="Angle"/> values.
     /// </summary>
-    public abstract class DoubleParameterRuleBase : ParameterRuleBase
+    public abstract class AngleParameterRuleBase : ParameterRuleBase
     {
-        protected readonly double Value;
+        private readonly Angle value;
 
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of <see cref="DoubleParameterRuleBase"/>.
+        /// Creates a new instance of <see cref="AngleParameterRuleBase"/>.
         /// </summary>
         /// <param name="value">The value to create the rule for.</param>
-        protected DoubleParameterRuleBase(string parameterName, double value) : base(parameterName)
+        protected AngleParameterRuleBase(string parameterName, Angle value) : base(parameterName)
         {
-            Value = value;
+            this.value = value;
         }
 
         protected ValidationRuleResult ValidateValueConcreteNumber()
         {
-            return double.IsNaN(Value) || double.IsInfinity(Value)
+            return !value.IsConcreteAngle()
                        ? ValidationRuleResult.CreateInvalidResult(
                            string.Format(Resources.NumberParameterRuleBase_Value_0_must_be_a_concrete_number, ParameterName))
                        : ValidationRuleResult.ValidResult;
