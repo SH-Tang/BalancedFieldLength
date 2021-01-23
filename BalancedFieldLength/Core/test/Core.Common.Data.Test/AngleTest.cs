@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 
 namespace Core.Common.Data.Test
@@ -32,6 +33,8 @@ namespace Core.Common.Data.Test
             var angle = new Angle();
 
             // Assert
+            Assert.That(angle, Is.InstanceOf<IComparable>());
+            Assert.That(angle, Is.InstanceOf<IComparable<Angle>>());
             Assert.Zero(angle.Degrees);
             Assert.Zero(angle.Radians);
         }
@@ -314,6 +317,43 @@ namespace Core.Common.Data.Test
             // Assert
             Assert.IsFalse(result12);
             Assert.IsFalse(result21);
+        }
+
+        [Test]
+        public void CompareTo_WithNonAngle_ThrowsArgumentException()
+        {
+            // Setup
+            var random = new Random(21);
+            Angle angle = Angle.FromDegrees(random.NextDouble());
+
+            // Call 
+            TestDelegate call = () => angle.CompareTo(new object());
+
+            // Assert
+            string expectedMessage = $"{nameof(Object)} cannot be CompareTo()";
+            TestHelper.AssertThrowsArgumentException<ArgumentException>(call, expectedMessage);
+        }
+
+        [Test]
+        [TestCase(10, 20, -1, 1)]
+        [TestCase(20, 20, 0, 0)]
+        [TestCase(20, 10, 1, -1)]
+        public static void CompareTo_WhenComparingAngles_ReturnsExpectedResults(double angle1Value,
+                                                                                double angle2Value,
+                                                                                int expectedAngleResult12,
+                                                                                int expectedAngleResult21)
+        {
+            // Setup
+            Angle angle1 = Angle.FromDegrees(angle1Value);
+            Angle angle2 = Angle.FromDegrees(angle2Value);
+
+            // Call 
+            int resultOne = angle1.CompareTo(angle2);
+            int resultTwo = angle2.CompareTo(angle1);
+
+            // Assert
+            Assert.AreEqual(expectedAngleResult12, resultOne);
+            Assert.AreEqual(expectedAngleResult21, resultTwo);
         }
 
         private static double DegreesToRadians(double degrees)
