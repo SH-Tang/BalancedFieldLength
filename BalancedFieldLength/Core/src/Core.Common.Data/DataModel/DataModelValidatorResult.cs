@@ -39,7 +39,7 @@ namespace Core.Common.Data.DataModel
         }
 
         /// <summary>
-        /// Indicator whether the data models are valid or not.
+        /// Indicator whether the result is valid or not.
         /// </summary>
         public bool IsValid { get; }
 

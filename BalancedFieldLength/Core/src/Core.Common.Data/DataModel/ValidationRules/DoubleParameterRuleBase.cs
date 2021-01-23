@@ -40,7 +40,7 @@ namespace Core.Common.Data.DataModel.ValidationRules
         {
             return double.IsNaN(Value) || double.IsInfinity(Value)
                        ? ValidationRuleResult.CreateInvalidResult(
-                           string.Format(Resources.DoubleParameterRuleBase_Value_0__must_be_a_concrete_number, ParameterName))
+                           string.Format(Resources.DoubleParameterRuleBase_Value_0_must_be_a_concrete_number, ParameterName))
                        : ValidationRuleResult.ValidResult;
         }
     }

@@ -104,7 +104,7 @@
   <data name="NumericRule_Value_0_must_be_greater_or_equal_to_LowerLimit_1_Current_value_2" xml:space="preserve">
     <value>{0} must be &gt;= {1}. Current value: {2}</value>
   </data>
-  <data name="DoubleParameterRuleBase_Value_0__must_be_a_concrete_number" xml:space="preserve">
+  <data name="DoubleParameterRuleBase_Value_0_must_be_a_concrete_number" xml:space="preserve">
     <value>{0} must be a concrete number.</value>
   </data>
 </root>
