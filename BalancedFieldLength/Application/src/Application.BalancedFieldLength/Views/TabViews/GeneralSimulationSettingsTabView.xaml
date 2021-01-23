@@ -58,7 +58,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                                  Mode="TwoWay"
                                  NotifyOnValidationError="True">
                             <Binding.ValidationRules>
-                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="True" />
+                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="False" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
@@ -100,7 +100,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
                                  Mode="TwoWay"
                                  NotifyOnValidationError="True">
                             <Binding.ValidationRules>
-                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="True" />
+                                <validationRules:IntegerNumberValidationRule IsWhitespaceStringValid="False" />
                             </Binding.ValidationRules>
                         </Binding>
                     </TextBox.Text>
