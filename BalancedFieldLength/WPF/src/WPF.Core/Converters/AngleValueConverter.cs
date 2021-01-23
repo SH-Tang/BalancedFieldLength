@@ -89,7 +89,7 @@ namespace WPF.Core.Converters
                 return Angle.FromRadians(double.NaN);
             }
 
-            return Binding.DoNothing;
+            return null;
         }
     }
 }
