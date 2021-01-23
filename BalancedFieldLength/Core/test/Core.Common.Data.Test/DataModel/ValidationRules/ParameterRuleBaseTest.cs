@@ -55,9 +55,10 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
         private class TestParameterRuleBase : ParameterRuleBase
         {
             public TestParameterRuleBase(string parameterName) : base(parameterName) {}
+
             public override ValidationRuleResult Execute()
             {
-                throw new System.NotImplementedException();
+                throw new NotImplementedException();
             }
         }
     }

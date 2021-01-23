@@ -23,44 +23,56 @@ using NUnit.Framework;
 namespace Core.Common.Data.Test.DataModel.ValidationRules
 {
     [TestFixture]
-    public abstract class DoubleParameterRuleBaseTestFixture<T> where T : DoubleParameterRuleBase
+    public class DoubleParameterGreaterThanRuleTest : DoubleParameterRuleBaseTestFixture<DoubleParameterGreaterThanRule>
     {
         [Test]
-        public void Constructor_WithArguments_ExpectedValues()
+        [TestCase(double.Epsilon)]
+        [TestCase(1)]
+        public void Execute_WithValuesSatisfyingLimit_ReturnsValidResult(double offset)
         {
             // Setup
             const string parameterName = "ParameterName";
 
             var random = new Random(21);
-            double value = random.NextDouble();
+            double lowerLimit = random.NextDouble();
 
-            // Call
-            T rule = CreateRule(parameterName, value);
+            var rule = new DoubleParameterGreaterThanRule(parameterName, lowerLimit + offset, lowerLimit);
+
+            // Call 
+            ValidationRuleResult result = rule.Execute();
 
             // Assert
-            Assert.That(rule, Is.InstanceOf<DoubleParameterRuleBase>());
+            Assert.That(result, Is.SameAs(ValidationRuleResult.ValidResult));
         }
 
         [Test]
-        [TestCase(double.NaN)]
-        [TestCase(double.NegativeInfinity)]
-        [TestCase(double.PositiveInfinity)]
-        public void Execute_WithNonConcreteValues_ReturnsExpectedValidationResult(double invalidValue)
+        [TestCase(0)]
+        [TestCase(-1)]
+        [TestCase(-1e-5)]
+        public void Execute_WithValuesNotSatisfyingLimit_ReturnsInvalidResult(double offset)
         {
             // Setup
             const string parameterName = "ParameterName";
-            T rule = CreateRule(parameterName, invalidValue);
+
+            var random = new Random(21);
+            double lowerLimit = random.NextDouble();
+            double invalidValue = lowerLimit + offset;
+
+            var rule = new DoubleParameterGreaterThanRule(parameterName, invalidValue, lowerLimit);
 
             // Call 
             ValidationRuleResult result = rule.Execute();
 
             // Assert
             Assert.That(result.IsValid, Is.False);
-
-            var expectedMessage = $"{parameterName} must be a concrete number.";
+            var expectedMessage = $"{parameterName} must be > {lowerLimit}. Current value: {invalidValue}";
             Assert.That(result.ValidationMessage, Is.EqualTo(expectedMessage));
         }
 
-        protected abstract T CreateRule(string parameterName, double value);
+        protected override DoubleParameterGreaterThanRule CreateRule(string parameterName, double value)
+        {
+            var random = new Random(21);
+            return new DoubleParameterGreaterThanRule(parameterName, value, random.NextDouble());
+        }
     }
 }

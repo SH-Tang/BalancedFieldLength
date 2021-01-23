@@ -45,7 +45,7 @@ namespace Core.Common.Data.DataModel.ValidationRules
                 return result;
             }
 
-            return !(Value >= lowerLimit)
+            return !(Value > lowerLimit)
                        ? ValidationRuleResult.CreateInvalidResult(
                            string.Format(Resources.NumericRule_Value_0_must_be_greater_than_LowerLimit_1_Current_value_2,
                                          ParameterName, lowerLimit, Value))
