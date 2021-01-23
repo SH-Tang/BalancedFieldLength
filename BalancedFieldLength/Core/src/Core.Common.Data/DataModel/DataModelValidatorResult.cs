@@ -54,7 +54,7 @@ namespace Core.Common.Data.DataModel
         /// <param name="messages">The collection of validation messages.</param>
         /// <returns>A configured <see cref="DataModelValidatorResult"/>.</returns>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="messages"/> is <c>null</c>.</exception>
-        internal static DataModelValidatorResult CreateInvalidResult(IEnumerable<string> messages)
+        public static DataModelValidatorResult CreateInvalidResult(IEnumerable<string> messages)
         {
             if (messages == null)
             {
