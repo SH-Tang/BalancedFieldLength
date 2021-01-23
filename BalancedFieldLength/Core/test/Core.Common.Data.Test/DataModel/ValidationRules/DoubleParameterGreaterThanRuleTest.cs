@@ -26,7 +26,7 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
     public class DoubleParameterGreaterThanRuleTest : DoubleParameterRuleBaseTestFixture<DoubleParameterGreaterThanRule>
     {
         [Test]
-        [TestCase(double.Epsilon)]
+        [TestCase(1e-5)]
         [TestCase(1)]
         public void Execute_WithValuesSatisfyingLimit_ReturnsValidResult(double offset)
         {
