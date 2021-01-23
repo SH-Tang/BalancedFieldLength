@@ -29,7 +29,7 @@ Disadvantages:
 * By introducing validation rules within the ViewModel, the business logic is potentially at two places. In case an import functionality is to be implemented, the domain model has to guarantee that the data passed around in the application is valid with the business logic satisfied. The introduction of the validation rules might cause this redundancy as it needs to be present in the ViewModel as well. Alternatively, this could be refactored in a helper class that validates the data. (Drawback of this approach is that the helper needs to be called whenever the data is involved)
 
 ### Using the abstract class `ValidationRule` 
-The abstract class 'ValidationRule` enables a generic validation rule to be executed before the value is being bound. This basically means that it will intercept the user input before the value is being committed to the underlying datamodel in the ViewModel. 
+The abstract class `ValidationRule` enables a generic validation rule to be executed before the value is being bound. This basically means that it will intercept the user input before the value is being committed to the underlying datamodel in the ViewModel. 
 
 However, the `ValidationRule` is rather generic and is extremely basic in containing business logic. The behaviour makes it more suitable to validate user input independent of the bussiness logic. 
 
