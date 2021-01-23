@@ -15,23 +15,34 @@
 // You should have received a copy of the GNU General Public License
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
+using Core.Common.Data.Properties;
+
 namespace Core.Common.Data.DataModel.ValidationRules
 {
     /// <summary>
     /// Validation rule representing a double being a concrete number. (e.g. not <see cref="double.NaN"/>,
     /// <see cref="double.PositiveInfinity"/> or <see cref="double.NegativeInfinity"/>.
     /// </summary>
-    public class DoubleParameterConcreteNumberRule : DoubleParameterRuleBase
+    public class DoubleParameterConcreteNumberRule : ParameterRuleBase
     {
+        private readonly double value;
+
         /// <inheritdoc/>
         /// <summary>
         /// Creates a new instance of <see cref="DoubleParameterConcreteNumberRule"/>.
         /// </summary>
-        public DoubleParameterConcreteNumberRule(string parameterName, double value) : base(parameterName, value) {}
+        /// <param name="value">The value to create the rule for.</param>
+        public DoubleParameterConcreteNumberRule(string parameterName, double value) : base(parameterName)
+        {
+            this.value = value;
+        }
 
         public override ValidationRuleResult Execute()
         {
-            return ValidateValueConcreteNumber();
+            return double.IsNaN(value) || double.IsInfinity(value)
+                       ? ValidationRuleResult.CreateInvalidResult(
+                           string.Format(Resources.NumberParameterRuleBase_Value_0_must_be_a_concrete_number, ParameterName))
+                       : ValidationRuleResult.ValidResult;
         }
     }
 }
