@@ -1,29 +1,13 @@
-﻿// Copyright (C) 2018 Dennis Tang. All rights reserved.
-//
-// This file is part of Balanced Field Length.
-//
-// Balanced Field Length is free software: you can redistribute it and/or modify
-// it under the terms of the GNU General Public License as published by
-// the Free Software Foundation, either version 3 of the License, or
-// (at your option) any later version.
-// 
-// This program is distributed in the hope that it will be useful,
-// but WITHOUT ANY WARRANTY; without even the implied warranty of
-// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
-// GNU General Public License for more details.
-//
-// You should have received a copy of the GNU General Public License
-// along with this program. If not, see <http://www.gnu.org/licenses/>.
-
-using System;
+﻿using System;
 using Core.Common.Data.DataModel;
 using Core.Common.Data.DataModel.ValidationRules;
+using Core.Common.TestUtil;
 using NUnit.Framework;
 
 namespace Core.Common.Data.Test.DataModel.ValidationRules
 {
     [TestFixture]
-    public class DoubleParameterConcreteValueRuleTest
+    public class AngleParameterConcreteValueRuleTest
     {
         [Test]
         public void Constructor_WithArguments_ExpectedValues()
@@ -32,10 +16,10 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
             const string parameterName = "ParameterName";
 
             var random = new Random(21);
-            double value = random.NextDouble();
+            Angle value = random.NextAngle();
 
             // Call
-            var rule = new DoubleParameterConcreteValueRule(parameterName, value);
+            var rule = new AngleParameterConcreteValueRule(parameterName, value);
 
             // Assert
             Assert.That(rule, Is.InstanceOf<ParameterRuleBase>());
@@ -48,9 +32,9 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
             const string parameterName = "ParameterName";
 
             var random = new Random(21);
-            double value = random.NextDouble();
+            Angle value = random.NextAngle();
 
-            var rule = new DoubleParameterConcreteValueRule(parameterName, value);
+            var rule = new AngleParameterConcreteValueRule(parameterName, value);
 
             // Call 
             ValidationRuleResult result = rule.Execute();
@@ -67,7 +51,8 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
         {
             // Setup
             const string parameterName = "ParameterName";
-            var rule = new DoubleParameterConcreteValueRule(parameterName, invalidValue);
+            Angle invalidAngle = Angle.FromDegrees(invalidValue);
+            var rule = new AngleParameterConcreteValueRule(parameterName, invalidAngle);
 
             // Call 
             ValidationRuleResult result = rule.Execute();
