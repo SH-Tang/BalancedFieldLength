@@ -15,7 +15,7 @@ namespace Core.Common.Data.DataModel.ValidationRules
 
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of <see cref="ComparableParameterGreaterOrEqualToRule"/>.
+        /// Creates a new instance of <see cref="ComparableParameterGreaterOrEqualToRule{T}"/>.
         /// </summary>
         /// <param name="value">The <see cref="IComparable{T}"/> value to construct the rule for.</param>
         /// <param name="lowerLimit">The lower limit value which the <paramref name="value"/> must be greater or equal to.</param>
