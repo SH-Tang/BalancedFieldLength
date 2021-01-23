@@ -23,16 +23,16 @@ namespace Core.Common.Data.DataModel.ValidationRules
     /// Validation rule representing a double being a concrete number. (e.g. not <see cref="double.NaN"/>,
     /// <see cref="double.PositiveInfinity"/> or <see cref="double.NegativeInfinity"/>.
     /// </summary>
-    public class DoubleParameterConcreteNumberRule : ParameterRuleBase
+    public class DoubleParameterConcreteValueRule : ParameterRuleBase
     {
         private readonly double value;
 
         /// <inheritdoc/>
         /// <summary>
-        /// Creates a new instance of <see cref="DoubleParameterConcreteNumberRule"/>.
+        /// Creates a new instance of <see cref="DoubleParameterConcreteValueRule"/>.
         /// </summary>
         /// <param name="value">The value to create the rule for.</param>
-        public DoubleParameterConcreteNumberRule(string parameterName, double value) : base(parameterName)
+        public DoubleParameterConcreteValueRule(string parameterName, double value) : base(parameterName)
         {
             this.value = value;
         }

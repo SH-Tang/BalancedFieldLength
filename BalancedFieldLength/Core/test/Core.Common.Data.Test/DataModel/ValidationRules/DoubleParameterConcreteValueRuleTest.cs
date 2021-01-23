@@ -23,7 +23,7 @@ using NUnit.Framework;
 namespace Core.Common.Data.Test.DataModel.ValidationRules
 {
     [TestFixture]
-    public class DoubleParameterConcreteNumberRuleTest
+    public class DoubleParameterConcreteValueRuleTest
     {
         [Test]
         public void Constructor_WithArguments_ExpectedValues()
@@ -36,7 +36,7 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
             double value = random.NextDouble();
 
             // Call
-            var rule = new DoubleParameterConcreteNumberRule(parameterName, value);
+            var rule = new DoubleParameterConcreteValueRule(parameterName, value);
 
             // Assert
             Assert.That(rule, Is.InstanceOf<ParameterRuleBase>());
@@ -51,7 +51,7 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
             var random = new Random(21);
             double value = random.NextDouble();
 
-            var rule = new DoubleParameterConcreteNumberRule(parameterName, value);
+            var rule = new DoubleParameterConcreteValueRule(parameterName, value);
 
             // Call 
             ValidationRuleResult result = rule.Execute();
@@ -68,7 +68,7 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
         {
             // Setup
             const string parameterName = "ParameterName";
-            var rule = new DoubleParameterConcreteNumberRule(parameterName, invalidValue);
+            var rule = new DoubleParameterConcreteValueRule(parameterName, invalidValue);
 
             // Call 
             ValidationRuleResult result = rule.Execute();
