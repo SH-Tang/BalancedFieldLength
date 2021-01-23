@@ -23,24 +23,8 @@ using NUnit.Framework;
 namespace Core.Common.Data.Test.DataModel.ValidationRules
 {
     [TestFixture]
-    public class DoubleParameterConcreteNumberRuleTest
+    public class DoubleParameterConcreteNumberRuleTest : DoubleParameterRuleBaseTestFixture<DoubleParameterConcreteNumberRule>
     {
-        [Test]
-        public void Constructor_WithArguments_ExpectedValues()
-        {
-            // Setup
-            const string parameterName = "ParameterName";
-
-            var random = new Random(21);
-            double value = random.NextDouble();
-
-            // Call
-            var rule = new DoubleParameterConcreteNumberRule(parameterName, value);
-
-            // Assert
-            Assert.That(rule, Is.InstanceOf<DoubleParameterRuleBase>());
-        }
-
         [Test]
         public void Execute_WithValidValue_ReturnsValidResult()
         {
@@ -59,24 +43,9 @@ namespace Core.Common.Data.Test.DataModel.ValidationRules
             Assert.That(result, Is.SameAs(ValidationRuleResult.ValidResult));
         }
 
-        [Test]
-        [TestCase(double.NaN)]
-        [TestCase(double.NegativeInfinity)]
-        [TestCase(double.PositiveInfinity)]
-        public void Execute_WithInvalidValues_ReturnsExpectedValidationResult(double invalidValue)
+        protected override DoubleParameterConcreteNumberRule CreateRule(string parameterName, double value)
         {
-            // Setup
-            const string parameterName = "ParameterName";
-            var rule = new DoubleParameterConcreteNumberRule(parameterName, invalidValue);
-
-            // Call 
-            ValidationRuleResult result = rule.Execute();
-
-            // Assert
-            Assert.That(result.IsValid, Is.False);
-
-            var expectedMessage = $"{parameterName} must be a concrete number.";
-            Assert.That(result.ValidationMessage, Is.EqualTo(expectedMessage));
+            return new DoubleParameterConcreteNumberRule(parameterName, value);
         }
     }
 }
