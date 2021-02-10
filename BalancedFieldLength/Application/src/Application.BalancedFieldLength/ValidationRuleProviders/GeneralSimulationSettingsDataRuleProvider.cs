@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.Properties;
 using Core.Common.Data.DataModel;
 using Core.Common.Data.DataModel.ValidationRules;
 
@@ -49,16 +50,26 @@ namespace Application.BalancedFieldLength.ValidationRuleProviders
         public IEnumerable<IDataModelValidationRule> GetDataModelValidationRules()
         {
             IEnumerable<IDataModelValidationRule> doubleParameterRules =
-                CreateDoubleParameterValidationRules("Density", data.Density)
-                    .Concat(CreateDoubleParameterValidationRules("Gravitational acceleration", data.GravitationalAcceleration))
-                    .Concat(CreateDoubleParameterValidationRules("Time step", data.TimeStep));
+                CreateDoubleParameterValidationRules(
+                        ParameterNameExtractor.ExtractParameterName(Resources.GeneralSimulationSettings_Density_DisplayName), 
+                        data.Density)
+                    .Concat(CreateDoubleParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.GeneralSimulationSettings_GravitationalAcceleration_DisplayName),
+                                data.GravitationalAcceleration))
+                    .Concat(CreateDoubleParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.GeneralSimulationSettings_TimeStep_DisplayName), 
+                                data.TimeStep));
             foreach (IDataModelValidationRule rule in doubleParameterRules)
             {
                 yield return rule;
             }
 
-            yield return new ComparableParameterGreaterThanRule<int>("Maximum number of iterations", data.MaximumNrOfIterations, 0);
-            yield return new ComparableParameterGreaterThanRule<int>("End failure velocity", data.EndFailureVelocity, 0);
+            yield return new ComparableParameterGreaterThanRule<int>(
+                ParameterNameExtractor.ExtractParameterName(Resources.GeneralSimulationSettings_MaximumNumberOfIterations_DisplayName),
+                data.MaximumNrOfIterations, 0);
+            yield return new ComparableParameterGreaterThanRule<int>(
+                ParameterNameExtractor.ExtractParameterName(Resources.GeneralSimulationSettings_EndFailureVelocity_DisplayName),
+                data.EndFailureVelocity, 0);
         }
 
         private static IEnumerable<IDataModelValidationRule> CreateDoubleParameterValidationRules(string parameterName, double value)
