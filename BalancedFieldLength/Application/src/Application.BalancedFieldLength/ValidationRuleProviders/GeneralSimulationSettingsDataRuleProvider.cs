@@ -34,7 +34,7 @@ namespace Application.BalancedFieldLength.ValidationRuleProviders
         /// <summary>
         /// Creates an instance of <see cref="EngineDataRuleProvider"/>.
         /// </summary>
-        /// <param name="data">The <see cref="EngineData"/> to create the provider for.</param>
+        /// <param name="data">The <see cref="GeneralSimulationSettingsData"/> to create the provider for.</param>
         /// <exception cref="ArgumentNullException">Thrown when <paramref name="data"/> is <c>null</c>.</exception>
         public GeneralSimulationSettingsDataRuleProvider(GeneralSimulationSettingsData data)
         {
