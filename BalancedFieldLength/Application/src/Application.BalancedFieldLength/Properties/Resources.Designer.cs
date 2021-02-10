@@ -347,5 +347,23 @@ namespace Application.BalancedFieldLength.Properties {
                 return ResourceManager.GetString("GeneralSimulationSettingsTabViewModel_TabName", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculation completed..
+        /// </summary>
+        public static string MainViewModel_Calculate_Calculation_completed_ {
+            get {
+                return ResourceManager.GetString("MainViewModel_Calculate_Calculation_completed_", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Calculation failed..
+        /// </summary>
+        public static string MainViewModel_Calculate_Calculation_failed_ {
+            get {
+                return ResourceManager.GetString("MainViewModel_Calculate_Calculation_failed_", resourceCulture);
+            }
+        }
     }
 }

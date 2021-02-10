@@ -121,7 +121,7 @@ namespace WPF.Core.Test.Converters
 
         [Test]
         [TestCaseSource(nameof(GetNonIntegerValueObject))]
-        public void ConvertBack_WithNonIntegerValueType_ReturnsBindingDoNothing(object value)
+        public void ConvertBack_WithNonIntegerValueType_ReturnsNull(object value)
         {
             // Setup
             var converter = new IntegerValueConverter();
@@ -130,7 +130,7 @@ namespace WPF.Core.Test.Converters
             object result = converter.ConvertBack(value, typeof(int), null, null);
 
             // Assert
-            Assert.That(result, Is.EqualTo(Binding.DoNothing));
+            Assert.That(result, Is.Null);
         }
 
         private static IEnumerable<TestCaseData> GetNonIntegerValueObject()

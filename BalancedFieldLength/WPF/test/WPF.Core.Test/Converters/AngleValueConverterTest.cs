@@ -126,7 +126,7 @@ namespace WPF.Core.Test.Converters
 
         [Test]
         [TestCaseSource(nameof(GetNonAngleValueObject))]
-        public void ConvertBack_WithNonDoubleValueType_ReturnsBindingDoNothing(object value)
+        public void ConvertBack_WithNonDoubleValueType_ReturnsNull(object value)
         {
             // Setup
             var converter = new AngleValueConverter();
@@ -135,7 +135,7 @@ namespace WPF.Core.Test.Converters
             object result = converter.ConvertBack(value, typeof(Angle), null, null);
 
             // Assert
-            Assert.That(result, Is.EqualTo(Binding.DoNothing));
+            Assert.That(result, Is.Null);
         }
 
         [TestFixture]

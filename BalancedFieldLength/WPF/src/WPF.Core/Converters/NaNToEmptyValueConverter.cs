@@ -83,7 +83,7 @@ namespace WPF.Core.Converters
                 return double.NaN;
             }
 
-            return Binding.DoNothing;
+            return null;
         }
     }
 }

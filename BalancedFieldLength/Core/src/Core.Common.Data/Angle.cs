@@ -22,7 +22,7 @@ namespace Core.Common.Data
     /// <summary>
     /// Represents an angle.
     /// </summary>
-    public struct Angle
+    public struct Angle : IComparable, IComparable<Angle>
     {
         /// <summary>
         /// Initializes a new instance of <see cref="Angle"/>
@@ -120,6 +120,21 @@ namespace Core.Common.Data
         public override int GetHashCode()
         {
             return Radians.GetHashCode();
+        }
+
+        public int CompareTo(object obj)
+        {
+            if (!(obj is Angle))
+            {
+                throw new ArgumentException($"{obj.GetType().Name} cannot be CompareTo()");
+            }
+
+            return CompareTo((Angle) obj);
+        }
+
+        public int CompareTo(Angle other)
+        {
+            return Radians.CompareTo(other.Radians);
         }
 
         private static double RadiansToDegrees(double radians)

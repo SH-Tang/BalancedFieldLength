@@ -14,7 +14,6 @@
 * [ADR-00010](00010-KernelWrapperDesign.md) - Kernel wrapper design
 * [ADR-00011](00011-Migrating-to-the-SDK-Project-Format.md) - Migrating to the SDK Project Format
 * [ADR-00012](00012-Selecting-NUnit-test-logger-to-report-results-in-GithubActions.md) - Selecting NUnit test logger to report results in GithubActions
+* [ADR-00013](00013-Validation-UserInput.md) - Validation of user input
 
 <!-- adrlogstop -->
-
-

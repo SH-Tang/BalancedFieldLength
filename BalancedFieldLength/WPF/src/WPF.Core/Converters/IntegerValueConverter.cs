@@ -64,7 +64,7 @@ namespace WPF.Core.Converters
                 return parsedResult;
             }
 
-            return Binding.DoNothing;
+            return null;
         }
     }
 }
