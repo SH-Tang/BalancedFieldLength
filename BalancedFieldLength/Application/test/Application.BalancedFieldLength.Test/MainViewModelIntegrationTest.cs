@@ -214,11 +214,11 @@ namespace Application.BalancedFieldLength.Test
             viewModel.LiftCoefficientGradient = random.NextDouble();
             viewModel.ZeroLiftAngleOfAttack = random.NextAngle();
 
-            viewModel.RestDragCoefficientWithEngineFailure = random.NextDouble();
             viewModel.RestDragCoefficient = random.NextDouble();
+            viewModel.RestDragCoefficientWithEngineFailure = random.NextDouble() + viewModel.RestDragCoefficient;
 
             viewModel.RollResistanceCoefficient = random.NextDouble();
-            viewModel.RollResistanceWithBrakesCoefficient = random.NextDouble();
+            viewModel.RollResistanceWithBrakesCoefficient = random.NextDouble() + viewModel.RollResistanceCoefficient;
         }
 
         private static void AssertGeneralSettings(GeneralSimulationSettingsTabViewModel expected,
