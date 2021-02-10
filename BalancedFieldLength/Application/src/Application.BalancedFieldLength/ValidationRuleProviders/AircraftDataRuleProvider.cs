@@ -19,6 +19,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.Properties;
 using Core.Common.Data;
 using Core.Common.Data.DataModel;
 using Core.Common.Data.DataModel.ValidationRules;
@@ -50,26 +51,56 @@ namespace Application.BalancedFieldLength.ValidationRuleProviders
         public IEnumerable<IDataModelValidationRule> GetDataModelValidationRules()
         {
             IEnumerable<IDataModelValidationRule> parameterRules =
-                CreateParameterValidationRules("Take off Weight", data.TakeOffWeight)
-                    .Concat(CreateParameterValidationRules("Pitch gradient", data.PitchGradient))
-                    .Concat(CreateParameterValidationRules("Maximum pitch angle", data.MaximumPitchAngle))
-                    .Concat(CreateParameterValidationRules("Wing surface area", data.WingSurfaceArea))
-                    .Concat(CreateParameterValidationRules("Aspect ratio", data.AspectRatio))
-                    .Concat(CreateParameterValidationRules("Oswald factor", data.OswaldFactor))
-                    .Concat(CreateParameterValidationRules("Maximum lift coefficient", data.MaximumLiftCoefficient))
-                    .Concat(CreateParameterValidationRules("Lift coefficient gradient", data.LiftCoefficientGradient))
-                    .Concat(CreateParameterValidationRules("Rest drag coefficient", data.RestDragCoefficient))
-                    .Concat(CreateParameterValidationRules("Rest drag coefficient with engine failure", data.RestDragCoefficientWithEngineFailure))
-                    .Concat(CreateParameterValidationRules("Roll resistance coefficient", data.RollResistanceCoefficient))
-                    .Concat(CreateParameterValidationRules("Roll resistance with brakes coefficient", data.RollResistanceWithBrakesCoefficient));
+                CreateParameterValidationRules(
+                        ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_TakeOffWeight_DisplayName),
+                        data.TakeOffWeight)
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_PitchAngleGradient_DisplayName),
+                                data.PitchGradient))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_MaximumPitchAngle_DisplayName),
+                                data.MaximumPitchAngle))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_WingSurfaceArea_DisplayName),
+                                data.WingSurfaceArea))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_AspectRatio_DisplayName),
+                                data.AspectRatio))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_OswaldFactor_DisplayName),
+                                data.OswaldFactor))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_MaximumLiftCoefficient_DisplayName), 
+                                data.MaximumLiftCoefficient))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_LiftCoefficientGradient_DisplayName), 
+                                data.LiftCoefficientGradient))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RestDragCoefficient_DisplayName), 
+                                data.RestDragCoefficient))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RestDragCoefficientWithEngineFailure_DisplayName), 
+                                data.RestDragCoefficientWithEngineFailure))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RollResistanceCoefficient_DisplayName), 
+                                data.RollResistanceCoefficient))
+                    .Concat(CreateParameterValidationRules(
+                                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RollResistanceWithBrakesCoefficient_DisplayName),
+                                data.RollResistanceWithBrakesCoefficient));
             foreach (IDataModelValidationRule rule in parameterRules)
             {
                 yield return rule;
             }
 
-            yield return new AngleParameterConcreteValueRule("Zero angle", data.ZeroLiftAngleOfAttack);
-            yield return new ComparableParameterGreaterThanRule<double>("Rest drag coefficient with engine failure", data.RestDragCoefficientWithEngineFailure, data.RestDragCoefficient);
-            yield return new ComparableParameterGreaterThanRule<double>("Roll resistance with brakes coefficient", data.RollResistanceWithBrakesCoefficient, data.RollResistanceCoefficient);
+            yield return new AngleParameterConcreteValueRule(
+                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_ZeroLiftAngleOfAttack_DisplayName),
+                data.ZeroLiftAngleOfAttack);
+            yield return new ComparableParameterGreaterThanRule<double>(
+                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RestDragCoefficientWithEngineFailure_DisplayName),
+                data.RestDragCoefficientWithEngineFailure, data.RestDragCoefficient);
+            yield return new ComparableParameterGreaterThanRule<double>(
+                ParameterNameExtractor.ExtractParameterName(Resources.AircraftData_RollResistanceWithBrakesCoefficient_DisplayName),
+                data.RollResistanceWithBrakesCoefficient, data.RollResistanceCoefficient);
         }
 
         private static IEnumerable<IDataModelValidationRule> CreateParameterValidationRules(string parameterName, double value)
