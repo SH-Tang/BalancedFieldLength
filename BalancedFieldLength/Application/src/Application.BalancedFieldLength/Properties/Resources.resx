@@ -213,10 +213,10 @@
   <data name="GeneralSimulationSettings_Density_DisplayName" xml:space="preserve">
     <value>Density [kg/m³]</value>
   </data>
-  <data name="MainViewModel_Calculate_Calculation_failed_" xml:space="preserve">
+  <data name="MainViewModel_Calculate_Calculation_failed" xml:space="preserve">
     <value>Calculation failed.</value>
   </data>
-  <data name="MainViewModel_Calculate_Calculation_completed_" xml:space="preserve">
+  <data name="MainViewModel_Calculate_Calculation_completed" xml:space="preserve">
     <value>Calculation completed.</value>
   </data>
 </root>

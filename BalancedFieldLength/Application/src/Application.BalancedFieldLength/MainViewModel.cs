@@ -121,12 +121,12 @@ namespace Application.BalancedFieldLength
                 BalancedFieldLengthOutput output = calculationModule.Calculate(calculation);
 
                 OutputViewModel = new OutputViewModel(output);
-                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, Resources.MainViewModel_Calculate_Calculation_completed_));
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, Resources.MainViewModel_Calculate_Calculation_completed));
             }
             catch (Exception e) when (e is CreateKernelDataException || e is KernelCalculationException)
             {
                 MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, e.Message));
-                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed_));
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed));
             }
         }
 
@@ -147,7 +147,7 @@ namespace Application.BalancedFieldLength
                 MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, validationMessage));
             }
 
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed_));
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed));
         }
 
         #region DemoData
