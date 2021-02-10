@@ -18,6 +18,7 @@
 using System;
 using System.Collections.Generic;
 using Application.BalancedFieldLength.Data;
+using Application.BalancedFieldLength.Properties;
 using Core.Common.Data.DataModel;
 using Core.Common.Data.DataModel.ValidationRules;
 
@@ -47,11 +48,21 @@ namespace Application.BalancedFieldLength.ValidationRuleProviders
 
         public IEnumerable<IDataModelValidationRule> GetDataModelValidationRules()
         {
-            yield return new DoubleParameterConcreteValueRule("Thrust per engine", data.ThrustPerEngine);
-            yield return new ComparableParameterGreaterThanRule<double>("Thrust per engine", data.ThrustPerEngine, 0);
-            yield return new ComparableParameterGreaterThanRule<int>("Nr of Engines", data.NrOfEngines, 0);
-            yield return new ComparableParameterGreaterThanRule<int>("Nr of Failed Engines", data.NrOfFailedEngines, 0);
-            yield return new ComparableParameterGreaterThanRule<int>("Nr of Engines", data.NrOfEngines, data.NrOfFailedEngines);
+            yield return new DoubleParameterConcreteValueRule(
+                ParameterNameExtractor.ExtractParameterName(Resources.EngineData_ThrustPerEngine_DisplayName),
+                data.ThrustPerEngine);
+            yield return new ComparableParameterGreaterThanRule<double>(
+                ParameterNameExtractor.ExtractParameterName(Resources.EngineData_ThrustPerEngine_DisplayName),
+                data.ThrustPerEngine, 0);
+            yield return new ComparableParameterGreaterThanRule<int>(
+                ParameterNameExtractor.ExtractParameterName(Resources.EngineData_NumberOfEngines_DisplayName),
+                data.NrOfEngines, 0);
+            yield return new ComparableParameterGreaterThanRule<int>(
+                ParameterNameExtractor.ExtractParameterName(Resources.EngineData_NrOfFailedEngines_DisplayName),
+                data.NrOfFailedEngines, 0);
+            yield return new ComparableParameterGreaterThanRule<int>(
+                ParameterNameExtractor.ExtractParameterName(Resources.EngineData_NumberOfEngines_DisplayName),
+                data.NrOfEngines, data.NrOfFailedEngines);
         }
     }
 }
