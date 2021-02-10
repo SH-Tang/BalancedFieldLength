@@ -16,6 +16,7 @@
 // along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using Application.BalancedFieldLength.Data;
@@ -33,6 +34,59 @@ namespace Application.BalancedFieldLength.Test
     [TestFixture]
     public class MainViewModelIntegrationTest
     {
+        [Test]
+        public void GivenViewModelWithInvalidCalculation_WhenCalculationPressed_ThenErrorLoggedAndInputNotSent()
+        {
+            // Given
+            var random = new Random(21);
+
+            var viewModel = new MainViewModel();
+            TabControlViewModel tabControlViewModel = viewModel.TabControlViewModel;
+            ObservableCollection<ITabViewModel> tabs = tabControlViewModel.Tabs;
+
+            // Precondition
+            Assert.That(tabs, Has.Count.EqualTo(3));
+            Assert.That(tabs[0], Is.TypeOf<GeneralSimulationSettingsTabViewModel>());
+            Assert.That(tabs[1], Is.TypeOf<EngineSettingsTabViewModel>());
+            Assert.That(tabs[2], Is.TypeOf<AircraftDataTabViewModel>());
+
+            var generalSimulationSettingsViewModel = (GeneralSimulationSettingsTabViewModel)tabs[0];
+            var engineSettingsViewModel = (EngineSettingsTabViewModel)tabs[1];
+            var aircraftDataViewModel = (AircraftDataTabViewModel)tabs[2];
+            SetGeneralSettings(generalSimulationSettingsViewModel, random.Next());
+            SetEngineData(engineSettingsViewModel, random.Next());
+            SetAircraftData(aircraftDataViewModel, random.Next());
+
+            aircraftDataViewModel.TakeOffWeight = double.NaN; // Set an invalid value
+
+            using (new BalancedFieldLengthCalculationModuleFactoryConfig())
+            {
+                var instance = (TestBalancedFieldLengthCalculationModuleFactory)
+                    BalancedFieldLengthCalculationModuleFactory.Instance;
+
+                TestBalancedFieldLengthCalculationModule testModule = instance.TestModule;
+
+                // Precondition
+                MessageWindowViewModel messageWindowViewModel = viewModel.MessageWindowViewModel;
+                Assert.That(messageWindowViewModel.Messages, Is.Empty);
+
+                // When
+                viewModel.CalculateCommand.Execute(null);
+
+                // Then
+                Assert.That(testModule.InputCalculation, Is.Null);
+
+                OutputViewModel outputViewModel = viewModel.OutputViewModel;
+                Assert.That(outputViewModel, Is.Null);
+
+                IEnumerable<MessageType> messageTypes = messageWindowViewModel.Messages.Select(m => m.MessageType);
+                Assert.That(messageTypes, Is.All.EqualTo(MessageType.Error));
+
+                MessageContext firstMessage = messageWindowViewModel.Messages.First();
+                Assert.That(firstMessage.Message, Is.EqualTo("Calculation failed."));
+            }
+        }
+
         [Test]
         public void GivenViewModel_WhenCalculationPressed_ThenInputArgumentSent()
         {
