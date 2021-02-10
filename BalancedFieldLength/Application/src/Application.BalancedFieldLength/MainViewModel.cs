@@ -20,6 +20,7 @@ using System.Windows.Input;
 using Application.BalancedFieldLength.Data;
 using Application.BalancedFieldLength.KernelWrapper;
 using Application.BalancedFieldLength.KernelWrapper.Exceptions;
+using Application.BalancedFieldLength.Properties;
 using Application.BalancedFieldLength.ValidationRuleProviders;
 using Application.BalancedFieldLength.Views.OutputView;
 using Application.BalancedFieldLength.Views.TabViews;
@@ -120,11 +121,12 @@ namespace Application.BalancedFieldLength
                 BalancedFieldLengthOutput output = calculationModule.Calculate(calculation);
 
                 OutputViewModel = new OutputViewModel(output);
-                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, "Calculation completed."));
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Info, Resources.MainViewModel_Calculate_Calculation_completed_));
             }
             catch (Exception e) when (e is CreateKernelDataException || e is KernelCalculationException)
             {
                 MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, e.Message));
+                MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed_));
             }
         }
 
@@ -145,7 +147,7 @@ namespace Application.BalancedFieldLength
                 MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, validationMessage));
             }
 
-            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, "Calculation failed."));
+            MessageWindowViewModel.AddMessage(new MessageContext(MessageType.Error, Resources.MainViewModel_Calculate_Calculation_failed_));
         }
 
         #region DemoData

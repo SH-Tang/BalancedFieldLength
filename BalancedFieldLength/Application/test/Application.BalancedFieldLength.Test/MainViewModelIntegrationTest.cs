@@ -50,9 +50,9 @@ namespace Application.BalancedFieldLength.Test
             Assert.That(tabs[1], Is.TypeOf<EngineSettingsTabViewModel>());
             Assert.That(tabs[2], Is.TypeOf<AircraftDataTabViewModel>());
 
-            var generalSimulationSettingsViewModel = (GeneralSimulationSettingsTabViewModel)tabs[0];
-            var engineSettingsViewModel = (EngineSettingsTabViewModel)tabs[1];
-            var aircraftDataViewModel = (AircraftDataTabViewModel)tabs[2];
+            var generalSimulationSettingsViewModel = (GeneralSimulationSettingsTabViewModel) tabs[0];
+            var engineSettingsViewModel = (EngineSettingsTabViewModel) tabs[1];
+            var aircraftDataViewModel = (AircraftDataTabViewModel) tabs[2];
             SetGeneralSettings(generalSimulationSettingsViewModel, random.Next());
             SetEngineData(engineSettingsViewModel, random.Next());
             SetAircraftData(aircraftDataViewModel, random.Next());
@@ -183,7 +183,8 @@ namespace Application.BalancedFieldLength.Test
 
                 // Precondition
                 MessageWindowViewModel messageWindowViewModel = viewModel.MessageWindowViewModel;
-                Assert.That(messageWindowViewModel.Messages, Is.Empty);
+                ReadOnlyObservableCollection<MessageContext> logMessages = messageWindowViewModel.Messages;
+                Assert.That(logMessages, Is.Empty);
 
                 // When
                 viewModel.CalculateCommand.Execute(null);
@@ -191,10 +192,14 @@ namespace Application.BalancedFieldLength.Test
                 // Then
                 Assert.That(viewModel.OutputViewModel, Is.Null);
 
-                Assert.That(messageWindowViewModel.Messages, Has.Count.EqualTo(1));
-                MessageContext message = messageWindowViewModel.Messages.Single();
-                Assert.That(message.MessageType, Is.EqualTo(MessageType.Error));
-                Assert.That(message.Message, Is.EqualTo("Exception"));
+                Assert.That(logMessages, Has.Count.EqualTo(2));
+                Assert.That(logMessages.Select(m => m.MessageType), Is.All.EqualTo(MessageType.Error));
+
+                Assert.That(logMessages[0].MessageType, Is.EqualTo(MessageType.Error));
+                Assert.That(logMessages[0].Message, Is.EqualTo("Calculation failed."));
+
+                Assert.That(logMessages[1].MessageType, Is.EqualTo(MessageType.Error));
+                Assert.That(logMessages[1].Message, Is.EqualTo("Exception"));
             }
         }
 
@@ -214,7 +219,8 @@ namespace Application.BalancedFieldLength.Test
 
                 // Precondition
                 MessageWindowViewModel messageWindowViewModel = viewModel.MessageWindowViewModel;
-                Assert.That(messageWindowViewModel.Messages, Is.Empty);
+                ReadOnlyObservableCollection<MessageContext> logMessages = messageWindowViewModel.Messages;
+                Assert.That(logMessages, Is.Empty);
 
                 // When
                 viewModel.CalculateCommand.Execute(null);
@@ -222,10 +228,14 @@ namespace Application.BalancedFieldLength.Test
                 // Then
                 Assert.That(viewModel.OutputViewModel, Is.Null);
 
-                Assert.That(messageWindowViewModel.Messages, Has.Count.EqualTo(1));
-                MessageContext message = messageWindowViewModel.Messages.Single();
-                Assert.That(message.MessageType, Is.EqualTo(MessageType.Error));
-                Assert.That(message.Message, Is.EqualTo("Exception"));
+                Assert.That(logMessages, Has.Count.EqualTo(2));
+                Assert.That(logMessages.Select(m => m.MessageType), Is.All.EqualTo(MessageType.Error));
+
+                Assert.That(logMessages[0].MessageType, Is.EqualTo(MessageType.Error));
+                Assert.That(logMessages[0].Message, Is.EqualTo("Calculation failed."));
+
+                Assert.That(logMessages[1].MessageType, Is.EqualTo(MessageType.Error));
+                Assert.That(logMessages[1].Message, Is.EqualTo("Exception"));
             }
         }
 
